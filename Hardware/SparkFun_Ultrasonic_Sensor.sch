@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -408,18 +408,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="-0.9262" y1="0.4262" x2="-0.9262" y2="-0.4262" width="0.05" layer="39"/>
 <wire x1="-0.9262" y1="-0.4262" x2="0.9262" y2="-0.4262" width="0.05" layer="39"/>
 <wire x1="0.9262" y1="-0.4262" x2="0.9262" y2="0.4262" width="0.05" layer="39"/>
-</package>
-<package name="0402_MURATA">
-<wire x1="-0.5" y1="-0.25" x2="-0.5" y2="0.25" width="0.002540625" layer="51"/>
-<wire x1="-0.5" y1="0.25" x2="0.5" y2="0.25" width="0.002540625" layer="51"/>
-<wire x1="0.5" y1="0.25" x2="0.5" y2="-0.25" width="0.002540625" layer="51"/>
-<wire x1="0.5" y1="-0.25" x2="-0.5" y2="-0.25" width="0.002540625" layer="51"/>
-<rectangle x1="-0.5" y1="-0.25" x2="-0.3" y2="0.25" layer="51"/>
-<rectangle x1="0.3" y1="-0.25" x2="0.5" y2="0.25" layer="51" rot="R180"/>
-<smd name="P$1" x="-0.4" y="0" dx="0.4" dy="0.6" layer="1" stop="no"/>
-<smd name="P$2" x="0.4" y="0" dx="0.4" dy="0.6" layer="1" stop="no"/>
-<rectangle x1="-0.6" y1="-0.3" x2="-0.2" y2="0.3" layer="29"/>
-<rectangle x1="0.2" y1="-0.3" x2="0.6" y2="0.3" layer="29"/>
 </package>
 </packages>
 <symbols>
@@ -906,25 +894,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <technology name="">
 <attribute name="PROD_ID" value="RES-13495" constant="no"/>
 <attribute name="VALUE" value="100k" constant="no"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="4.3KOHM">
-<gates>
-<gate name="G$1" symbol="RESISTOR" x="0" y="0"/>
-</gates>
-<devices>
-<device name="-0402" package="0402_MURATA">
-<connects>
-<connect gate="G$1" pin="1" pad="P$1"/>
-<connect gate="G$1" pin="2" pad="P$2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="PROD_ID" value="RES-14355" constant="no"/>
-<attribute name="VALUE" value="4.3k"/>
 </technology>
 </technologies>
 </device>
@@ -4372,7 +4341,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="C16" library="SparkFun-Capacitors" deviceset="1.0NF/1000PF" device="-0603-50V-10%" value="1nF"/>
 <part name="R1" library="SparkFun-Resistors" deviceset="10KOHM" device="-0603-1/10W-1%" value="10k"/>
 <part name="R2" library="SparkFun-Resistors" deviceset="75KOHM" device="-0603-1/10W-1%" value="75k"/>
-<part name="R3" library="SparkFun-Resistors" deviceset="4.3KOHM" device="-0402" value="4.3k"/>
+<part name="R3" library="SparkFun-Resistors" deviceset="4.7KOHM" device="-0603-1/10W-1%" value="4.7k"/>
 <part name="R4" library="SparkFun-Resistors" deviceset="124KOHM" device="" value="124k"/>
 <part name="R5" library="SparkFun-Resistors" deviceset="3.9KOHM" device="-0603-1/10W-1%" value="3.9k"/>
 <part name="R6" library="SparkFun-Resistors" deviceset="10KOHM" device="-0603-1/10W-1%" value="10k"/>
@@ -4463,13 +4432,13 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="177.8" y1="142.24" x2="259.08" y2="142.24" width="0.254" layer="97" style="longdash"/>
 <wire x1="259.08" y1="142.24" x2="431.8" y2="142.24" width="0.254" layer="97" style="longdash"/>
 <text x="96.52" y="266.7" size="2.54" layer="94" font="vector" align="center">Microcontroller - STM8L051F3</text>
-<text x="223.52" y="193.04" size="2.54" layer="94" font="vector" align="center">Testpoints</text>
-<text x="340.36" y="269.24" size="2.54" layer="94" font="vector" align="center">RS-232 Transceiver - SP3232EB
+<text x="218.44" y="193.04" size="2.54" layer="94" font="vector" align="center">Testpoints</text>
+<text x="342.9" y="266.7" size="2.54" layer="94" font="vector" align="center">RS-232 Transceiver - SP3232EB
 Ultrasonic Transmitter - CUSA-T80</text>
 <text x="119.38" y="129.54" size="2.54" layer="94" font="vector" align="center">OP-AMP - LMV324
 Ultrasonic Receiver - CUSA-R80</text>
-<text x="347.98" y="132.08" size="2.54" layer="94" font="vector" align="center">Qwiic Conncectors</text>
-<text x="220.98" y="264.16" size="2.54" layer="94" font="vector" align="center">Header</text>
+<text x="347.98" y="129.54" size="2.54" layer="94" font="vector" align="center">Qwiic Conncectors</text>
+<text x="215.9" y="266.7" size="2.54" layer="94" font="vector" align="center">Header</text>
 <wire x1="177.8" y1="279.4" x2="177.8" y2="208.28" width="0.254" layer="97" style="longdash"/>
 <wire x1="177.8" y1="208.28" x2="177.8" y2="142.24" width="0.254" layer="97" style="longdash"/>
 <wire x1="177.8" y1="208.28" x2="259.08" y2="208.28" width="0.254" layer="97" style="longdash"/>
@@ -4581,20 +4550,20 @@ Ultrasonic Receiver - CUSA-R80</text>
 <instance part="GND6" gate="1" x="33.02" y="73.66" smashed="yes">
 <attribute name="VALUE" x="33.02" y="73.406" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="R22" gate="G$1" x="292.1" y="104.14" smashed="yes" rot="R90">
-<attribute name="NAME" x="290.576" y="104.14" size="1.778" layer="95" font="vector" rot="R90" align="bottom-center"/>
-<attribute name="VALUE" x="293.624" y="104.14" size="1.778" layer="96" font="vector" rot="R90" align="top-center"/>
+<instance part="R22" gate="G$1" x="302.26" y="91.44" smashed="yes" rot="R90">
+<attribute name="NAME" x="300.736" y="91.44" size="1.778" layer="95" font="vector" rot="R90" align="bottom-center"/>
+<attribute name="VALUE" x="303.784" y="91.44" size="1.778" layer="96" font="vector" rot="R90" align="top-center"/>
 </instance>
-<instance part="R23" gate="G$1" x="307.34" y="104.14" smashed="yes" rot="R90">
-<attribute name="NAME" x="305.816" y="104.14" size="1.778" layer="95" font="vector" rot="R90" align="bottom-center"/>
-<attribute name="VALUE" x="308.864" y="104.14" size="1.778" layer="96" font="vector" rot="R90" align="top-center"/>
+<instance part="R23" gate="G$1" x="317.5" y="91.44" smashed="yes" rot="R90">
+<attribute name="NAME" x="315.976" y="91.44" size="1.778" layer="95" font="vector" rot="R90" align="bottom-center"/>
+<attribute name="VALUE" x="319.024" y="91.44" size="1.778" layer="96" font="vector" rot="R90" align="top-center"/>
 </instance>
 <instance part="R8" gate="G$1" x="233.68" y="99.06" smashed="yes" rot="R90">
 <attribute name="NAME" x="232.156" y="99.06" size="1.778" layer="95" font="vector" rot="R90" align="bottom-center"/>
 <attribute name="VALUE" x="235.204" y="99.06" size="1.778" layer="96" font="vector" rot="R90" align="top-center"/>
 </instance>
-<instance part="I2C" gate="G$1" x="299.72" y="111.76" smashed="yes" rot="R270">
-<attribute name="NAME" x="299.72" y="109.22" size="1.778" layer="95" font="vector" align="center"/>
+<instance part="I2C" gate="G$1" x="309.88" y="99.06" smashed="yes" rot="R270">
+<attribute name="NAME" x="309.88" y="96.52" size="1.778" layer="95" font="vector" align="center"/>
 </instance>
 <instance part="U6" gate="G1" x="203.2" y="81.28" smashed="yes">
 <attribute name="NAME" x="198.12" y="87.122" size="1.778" layer="95" font="vector"/>
@@ -4655,8 +4624,8 @@ Ultrasonic Receiver - CUSA-R80</text>
 <instance part="GND18" gate="1" x="137.16" y="210.82" smashed="yes">
 <attribute name="VALUE" x="137.16" y="210.566" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="TP1" gate="G$1" x="223.52" y="182.88" smashed="yes">
-<attribute name="NAME" x="228.6" y="182.88" size="1.778" layer="95" font="vector"/>
+<instance part="TP1" gate="G$1" x="218.44" y="182.88" smashed="yes">
+<attribute name="NAME" x="223.52" y="182.88" size="1.778" layer="95" font="vector"/>
 </instance>
 <instance part="U8" gate="G$1" x="345.44" y="210.82" smashed="yes">
 <attribute name="NAME" x="335.28" y="231.14" size="1.778" layer="95" font="vector"/>
@@ -4712,13 +4681,13 @@ Ultrasonic Receiver - CUSA-R80</text>
 <instance part="SUPPLY4" gate="G$1" x="309.88" y="231.14" smashed="yes">
 <attribute name="VALUE" x="309.88" y="233.934" size="1.778" layer="96" font="vector" align="bottom-center"/>
 </instance>
-<instance part="J4" gate="J1" x="378.46" y="106.68" smashed="yes" rot="MR0">
-<attribute name="VALUE" x="401.32" y="101.346" size="1.778" layer="96" font="vector" rot="MR0" align="top-left"/>
-<attribute name="NAME" x="383.54" y="114.554" size="1.778" layer="95" font="vector" rot="MR0"/>
+<instance part="J4" gate="J1" x="378.46" y="93.98" smashed="yes" rot="MR0">
+<attribute name="VALUE" x="383.794" y="111.76" size="1.778" layer="96" font="vector" rot="MR270" align="top-left"/>
+<attribute name="NAME" x="383.54" y="101.854" size="1.778" layer="95" font="vector" rot="MR0"/>
 </instance>
-<instance part="J6" gate="J1" x="335.28" y="106.68" smashed="yes" rot="MR0">
-<attribute name="VALUE" x="358.14" y="101.346" size="1.778" layer="96" font="vector" rot="MR0" align="top-left"/>
-<attribute name="NAME" x="340.36" y="114.554" size="1.778" layer="95" font="vector" rot="MR0"/>
+<instance part="J6" gate="J1" x="345.44" y="93.98" smashed="yes" rot="MR0">
+<attribute name="VALUE" x="350.774" y="111.76" size="1.778" layer="96" font="vector" rot="MR270" align="top-left"/>
+<attribute name="NAME" x="350.52" y="101.854" size="1.778" layer="95" font="vector" rot="MR0"/>
 </instance>
 <instance part="FD1" gate="G$1" x="401.32" y="33.02" smashed="yes"/>
 <instance part="FD2" gate="G$1" x="403.86" y="33.02" smashed="yes"/>
@@ -4751,45 +4720,45 @@ Ultrasonic Receiver - CUSA-R80</text>
 <instance part="GND27" gate="1" x="38.1" y="35.56" smashed="yes">
 <attribute name="VALUE" x="38.1" y="35.306" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="SUPPLY5" gate="G$1" x="299.72" y="119.38" smashed="yes">
-<attribute name="VALUE" x="299.72" y="122.174" size="1.778" layer="96" font="vector" align="bottom-center"/>
+<instance part="SUPPLY5" gate="G$1" x="309.88" y="106.68" smashed="yes">
+<attribute name="VALUE" x="309.88" y="109.474" size="1.778" layer="96" font="vector" align="bottom-center"/>
 </instance>
-<instance part="SUPPLY9" gate="G$1" x="215.9" y="243.84" smashed="yes">
-<attribute name="VALUE" x="215.9" y="246.634" size="1.778" layer="96" font="vector" align="bottom-center"/>
+<instance part="SUPPLY9" gate="G$1" x="210.82" y="246.38" smashed="yes">
+<attribute name="VALUE" x="210.82" y="249.174" size="1.778" layer="96" font="vector" align="bottom-center"/>
 </instance>
-<instance part="SUPPLY10" gate="G$1" x="325.12" y="114.3" smashed="yes">
-<attribute name="VALUE" x="325.12" y="117.094" size="1.778" layer="96" font="vector" align="bottom-center"/>
+<instance part="SUPPLY10" gate="G$1" x="335.28" y="101.6" smashed="yes">
+<attribute name="VALUE" x="335.28" y="104.394" size="1.778" layer="96" font="vector" align="bottom-center"/>
 </instance>
-<instance part="SUPPLY11" gate="G$1" x="368.3" y="114.3" smashed="yes">
-<attribute name="VALUE" x="368.3" y="117.094" size="1.778" layer="96" font="vector" align="bottom-center"/>
+<instance part="SUPPLY11" gate="G$1" x="368.3" y="101.6" smashed="yes">
+<attribute name="VALUE" x="368.3" y="104.394" size="1.778" layer="96" font="vector" align="bottom-center"/>
 </instance>
-<instance part="GND1" gate="1" x="325.12" y="96.52" smashed="yes">
-<attribute name="VALUE" x="325.12" y="96.266" size="1.778" layer="96" font="vector" align="top-center"/>
+<instance part="GND1" gate="1" x="335.28" y="83.82" smashed="yes">
+<attribute name="VALUE" x="335.28" y="83.566" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="GND2" gate="1" x="368.3" y="96.52" smashed="yes">
-<attribute name="VALUE" x="368.3" y="96.266" size="1.778" layer="96" font="vector" align="top-center"/>
+<instance part="GND2" gate="1" x="368.3" y="83.82" smashed="yes">
+<attribute name="VALUE" x="368.3" y="83.566" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="GND4" gate="1" x="215.9" y="228.6" smashed="yes">
-<attribute name="VALUE" x="215.9" y="228.346" size="1.778" layer="96" font="vector" align="top-center"/>
+<instance part="GND4" gate="1" x="210.82" y="231.14" smashed="yes">
+<attribute name="VALUE" x="210.82" y="230.886" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="J2" gate="J1" x="223.52" y="238.76" smashed="yes" rot="R180">
-<attribute name="VALUE" x="228.6" y="246.126" size="1.778" layer="96" font="vector" rot="R180"/>
-<attribute name="NAME" x="228.6" y="230.632" size="1.778" layer="95" font="vector" rot="R180"/>
+<instance part="J2" gate="J1" x="218.44" y="241.3" smashed="yes" rot="R180">
+<attribute name="VALUE" x="223.52" y="248.666" size="1.778" layer="96" font="vector" rot="R180"/>
+<attribute name="NAME" x="223.52" y="233.172" size="1.778" layer="95" font="vector" rot="R180"/>
 </instance>
-<instance part="TP2" gate="G$1" x="223.52" y="180.34" smashed="yes">
-<attribute name="NAME" x="228.6" y="180.34" size="1.778" layer="95" font="vector"/>
+<instance part="TP2" gate="G$1" x="218.44" y="180.34" smashed="yes">
+<attribute name="NAME" x="223.52" y="180.34" size="1.778" layer="95" font="vector"/>
 </instance>
-<instance part="TP3" gate="G$1" x="223.52" y="177.8" smashed="yes">
-<attribute name="NAME" x="228.6" y="177.8" size="1.778" layer="95" font="vector"/>
+<instance part="TP3" gate="G$1" x="218.44" y="177.8" smashed="yes">
+<attribute name="NAME" x="223.52" y="177.8" size="1.778" layer="95" font="vector"/>
 </instance>
-<instance part="TP4" gate="G$1" x="223.52" y="175.26" smashed="yes">
-<attribute name="NAME" x="228.6" y="175.26" size="1.778" layer="95" font="vector"/>
+<instance part="TP4" gate="G$1" x="218.44" y="175.26" smashed="yes">
+<attribute name="NAME" x="223.52" y="175.26" size="1.778" layer="95" font="vector"/>
 </instance>
-<instance part="TP5" gate="G$1" x="223.52" y="172.72" smashed="yes">
-<attribute name="NAME" x="228.6" y="172.72" size="1.778" layer="95" font="vector"/>
+<instance part="TP5" gate="G$1" x="218.44" y="172.72" smashed="yes">
+<attribute name="NAME" x="223.52" y="172.72" size="1.778" layer="95" font="vector"/>
 </instance>
-<instance part="TP6" gate="G$1" x="223.52" y="170.18" smashed="yes">
-<attribute name="NAME" x="228.6" y="170.18" size="1.778" layer="95" font="vector"/>
+<instance part="TP6" gate="G$1" x="218.44" y="170.18" smashed="yes">
+<attribute name="NAME" x="223.52" y="170.18" size="1.778" layer="95" font="vector"/>
 </instance>
 </instances>
 <busses>
@@ -4951,20 +4920,20 @@ Ultrasonic Receiver - CUSA-R80</text>
 </segment>
 <segment>
 <pinref part="J4" gate="J1" pin="1"/>
-<wire x1="368.3" y1="104.14" x2="370.84" y2="104.14" width="0.1524" layer="91"/>
-<wire x1="368.3" y1="104.14" x2="368.3" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="368.3" y1="91.44" x2="370.84" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="368.3" y1="91.44" x2="368.3" y2="86.36" width="0.1524" layer="91"/>
 <pinref part="GND2" gate="1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="J6" gate="J1" pin="1"/>
-<wire x1="327.66" y1="104.14" x2="325.12" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="337.82" y1="91.44" x2="335.28" y2="91.44" width="0.1524" layer="91"/>
 <pinref part="GND1" gate="1" pin="GND"/>
-<wire x1="325.12" y1="104.14" x2="325.12" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="335.28" y1="91.44" x2="335.28" y2="86.36" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="J2" gate="J1" pin="4"/>
-<wire x1="218.44" y1="233.68" x2="215.9" y2="233.68" width="0.1524" layer="91"/>
-<wire x1="215.9" y1="233.68" x2="215.9" y2="231.14" width="0.1524" layer="91"/>
+<wire x1="213.36" y1="236.22" x2="210.82" y2="236.22" width="0.1524" layer="91"/>
+<wire x1="210.82" y1="236.22" x2="210.82" y2="233.68" width="0.1524" layer="91"/>
 <pinref part="GND4" gate="1" pin="GND"/>
 </segment>
 </net>
@@ -4990,8 +4959,8 @@ Ultrasonic Receiver - CUSA-R80</text>
 </segment>
 <segment>
 <pinref part="TP6" gate="G$1" pin="1"/>
-<wire x1="220.98" y1="170.18" x2="223.52" y2="170.18" width="0.1524" layer="91"/>
-<label x="220.98" y="170.18" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
+<wire x1="215.9" y1="170.18" x2="218.44" y2="170.18" width="0.1524" layer="91"/>
+<label x="215.9" y="170.18" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$9" class="0">
@@ -5092,8 +5061,8 @@ Ultrasonic Receiver - CUSA-R80</text>
 </segment>
 <segment>
 <pinref part="TP3" gate="G$1" pin="1"/>
-<wire x1="220.98" y1="177.8" x2="223.52" y2="177.8" width="0.1524" layer="91"/>
-<label x="220.98" y="177.8" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
+<wire x1="215.9" y1="177.8" x2="218.44" y2="177.8" width="0.1524" layer="91"/>
+<label x="215.9" y="177.8" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="SWIM" class="0">
@@ -5104,16 +5073,16 @@ Ultrasonic Receiver - CUSA-R80</text>
 </segment>
 <segment>
 <pinref part="TP2" gate="G$1" pin="1"/>
-<wire x1="220.98" y1="180.34" x2="223.52" y2="180.34" width="0.1524" layer="91"/>
-<label x="220.98" y="180.34" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
+<wire x1="215.9" y1="180.34" x2="218.44" y2="180.34" width="0.1524" layer="91"/>
+<label x="215.9" y="180.34" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="SCL" class="0">
 <segment>
 <pinref part="R23" gate="G$1" pin="1"/>
-<wire x1="302.26" y1="96.52" x2="307.34" y2="96.52" width="0.1524" layer="91"/>
-<wire x1="307.34" y1="96.52" x2="307.34" y2="99.06" width="0.1524" layer="91"/>
-<label x="302.26" y="96.52" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
+<wire x1="314.96" y1="83.82" x2="317.5" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="317.5" y1="83.82" x2="317.5" y2="86.36" width="0.1524" layer="91"/>
+<label x="314.96" y="83.82" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="U7" gate="G$1" pin="PC1"/>
@@ -5122,26 +5091,26 @@ Ultrasonic Receiver - CUSA-R80</text>
 </segment>
 <segment>
 <pinref part="J6" gate="J1" pin="4"/>
-<wire x1="327.66" y1="111.76" x2="322.58" y2="111.76" width="0.1524" layer="91"/>
-<label x="322.58" y="111.76" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
+<wire x1="337.82" y1="99.06" x2="332.74" y2="99.06" width="0.1524" layer="91"/>
+<label x="332.74" y="99.06" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="J4" gate="J1" pin="4"/>
-<wire x1="365.76" y1="111.76" x2="370.84" y2="111.76" width="0.1524" layer="91"/>
-<label x="365.76" y="111.76" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
+<wire x1="365.76" y1="99.06" x2="370.84" y2="99.06" width="0.1524" layer="91"/>
+<label x="365.76" y="99.06" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="220.98" y1="172.72" x2="223.52" y2="172.72" width="0.1524" layer="91"/>
+<wire x1="215.9" y1="172.72" x2="218.44" y2="172.72" width="0.1524" layer="91"/>
 <pinref part="TP5" gate="G$1" pin="1"/>
-<label x="220.98" y="172.72" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
+<label x="215.9" y="172.72" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="SDA" class="0">
 <segment>
-<wire x1="284.48" y1="96.52" x2="292.1" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="299.72" y1="83.82" x2="302.26" y2="83.82" width="0.1524" layer="91"/>
 <pinref part="R22" gate="G$1" pin="1"/>
-<wire x1="292.1" y1="96.52" x2="292.1" y2="99.06" width="0.1524" layer="91"/>
-<label x="284.48" y="96.52" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
+<wire x1="302.26" y1="83.82" x2="302.26" y2="86.36" width="0.1524" layer="91"/>
+<label x="299.72" y="83.82" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="U7" gate="G$1" pin="PC0"/>
@@ -5150,32 +5119,32 @@ Ultrasonic Receiver - CUSA-R80</text>
 </segment>
 <segment>
 <pinref part="J6" gate="J1" pin="3"/>
-<wire x1="322.58" y1="109.22" x2="327.66" y2="109.22" width="0.1524" layer="91"/>
-<label x="322.58" y="109.22" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
+<wire x1="332.74" y1="96.52" x2="337.82" y2="96.52" width="0.1524" layer="91"/>
+<label x="332.74" y="96.52" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="J4" gate="J1" pin="3"/>
-<wire x1="365.76" y1="109.22" x2="370.84" y2="109.22" width="0.1524" layer="91"/>
-<label x="365.76" y="109.22" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
+<wire x1="365.76" y1="96.52" x2="370.84" y2="96.52" width="0.1524" layer="91"/>
+<label x="365.76" y="96.52" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="TP4" gate="G$1" pin="1"/>
-<wire x1="220.98" y1="175.26" x2="223.52" y2="175.26" width="0.1524" layer="91"/>
-<label x="220.98" y="175.26" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
+<wire x1="215.9" y1="175.26" x2="218.44" y2="175.26" width="0.1524" layer="91"/>
+<label x="215.9" y="175.26" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$19" class="0">
 <segment>
-<wire x1="294.64" y1="111.76" x2="292.1" y2="111.76" width="0.1524" layer="91"/>
-<wire x1="292.1" y1="111.76" x2="292.1" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="304.8" y1="99.06" x2="302.26" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="302.26" y1="99.06" x2="302.26" y2="96.52" width="0.1524" layer="91"/>
 <pinref part="R22" gate="G$1" pin="2"/>
 <pinref part="I2C" gate="G$1" pin="3"/>
 </segment>
 </net>
 <net name="N$20" class="0">
 <segment>
-<wire x1="304.8" y1="111.76" x2="307.34" y2="111.76" width="0.1524" layer="91"/>
-<wire x1="307.34" y1="111.76" x2="307.34" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="314.96" y1="99.06" x2="317.5" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="317.5" y1="99.06" x2="317.5" y2="96.52" width="0.1524" layer="91"/>
 <pinref part="R23" gate="G$1" pin="2"/>
 <pinref part="I2C" gate="G$1" pin="1"/>
 </segment>
@@ -5193,8 +5162,8 @@ Ultrasonic Receiver - CUSA-R80</text>
 </segment>
 <segment>
 <pinref part="J2" gate="J1" pin="2"/>
-<wire x1="215.9" y1="238.76" x2="218.44" y2="238.76" width="0.1524" layer="91"/>
-<label x="215.9" y="238.76" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
+<wire x1="210.82" y1="241.3" x2="213.36" y2="241.3" width="0.1524" layer="91"/>
+<label x="210.82" y="241.3" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="ECHO" class="0">
@@ -5205,8 +5174,8 @@ Ultrasonic Receiver - CUSA-R80</text>
 </segment>
 <segment>
 <pinref part="J2" gate="J1" pin="3"/>
-<wire x1="215.9" y1="236.22" x2="218.44" y2="236.22" width="0.1524" layer="91"/>
-<label x="215.9" y="236.22" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
+<wire x1="210.82" y1="238.76" x2="213.36" y2="238.76" width="0.1524" layer="91"/>
+<label x="210.82" y="238.76" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="DIN2" class="0">
@@ -5317,24 +5286,24 @@ Ultrasonic Receiver - CUSA-R80</text>
 <segment>
 <pinref part="SUPPLY5" gate="G$1" pin="3.3V"/>
 <pinref part="I2C" gate="G$1" pin="2"/>
-<wire x1="299.72" y1="119.38" x2="299.72" y2="116.84" width="0.1524" layer="91"/>
+<wire x1="309.88" y1="106.68" x2="309.88" y2="104.14" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="J6" gate="J1" pin="2"/>
-<wire x1="325.12" y1="106.68" x2="327.66" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="335.28" y1="93.98" x2="337.82" y2="93.98" width="0.1524" layer="91"/>
 <pinref part="SUPPLY10" gate="G$1" pin="3.3V"/>
-<wire x1="325.12" y1="114.3" x2="325.12" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="335.28" y1="101.6" x2="335.28" y2="93.98" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="J4" gate="J1" pin="2"/>
-<wire x1="368.3" y1="106.68" x2="370.84" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="368.3" y1="93.98" x2="370.84" y2="93.98" width="0.1524" layer="91"/>
 <pinref part="SUPPLY11" gate="G$1" pin="3.3V"/>
-<wire x1="368.3" y1="114.3" x2="368.3" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="368.3" y1="101.6" x2="368.3" y2="93.98" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="J2" gate="J1" pin="1"/>
-<wire x1="218.44" y1="241.3" x2="215.9" y2="241.3" width="0.1524" layer="91"/>
-<wire x1="215.9" y1="241.3" x2="215.9" y2="243.84" width="0.1524" layer="91"/>
+<wire x1="213.36" y1="243.84" x2="210.82" y2="243.84" width="0.1524" layer="91"/>
+<wire x1="210.82" y1="243.84" x2="210.82" y2="246.38" width="0.1524" layer="91"/>
 <pinref part="SUPPLY9" gate="G$1" pin="3.3V"/>
 </segment>
 </net>
@@ -5346,8 +5315,8 @@ Ultrasonic Receiver - CUSA-R80</text>
 </segment>
 <segment>
 <pinref part="TP1" gate="G$1" pin="1"/>
-<wire x1="220.98" y1="182.88" x2="223.52" y2="182.88" width="0.1524" layer="91"/>
-<label x="220.98" y="182.88" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
+<wire x1="215.9" y1="182.88" x2="218.44" y2="182.88" width="0.1524" layer="91"/>
+<label x="215.9" y="182.88" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$8" class="0">
