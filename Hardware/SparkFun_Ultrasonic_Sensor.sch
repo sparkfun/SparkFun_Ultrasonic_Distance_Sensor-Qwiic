@@ -1344,10 +1344,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 &lt;p&gt;&lt;a href=”https://www.cuidevices.com/product/resource/cusa-r80-18-2400-th.pdf”&gt;Datasheet referenced for footprint&lt;/a&gt;&lt;/p&gt;</description>
 <pad name="P1" x="0" y="5" drill="1.2" diameter="2.5"/>
 <pad name="P2" x="0" y="-5" drill="1.2" diameter="2.5"/>
-<circle x="0" y="0" radius="8" width="0.1" layer="51"/>
+<circle x="0" y="0" radius="8" width="0.127" layer="51"/>
 <text x="-1.27" y="1.27" size="0.6096" layer="25" font="vector" ratio="20">&gt;NAME</text>
 <text x="-1.27" y="-1.27" size="0.6096" layer="27" font="vector" ratio="20">&gt;VALUE</text>
 <circle x="0" y="0" radius="8.09020625" width="0" layer="39"/>
+<circle x="0" y="0" radius="8.0772375" width="0.127" layer="21"/>
 </package>
 <package name="CUSA-T80">
 <description>&lt;h3&gt;Ultrasonic Sensor&lt;/h3&gt;
@@ -1361,10 +1362,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 &lt;p&gt;&lt;a href=”https://www.cuidevices.com/product/resource/cusa-r80-18-2400-th.pdf”&gt;Datasheet referenced for footprint&lt;/a&gt;&lt;/p&gt;</description>
 <pad name="P1" x="0" y="5" drill="1.2" diameter="2.5"/>
 <pad name="P2" x="0" y="-5" drill="1.2" diameter="2.5"/>
-<circle x="0" y="0" radius="8" width="0.1" layer="51"/>
+<circle x="0" y="0" radius="8" width="0.127" layer="51"/>
 <text x="-1.27" y="1.27" size="0.6096" layer="25" font="vector" ratio="20">&gt;NAME</text>
 <text x="-1.27" y="-1.27" size="0.6096" layer="27" font="vector" ratio="20">&gt;VALUE</text>
 <circle x="0" y="0" radius="8.04221875" width="0" layer="39"/>
+<circle x="0" y="0" radius="8.082228125" width="0.127" layer="21"/>
 </package>
 </packages>
 <symbols>
