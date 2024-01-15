@@ -4125,7 +4125,7 @@ These are the free and generally easy to produce 4-layer PCB design rules. You c
 <element name="LOGO3" library="SparkFun-Aesthetics" package="QWIIC_3MM" value="QWIIC_LOGO_3MM" x="12.7" y="5.207" smashed="yes"/>
 <element name="LOGO4" library="SparkFun-Aesthetics" package="OSHW-LOGO-S" value="OSHW-LOGOS" x="2.159" y="19.304" smashed="yes" rot="MR0"/>
 <element name="U$5" library="SparkFun-Aesthetics" package="QWIIC_3MM" value="" x="31.75" y="5.08" smashed="yes"/>
-<element name="U$6" library="SparkFun-Aesthetics" package="SFE_LOGO_FLAME_.1" value="" x="41.91" y="19.05" smashed="yes"/>
+<element name="U$6" library="SparkFun-Aesthetics" package="SFE_LOGO_FLAME_.1" value="" x="38.989" y="19.812" smashed="yes"/>
 <element name="U$7" library="bot" package="#I2C#16" value="" x="41.021" y="6.096" smashed="yes" rot="R90"/>
 </elements>
 <signals>
