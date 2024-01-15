@@ -3,7 +3,7 @@
 <eagle version="9.6.2">
 <drawing>
 <settings>
-<setting alwaysvectorfont="no"/>
+<setting alwaysvectorfont="yes"/>
 <setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
@@ -201,15 +201,15 @@
 <wire x1="44.45" y1="21.5392" x2="0" y2="21.5392" width="0.2032" layer="20"/>
 <wire x1="0" y1="21.5392" x2="0" y2="0" width="0.2032" layer="20"/>
 <dimension x1="0" y1="0" x2="0" y2="21.5392" x3="-7.62" y3="10.7696" textsize="1.778" textratio="15" layer="47" unit="inch"/>
-<text x="50.8" y="22.86" size="1.778" layer="51" font="vector">Two Layer
+<text x="58.42" y="22.86" size="1.778" layer="51" font="vector">Two Layer
 1.6mm Thickness
 1 oz. Copper
 Red Soldermask
 White Silkscreen
 HASL Lead Free
 Material: TG135-140</text>
-<text x="102.87" y="-7.62" size="1.778" layer="51" font="vector">NOA Labs</text>
-<text x="84.328" y="-10.16" size="1.778" layer="51" font="vector">Revised By: Elias Santistevan</text>
+<text x="107.95" y="-8.89" size="1.778" layer="51" font="vector">NOA Labs</text>
+<text x="89.408" y="-11.43" size="1.778" layer="51" font="vector">Revised By: Elias Santistevan</text>
 <dimension x1="0" y1="21.5392" x2="44.45" y2="21.5392" x3="22.225" y3="31.75" textsize="1.778" layer="47" unit="inch"/>
 <dimension x1="10.16" y1="12.7" x2="0" y2="12.7" x3="5.08" y3="24.13" textsize="1.778" layer="47" unit="inch"/>
 <dimension x1="12.7" y1="4.572" x2="0" y2="4.572" x3="6.35" y3="-3.81" textsize="1.778" layer="47" unit="inch"/>
@@ -4047,9 +4047,9 @@ These are the free and generally easy to produce 4-layer PCB design rules. You c
 <attribute name="PROD_ID" value="" x="39.37" y="13.208" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="38.0746" y="9.8298" size="0.6096" layer="27" font="vector" ratio="20"/>
 </element>
-<element name="FRAME1" library="SparkFun-Aesthetics" package="CREATIVE_COMMONS" value="FRAME-LEDGER" x="72.85" y="-7.6" smashed="yes">
-<attribute name="DESIGNER" value="NOA Labs" x="72.85" y="-7.6" size="1.778" layer="27" display="off"/>
-<attribute name="REV" value="v11" x="72.85" y="-7.6" size="1.778" layer="27" display="off"/>
+<element name="FRAME1" library="SparkFun-Aesthetics" package="CREATIVE_COMMONS" value="FRAME-LEDGER" x="77.93" y="-8.87" smashed="yes">
+<attribute name="DESIGNER" value="NOA Labs" x="77.93" y="-8.87" size="1.778" layer="27" display="off"/>
+<attribute name="REV" value="v11" x="77.93" y="-8.87" size="1.778" layer="27" display="off"/>
 </element>
 <element name="C24" library="SparkFun-Capacitors" package="0603" value="0.1uF" x="34.925" y="12.7" smashed="yes" rot="R270">
 <attribute name="NAME" x="35.687" y="12.7" size="0.6096" layer="25" font="vector" ratio="20" rot="R270" align="bottom-center"/>
@@ -4125,7 +4125,7 @@ These are the free and generally easy to produce 4-layer PCB design rules. You c
 <element name="U$12" library="prod" package="SENSOR102" value="" x="21.971" y="14.224" smashed="yes" rot="MR0"/>
 <element name="U$3" library="prod" package="#GND#4" value="" x="19.05" y="3.937" smashed="yes" rot="MR90"/>
 <element name="U$4" library="prod" package="#3V3#2" value="" x="26.67" y="3.937" smashed="yes" rot="MR90"/>
-<element name="LOGO1" library="SparkFun-Aesthetics" package="ORDERING_INSTRUCTIONS" value="SPECIAL_INSTRUCTIONS-ORDERING" x="49.53" y="50.8" smashed="yes"/>
+<element name="LOGO1" library="SparkFun-Aesthetics" package="ORDERING_INSTRUCTIONS" value="SPECIAL_INSTRUCTIONS-ORDERING" x="57.15" y="50.8" smashed="yes"/>
 <element name="LOGO2" library="SparkFun-Aesthetics" package="SFE_LOGO_NAME_.1" value="SFE_LOGO_NAME.1_INCH" x="21.971" y="19.304" smashed="yes" rot="MR0"/>
 <element name="LOGO3" library="SparkFun-Aesthetics" package="QWIIC_3MM" value="QWIIC_LOGO_3MM" x="12.7" y="5.207" smashed="yes"/>
 <element name="LOGO4" library="SparkFun-Aesthetics" package="OSHW-LOGO-S" value="OSHW-LOGOS" x="2.159" y="19.304" smashed="yes" rot="MR0"/>
