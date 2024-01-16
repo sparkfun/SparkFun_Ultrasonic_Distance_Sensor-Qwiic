@@ -25123,13 +25123,13 @@ pull up resistors from the I2C lines.</text>
 <attribute name="NAME" x="77.216" y="223.52" size="1.778" layer="95" font="vector" rot="R90" align="bottom-center"/>
 <attribute name="VALUE" x="80.264" y="223.52" size="1.778" layer="96" font="vector" rot="R90" align="top-center"/>
 </instance>
-<instance part="R20" gate="G$1" x="127" y="218.44" smashed="yes" rot="R180">
-<attribute name="NAME" x="127" y="221.742" size="1.778" layer="95" font="vector" rot="R180" align="bottom-center"/>
-<attribute name="VALUE" x="132.842" y="218.948" size="1.778" layer="96" font="vector" rot="R180" align="top-center"/>
+<instance part="R20" gate="G$1" x="134.62" y="218.44" smashed="yes" rot="R180">
+<attribute name="NAME" x="139.446" y="223.266" size="1.778" layer="95" font="vector" rot="R180" align="bottom-center"/>
+<attribute name="VALUE" x="139.446" y="219.202" size="1.778" layer="96" font="vector" rot="R180" align="top-center"/>
 </instance>
-<instance part="R24" gate="G$1" x="127" y="215.9" smashed="yes" rot="R180">
-<attribute name="NAME" x="127.508" y="214.376" size="1.778" layer="95" font="vector" rot="R180" align="bottom-center"/>
-<attribute name="VALUE" x="133.35" y="213.36" size="1.778" layer="96" font="vector" rot="R180" align="top-center"/>
+<instance part="R24" gate="G$1" x="134.62" y="215.9" smashed="yes" rot="R180">
+<attribute name="NAME" x="135.128" y="214.376" size="1.778" layer="95" font="vector" rot="R180" align="bottom-center"/>
+<attribute name="VALUE" x="135.128" y="210.058" size="1.778" layer="96" font="vector" rot="R180" align="top-center"/>
 </instance>
 <instance part="SUPPLY1" gate="G$1" x="78.74" y="236.22" smashed="yes">
 <attribute name="VALUE" x="78.74" y="239.014" size="1.778" layer="96" font="vector" align="bottom-center"/>
@@ -25143,8 +25143,8 @@ pull up resistors from the I2C lines.</text>
 <instance part="GND17" gate="1" x="63.5" y="218.44" smashed="yes">
 <attribute name="VALUE" x="63.5" y="218.186" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="GND18" gate="1" x="137.16" y="210.82" smashed="yes">
-<attribute name="VALUE" x="137.16" y="210.566" size="1.778" layer="96" font="vector" align="top-center"/>
+<instance part="GND18" gate="1" x="149.86" y="210.82" smashed="yes">
+<attribute name="VALUE" x="149.86" y="210.566" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
 <instance part="TP1" gate="G$1" x="218.44" y="182.88" smashed="yes">
 <attribute name="NAME" x="223.52" y="182.88" size="1.778" layer="95" font="vector"/>
@@ -25400,8 +25400,8 @@ pull up resistors from the I2C lines.</text>
 </segment>
 <segment>
 <pinref part="R20" gate="G$1" pin="1"/>
-<wire x1="132.08" y1="218.44" x2="137.16" y2="218.44" width="0.1524" layer="91"/>
-<wire x1="137.16" y1="218.44" x2="137.16" y2="213.36" width="0.1524" layer="91"/>
+<wire x1="139.7" y1="218.44" x2="149.86" y2="218.44" width="0.1524" layer="91"/>
+<wire x1="149.86" y1="218.44" x2="149.86" y2="213.36" width="0.1524" layer="91"/>
 <pinref part="GND18" gate="1" pin="GND"/>
 </segment>
 <segment>
@@ -25679,12 +25679,12 @@ pull up resistors from the I2C lines.</text>
 <segment>
 <pinref part="U7" gate="G$1" pin="PB3"/>
 <pinref part="R20" gate="G$1" pin="2"/>
-<wire x1="111.76" y1="218.44" x2="114.3" y2="218.44" width="0.1524" layer="91"/>
-<wire x1="114.3" y1="218.44" x2="121.92" y2="218.44" width="0.1524" layer="91"/>
-<wire x1="114.3" y1="226.06" x2="114.3" y2="218.44" width="0.1524" layer="91"/>
-<junction x="114.3" y="218.44"/>
-<wire x1="114.3" y1="226.06" x2="116.84" y2="226.06" width="0.1524" layer="91"/>
-<label x="116.84" y="226.06" size="1.27" layer="95" font="vector" xref="yes"/>
+<wire x1="111.76" y1="218.44" x2="124.46" y2="218.44" width="0.1524" layer="91"/>
+<wire x1="124.46" y1="218.44" x2="129.54" y2="218.44" width="0.1524" layer="91"/>
+<wire x1="124.46" y1="220.98" x2="124.46" y2="218.44" width="0.1524" layer="91"/>
+<junction x="124.46" y="218.44"/>
+<wire x1="124.46" y1="220.98" x2="127" y2="220.98" width="0.1524" layer="91"/>
+<label x="127" y="220.98" size="1.27" layer="95" font="vector" xref="yes"/>
 </segment>
 <segment>
 <pinref part="J2" gate="J1" pin="2"/>
@@ -25758,8 +25758,8 @@ pull up resistors from the I2C lines.</text>
 </segment>
 <segment>
 <pinref part="R24" gate="G$1" pin="1"/>
-<wire x1="132.08" y1="215.9" x2="139.7" y2="215.9" width="0.1524" layer="91"/>
-<label x="139.7" y="215.9" size="1.27" layer="95" font="vector" xref="yes"/>
+<wire x1="139.7" y1="215.9" x2="142.24" y2="215.9" width="0.1524" layer="91"/>
+<label x="142.24" y="215.9" size="1.27" layer="95" font="vector" xref="yes"/>
 </segment>
 </net>
 <net name="3.3V" class="0">
@@ -25952,7 +25952,7 @@ pull up resistors from the I2C lines.</text>
 <segment>
 <pinref part="U7" gate="G$1" pin="PB4"/>
 <pinref part="R24" gate="G$1" pin="2"/>
-<wire x1="121.92" y1="215.9" x2="111.76" y2="215.9" width="0.1524" layer="91"/>
+<wire x1="129.54" y1="215.9" x2="111.76" y2="215.9" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
