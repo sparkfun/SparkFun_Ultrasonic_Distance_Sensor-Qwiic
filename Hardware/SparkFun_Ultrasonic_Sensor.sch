@@ -24960,6 +24960,10 @@ Ultrasonic Receiver - CUSA-R80</text>
 <wire x1="177.8" y1="279.4" x2="177.8" y2="208.28" width="0.254" layer="97" style="longdash"/>
 <wire x1="177.8" y1="208.28" x2="177.8" y2="142.24" width="0.254" layer="97" style="longdash"/>
 <wire x1="177.8" y1="208.28" x2="259.08" y2="208.28" width="0.254" layer="97" style="longdash"/>
+<text x="309.88" y="76.2" size="1.778" layer="97" font="vector" align="center">Cut I2C Jumper to disconnect
+pull up resistors from the I2C lines.</text>
+<text x="93.98" y="261.62" size="1.778" layer="97" font="vector" align="center">7-bit Unshifted Address : 0x2F</text>
+<text x="93.98" y="256.54" size="1.778" layer="97" font="vector" align="center">3.3V Only</text>
 </plain>
 <instances>
 <instance part="C1" gate="G$1" x="147.32" y="78.74" smashed="yes" rot="R270">
@@ -25112,8 +25116,8 @@ Ultrasonic Receiver - CUSA-R80</text>
 <attribute name="VALUE" x="65.024" y="223.901" size="1.778" layer="96" font="vector"/>
 </instance>
 <instance part="C18" gate="G$1" x="78.74" y="205.74" smashed="yes">
-<attribute name="NAME" x="80.264" y="208.661" size="1.778" layer="95" font="vector"/>
-<attribute name="VALUE" x="80.264" y="203.581" size="1.778" layer="96" font="vector"/>
+<attribute name="NAME" x="75.819" y="204.724" size="1.778" layer="95" font="vector" rot="R90"/>
+<attribute name="VALUE" x="82.931" y="203.454" size="1.778" layer="96" font="vector" rot="R90"/>
 </instance>
 <instance part="R11" gate="G$1" x="78.74" y="223.52" smashed="yes" rot="R90">
 <attribute name="NAME" x="77.216" y="223.52" size="1.778" layer="95" font="vector" rot="R90" align="bottom-center"/>

@@ -3,7 +3,7 @@
 <eagle version="9.6.2">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
@@ -47,7 +47,7 @@
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="yes"/>
 <layer number="37" name="tTest" color="7" fill="1" visible="no" active="yes"/>
 <layer number="38" name="bTest" color="7" fill="1" visible="no" active="yes"/>
-<layer number="39" name="tKeepout" color="4" fill="11" visible="yes" active="yes"/>
+<layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="yes"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="yes"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="yes"/>
 <layer number="42" name="bRestrict" color="1" fill="10" visible="no" active="yes"/>
@@ -55,12 +55,12 @@
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="yes"/>
 <layer number="49" name="Reference" color="13" fill="1" visible="yes" active="yes"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
 <layer number="51" name="tDocu" color="6" fill="1" visible="yes" active="yes"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="yes"/>
 <layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
 <layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
 <layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
@@ -221,6 +221,15 @@ Material: TG135-140</text>
 <dimension x1="26.67" y1="1.27" x2="0" y2="1.27" x3="13.335" y3="-10.16" textsize="1.778" layer="47" unit="inch"/>
 <text x="12.7" y="-19.05" size="1.778" layer="47" font="vector">Units In Inches</text>
 <text x="38.227" y="0.635" size="1.016" layer="16" font="vector" ratio="20" rot="SMR0">v11</text>
+<wire x1="1.143" y1="8.255" x2="3.81" y2="8.255" width="0.254" layer="21"/>
+<wire x1="4.953" y1="8.255" x2="7.62" y2="8.255" width="0.254" layer="21"/>
+<wire x1="5.969" y1="5.08" x2="8.636" y2="5.08" width="0.254" layer="21"/>
+<wire x1="6.096" y1="3.556" x2="8.763" y2="3.556" width="0.254" layer="21"/>
+<wire x1="6.096" y1="2.032" x2="8.763" y2="2.032" width="0.254" layer="21"/>
+<wire x1="2.032" y1="17.653" x2="2.032" y2="20.32" width="0.254" layer="21"/>
+<wire x1="3.556" y1="17.653" x2="3.556" y2="20.32" width="0.254" layer="21"/>
+<wire x1="5.334" y1="17.653" x2="5.334" y2="20.32" width="0.254" layer="21"/>
+<wire x1="24.765" y1="17.653" x2="24.765" y2="20.32" width="0.254" layer="21"/>
 </plain>
 <libraries>
 <library name="SparkFun-Resistors">
@@ -4181,7 +4190,7 @@ These are the free and generally easy to produce 4-layer PCB design rules. You c
 <via x="21.59" y="17.8816" extent="1-16" drill="0.3048"/>
 <via x="29.1592" y="7.5438" extent="1-16" drill="0.3048"/>
 <via x="17.7038" y="15.2654" extent="1-16" drill="0.3048"/>
-<via x="41.402" y="9.652" extent="1-16" drill="0.3048"/>
+<via x="40.64" y="8.763" extent="1-16" drill="0.3048"/>
 <via x="15.875" y="10.16" extent="1-16" drill="0.3048"/>
 <via x="15.875" y="12.7" extent="1-16" drill="0.3048"/>
 <via x="15.875" y="7.62" extent="1-16" drill="0.3048"/>
@@ -4219,9 +4228,9 @@ These are the free and generally easy to produce 4-layer PCB design rules. You c
 <wire x1="13.12" y1="20.408" x2="12.7762" y2="20.7518" width="0.2032" layer="1"/>
 <wire x1="12.7762" y1="20.7518" x2="0.67666875" y2="20.7518" width="0.2032" layer="1"/>
 <wire x1="0.67666875" y1="20.7518" x2="0.4906" y2="20.56573125" width="0.2032" layer="1"/>
-<wire x1="0.4906" y1="20.56573125" x2="0.4906" y2="18.72626875" width="0.2032" layer="1"/>
-<wire x1="1.01686875" y1="18.2" x2="1.27" y2="18.2" width="0.2032" layer="1"/>
-<wire x1="0.4906" y1="18.72626875" x2="1.01686875" y2="18.2" width="0.2032" layer="1"/>
+<wire x1="0.4906" y1="20.56573125" x2="0.4906" y2="18.98026875" width="0.2032" layer="1"/>
+<wire x1="1.27" y1="18.2" x2="1.27" y2="18.20086875" width="0.2032" layer="1"/>
+<wire x1="1.27" y1="18.20086875" x2="0.4906" y2="18.98026875" width="0.2032" layer="1"/>
 </signal>
 <signal name="N$2">
 <contactref element="C1" pad="1"/>
@@ -4567,18 +4576,18 @@ These are the free and generally easy to produce 4-layer PCB design rules. You c
 <contactref element="U7" pad="P9"/>
 <contactref element="U8" pad="P10"/>
 <wire x1="42.163" y1="11.461" x2="41.179" y2="11.461" width="0.2032" layer="1"/>
-<wire x1="40.513" y1="10.795" x2="40.513" y2="9.144" width="0.2032" layer="1"/>
-<wire x1="41.179" y1="11.461" x2="40.513" y2="10.795" width="0.2032" layer="1"/>
-<wire x1="25.862" y1="9.767" x2="25.862" y2="9.063" width="0.2032" layer="1"/>
+<wire x1="40.64" y1="10.922" x2="40.64" y2="9.652" width="0.2032" layer="1"/>
+<wire x1="41.179" y1="11.461" x2="40.64" y2="10.922" width="0.2032" layer="1"/>
+<wire x1="25.862" y1="9.767" x2="25.862" y2="8.936" width="0.2032" layer="1"/>
 <via x="28.956" y="8.4752" extent="1-16" drill="0.3048"/>
 <wire x1="28.9476" y1="8.4836" x2="28.956" y2="8.4752" width="0.2032" layer="1"/>
-<wire x1="28.9476" y1="8.4836" x2="26.4414" y2="8.4836" width="0.2032" layer="1"/>
-<via x="40.513" y="9.144" extent="1-16" drill="0.3048"/>
-<wire x1="25.862" y1="9.063" x2="26.4414" y2="8.4836" width="0.2032" layer="1"/>
-<wire x1="40.4198" y1="9.2372" x2="30.099" y2="9.2372" width="0.2032" layer="16"/>
-<wire x1="30.099" y1="9.2372" x2="29.337" y2="8.4752" width="0.2032" layer="16"/>
+<wire x1="28.9476" y1="8.4836" x2="26.3144" y2="8.4836" width="0.2032" layer="1"/>
+<via x="40.64" y="9.652" extent="1-16" drill="0.3048"/>
+<wire x1="25.862" y1="8.936" x2="26.3144" y2="8.4836" width="0.2032" layer="1"/>
+<wire x1="40.5468" y1="9.7452" x2="30.607" y2="9.7452" width="0.2032" layer="16"/>
+<wire x1="30.607" y1="9.7452" x2="29.337" y2="8.4752" width="0.2032" layer="16"/>
 <wire x1="28.956" y1="8.4752" x2="29.337" y2="8.4752" width="0.2032" layer="16"/>
-<wire x1="40.4198" y1="9.2372" x2="40.513" y2="9.144" width="0.2032" layer="16"/>
+<wire x1="40.5468" y1="9.7452" x2="40.64" y2="9.652" width="0.2032" layer="16"/>
 </signal>
 <signal name="DIN1">
 <contactref element="U7" pad="P11"/>
@@ -4704,10 +4713,10 @@ These are the free and generally easy to produce 4-layer PCB design rules. You c
 <wire x1="9.398" y1="5.334" x2="9.017" y2="5.334" width="0.508" layer="1"/>
 <wire x1="9.017" y1="5.334" x2="8.509" y2="5.842" width="0.508" layer="1"/>
 <wire x1="8.509" y1="5.842" x2="8.216" y2="5.842" width="0.508" layer="1"/>
-<wire x1="13.2" y1="3.797" x2="13.2" y2="2.548" width="0.508" layer="1"/>
-<wire x1="13.2" y1="2.548" x2="13.208" y2="2.54" width="0.508" layer="1"/>
-<via x="13.208" y="2.54" extent="1-16" drill="0.3048"/>
-<wire x1="13.208" y1="2.54" x2="13.208" y2="3.302" width="0.508" layer="16"/>
+<wire x1="13.2" y1="3.797" x2="13.2" y2="2.421" width="0.508" layer="1"/>
+<wire x1="13.2" y1="2.421" x2="13.208" y2="2.413" width="0.508" layer="1"/>
+<via x="13.208" y="2.413" extent="1-16" drill="0.3048"/>
+<wire x1="13.208" y1="2.413" x2="13.208" y2="3.302" width="0.508" layer="16"/>
 </signal>
 <signal name="ADDR_RST">
 <contactref element="U7" pad="P15"/>
