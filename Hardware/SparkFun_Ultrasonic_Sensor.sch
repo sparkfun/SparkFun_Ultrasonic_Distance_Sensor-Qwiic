@@ -1495,7 +1495,7 @@ set of development tools.&lt;/p&gt;</description>
 </connects>
 <technologies>
 <technology name="">
-<attribute name="PROD_ID" value="" constant="no"/>
+<attribute name="PROD_ID" value="IC-21318" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -1544,7 +1544,7 @@ than 1μA.&lt;/p&gt;</description>
 </connects>
 <technologies>
 <technology name="">
-<attribute name="PROD_ID" value="" constant="no"/>
+<attribute name="PROD_ID" value="IC-21317" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -1563,7 +1563,9 @@ than 1μA.&lt;/p&gt;</description>
 <connect gate="G$1" pin="2" pad="P2"/>
 </connects>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="PROD_ID" value="SEN-21315" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="_TRANSMITTER" package="CUSA-T80">
@@ -1573,7 +1575,7 @@ than 1μA.&lt;/p&gt;</description>
 </connects>
 <technologies>
 <technology name="">
-<attribute name="PROD_ID" value="" constant="no"/>
+<attribute name="PROD_ID" value="SEN-21316" constant="no"/>
 </technology>
 </technologies>
 </device>

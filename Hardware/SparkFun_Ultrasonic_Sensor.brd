@@ -7,7 +7,7 @@
 <setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.001" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.005" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -30,14 +30,14 @@
 <layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
 <layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="21" name="tPlace" color="16" fill="1" visible="yes" active="yes"/>
-<layer number="22" name="bPlace" color="14" fill="1" visible="no" active="yes"/>
+<layer number="22" name="bPlace" color="14" fill="1" visible="yes" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
@@ -47,7 +47,7 @@
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="yes"/>
 <layer number="37" name="tTest" color="7" fill="1" visible="no" active="yes"/>
 <layer number="38" name="bTest" color="7" fill="1" visible="no" active="yes"/>
-<layer number="39" name="tKeepout" color="4" fill="11" visible="yes" active="yes"/>
+<layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="yes"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="yes"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="yes"/>
 <layer number="42" name="bRestrict" color="1" fill="10" visible="no" active="yes"/>
@@ -97,10 +97,10 @@
 <layer number="114" name="FRNTMAAT1" color="7" fill="1" visible="no" active="yes"/>
 <layer number="115" name="FRNTMAAT2" color="7" fill="1" visible="no" active="yes"/>
 <layer number="116" name="Patch_BOT" color="7" fill="1" visible="no" active="yes"/>
-<layer number="117" name="BACKMAAT1" color="26" fill="1" visible="no" active="yes"/>
+<layer number="117" name="BACKMAAT1" color="26" fill="1" visible="yes" active="yes"/>
 <layer number="118" name="Rect_Pads" color="7" fill="1" visible="no" active="yes"/>
-<layer number="119" name="KAP_TEKEN" color="31" fill="1" visible="no" active="yes"/>
-<layer number="120" name="KAP_MAAT1" color="25" fill="1" visible="no" active="yes"/>
+<layer number="119" name="KAP_TEKEN" color="31" fill="1" visible="yes" active="yes"/>
+<layer number="120" name="KAP_MAAT1" color="25" fill="1" visible="yes" active="yes"/>
 <layer number="121" name="_tsilk" color="7" fill="1" visible="no" active="yes"/>
 <layer number="122" name="_bsilk" color="7" fill="1" visible="no" active="yes"/>
 <layer number="123" name="tTestmark" color="7" fill="1" visible="no" active="yes"/>
@@ -5197,7 +5197,7 @@ These are the free and generally easy to produce 4-layer PCB design rules. You c
 </element>
 <element name="U7" library="new_parts" package="TSSOP20" value="STM8L051F3" x="23.54" y="12.678" smashed="yes" rot="R90">
 <attribute name="NAME" x="20.238" y="11.027" size="0.6096" layer="25" font="vector" ratio="20" rot="R90"/>
-<attribute name="PROD_ID" value="" x="23.54" y="12.678" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="PROD_ID" value="IC-21318" x="23.54" y="12.678" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="27.604" y="10.9" size="0.6096" layer="27" font="vector" ratio="20" rot="R90"/>
 </element>
 <element name="C6" library="SparkFun-Capacitors" package="0603" value="0.1uF" x="27.94" y="11.43" smashed="yes" rot="R90">
@@ -5228,7 +5228,7 @@ These are the free and generally easy to produce 4-layer PCB design rules. You c
 <element name="TP1" library="SparkFun-Connectors" package="PAD.03X.05" value="TEST-POINT3X5" x="30.48" y="17.78" smashed="yes"/>
 <element name="U8" library="new_parts" package="TSSOP16" value="SP3232EB" x="39.37" y="13.208" smashed="yes">
 <attribute name="NAME" x="38.1" y="15.748" size="0.6096" layer="25" font="vector" ratio="20"/>
-<attribute name="PROD_ID" value="" x="39.37" y="13.208" size="1.778" layer="27" display="off"/>
+<attribute name="PROD_ID" value="IC-21317" x="39.37" y="13.208" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="38.0746" y="9.8298" size="0.6096" layer="27" font="vector" ratio="20"/>
 </element>
 <element name="FRAME1" library="SparkFun-Aesthetics" package="CREATIVE_COMMONS" value="FRAME-LEDGER" x="77.93" y="-8.87" smashed="yes">
@@ -5257,7 +5257,7 @@ These are the free and generally easy to produce 4-layer PCB design rules. You c
 </element>
 <element name="U5" library="new_parts" package="CUSA-T80" value="ULTRASONIC_SENSOR_TRANSMITTER" x="34.29" y="12.7" smashed="yes" rot="MR0">
 <attribute name="NAME" x="35.56" y="13.97" size="0.6096" layer="26" font="vector" ratio="20" rot="MR0"/>
-<attribute name="PROD_ID" value="" x="34.29" y="12.7" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="PROD_ID" value="SEN-21316" x="34.29" y="12.7" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" x="35.56" y="11.43" size="0.6096" layer="28" font="vector" ratio="20" rot="MR0"/>
 </element>
 <element name="C28" library="SparkFun-Capacitors" package="0603" value="0.1uF" x="42.164" y="17.399" smashed="yes" rot="R90">
@@ -5289,6 +5289,7 @@ These are the free and generally easy to produce 4-layer PCB design rules. You c
 </element>
 <element name="U9" library="new_parts" package="CUSA-R80" value="ULTRASONIC_SENSOR_RECEIVER" x="10.16" y="12.7" smashed="yes" rot="MR180">
 <attribute name="NAME" x="8.89" y="11.43" size="0.6096" layer="26" font="vector" ratio="20" rot="MR180"/>
+<attribute name="PROD_ID" value="SEN-21315" x="10.16" y="12.7" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="VALUE" x="8.89" y="13.97" size="0.6096" layer="28" font="vector" ratio="20" rot="MR180"/>
 </element>
 <element name="J2" library="SparkFun-Connectors" package="1X04_NO_SILK" value="" x="26.67" y="1.27" smashed="yes" rot="R180">
