@@ -49,7 +49,7 @@
 #include "stm8l15x_iwdg.h"
 //#include "stm8l15x_lcd.h"
 //#include "stm8l15x_pwr.h"
-#include "stm8l15x_rst.h"
+//#include "stm8l15x_rst.h"
 //#include "stm8l15x_rtc.h"
 //#include "stm8l15x_spi.h"
 #include "stm8l15x_syscfg.h"

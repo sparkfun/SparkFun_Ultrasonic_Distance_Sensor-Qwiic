@@ -55,6 +55,7 @@ Release\main.o
 Release\stm8l15x_it.o
 Release\stm8l15x_adc.o
 Release\stm8l15x_clk.o
+Release\stm8l15x_comp.o
 Release\stm8l15x_dac.o
 Release\stm8l15x_dma.o
 Release\stm8l15x_exti.o
@@ -63,19 +64,18 @@ Release\stm8l15x_gpio.o
 Release\stm8l15x_i2c.o
 Release\stm8l15x_itc.o
 Release\stm8l15x_iwdg.o
-Release\stm8l15x_pwr.o
-Release\stm8l15x_rst.o
 Release\stm8l15x_syscfg.o
 Release\stm8l15x_tim2.o
 Release\stm8l15x_tim3.o
 Release\stm8l15x_tim4.o
 Release\stm8l15x_tim5.o
+Release\stm8l15x_usart.o
 #<END OBJECT_FILES>
 
 
 # Library list - section reserved for STVD
 #<BEGIN LIBRARY_FILES>
-libis0.sm8
+libisl0.sm8
 libm0.sm8
 #<END LIBRARY_FILES>
 

@@ -55,6 +55,7 @@ Debug\main.o
 Debug\stm8l15x_it.o
 Debug\stm8l15x_adc.o
 Debug\stm8l15x_clk.o
+Debug\stm8l15x_comp.o
 Debug\stm8l15x_dac.o
 Debug\stm8l15x_dma.o
 Debug\stm8l15x_exti.o
@@ -63,13 +64,12 @@ Debug\stm8l15x_gpio.o
 Debug\stm8l15x_i2c.o
 Debug\stm8l15x_itc.o
 Debug\stm8l15x_iwdg.o
-Debug\stm8l15x_pwr.o
-Debug\stm8l15x_rst.o
 Debug\stm8l15x_syscfg.o
 Debug\stm8l15x_tim2.o
 Debug\stm8l15x_tim3.o
 Debug\stm8l15x_tim4.o
 Debug\stm8l15x_tim5.o
+Debug\stm8l15x_usart.o
 #<END OBJECT_FILES>
 
 
