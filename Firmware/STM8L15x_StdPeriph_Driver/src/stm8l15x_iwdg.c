@@ -23,7 +23,7 @@
   *          Once the IWDG is started, the LSI is forced ON and cannot be disabled
   *          (LSI cannot be disabled too), and the counter starts counting down from 
   *          the reset value of 0xFF. When it reaches the end of count value (0x00)
-  *          a system reset is generated.
+  *          a system reset is generated.b		
   *          The IWDG counter should be reloaded at regular intervals to prevent
   *          an MCU reset.
   *                           

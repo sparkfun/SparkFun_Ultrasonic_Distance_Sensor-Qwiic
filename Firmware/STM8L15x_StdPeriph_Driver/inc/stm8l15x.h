@@ -37,10 +37,10 @@
    application
   */
 /* #define STM8L15X_LD */     /*!< STM8L15X_LD: STM8L15x Low density devices */
-/* #define STM8L15X_MD */     /*!< STM8L15X_MD: STM8L15x Medium density devices */
+//#define STM8L15X_MD */     /*!< STM8L15X_MD: STM8L15x Medium density devices */
 /* #define STM8L15X_MDP */    /*!< STM8L15X_MDP: STM8L15x Medium density plus devices */
 /* #define STM8L15X_HD */     /*!< STM8L15X_HD: STM8L15x/16x High density devices */
-#define STM8L05X_LD_VL */  /*!< STM8L05X_LD_VL: STM8L051xx3 Low density value line devices */
+#define STM8L05X_LD_VL //*/  /*!< STM8L05X_LD_VL: STM8L051xx3 Low density value line devices */
 /* #define STM8L05X_MD_VL */  /*!< STM8L05X_MD_VL: STM8L052xx6 Medium density value line devices */
 /* #define STM8L05X_HD_VL */  /*!< STM8L05X_HD_VL: STM8L052xx8 High density value line devices */
 /* #define STM8AL31_L_MD */   /*!< STM8AL31_L_MD: STM8AL3x Medium density devices */
@@ -418,147 +418,147 @@ RTC_TypeDef;
   * @{
   */
 
-/* Bits definition for RTC_TR1 register*/
-#define RTC_TR1_ST               ((uint8_t)0x70)
-#define RTC_TR1_SU               ((uint8_t)0x0F)
-
-/* Bits definition for RTC_TR2 register*/
-#define RTC_TR2_MNT              ((uint8_t)0x70)
-#define RTC_TR2_MNU              ((uint8_t)0x0F)
-
-/* Bits definition for RTC_TR3 register*/
-#define RTC_TR3_PM               ((uint8_t)0x40)
-#define RTC_TR3_HT               ((uint8_t)0x30)
-#define RTC_TR3_HU               ((uint8_t)0x0F)
-
-/* Bits definition for RTC_DR1 register*/
-#define RTC_DR1_DT               ((uint8_t)0x30)
-#define RTC_DR1_DU               ((uint8_t)0x0F)
-
-/* Bits definition for RTC_DR2 register*/
-#define RTC_DR2_WDU              ((uint8_t)0xE0)
-#define RTC_DR2_MT               ((uint8_t)0x10)
-#define RTC_DR2_MU               ((uint8_t)0x0F)
-
-/* Bits definition for RTC_DR3 register*/
-#define RTC_DR3_YT               ((uint8_t)0xF0)
-#define RTC_DR3_YU               ((uint8_t)0x0F)
-
-/* Bits definition for RTC_CR1 register*/
-#define RTC_CR1_FMT              ((uint8_t)0x40)
-#define RTC_CR1_RATIO            ((uint8_t)0x20)
-#define RTC_CR1_WUCKSEL          ((uint8_t)0x07)
-#define RTC_CR1_BYPSHAD           ((uint8_t)0x10)
-
-
-/* Bits definition for RTC_CR2 register*/
-#define RTC_CR2_WUTIE            ((uint8_t)0x40)
-#define RTC_CR2_ALRAIE           ((uint8_t)0x10)
-#define RTC_CR2_WUTE             ((uint8_t)0x04)
-#define RTC_CR2_ALRAE            ((uint8_t)0x01)
-#define RTC_CR2_ALRIE            ((uint8_t)0x20)
-
-
-
-/* Bits definition for RTC_CR3 register*/
-#define RTC_CR3_COE              ((uint8_t)0x80)
-#define RTC_CR3_OSEL             ((uint8_t)0x60)
-#define RTC_CR3_POL              ((uint8_t)0x10)
-#define RTC_CR3_COSEL            ((uint8_t)0x08)
-#define RTC_CR3_BCK              ((uint8_t)0x04)
-#define RTC_CR3_SUB1H            ((uint8_t)0x02)
-#define RTC_CR3_ADD1H            ((uint8_t)0x01)
-
-
-/* Bits definition for RTC_ISR1 register*/
-#define RTC_ISR1_INIT            ((uint8_t)0x80)
-#define RTC_ISR1_INITF           ((uint8_t)0x40)
-#define RTC_ISR1_RSF             ((uint8_t)0x20)
-#define RTC_ISR1_INITS           ((uint8_t)0x10)
-#define RTC_ISR1_SHPF            ((uint8_t)0x08)
-#define RTC_ISR1_WUTWF           ((uint8_t)0x04)
-#define RTC_ISR1_RECALPF         ((uint8_t)0x02)
-#define RTC_ISR1_ALRAWF          ((uint8_t)0x01)
-
-
-/* Bits definition for RTC_ISR2 register*/
-#define RTC_ISR2_WUTF            ((uint8_t)0x04)
-#define RTC_ISR2_ALRAF           ((uint8_t)0x01)
-#define RTC_ISR2_TAMP3F          ((uint8_t)0x80)
-#define RTC_ISR2_TAMP2F          ((uint8_t)0x40)
-#define RTC_ISR2_TAMP1F          ((uint8_t)0x20)
-
-/* Bits definition for RTC_SHIFTRH register*/
-#define RTC_SHIFTRH_ADD1S        ((uint8_t)0x80)
-#define RTC_SHIFTRH_SUBFS        ((uint8_t)0x7F)
-
-/* Bits definition for RTC_SHIFTRL register*/
-#define RTC_SHIFTRL_SUBFS        ((uint8_t)0xFF)
-
-
-/* Bits definition for RTC_ALRMAR1 register*/
-#define RTC_ALRMAR1_MSK1         ((uint8_t)0x80)
-#define RTC_ALRMAR1_ST           ((uint8_t)0x70)
-#define RTC_ALRMAR1_SU           ((uint8_t)0x0F)
-
-/* Bits definition for RTC_ALRMAR2 register*/
-#define RTC_ALRMAR2_MSK2         ((uint8_t)0x80)
-#define RTC_ALRMAR2_MNT          ((uint8_t)0x70)
-#define RTC_ALRMAR2_MNU          ((uint8_t)0x0F)
-
-/* Bits definition for RTC_ALRMAR3 register*/
-#define RTC_ALRMAR3_MSK3         ((uint8_t)0x80)
-#define RTC_ALRMAR3_PM           ((uint8_t)0x40)
-#define RTC_ALRMAR3_HT           ((uint8_t)0x30)
-#define RTC_ALRMAR3_HU           ((uint8_t)0x0F)
-
-/* Bits definition for RTC_ALRMAR4 register*/
-#define RTC_ALRMAR4_MSK4         ((uint8_t)0x80)
-#define RTC_ALRMAR4_WDSEL        ((uint8_t)0x40)
-#define RTC_ALRMAR4_DT           ((uint8_t)0x30)
-#define RTC_ALRMAR4_DU           ((uint8_t)0x0F)
-
-/* Bits definition for RTC_ALRMASSRH register*/
-#define RTC_ALRMASSRH_ALSS         ((uint8_t)0x7F)
-
-/* Bits definition for RTC_ALRMASSRL register*/
-#define RTC_ALRMASSRL_ALSS         ((uint8_t)0xFF)
-
-/* Bits definition for RTC_ALRMASSMSKR register*/
-#define RTC_ALRMASSMSKR_MASKSS   ((uint8_t)0x1F)
-
-
-/* Bits definition for RTC_CALRH register*/
-#define RTC_CALRH_CALP          ((uint8_t)0x80)
-#define RTC_CALRH_CALW8         ((uint8_t)0x40)
-#define RTC_CALRH_CALW16        ((uint8_t)0x20)
-#define RTC_CALRH_CALWx         ((uint8_t)0x60)
-#define RTC_CALRH_CALM          ((uint8_t)0x01)
-
-/* Bits definition for RTC_CALRL register*/
-#define RTC_CALRL_CALM          ((uint8_t)0xFF)
-
-/* Bits definition for RTC_TCR1 register*/
-#define RTC_TCR1_TAMP3LEVEL     ((uint8_t)0x40)
-#define RTC_TCR1_TAMP3E         ((uint8_t)0x20)
-#define RTC_TCR1_TAMP2LEVEL     ((uint8_t)0x10)
-#define RTC_TCR1_TAMP2E         ((uint8_t)0x08)
-#define RTC_TCR1_TAMP1LEVEL     ((uint8_t)0x04)
-#define RTC_TCR1_TAMP1E         ((uint8_t)0x02)
-#define RTC_TCR1_TAMPIE         ((uint8_t)0x01)
-
-/* Bits definition for RTC_TCR2 register*/
-#define RTC_TCR2_TAMPPUDIS         ((uint8_t)0x80)
-#define RTC_TCR2_TAMPPRCH          ((uint8_t)0x60)
-#define RTC_TCR2_TAMPFLT           ((uint8_t)0x18)
-#define RTC_TCR2_TAMPFREQ          ((uint8_t)0x07)
-
-
-/*RTC special defines */
-#define RTC_WPR_EnableKey        ((uint8_t)0xFF)
-#define RTC_WPR_DisableKey1      ((uint8_t)0xCA)
-#define RTC_WPR_DisableKey2      ((uint8_t)0x53)
-
+///* Bits definition for RTC_TR1 register*/
+//#define RTC_TR1_ST               ((uint8_t)0x70)
+//#define RTC_TR1_SU               ((uint8_t)0x0F)
+//
+///* Bits definition for RTC_TR2 register*/
+//#define RTC_TR2_MNT              ((uint8_t)0x70)
+//#define RTC_TR2_MNU              ((uint8_t)0x0F)
+//
+///* Bits definition for RTC_TR3 register*/
+//#define RTC_TR3_PM               ((uint8_t)0x40)
+//#define RTC_TR3_HT               ((uint8_t)0x30)
+//#define RTC_TR3_HU               ((uint8_t)0x0F)
+//
+///* Bits definition for RTC_DR1 register*/
+//#define RTC_DR1_DT               ((uint8_t)0x30)
+//#define RTC_DR1_DU               ((uint8_t)0x0F)
+//
+///* Bits definition for RTC_DR2 register*/
+//#define RTC_DR2_WDU              ((uint8_t)0xE0)
+//#define RTC_DR2_MT               ((uint8_t)0x10)
+//#define RTC_DR2_MU               ((uint8_t)0x0F)
+//
+///* Bits definition for RTC_DR3 register*/
+//#define RTC_DR3_YT               ((uint8_t)0xF0)
+//#define RTC_DR3_YU               ((uint8_t)0x0F)
+//
+///* Bits definition for RTC_CR1 register*/
+//#define RTC_CR1_FMT              ((uint8_t)0x40)
+//#define RTC_CR1_RATIO            ((uint8_t)0x20)
+//#define RTC_CR1_WUCKSEL          ((uint8_t)0x07)
+//#define RTC_CR1_BYPSHAD           ((uint8_t)0x10)
+//
+//
+///* Bits definition for RTC_CR2 register*/
+//#define RTC_CR2_WUTIE            ((uint8_t)0x40)
+//#define RTC_CR2_ALRAIE           ((uint8_t)0x10)
+//#define RTC_CR2_WUTE             ((uint8_t)0x04)
+//#define RTC_CR2_ALRAE            ((uint8_t)0x01)
+//#define RTC_CR2_ALRIE            ((uint8_t)0x20)
+//
+//
+//
+///* Bits definition for RTC_CR3 register*/
+//#define RTC_CR3_COE              ((uint8_t)0x80)
+//#define RTC_CR3_OSEL             ((uint8_t)0x60)
+//#define RTC_CR3_POL              ((uint8_t)0x10)
+//#define RTC_CR3_COSEL            ((uint8_t)0x08)
+//#define RTC_CR3_BCK              ((uint8_t)0x04)
+//#define RTC_CR3_SUB1H            ((uint8_t)0x02)
+//#define RTC_CR3_ADD1H            ((uint8_t)0x01)
+//
+//
+///* Bits definition for RTC_ISR1 register*/
+//#define RTC_ISR1_INIT            ((uint8_t)0x80)
+//#define RTC_ISR1_INITF           ((uint8_t)0x40)
+//#define RTC_ISR1_RSF             ((uint8_t)0x20)
+//#define RTC_ISR1_INITS           ((uint8_t)0x10)
+//#define RTC_ISR1_SHPF            ((uint8_t)0x08)
+//#define RTC_ISR1_WUTWF           ((uint8_t)0x04)
+//#define RTC_ISR1_RECALPF         ((uint8_t)0x02)
+//#define RTC_ISR1_ALRAWF          ((uint8_t)0x01)
+//
+//
+///* Bits definition for RTC_ISR2 register*/
+//#define RTC_ISR2_WUTF            ((uint8_t)0x04)
+//#define RTC_ISR2_ALRAF           ((uint8_t)0x01)
+//#define RTC_ISR2_TAMP3F          ((uint8_t)0x80)
+//#define RTC_ISR2_TAMP2F          ((uint8_t)0x40)
+//#define RTC_ISR2_TAMP1F          ((uint8_t)0x20)
+//
+///* Bits definition for RTC_SHIFTRH register*/
+//#define RTC_SHIFTRH_ADD1S        ((uint8_t)0x80)
+//#define RTC_SHIFTRH_SUBFS        ((uint8_t)0x7F)
+//
+///* Bits definition for RTC_SHIFTRL register*/
+//#define RTC_SHIFTRL_SUBFS        ((uint8_t)0xFF)
+//
+//
+///* Bits definition for RTC_ALRMAR1 register*/
+//#define RTC_ALRMAR1_MSK1         ((uint8_t)0x80)
+//#define RTC_ALRMAR1_ST           ((uint8_t)0x70)
+//#define RTC_ALRMAR1_SU           ((uint8_t)0x0F)
+//
+///* Bits definition for RTC_ALRMAR2 register*/
+//#define RTC_ALRMAR2_MSK2         ((uint8_t)0x80)
+//#define RTC_ALRMAR2_MNT          ((uint8_t)0x70)
+//#define RTC_ALRMAR2_MNU          ((uint8_t)0x0F)
+//
+///* Bits definition for RTC_ALRMAR3 register*/
+//#define RTC_ALRMAR3_MSK3         ((uint8_t)0x80)
+//#define RTC_ALRMAR3_PM           ((uint8_t)0x40)
+//#define RTC_ALRMAR3_HT           ((uint8_t)0x30)
+//#define RTC_ALRMAR3_HU           ((uint8_t)0x0F)
+//
+///* Bits definition for RTC_ALRMAR4 register*/
+//#define RTC_ALRMAR4_MSK4         ((uint8_t)0x80)
+//#define RTC_ALRMAR4_WDSEL        ((uint8_t)0x40)
+//#define RTC_ALRMAR4_DT           ((uint8_t)0x30)
+//#define RTC_ALRMAR4_DU           ((uint8_t)0x0F)
+//
+///* Bits definition for RTC_ALRMASSRH register*/
+//#define RTC_ALRMASSRH_ALSS         ((uint8_t)0x7F)
+//
+///* Bits definition for RTC_ALRMASSRL register*/
+//#define RTC_ALRMASSRL_ALSS         ((uint8_t)0xFF)
+//
+///* Bits definition for RTC_ALRMASSMSKR register*/
+//#define RTC_ALRMASSMSKR_MASKSS   ((uint8_t)0x1F)
+//
+//
+///* Bits definition for RTC_CALRH register*/
+//#define RTC_CALRH_CALP          ((uint8_t)0x80)
+//#define RTC_CALRH_CALW8         ((uint8_t)0x40)
+//#define RTC_CALRH_CALW16        ((uint8_t)0x20)
+//#define RTC_CALRH_CALWx         ((uint8_t)0x60)
+//#define RTC_CALRH_CALM          ((uint8_t)0x01)
+//
+///* Bits definition for RTC_CALRL register*/
+//#define RTC_CALRL_CALM          ((uint8_t)0xFF)
+//
+///* Bits definition for RTC_TCR1 register*/
+//#define RTC_TCR1_TAMP3LEVEL     ((uint8_t)0x40)
+//#define RTC_TCR1_TAMP3E         ((uint8_t)0x20)
+//#define RTC_TCR1_TAMP2LEVEL     ((uint8_t)0x10)
+//#define RTC_TCR1_TAMP2E         ((uint8_t)0x08)
+//#define RTC_TCR1_TAMP1LEVEL     ((uint8_t)0x04)
+//#define RTC_TCR1_TAMP1E         ((uint8_t)0x02)
+//#define RTC_TCR1_TAMPIE         ((uint8_t)0x01)
+//
+///* Bits definition for RTC_TCR2 register*/
+//#define RTC_TCR2_TAMPPUDIS         ((uint8_t)0x80)
+//#define RTC_TCR2_TAMPPRCH          ((uint8_t)0x60)
+//#define RTC_TCR2_TAMPFLT           ((uint8_t)0x18)
+//#define RTC_TCR2_TAMPFREQ          ((uint8_t)0x07)
+//
+//
+///*RTC special defines */
+//#define RTC_WPR_EnableKey        ((uint8_t)0xFF)
+//#define RTC_WPR_DisableKey1      ((uint8_t)0xCA)
+//#define RTC_WPR_DisableKey2      ((uint8_t)0x53)
+//
 /**
   * @}
   */
@@ -600,20 +600,20 @@ CSSLSE_TypeDef;
   * @brief Beeper (BEEP) peripheral registers.
   */
 
-typedef struct BEEP_struct
-{
-  __IO uint8_t CSR1; /*!< BEEP Control status register1 */
-  uint8_t RSERVED1;
-  uint8_t RESERVED2;
-  __IO uint8_t CSR2; /*!< BEEP Control status register2 */
-}
-BEEP_TypeDef;
+//typedef struct BEEP_struct
+//{
+//  __IO uint8_t CSR1; /*!< BEEP Control status register1 */
+//  uint8_t RSERVED1;
+//  uint8_t RESERVED2;
+//  __IO uint8_t CSR2; /*!< BEEP Control status register2 */
+//}
+//BEEP_TypeDef;
 
 /** @addtogroup BEEP_Registers_Reset_Value
   * @{
   */
-#define BEEP_CSR1_RESET_VALUE ((uint8_t)0x00)
-#define BEEP_CSR2_RESET_VALUE ((uint8_t)0x1F)
+//#define BEEP_CSR1_RESET_VALUE ((uint8_t)0x00)
+//#define BEEP_CSR2_RESET_VALUE ((uint8_t)0x1F)
 
 /**
   * @}

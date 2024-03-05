@@ -64,7 +64,6 @@ Debug\stm8l15x_gpio.o
 Debug\stm8l15x_i2c.o
 Debug\stm8l15x_itc.o
 Debug\stm8l15x_iwdg.o
-Debug\stm8l15x_syscfg.o
 Debug\stm8l15x_tim2.o
 Debug\stm8l15x_tim3.o
 Debug\stm8l15x_tim4.o

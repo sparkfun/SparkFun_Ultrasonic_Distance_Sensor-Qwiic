@@ -29,7 +29,7 @@ uint8_t Out_Range=0;
 uint16_t Timer=0;
 uint16_t Distance=0;
 uint8_t Distance_H=0,Distance_L=0;
-extern uint8_t SLAVE_ADDRESS;
+//extern uint8_t SLAVE_ADDRESS;
 //extern uint8_t SLAVE_ADDR_NUM;
 extern char SBUF;
 extern uint16_t measure_flag;

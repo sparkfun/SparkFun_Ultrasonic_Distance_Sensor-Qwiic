@@ -64,7 +64,6 @@ Release\stm8l15x_gpio.o
 Release\stm8l15x_i2c.o
 Release\stm8l15x_itc.o
 Release\stm8l15x_iwdg.o
-Release\stm8l15x_syscfg.o
 Release\stm8l15x_tim2.o
 Release\stm8l15x_tim3.o
 Release\stm8l15x_tim4.o
@@ -75,7 +74,7 @@ Release\stm8l15x_usart.o
 
 # Library list - section reserved for STVD
 #<BEGIN LIBRARY_FILES>
-libisl0.sm8
+libis0.sm8
 libm0.sm8
 #<END LIBRARY_FILES>
 
