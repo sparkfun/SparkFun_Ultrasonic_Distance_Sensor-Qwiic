@@ -1,260 +1,217 @@
    1                     ; C Compiler for STM8 (COSMIC Software)
    2                     ; Parser V4.12.9 - 19 Apr 2023
    3                     ; Generator (Limited) V4.5.6 - 18 Jul 2023
- 108                     ; 96 void GPIO_DeInit(GPIO_TypeDef* GPIOx)
- 108                     ; 97 {
- 110                     	switch	.text
- 111  0000               _GPIO_DeInit:
- 115                     ; 98   GPIOx->CR2 = GPIO_CR2_RESET_VALUE; /* Reset Control Register 2 */
- 117  0000 6f04          	clr	(4,x)
- 118                     ; 99   GPIOx->ODR = GPIO_ODR_RESET_VALUE; /* Reset Output Data Register */
- 120  0002 7f            	clr	(x)
- 121                     ; 100   GPIOx->DDR = GPIO_DDR_RESET_VALUE; /* Reset Data Direction Register */
- 123  0003 6f02          	clr	(2,x)
- 124                     ; 101   GPIOx->CR1 = GPIO_CR1_RESET_VALUE; /* Reset Control Register 1 */
- 126  0005 6f03          	clr	(3,x)
- 127                     ; 102 }
- 130  0007 81            	ret
- 284                     ; 133 void GPIO_Init(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin, GPIO_Mode_TypeDef GPIO_Mode)
- 284                     ; 134 {
- 285                     	switch	.text
- 286  0008               _GPIO_Init:
- 288  0008 89            	pushw	x
- 289       00000000      OFST:	set	0
- 292                     ; 139   assert_param(IS_GPIO_MODE(GPIO_Mode));
- 294                     ; 140   assert_param(IS_GPIO_PIN(GPIO_Pin));
- 296                     ; 143   GPIOx->CR2 &= (uint8_t)(~(GPIO_Pin));
- 298  0009 7b05          	ld	a,(OFST+5,sp)
- 299  000b 43            	cpl	a
- 300  000c e404          	and	a,(4,x)
- 301  000e e704          	ld	(4,x),a
- 302                     ; 149   if ((((uint8_t)(GPIO_Mode)) & (uint8_t)0x80) != (uint8_t)0x00) /* Output mode */
- 304  0010 7b06          	ld	a,(OFST+6,sp)
- 305  0012 a580          	bcp	a,#128
- 306  0014 271d          	jreq	L341
- 307                     ; 151     if ((((uint8_t)(GPIO_Mode)) & (uint8_t)0x10) != (uint8_t)0x00) /* High level */
- 309  0016 7b06          	ld	a,(OFST+6,sp)
- 310  0018 a510          	bcp	a,#16
- 311  001a 2706          	jreq	L541
- 312                     ; 153       GPIOx->ODR |= GPIO_Pin;
- 314  001c f6            	ld	a,(x)
- 315  001d 1a05          	or	a,(OFST+5,sp)
- 316  001f f7            	ld	(x),a
- 318  0020 2007          	jra	L741
- 319  0022               L541:
- 320                     ; 156       GPIOx->ODR &= (uint8_t)(~(GPIO_Pin));
- 322  0022 1e01          	ldw	x,(OFST+1,sp)
- 323  0024 7b05          	ld	a,(OFST+5,sp)
- 324  0026 43            	cpl	a
- 325  0027 f4            	and	a,(x)
- 326  0028 f7            	ld	(x),a
- 327  0029               L741:
- 328                     ; 159     GPIOx->DDR |= GPIO_Pin;
- 330  0029 1e01          	ldw	x,(OFST+1,sp)
- 331  002b e602          	ld	a,(2,x)
- 332  002d 1a05          	or	a,(OFST+5,sp)
- 333  002f e702          	ld	(2,x),a
- 335  0031 2009          	jra	L151
- 336  0033               L341:
- 337                     ; 163     GPIOx->DDR &= (uint8_t)(~(GPIO_Pin));
- 339  0033 1e01          	ldw	x,(OFST+1,sp)
- 340  0035 7b05          	ld	a,(OFST+5,sp)
- 341  0037 43            	cpl	a
- 342  0038 e402          	and	a,(2,x)
- 343  003a e702          	ld	(2,x),a
- 344  003c               L151:
- 345                     ; 170   if ((((uint8_t)(GPIO_Mode)) & (uint8_t)0x40) != (uint8_t)0x00) /* Pull-Up or Push-Pull */
- 347  003c 7b06          	ld	a,(OFST+6,sp)
- 348  003e a540          	bcp	a,#64
- 349  0040 270a          	jreq	L351
- 350                     ; 172     GPIOx->CR1 |= GPIO_Pin;
- 352  0042 1e01          	ldw	x,(OFST+1,sp)
- 353  0044 e603          	ld	a,(3,x)
- 354  0046 1a05          	or	a,(OFST+5,sp)
- 355  0048 e703          	ld	(3,x),a
- 357  004a 2009          	jra	L551
- 358  004c               L351:
- 359                     ; 175     GPIOx->CR1 &= (uint8_t)(~(GPIO_Pin));
- 361  004c 1e01          	ldw	x,(OFST+1,sp)
- 362  004e 7b05          	ld	a,(OFST+5,sp)
- 363  0050 43            	cpl	a
- 364  0051 e403          	and	a,(3,x)
- 365  0053 e703          	ld	(3,x),a
- 366  0055               L551:
- 367                     ; 182   if ((((uint8_t)(GPIO_Mode)) & (uint8_t)0x20) != (uint8_t)0x00) /* Interrupt or Slow slope */
- 369  0055 7b06          	ld	a,(OFST+6,sp)
- 370  0057 a520          	bcp	a,#32
- 371  0059 270a          	jreq	L751
- 372                     ; 184     GPIOx->CR2 |= GPIO_Pin;
- 374  005b 1e01          	ldw	x,(OFST+1,sp)
- 375  005d e604          	ld	a,(4,x)
- 376  005f 1a05          	or	a,(OFST+5,sp)
- 377  0061 e704          	ld	(4,x),a
- 379  0063 2009          	jra	L161
- 380  0065               L751:
- 381                     ; 187     GPIOx->CR2 &= (uint8_t)(~(GPIO_Pin));
- 383  0065 1e01          	ldw	x,(OFST+1,sp)
- 384  0067 7b05          	ld	a,(OFST+5,sp)
- 385  0069 43            	cpl	a
- 386  006a e404          	and	a,(4,x)
- 387  006c e704          	ld	(4,x),a
- 388  006e               L161:
- 389                     ; 190 }
- 392  006e 85            	popw	x
- 393  006f 81            	ret
- 468                     ; 209 void GPIO_ExternalPullUpConfig(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin, FunctionalState NewState)
- 468                     ; 210 {
- 469                     	switch	.text
- 470  0070               _GPIO_ExternalPullUpConfig:
- 472  0070 89            	pushw	x
- 473       00000000      OFST:	set	0
- 476                     ; 212   assert_param(IS_GPIO_PIN(GPIO_Pin));
- 478                     ; 213   assert_param(IS_FUNCTIONAL_STATE(NewState));
- 480                     ; 215   if (NewState != DISABLE) /* External Pull-Up Set*/
- 482  0071 0d06          	tnz	(OFST+6,sp)
- 483  0073 2708          	jreq	L122
- 484                     ; 217     GPIOx->CR1 |= GPIO_Pin;
- 486  0075 e603          	ld	a,(3,x)
- 487  0077 1a05          	or	a,(OFST+5,sp)
- 488  0079 e703          	ld	(3,x),a
- 490  007b 2009          	jra	L322
- 491  007d               L122:
- 492                     ; 220     GPIOx->CR1 &= (uint8_t)(~(GPIO_Pin));
- 494  007d 1e01          	ldw	x,(OFST+1,sp)
- 495  007f 7b05          	ld	a,(OFST+5,sp)
- 496  0081 43            	cpl	a
- 497  0082 e403          	and	a,(3,x)
- 498  0084 e703          	ld	(3,x),a
- 499  0086               L322:
- 500                     ; 222 }
- 503  0086 85            	popw	x
- 504  0087 81            	ret
- 548                     ; 248 void GPIO_Write(GPIO_TypeDef* GPIOx, uint8_t GPIO_PortVal)
- 548                     ; 249 {
- 549                     	switch	.text
- 550  0088               _GPIO_Write:
- 552  0088 89            	pushw	x
- 553       00000000      OFST:	set	0
- 556                     ; 250   GPIOx->ODR = GPIO_PortVal;
- 558  0089 7b05          	ld	a,(OFST+5,sp)
- 559  008b 1e01          	ldw	x,(OFST+1,sp)
- 560  008d f7            	ld	(x),a
- 561                     ; 251 }
- 564  008e 85            	popw	x
- 565  008f 81            	ret
- 725                     ; 270 void GPIO_WriteBit(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin, BitAction GPIO_BitVal)
- 725                     ; 271 {
- 726                     	switch	.text
- 727  0090               _GPIO_WriteBit:
- 729  0090 89            	pushw	x
- 730       00000000      OFST:	set	0
- 733                     ; 273   assert_param(IS_GPIO_PIN(GPIO_Pin));
- 735                     ; 274   assert_param(IS_STATE_VALUE(GPIO_BitVal));
- 737                     ; 276   if (GPIO_BitVal != RESET)
- 739  0091 0d06          	tnz	(OFST+6,sp)
- 740  0093 2706          	jreq	L143
- 741                     ; 278     GPIOx->ODR |= GPIO_Pin;
- 743  0095 f6            	ld	a,(x)
- 744  0096 1a05          	or	a,(OFST+5,sp)
- 745  0098 f7            	ld	(x),a
- 747  0099 2007          	jra	L343
- 748  009b               L143:
- 749                     ; 283     GPIOx->ODR &= (uint8_t)(~GPIO_Pin);
- 751  009b 1e01          	ldw	x,(OFST+1,sp)
- 752  009d 7b05          	ld	a,(OFST+5,sp)
- 753  009f 43            	cpl	a
- 754  00a0 f4            	and	a,(x)
- 755  00a1 f7            	ld	(x),a
- 756  00a2               L343:
- 757                     ; 285 }
- 760  00a2 85            	popw	x
- 761  00a3 81            	ret
- 805                     ; 303 void GPIO_SetBits(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin)
- 805                     ; 304 {
- 806                     	switch	.text
- 807  00a4               _GPIO_SetBits:
- 809  00a4 89            	pushw	x
- 810       00000000      OFST:	set	0
- 813                     ; 305   GPIOx->ODR |= GPIO_Pin;
- 815  00a5 f6            	ld	a,(x)
- 816  00a6 1a05          	or	a,(OFST+5,sp)
- 817  00a8 f7            	ld	(x),a
- 818                     ; 306 }
- 821  00a9 85            	popw	x
- 822  00aa 81            	ret
- 866                     ; 324 void GPIO_ResetBits(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin)
- 866                     ; 325 {
- 867                     	switch	.text
- 868  00ab               _GPIO_ResetBits:
- 870  00ab 89            	pushw	x
- 871       00000000      OFST:	set	0
- 874                     ; 326   GPIOx->ODR &= (uint8_t)(~GPIO_Pin);
- 876  00ac 7b05          	ld	a,(OFST+5,sp)
- 877  00ae 43            	cpl	a
- 878  00af f4            	and	a,(x)
- 879  00b0 f7            	ld	(x),a
- 880                     ; 327 }
- 883  00b1 85            	popw	x
- 884  00b2 81            	ret
- 928                     ; 336 void GPIO_ToggleBits(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin)
- 928                     ; 337 {
- 929                     	switch	.text
- 930  00b3               _GPIO_ToggleBits:
- 932  00b3 89            	pushw	x
- 933       00000000      OFST:	set	0
- 936                     ; 338   GPIOx->ODR ^= GPIO_Pin;
- 938  00b4 f6            	ld	a,(x)
- 939  00b5 1805          	xor	a,(OFST+5,sp)
- 940  00b7 f7            	ld	(x),a
- 941                     ; 339 }
- 944  00b8 85            	popw	x
- 945  00b9 81            	ret
- 982                     ; 347 uint8_t GPIO_ReadInputData(GPIO_TypeDef* GPIOx)
- 982                     ; 348 {
- 983                     	switch	.text
- 984  00ba               _GPIO_ReadInputData:
- 988                     ; 349   return ((uint8_t)GPIOx->IDR);
- 990  00ba e601          	ld	a,(1,x)
- 993  00bc 81            	ret
-1031                     ; 358 uint8_t GPIO_ReadOutputData(GPIO_TypeDef* GPIOx)
-1031                     ; 359 {
-1032                     	switch	.text
-1033  00bd               _GPIO_ReadOutputData:
-1037                     ; 360   return ((uint8_t)GPIOx->ODR);
-1039  00bd f6            	ld	a,(x)
-1042  00be 81            	ret
-1091                     ; 378 BitStatus GPIO_ReadInputDataBit(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin)
-1091                     ; 379 {
-1092                     	switch	.text
-1093  00bf               _GPIO_ReadInputDataBit:
-1095  00bf 89            	pushw	x
-1096       00000000      OFST:	set	0
-1099                     ; 380   return ((BitStatus)(GPIOx->IDR & (uint8_t)GPIO_Pin));
-1101  00c0 e601          	ld	a,(1,x)
-1102  00c2 1405          	and	a,(OFST+5,sp)
-1105  00c4 85            	popw	x
-1106  00c5 81            	ret
-1155                     ; 389 BitStatus GPIO_ReadOutputDataBit(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin)
-1155                     ; 390 {
-1156                     	switch	.text
-1157  00c6               _GPIO_ReadOutputDataBit:
-1159  00c6 89            	pushw	x
-1160       00000000      OFST:	set	0
-1163                     ; 391   return ((BitStatus)(GPIOx->ODR & (uint8_t)GPIO_Pin));
-1165  00c7 f6            	ld	a,(x)
-1166  00c8 1405          	and	a,(OFST+5,sp)
-1169  00ca 85            	popw	x
-1170  00cb 81            	ret
-1183                     	xdef	_GPIO_ReadOutputDataBit
-1184                     	xdef	_GPIO_ReadInputDataBit
-1185                     	xdef	_GPIO_ReadOutputData
-1186                     	xdef	_GPIO_ReadInputData
-1187                     	xdef	_GPIO_ToggleBits
-1188                     	xdef	_GPIO_ResetBits
-1189                     	xdef	_GPIO_SetBits
-1190                     	xdef	_GPIO_WriteBit
-1191                     	xdef	_GPIO_Write
-1192                     	xdef	_GPIO_ExternalPullUpConfig
-1193                     	xdef	_GPIO_Init
-1194                     	xdef	_GPIO_DeInit
-1213                     	end
+   4                     ; Optimizer V4.5.6 - 18 Jul 2023
+  18                     ; 96 void GPIO_DeInit(GPIO_TypeDef* GPIOx)
+  18                     ; 97 {
+  19                     	scross	off
+  20  0000               _GPIO_DeInit:
+  22                     ; 98   GPIOx->CR2 = GPIO_CR2_RESET_VALUE; /* Reset Control Register 2 */
+  23  0000 6f04          	clr	(4,x)
+  24                     ; 99   GPIOx->ODR = GPIO_ODR_RESET_VALUE; /* Reset Output Data Register */
+  25  0002 7f            	clr	(x)
+  26                     ; 100   GPIOx->DDR = GPIO_DDR_RESET_VALUE; /* Reset Data Direction Register */
+  27  0003 6f02          	clr	(2,x)
+  28                     ; 101   GPIOx->CR1 = GPIO_CR1_RESET_VALUE; /* Reset Control Register 1 */
+  29  0005 6f03          	clr	(3,x)
+  30                     ; 102 }
+  31  0007 81            	ret	
+  33                     ; 133 void GPIO_Init(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin, GPIO_Mode_TypeDef GPIO_Mode)
+  33                     ; 134 {
+  34  0008               _GPIO_Init:
+  35  0008 89            	pushw	x
+  36       00000000      OFST:	set	0
+  38                     ; 139   assert_param(IS_GPIO_MODE(GPIO_Mode));
+  39                     ; 140   assert_param(IS_GPIO_PIN(GPIO_Pin));
+  40                     ; 143   GPIOx->CR2 &= (uint8_t)(~(GPIO_Pin));
+  41  0009 7b05          	ld	a,(OFST+5,sp)
+  42  000b 43            	cpl	a
+  43  000c e404          	and	a,(4,x)
+  44  000e e704          	ld	(4,x),a
+  45                     ; 149   if ((((uint8_t)(GPIO_Mode)) & (uint8_t)0x80) != (uint8_t)0x00) /* Output mode */
+  46  0010 7b06          	ld	a,(OFST+6,sp)
+  47  0012 2a16          	jrpl	L3
+  48                     ; 151     if ((((uint8_t)(GPIO_Mode)) & (uint8_t)0x10) != (uint8_t)0x00) /* High level */
+  49  0014 a510          	bcp	a,#16
+  50  0016 2705          	jreq	L5
+  51                     ; 153       GPIOx->ODR |= GPIO_Pin;
+  52  0018 f6            	ld	a,(x)
+  53  0019 1a05          	or	a,(OFST+5,sp)
+  55  001b 2004          	jra	L7
+  56  001d               L5:
+  57                     ; 156       GPIOx->ODR &= (uint8_t)(~(GPIO_Pin));
+  58  001d 7b05          	ld	a,(OFST+5,sp)
+  59  001f 43            	cpl	a
+  60  0020 f4            	and	a,(x)
+  61  0021               L7:
+  62  0021 f7            	ld	(x),a
+  63                     ; 159     GPIOx->DDR |= GPIO_Pin;
+  64  0022 1e01          	ldw	x,(OFST+1,sp)
+  65  0024 e602          	ld	a,(2,x)
+  66  0026 1a05          	or	a,(OFST+5,sp)
+  68  0028 2005          	jra	L11
+  69  002a               L3:
+  70                     ; 163     GPIOx->DDR &= (uint8_t)(~(GPIO_Pin));
+  71  002a 7b05          	ld	a,(OFST+5,sp)
+  72  002c 43            	cpl	a
+  73  002d e402          	and	a,(2,x)
+  74  002f               L11:
+  75  002f e702          	ld	(2,x),a
+  76                     ; 170   if ((((uint8_t)(GPIO_Mode)) & (uint8_t)0x40) != (uint8_t)0x00) /* Pull-Up or Push-Pull */
+  77  0031 7b06          	ld	a,(OFST+6,sp)
+  78  0033 a540          	bcp	a,#64
+  79  0035 2706          	jreq	L31
+  80                     ; 172     GPIOx->CR1 |= GPIO_Pin;
+  81  0037 e603          	ld	a,(3,x)
+  82  0039 1a05          	or	a,(OFST+5,sp)
+  84  003b 2005          	jra	L51
+  85  003d               L31:
+  86                     ; 175     GPIOx->CR1 &= (uint8_t)(~(GPIO_Pin));
+  87  003d 7b05          	ld	a,(OFST+5,sp)
+  88  003f 43            	cpl	a
+  89  0040 e403          	and	a,(3,x)
+  90  0042               L51:
+  91  0042 e703          	ld	(3,x),a
+  92                     ; 182   if ((((uint8_t)(GPIO_Mode)) & (uint8_t)0x20) != (uint8_t)0x00) /* Interrupt or Slow slope */
+  93  0044 7b06          	ld	a,(OFST+6,sp)
+  94  0046 a520          	bcp	a,#32
+  95  0048 2706          	jreq	L71
+  96                     ; 184     GPIOx->CR2 |= GPIO_Pin;
+  97  004a e604          	ld	a,(4,x)
+  98  004c 1a05          	or	a,(OFST+5,sp)
+ 100  004e 2005          	jra	L12
+ 101  0050               L71:
+ 102                     ; 187     GPIOx->CR2 &= (uint8_t)(~(GPIO_Pin));
+ 103  0050 7b05          	ld	a,(OFST+5,sp)
+ 104  0052 43            	cpl	a
+ 105  0053 e404          	and	a,(4,x)
+ 106  0055               L12:
+ 107  0055 e704          	ld	(4,x),a
+ 108                     ; 190 }
+ 109  0057 85            	popw	x
+ 110  0058 81            	ret	
+ 112                     ; 209 void GPIO_ExternalPullUpConfig(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin, FunctionalState NewState)
+ 112                     ; 210 {
+ 113  0059               _GPIO_ExternalPullUpConfig:
+ 114       fffffffe      OFST: set -2
+ 116                     ; 212   assert_param(IS_GPIO_PIN(GPIO_Pin));
+ 117                     ; 213   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 118                     ; 215   if (NewState != DISABLE) /* External Pull-Up Set*/
+ 119  0059 7b04          	ld	a,(OFST+6,sp)
+ 120  005b 2706          	jreq	L32
+ 121                     ; 217     GPIOx->CR1 |= GPIO_Pin;
+ 122  005d e603          	ld	a,(3,x)
+ 123  005f 1a03          	or	a,(OFST+5,sp)
+ 125  0061 2005          	jra	L52
+ 126  0063               L32:
+ 127                     ; 220     GPIOx->CR1 &= (uint8_t)(~(GPIO_Pin));
+ 128  0063 7b03          	ld	a,(OFST+5,sp)
+ 129  0065 43            	cpl	a
+ 130  0066 e403          	and	a,(3,x)
+ 131  0068               L52:
+ 132  0068 e703          	ld	(3,x),a
+ 133                     ; 222 }
+ 134  006a 81            	ret	
+ 136                     ; 248 void GPIO_Write(GPIO_TypeDef* GPIOx, uint8_t GPIO_PortVal)
+ 136                     ; 249 {
+ 137  006b               _GPIO_Write:
+ 138       fffffffe      OFST: set -2
+ 140                     ; 250   GPIOx->ODR = GPIO_PortVal;
+ 141  006b 7b03          	ld	a,(OFST+5,sp)
+ 142  006d f7            	ld	(x),a
+ 143                     ; 251 }
+ 144  006e 81            	ret	
+ 146                     ; 270 void GPIO_WriteBit(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin, BitAction GPIO_BitVal)
+ 146                     ; 271 {
+ 147  006f               _GPIO_WriteBit:
+ 148       fffffffe      OFST: set -2
+ 150                     ; 273   assert_param(IS_GPIO_PIN(GPIO_Pin));
+ 151                     ; 274   assert_param(IS_STATE_VALUE(GPIO_BitVal));
+ 152                     ; 276   if (GPIO_BitVal != RESET)
+ 153  006f 7b04          	ld	a,(OFST+6,sp)
+ 154  0071 2705          	jreq	L72
+ 155                     ; 278     GPIOx->ODR |= GPIO_Pin;
+ 156  0073 f6            	ld	a,(x)
+ 157  0074 1a03          	or	a,(OFST+5,sp)
+ 159  0076 2004          	jra	L13
+ 160  0078               L72:
+ 161                     ; 283     GPIOx->ODR &= (uint8_t)(~GPIO_Pin);
+ 162  0078 7b03          	ld	a,(OFST+5,sp)
+ 163  007a 43            	cpl	a
+ 164  007b f4            	and	a,(x)
+ 165  007c               L13:
+ 166  007c f7            	ld	(x),a
+ 167                     ; 285 }
+ 168  007d 81            	ret	
+ 170                     ; 303 void GPIO_SetBits(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin)
+ 170                     ; 304 {
+ 171  007e               _GPIO_SetBits:
+ 172       fffffffe      OFST: set -2
+ 174                     ; 305   GPIOx->ODR |= GPIO_Pin;
+ 175  007e f6            	ld	a,(x)
+ 176  007f 1a03          	or	a,(OFST+5,sp)
+ 177  0081 f7            	ld	(x),a
+ 178                     ; 306 }
+ 179  0082 81            	ret	
+ 181                     ; 324 void GPIO_ResetBits(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin)
+ 181                     ; 325 {
+ 182  0083               _GPIO_ResetBits:
+ 183       fffffffe      OFST: set -2
+ 185                     ; 326   GPIOx->ODR &= (uint8_t)(~GPIO_Pin);
+ 186  0083 7b03          	ld	a,(OFST+5,sp)
+ 187  0085 43            	cpl	a
+ 188  0086 f4            	and	a,(x)
+ 189  0087 f7            	ld	(x),a
+ 190                     ; 327 }
+ 191  0088 81            	ret	
+ 193                     ; 336 void GPIO_ToggleBits(GPIO_TypeDef* GPIOx, uint8_t GPIO_Pin)
+ 193                     ; 337 {
+ 194  0089               _GPIO_ToggleBits:
+ 195       fffffffe      OFST: set -2
+ 197                     ; 338   GPIOx->ODR ^= GPIO_Pin;
+ 198  0089 f6            	ld	a,(x)
+ 199  008a 1803          	xor	a,(OFST+5,sp)
+ 200  008c f7            	ld	(x),a
+ 201                     ; 339 }
+ 202  008d 81            	ret	
+ 204                     ; 347 uint8_t GPIO_ReadInputData(GPIO_TypeDef* GPIOx)
+ 204                     ; 348 {
+ 205  008e               _GPIO_ReadInputData:
+ 207                     ; 349   return ((uint8_t)GPIOx->IDR);
+ 208  008e e601          	ld	a,(1,x)
+ 210  0090 81            	ret	
+ 212                     ; 358 uint8_t GPIO_ReadOutputData(GPIO_TypeDef* GPIOx)
+ 212                     ; 359 {
+ 213  0091               _GPIO_ReadOutputData:
+ 215                     ; 360   return ((uint8_t)GPIOx->ODR);
+ 216  0091 f6            	ld	a,(x)
+ 218  0092 81            	ret	
+ 220                     ; 378 BitStatus GPIO_ReadInputDataBit(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin)
+ 220                     ; 379 {
+ 221  0093               _GPIO_ReadInputDataBit:
+ 222       fffffffe      OFST: set -2
+ 224                     ; 380   return ((BitStatus)(GPIOx->IDR & (uint8_t)GPIO_Pin));
+ 225  0093 e601          	ld	a,(1,x)
+ 226  0095 1403          	and	a,(OFST+5,sp)
+ 228  0097 81            	ret	
+ 230                     ; 389 BitStatus GPIO_ReadOutputDataBit(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin)
+ 230                     ; 390 {
+ 231  0098               _GPIO_ReadOutputDataBit:
+ 232       fffffffe      OFST: set -2
+ 234                     ; 391   return ((BitStatus)(GPIOx->ODR & (uint8_t)GPIO_Pin));
+ 235  0098 f6            	ld	a,(x)
+ 236  0099 1403          	and	a,(OFST+5,sp)
+ 238  009b 81            	ret	
+ 240                     	xdef	_GPIO_ReadOutputDataBit
+ 241                     	xdef	_GPIO_ReadInputDataBit
+ 242                     	xdef	_GPIO_ReadOutputData
+ 243                     	xdef	_GPIO_ReadInputData
+ 244                     	xdef	_GPIO_ToggleBits
+ 245                     	xdef	_GPIO_ResetBits
+ 246                     	xdef	_GPIO_SetBits
+ 247                     	xdef	_GPIO_WriteBit
+ 248                     	xdef	_GPIO_Write
+ 249                     	xdef	_GPIO_ExternalPullUpConfig
+ 250                     	xdef	_GPIO_Init
+ 251                     	xdef	_GPIO_DeInit
+ 252                     	end

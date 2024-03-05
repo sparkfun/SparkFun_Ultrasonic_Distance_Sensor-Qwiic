@@ -27,18 +27,18 @@
 # Segment configuration - section reserved for STVD
 #<BEGIN SEGMENT_CONF>
 # Segment Code,Constants:
-+seg .const -b 0x8080 -m 0x1f80  -n .const -it 
-+seg .text -a .const  -n .text 
++seg .const -b 0x8080 -m 0x1f80 -n .const -it
++seg .text -a .const -n .text
 # Segment Eeprom:
-+seg .eeprom -b 0x1000 -m 0x100  -n .eeprom 
++seg .eeprom -b 0x1000 -m 0x100 -n .eeprom
 # Segment Zero Page:
-+seg .bsct -b 0x0 -m 0x100  -n .bsct 
-+seg .ubsct -a .bsct  -n .ubsct 
-+seg .bit -a .ubsct  -n .bit -id 
-+seg .share -a .bit  -n .share -is 
++seg .bsct -b 0x0 -m 0x100 -n .bsct
++seg .ubsct -a .bsct -n .ubsct
++seg .bit -a .ubsct -n .bit -id
++seg .share -a .bit -n .share -is
 # Segment Ram:
-+seg .data -b 0x100 -m 0x100  -n .data 
-+seg .bss -a .data  -n .bss 
++seg .data -b 0x100 -m 0x100 -n .data
++seg .bss -a .data -n .bss
 #<END SEGMENT_CONF>
 
 
@@ -54,39 +54,28 @@ Release\bsp.o
 Release\main.o
 Release\stm8l15x_it.o
 Release\stm8l15x_adc.o
-Release\stm8l15x_aes.o
-Release\stm8l15x_beep.o
 Release\stm8l15x_clk.o
-Release\stm8l15x_comp.o
 Release\stm8l15x_dac.o
 Release\stm8l15x_dma.o
 Release\stm8l15x_exti.o
 Release\stm8l15x_flash.o
 Release\stm8l15x_gpio.o
 Release\stm8l15x_i2c.o
-Release\stm8l15x_irtim.o
 Release\stm8l15x_itc.o
 Release\stm8l15x_iwdg.o
-Release\stm8l15x_lcd.o
 Release\stm8l15x_pwr.o
 Release\stm8l15x_rst.o
-Release\stm8l15x_rtc.o
-Release\stm8l15x_spi.o
 Release\stm8l15x_syscfg.o
-Release\stm8l15x_tim1.o
 Release\stm8l15x_tim2.o
 Release\stm8l15x_tim3.o
 Release\stm8l15x_tim4.o
 Release\stm8l15x_tim5.o
-Release\stm8l15x_usart.o
-Release\stm8l15x_wfe.o
-Release\stm8l15x_wwdg.o
 #<END OBJECT_FILES>
 
 
 # Library list - section reserved for STVD
 #<BEGIN LIBRARY_FILES>
-libisl0.sm8
+libis0.sm8
 libm0.sm8
 #<END LIBRARY_FILES>
 
