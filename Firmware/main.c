@@ -45,9 +45,9 @@ int main( void )
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_5, GPIO_Mode_In_PU_IT); // ADDR_RST
   
   EXTI_DeInit (); 
-  EXTI_SetPinSensitivity (EXTI_Pin_3,EXTI_Trigger_Rising);
-  EXTI_SetPinSensitivity (EXTI_Pin_6,EXTI_Trigger_Rising);
-  EXTI_SetPinSensitivity (EXTI_Pin_5,EXTI_Trigger_Falling);
+  EXTI_SetPinSensitivity (EXTI_Pin_3, EXTI_Trigger_Rising);
+  EXTI_SetPinSensitivity (EXTI_Pin_6, EXTI_Trigger_Rising);
+  EXTI_SetPinSensitivity (EXTI_Pin_5, EXTI_Trigger_Falling);
   
   
   CLK_PeripheralClockConfig(CLK_Peripheral_TIM2,ENABLE);         

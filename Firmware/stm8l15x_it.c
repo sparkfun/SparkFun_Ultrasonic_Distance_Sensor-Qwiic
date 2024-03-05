@@ -234,7 +234,7 @@ INTERRUPT_HANDLER(EXTI4_IRQHandler,12)
   * @param  None
   * @retval None
   */
-INTERRUPT_HANDLER(EXTI5_IRQHandler,13)
+@svlreg INTERRUPT_HANDLER(EXTI5_IRQHandler,13)
 {
     /* In order to detect unexpected events during development,
        it is recommended to set a breakpoint on the following instruction.
@@ -455,7 +455,7 @@ INTERRUPT_HANDLER(USART1_RX_TIM5_CC_IRQHandler,28)
   * @param  None
   * @retval None
   */
-INTERRUPT_HANDLER(I2C1_SPI2_IRQHandler,29)
+@svlreg INTERRUPT_HANDLER(I2C1_SPI2_IRQHandler,29)
 {
     /* In order to detect unexpected events during development,
        it is recommended to set a breakpoint on the following instruction.
