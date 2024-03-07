@@ -293,21 +293,21 @@ TIM4_Prescaler_TypeDef TIM4_GetPrescaler(void)
   *          This parameter can be ENABLE or DISABLE
   * @retval None
   */
-void TIM4_UpdateDisableConfig(FunctionalState NewState)
-{
-  /* Check the parameters */
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  /* Set or Reset the UDIS Bit */
-  if (NewState != DISABLE)
-  {
-    TIM4->CR1 |= TIM4_CR1_UDIS ;
-  }
-  else
-  {
-    TIM4->CR1 &= (uint8_t)(~TIM4_CR1_UDIS) ;
-  }
-}
+//void TIM4_UpdateDisableConfig(FunctionalState NewState)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  /* Set or Reset the UDIS Bit */
+//  if (NewState != DISABLE)
+//  {
+//    TIM4->CR1 |= TIM4_CR1_UDIS ;
+//  }
+//  else
+//  {
+//    TIM4->CR1 &= (uint8_t)(~TIM4_CR1_UDIS) ;
+//  }
+//}
 
 /**
   * @brief  Selects the TIM4 Update Request Interrupt source.
@@ -317,21 +317,21 @@ void TIM4_UpdateDisableConfig(FunctionalState NewState)
   *            @arg TIM4_UpdateSource_Regular: Regular Update request source
   * @retval None
   */
-void TIM4_UpdateRequestConfig(TIM4_UpdateSource_TypeDef TIM4_UpdateSource)
-{
-  /* Check the parameters */
-  assert_param(IS_TIM4_UPDATE_SOURCE(TIM4_UpdateSource));
-
-  /* Set or Reset the URS Bit */
-  if (TIM4_UpdateSource == TIM4_UpdateSource_Regular)
-  {
-    TIM4->CR1 |= TIM4_CR1_URS ;
-  }
-  else
-  {
-    TIM4->CR1 &= (uint8_t)(~TIM4_CR1_URS) ;
-  }
-}
+//void TIM4_UpdateRequestConfig(TIM4_UpdateSource_TypeDef TIM4_UpdateSource)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_TIM4_UPDATE_SOURCE(TIM4_UpdateSource));
+//
+//  /* Set or Reset the URS Bit */
+//  if (TIM4_UpdateSource == TIM4_UpdateSource_Regular)
+//  {
+//    TIM4->CR1 |= TIM4_CR1_URS ;
+//  }
+//  else
+//  {
+//    TIM4->CR1 &= (uint8_t)(~TIM4_CR1_URS) ;
+//  }
+//}
 
 /**
   * @brief  Enables or disables TIM4 peripheral Preload register on ARR.
@@ -363,21 +363,21 @@ void TIM4_ARRPreloadConfig(FunctionalState NewState)
   *            @arg TIM4_OPMode_Repetitive: Repetitive Pulse mode (OPM inactive)
   * @retval None
   */
-void TIM4_SelectOnePulseMode(TIM4_OPMode_TypeDef TIM4_OPMode)
-{
-  /* Check the parameters */
-  assert_param(IS_TIM4_OPM_MODE(TIM4_OPMode));
-
-  /* Set or Reset the OPM Bit */
-  if (TIM4_OPMode == TIM4_OPMode_Single)
-  {
-    TIM4->CR1 |= TIM4_CR1_OPM ;
-  }
-  else
-  {
-    TIM4->CR1 &= (uint8_t)(~TIM4_CR1_OPM) ;
-  }
-}
+//void TIM4_SelectOnePulseMode(TIM4_OPMode_TypeDef TIM4_OPMode)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_TIM4_OPM_MODE(TIM4_OPMode));
+//
+//  /* Set or Reset the OPM Bit */
+//  if (TIM4_OPMode == TIM4_OPMode_Single)
+//  {
+//    TIM4->CR1 |= TIM4_CR1_OPM ;
+//  }
+//  else
+//  {
+//    TIM4->CR1 &= (uint8_t)(~TIM4_CR1_OPM) ;
+//  }
+//}
 
 /**
   * @brief  Enables or disables the TIM4 peripheral.
@@ -565,23 +565,23 @@ void TIM4_ClearITPendingBit(TIM4_IT_TypeDef TIM4_IT)
   *          This parameter can be: ENABLE or DISABLE.
   * @retval None
   */
-void TIM4_DMACmd( TIM4_DMASource_TypeDef TIM4_DMASource, FunctionalState NewState)
-{
-  /* Check the parameters */
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-  assert_param(IS_TIM4_DMA_SOURCE(TIM4_DMASource));
-
-  if (NewState != DISABLE)
-  {
-    /* Enable the DMA sources */
-    TIM4->DER |= (uint8_t)TIM4_DMASource;
-  }
-  else
-  {
-    /* Disable the DMA sources */
-    TIM4->DER &= (uint8_t)~TIM4_DMASource;
-  }
-}
+//void TIM4_DMACmd( TIM4_DMASource_TypeDef TIM4_DMASource, FunctionalState NewState)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//  assert_param(IS_TIM4_DMA_SOURCE(TIM4_DMASource));
+//
+//  if (NewState != DISABLE)
+//  {
+//    /* Enable the DMA sources */
+//    TIM4->DER |= (uint8_t)TIM4_DMASource;
+//  }
+//  else
+//  {
+//    /* Disable the DMA sources */
+//    TIM4->DER &= (uint8_t)~TIM4_DMASource;
+//  }
+//}
 
 /**
   * @}
@@ -648,100 +648,100 @@ void TIM4_InternalClockConfig(void)
   *            @arg TIM4_TRGSelection_TIM2: TRIG Input source =  TIM2 TRIG Output
   * @retval None
   */
-void TIM4_SelectInputTrigger(TIM4_TRGSelection_TypeDef TIM4_InputTriggerSource)
-{
-  uint8_t tmpsmcr = 0;
-
-  /* Check the parameters */
-  assert_param(IS_TIM4_TRIGGER_SELECTION(TIM4_InputTriggerSource));
-
-  tmpsmcr = TIM4->SMCR;
-
-  /* Select the Trigger Source */
-  tmpsmcr &= (uint8_t)(~TIM4_SMCR_TS);
-  tmpsmcr |= (uint8_t)TIM4_InputTriggerSource;
-
-  TIM4->SMCR = (uint8_t)tmpsmcr;
-}
-
-/**
-  * @brief  Selects the TIM4 Trigger Output Mode.
-  * @param  TIM4_TRGOSource: Specifies the Trigger Output source.
-  *          This parameter can be one of the following values:
-  *            @arg TIM4_TRGOSource_Reset: Trigger Output source = Reset
-  *            @arg TIM4_TRGOSource_Enable: Trigger Output source = TIM4 is enabled
-  *            @arg TIM4_TRGOSource_Update: Trigger Output source = Update event
-  * @retval None
-  */
-void TIM4_SelectOutputTrigger(TIM4_TRGOSource_TypeDef TIM4_TRGOSource)
-{
-  uint8_t tmpcr2 = 0;
-
-  /* Check the parameters */
-  assert_param(IS_TIM4_TRGO_SOURCE(TIM4_TRGOSource));
-
-  tmpcr2 = TIM4->CR2;
-
-  /* Reset the MMS Bits */
-  tmpcr2 &= (uint8_t)(~TIM4_CR2_MMS);
-
-  /* Select the TRGO source */
-  tmpcr2 |=  (uint8_t)TIM4_TRGOSource;
-
-  TIM4->CR2 = tmpcr2;
-}
-
-/**
-  * @brief  Selects the TIM4 Slave Mode.
-  * @param  TIM4_SlaveMode: Specifies the TIM4 Slave Mode.
-  *          This parameter can be one of the following values:
-  *            @arg TIM4_SlaveMode_Disable: Disable slave mode to clock the prescaler
-                                            directly with the internal clock
-  *            @arg TIM4_SlaveMode_Reset: Slave Mode Selection  = Reset
-  *            @arg TIM4_SlaveMode_Gated: Slave Mode Selection  = Gated
-  *            @arg TIM4_SlaveMode_Trigger: Slave Mode Selection  = Trigger
-  *            @arg TIM4_SlaveMode_External1: Slave Mode Selection  = External 1  
-  * @retval None
-  */
-void TIM4_SelectSlaveMode(TIM4_SlaveMode_TypeDef TIM4_SlaveMode)
-{
-  uint8_t tmpsmcr = 0;
-
-  /* Check the parameters */
-  assert_param(IS_TIM4_SLAVE_MODE(TIM4_SlaveMode));
-
-  tmpsmcr = TIM4->SMCR;
-
-  /* Reset the SMS Bits */
-  tmpsmcr &= (uint8_t)(~TIM4_SMCR_SMS);
-
-  /* Select the Slave Mode */
-  tmpsmcr |= (uint8_t)TIM4_SlaveMode;
-
-  TIM4->SMCR = tmpsmcr;
-}
-
-/**
-  * @brief  Sets or Resets the TIM4 Master/Slave Mode.
-  * @param NewState: The new state of the synchronization between TIM4 and its slaves (through TRGO).
-  *          This parameter can be ENABLE or DISABLE
-  * @retval None
-  */
-void TIM4_SelectMasterSlaveMode(FunctionalState NewState)
-{
-  /* Check the parameters */
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  /* Set or Reset the MSM Bit */
-  if (NewState != DISABLE)
-  {
-    TIM4->SMCR |= TIM4_SMCR_MSM;
-  }
-  else
-  {
-    TIM4->SMCR &= (uint8_t)(~TIM4_SMCR_MSM);
-  }
-}
+//void TIM4_SelectInputTrigger(TIM4_TRGSelection_TypeDef TIM4_InputTriggerSource)
+//{
+//  uint8_t tmpsmcr = 0;
+//
+//  /* Check the parameters */
+//  assert_param(IS_TIM4_TRIGGER_SELECTION(TIM4_InputTriggerSource));
+//
+//  tmpsmcr = TIM4->SMCR;
+//
+//  /* Select the Trigger Source */
+//  tmpsmcr &= (uint8_t)(~TIM4_SMCR_TS);
+//  tmpsmcr |= (uint8_t)TIM4_InputTriggerSource;
+//
+//  TIM4->SMCR = (uint8_t)tmpsmcr;
+//}
+//
+///**
+//  * @brief  Selects the TIM4 Trigger Output Mode.
+//  * @param  TIM4_TRGOSource: Specifies the Trigger Output source.
+//  *          This parameter can be one of the following values:
+//  *            @arg TIM4_TRGOSource_Reset: Trigger Output source = Reset
+//  *            @arg TIM4_TRGOSource_Enable: Trigger Output source = TIM4 is enabled
+//  *            @arg TIM4_TRGOSource_Update: Trigger Output source = Update event
+//  * @retval None
+//  */
+//void TIM4_SelectOutputTrigger(TIM4_TRGOSource_TypeDef TIM4_TRGOSource)
+//{
+//  uint8_t tmpcr2 = 0;
+//
+//  /* Check the parameters */
+//  assert_param(IS_TIM4_TRGO_SOURCE(TIM4_TRGOSource));
+//
+//  tmpcr2 = TIM4->CR2;
+//
+//  /* Reset the MMS Bits */
+//  tmpcr2 &= (uint8_t)(~TIM4_CR2_MMS);
+//
+//  /* Select the TRGO source */
+//  tmpcr2 |=  (uint8_t)TIM4_TRGOSource;
+//
+//  TIM4->CR2 = tmpcr2;
+//}
+//
+///**
+//  * @brief  Selects the TIM4 Slave Mode.
+//  * @param  TIM4_SlaveMode: Specifies the TIM4 Slave Mode.
+//  *          This parameter can be one of the following values:
+//  *            @arg TIM4_SlaveMode_Disable: Disable slave mode to clock the prescaler
+//                                            directly with the internal clock
+//  *            @arg TIM4_SlaveMode_Reset: Slave Mode Selection  = Reset
+//  *            @arg TIM4_SlaveMode_Gated: Slave Mode Selection  = Gated
+//  *            @arg TIM4_SlaveMode_Trigger: Slave Mode Selection  = Trigger
+//  *            @arg TIM4_SlaveMode_External1: Slave Mode Selection  = External 1  
+//  * @retval None
+//  */
+//void TIM4_SelectSlaveMode(TIM4_SlaveMode_TypeDef TIM4_SlaveMode)
+//{
+//  uint8_t tmpsmcr = 0;
+//
+//  /* Check the parameters */
+//  assert_param(IS_TIM4_SLAVE_MODE(TIM4_SlaveMode));
+//
+//  tmpsmcr = TIM4->SMCR;
+//
+//  /* Reset the SMS Bits */
+//  tmpsmcr &= (uint8_t)(~TIM4_SMCR_SMS);
+//
+//  /* Select the Slave Mode */
+//  tmpsmcr |= (uint8_t)TIM4_SlaveMode;
+//
+//  TIM4->SMCR = tmpsmcr;
+//}
+//
+///**
+//  * @brief  Sets or Resets the TIM4 Master/Slave Mode.
+//  * @param NewState: The new state of the synchronization between TIM4 and its slaves (through TRGO).
+//  *          This parameter can be ENABLE or DISABLE
+//  * @retval None
+//  */
+//void TIM4_SelectMasterSlaveMode(FunctionalState NewState)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  /* Set or Reset the MSM Bit */
+//  if (NewState != DISABLE)
+//  {
+//    TIM4->SMCR |= TIM4_SMCR_MSM;
+//  }
+//  else
+//  {
+//    TIM4->SMCR &= (uint8_t)(~TIM4_SMCR_MSM);
+//  }
+//}
 
 /**
   * @}

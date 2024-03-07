@@ -26,22 +26,17 @@ extern uint16_t measure_flag=0;
 *******************************************************************************/
 int main( void )
 {
-  CLK_SYSCLKDivConfig(CLK_SYSCLKDiv_1);    
   CLK_SYSCLKSourceConfig(CLK_SYSCLKSource_HSI);
+  CLK_SYSCLKDivConfig(CLK_SYSCLKDiv_1);    
   CLK_HSICmd(ENABLE);                      
   
   GPIO_Init(GPIOD, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_Low_Fast); // DIN2
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_1, GPIO_Mode_Out_PP_Low_Fast); // DIN1
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_2, GPIO_Mode_Out_PP_Low_Fast); // ECHO
-  
-  //GPIO_Init(GPIOC, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_High_Fast); // I2C does not need to be configured
-  //GPIO_Init(GPIOC, (GPIO_Pin_TypeDef)GPIO_Pin_1, GPIO_Mode_Out_PP_High_Fast); // I2C does not need to be configured
-
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast); //PB4, INPUT
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_3, GPIO_Mode_In_FL_IT); // TRIG
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_6, GPIO_Mode_In_FL_IT); // INT
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_5, GPIO_Mode_In_PU_IT); // ADDR_RST
-  
   EXTI_DeInit (); 
   EXTI_SetPinSensitivity (EXTI_Pin_3, EXTI_Trigger_Rising);
   EXTI_SetPinSensitivity (EXTI_Pin_6, EXTI_Trigger_Rising);
@@ -71,19 +66,19 @@ int main( void )
 //  TIM4_Cmd(ENABLE);
   
   FLASH_DeInit();
-
-  
     /* I2C  clock Enable*/
-  CLK_PeripheralClockConfig(CLK_Peripheral_I2C1, ENABLE);
-  I2C_DeInit_Config(EEPROM_ReadByte(0));
+  //I2C_DeInit_Config(0x00);
   GPIO_SetBits(GPIOB,GPIO_Pin_4);
 
-  //I2C_DeInit(I2C1);
-  //I2C_Init(I2C1, I2CSPEED, PERIPH_ADDRESS, I2C_Mode_I2C, I2C_DutyCycle_2, I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
-  //I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF), ENABLE);
-  //I2C_Cmd(I2C1, ENABLE);
+  CLK_PeripheralClockConfig(CLK_Peripheral_I2C1, ENABLE);
+  I2C_DeInit(I2C1);
+  I2C_Init(I2C1, I2CSPEED, 0x2F, I2C_Mode_I2C, I2C_DutyCycle_2, I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
+  I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF), ENABLE);
+  I2C_Cmd(I2C1, ENABLE);
   enableInterrupts();
-   
+  
+  //GPIO_Init(GPIOC, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_High_Fast); // I2C does not need to be configured
+  //GPIO_Init(GPIOC, (GPIO_Pin_TypeDef)GPIO_Pin_1, GPIO_Mode_Out_PP_High_Fast); // I2C does not need to be configured
   while(1)
   {
 

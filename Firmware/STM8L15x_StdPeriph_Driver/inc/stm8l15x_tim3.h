@@ -891,10 +891,10 @@ void TIM3_ETRConfig(TIM3_ExtTRGPSC_TypeDef TIM3_ExtTRGPrescaler,
                     uint8_t ExtTRGFilter);
 
 /* Specific interface management **********************************************/
-void TIM3_EncoderInterfaceConfig(TIM3_EncoderMode_TypeDef TIM3_EncoderMode,
-                                 TIM3_ICPolarity_TypeDef TIM3_IC1Polarity,
-                                 TIM3_ICPolarity_TypeDef TIM3_IC2Polarity);
-void TIM3_SelectHallSensor(FunctionalState NewState);
+//void TIM3_EncoderInterfaceConfig(TIM3_EncoderMode_TypeDef TIM3_EncoderMode,
+//                                 TIM3_ICPolarity_TypeDef TIM3_IC1Polarity,
+//                                 TIM3_ICPolarity_TypeDef TIM3_IC2Polarity);
+//void TIM3_SelectHallSensor(FunctionalState NewState);
 
 #endif /* __STM8L15x_TIM3_H */
 

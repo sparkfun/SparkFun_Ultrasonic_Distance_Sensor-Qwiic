@@ -1955,79 +1955,79 @@ void TIM3_ETRConfig(TIM3_ExtTRGPSC_TypeDef TIM3_ExtTRGPrescaler,
   *            @arg TIM3_ICPolarity_Falling: Input Capture on Falling Edge  
   * @retval None
   */
-void TIM3_EncoderInterfaceConfig(TIM3_EncoderMode_TypeDef TIM3_EncoderMode,
-                                 TIM3_ICPolarity_TypeDef TIM3_IC1Polarity,
-                                 TIM3_ICPolarity_TypeDef TIM3_IC2Polarity)
-{
-  uint8_t tmpsmcr = 0;
-  uint8_t tmpccmr1 = 0;
-  uint8_t tmpccmr2 = 0;
-
-  /* Check the parameters */
-  assert_param(IS_TIM3_ENCODER_MODE(TIM3_EncoderMode));
-  assert_param(IS_TIM3_IC_POLARITY(TIM3_IC1Polarity));
-  assert_param(IS_TIM3_IC_POLARITY(TIM3_IC2Polarity));
-
-  tmpsmcr = TIM3->SMCR;
-  tmpccmr1 = TIM3->CCMR1;
-  tmpccmr2 = TIM3->CCMR2;
-
-  /* Set the encoder Mode */
-  tmpsmcr &= (uint8_t)(TIM_SMCR_MSM | TIM_SMCR_TS)  ;
-  tmpsmcr |= (uint8_t)TIM3_EncoderMode;
-
-  /* Select the Capture Compare 1 and the Capture Compare 2 as input */
-  tmpccmr1 &= (uint8_t)(~TIM_CCMR_CCxS);
-  tmpccmr2 &= (uint8_t)(~TIM_CCMR_CCxS);
-  tmpccmr1 |= TIM_CCMR_TIxDirect_Set;
-  tmpccmr2 |= TIM_CCMR_TIxDirect_Set;
-
-  /* Set the TI1 and the TI2 Polarities */
-  if (TIM3_IC1Polarity == TIM3_ICPolarity_Falling)
-  {
-    TIM3->CCER1 |= TIM_CCER1_CC1P ;
-  }
-  else
-  {
-    TIM3->CCER1 &= (uint8_t)(~TIM_CCER1_CC1P) ;
-  }
-
-  if (TIM3_IC2Polarity == TIM3_ICPolarity_Falling)
-  {
-    TIM3->CCER1 |= TIM_CCER1_CC2P ;
-  }
-  else
-  {
-    TIM3->CCER1 &= (uint8_t)(~TIM_CCER1_CC2P) ;
-  }
-
-  TIM3->SMCR = tmpsmcr;
-  TIM3->CCMR1 = tmpccmr1;
-  TIM3->CCMR2 = tmpccmr2;
-}
-
-/**
-  * @brief  Enables or Disables the TIM’s Hall sensor interface.
-  * @param  NewState: The new state of the TIM3 Hall sensor interface.
-  *          This parameter can be ENABLE or DISABLE
-  * @retval None
-  */
-void TIM3_SelectHallSensor(FunctionalState NewState)
-{
-  /* Check the parameters */
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  /* Set or Reset the TI1S Bit */
-  if (NewState != DISABLE)
-  {
-    TIM3->CR2 |= TIM_CR2_TI1S;
-  }
-  else
-  {
-    TIM3->CR2 &= (uint8_t)(~TIM_CR2_TI1S);
-  }
-}
-
+//void TIM3_EncoderInterfaceConfig(TIM3_EncoderMode_TypeDef TIM3_EncoderMode,
+//                                 TIM3_ICPolarity_TypeDef TIM3_IC1Polarity,
+//                                 TIM3_ICPolarity_TypeDef TIM3_IC2Polarity)
+//{
+//  uint8_t tmpsmcr = 0;
+//  uint8_t tmpccmr1 = 0;
+//  uint8_t tmpccmr2 = 0;
+//
+//  /* Check the parameters */
+//  assert_param(IS_TIM3_ENCODER_MODE(TIM3_EncoderMode));
+//  assert_param(IS_TIM3_IC_POLARITY(TIM3_IC1Polarity));
+//  assert_param(IS_TIM3_IC_POLARITY(TIM3_IC2Polarity));
+//
+//  tmpsmcr = TIM3->SMCR;
+//  tmpccmr1 = TIM3->CCMR1;
+//  tmpccmr2 = TIM3->CCMR2;
+//
+//  /* Set the encoder Mode */
+//  tmpsmcr &= (uint8_t)(TIM_SMCR_MSM | TIM_SMCR_TS)  ;
+//  tmpsmcr |= (uint8_t)TIM3_EncoderMode;
+//
+//  /* Select the Capture Compare 1 and the Capture Compare 2 as input */
+//  tmpccmr1 &= (uint8_t)(~TIM_CCMR_CCxS);
+//  tmpccmr2 &= (uint8_t)(~TIM_CCMR_CCxS);
+//  tmpccmr1 |= TIM_CCMR_TIxDirect_Set;
+//  tmpccmr2 |= TIM_CCMR_TIxDirect_Set;
+//
+//  /* Set the TI1 and the TI2 Polarities */
+//  if (TIM3_IC1Polarity == TIM3_ICPolarity_Falling)
+//  {
+//    TIM3->CCER1 |= TIM_CCER1_CC1P ;
+//  }
+//  else
+//  {
+//    TIM3->CCER1 &= (uint8_t)(~TIM_CCER1_CC1P) ;
+//  }
+//
+//  if (TIM3_IC2Polarity == TIM3_ICPolarity_Falling)
+//  {
+//    TIM3->CCER1 |= TIM_CCER1_CC2P ;
+//  }
+//  else
+//  {
+//    TIM3->CCER1 &= (uint8_t)(~TIM_CCER1_CC2P) ;
+//  }
+//
+//  TIM3->SMCR = tmpsmcr;
+//  TIM3->CCMR1 = tmpccmr1;
+//  TIM3->CCMR2 = tmpccmr2;
+//}
+//
+///**
+//  * @brief  Enables or Disables the TIM’s Hall sensor interface.
+//  * @param  NewState: The new state of the TIM3 Hall sensor interface.
+//  *          This parameter can be ENABLE or DISABLE
+//  * @retval None
+//  */
+//void TIM3_SelectHallSensor(FunctionalState NewState)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  /* Set or Reset the TI1S Bit */
+//  if (NewState != DISABLE)
+//  {
+//    TIM3->CR2 |= TIM_CR2_TI1S;
+//  }
+//  else
+//  {
+//    TIM3->CR2 &= (uint8_t)(~TIM_CR2_TI1S);
+//  }
+//}
+//
 /**
   * @}
   */

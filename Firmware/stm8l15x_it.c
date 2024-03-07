@@ -240,8 +240,12 @@ INTERRUPT_HANDLER(EXTI3_IRQHandler,11)
        it is recommended to set a breakpoint on the following instruction.
     */
   EXTI_ClearITPendingBit (EXTI_IT_Pin5);
-  EEPROM_WriteByte(0,0x00);
-  I2C_DeInit_Config(EEPROM_ReadByte(0));
+  EEPROM_WriteByte(0,0x2F);
+  //I2C_DeInit_Config(EEPROM_ReadByte(0));
+  I2C_DeInit(I2C1);
+  I2C_Init(I2C1, I2CSPEED, 0x2F, I2C_Mode_I2C, I2C_DutyCycle_2, I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
+  I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF), ENABLE);
+  I2C_Cmd(I2C1, ENABLE);
   k=5;
 }
 
@@ -504,7 +508,11 @@ if ((sr1 & (I2C_SR1_RXNE | I2C_SR1_BTF)) == (I2C_SR1_RXNE | I2C_SR1_BTF))
       else if(0xA0<=SBUF<=0xAF)
       {
        EEPROM_WriteByte(0,SBUF);
-       I2C_DeInit_Config(EEPROM_ReadByte(0));
+  //     I2C_DeInit_Config(EEPROM_ReadByte(0));
+         I2C_DeInit(I2C1);
+         I2C_Init(I2C1, I2CSPEED, 0x2F, I2C_Mode_I2C, I2C_DutyCycle_2, I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
+         I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF), ENABLE);
+         I2C_Cmd(I2C1, ENABLE);
        k=1;
       }
       else{measure_flag=0;}
