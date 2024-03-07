@@ -303,24 +303,24 @@ void TIM3_PrescalerConfig(TIM3_Prescaler_TypeDef Prescaler,
   *            @arg TIM3_CounterMode_CenterAligned3: Counter Central aligned Mode 3      
   * @retval None
   */
-void TIM3_CounterModeConfig(TIM3_CounterMode_TypeDef TIM3_CounterMode)
-{
-  uint8_t tmpcr1 = 0;
-
-  /* Check the parameters */
-  assert_param(IS_TIM3_COUNTER_MODE(TIM3_CounterMode));
-
-  tmpcr1 = TIM3->CR1;
-
-  /* Reset the CMS and DIR Bits */
-  tmpcr1 &= (uint8_t)((uint8_t)(~TIM_CR1_CMS) & (uint8_t)(~TIM_CR1_DIR));
-
-  /* Set the Counter Mode */
-  tmpcr1 |= (uint8_t)TIM3_CounterMode;
-
-  TIM3->CR1 = tmpcr1;
-}
-
+//void TIM3_CounterModeConfig(TIM3_CounterMode_TypeDef TIM3_CounterMode)
+//{
+//  uint8_t tmpcr1 = 0;
+//
+//  /* Check the parameters */
+//  assert_param(IS_TIM3_COUNTER_MODE(TIM3_CounterMode));
+//
+//  tmpcr1 = TIM3->CR1;
+//
+//  /* Reset the CMS and DIR Bits */
+//  tmpcr1 &= (uint8_t)((uint8_t)(~TIM_CR1_CMS) & (uint8_t)(~TIM_CR1_DIR));
+//
+//  /* Set the Counter Mode */
+//  tmpcr1 |= (uint8_t)TIM3_CounterMode;
+//
+//  TIM3->CR1 = tmpcr1;
+//}
+//
 /**
   * @brief  Sets the TIM3 Counter Register value.
   * @param  Counter: Specifies the Counter register new value.
@@ -393,45 +393,45 @@ TIM3_Prescaler_TypeDef TIM3_GetPrescaler(void)
   * @retval None
   */
 
-void TIM3_UpdateDisableConfig(FunctionalState NewState)
-{
-  /* Check the parameters */
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  /* Set or Reset the UDIS Bit */
-  if (NewState != DISABLE)
-  {
-    TIM3->CR1 |= TIM_CR1_UDIS;
-  }
-  else
-  {
-    TIM3->CR1 &= (uint8_t)(~TIM_CR1_UDIS);
-  }
-}
-
-/**
-  * @brief  Selects the TIM3 Update Request Interrupt source.
-  * @param  TIM3_UpdateSource: Specifies the Update source.
-  *          This parameter can be one of the following values:
-  *            @arg TIM3_UpdateSource_Global: Global Update request source
-  *            @arg TIM3_UpdateSource_Regular: Regular Update request source 
-  * @retval None
-  */
-void TIM3_UpdateRequestConfig(TIM3_UpdateSource_TypeDef TIM3_UpdateSource)
-{
-  /* Check the parameters */
-  assert_param(IS_TIM3_UPDATE_SOURCE(TIM3_UpdateSource));
-
-  /* Set or Reset the URS Bit */
-  if (TIM3_UpdateSource == TIM3_UpdateSource_Regular)
-  {
-    TIM3->CR1 |= TIM_CR1_URS ;
-  }
-  else
-  {
-    TIM3->CR1 &= (uint8_t)(~TIM_CR1_URS);
-  }
-}
+//void TIM3_UpdateDisableConfig(FunctionalState NewState)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  /* Set or Reset the UDIS Bit */
+//  if (NewState != DISABLE)
+//  {
+//    TIM3->CR1 |= TIM_CR1_UDIS;
+//  }
+//  else
+//  {
+//    TIM3->CR1 &= (uint8_t)(~TIM_CR1_UDIS);
+//  }
+//}
+//
+///**
+//  * @brief  Selects the TIM3 Update Request Interrupt source.
+//  * @param  TIM3_UpdateSource: Specifies the Update source.
+//  *          This parameter can be one of the following values:
+//  *            @arg TIM3_UpdateSource_Global: Global Update request source
+//  *            @arg TIM3_UpdateSource_Regular: Regular Update request source 
+//  * @retval None
+//  */
+//void TIM3_UpdateRequestConfig(TIM3_UpdateSource_TypeDef TIM3_UpdateSource)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_TIM3_UPDATE_SOURCE(TIM3_UpdateSource));
+//
+//  /* Set or Reset the URS Bit */
+//  if (TIM3_UpdateSource == TIM3_UpdateSource_Regular)
+//  {
+//    TIM3->CR1 |= TIM_CR1_URS ;
+//  }
+//  else
+//  {
+//    TIM3->CR1 &= (uint8_t)(~TIM_CR1_URS);
+//  }
+//}
 
 /**
   * @brief  Enables or disables TIM3 peripheral Preload register on ARR.
@@ -463,22 +463,22 @@ void TIM3_ARRPreloadConfig(FunctionalState NewState)
   *            @arg TIM3_OPMode_Repetitive: Single one Pulse mode (OPM Active)  
   * @retval None
   */
-void TIM3_SelectOnePulseMode(TIM3_OPMode_TypeDef TIM3_OPMode)
-{
-  /* Check the parameters */
-  assert_param(IS_TIM3_OPM_MODE(TIM3_OPMode));
-
-  /* Set or Reset the OPM Bit */
-  if (TIM3_OPMode == TIM3_OPMode_Single)
-  {
-    TIM3->CR1 |= TIM_CR1_OPM ;
-  }
-  else
-  {
-    TIM3->CR1 &= (uint8_t)(~TIM_CR1_OPM);
-  }
-}
-
+//void TIM3_SelectOnePulseMode(TIM3_OPMode_TypeDef TIM3_OPMode)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_TIM3_OPM_MODE(TIM3_OPMode));
+//
+//  /* Set or Reset the OPM Bit */
+//  if (TIM3_OPMode == TIM3_OPMode_Single)
+//  {
+//    TIM3->CR1 |= TIM_CR1_OPM ;
+//  }
+//  else
+//  {
+//    TIM3->CR1 &= (uint8_t)(~TIM_CR1_OPM);
+//  }
+//}
+//
 /**
   * @brief  Enables or disables the TIM3 peripheral.
   * @param  NewState: The new state of the TIM3 peripheral.
@@ -751,28 +751,28 @@ void TIM3_OC2Init(TIM3_OCMode_TypeDef TIM3_OCMode,
   *            @arg TIM3_AutomaticOutput_Disable: Automatic Output option disabled
   * @retval None
   */
-void TIM3_BKRConfig(TIM3_OSSIState_TypeDef TIM3_OSSIState,
-                    TIM3_LockLevel_TypeDef TIM3_LockLevel,
-                    TIM3_BreakState_TypeDef TIM3_BreakState,
-                    TIM3_BreakPolarity_TypeDef TIM3_BreakPolarity,
-                    TIM3_AutomaticOutput_TypeDef TIM3_AutomaticOutput)
-
-{
-  /* Check the parameters */
-  assert_param(IS_TIM3_OSSI_STATE(TIM3_OSSIState));
-  assert_param(IS_TIM3_LOCK_LEVEL(TIM3_LockLevel));
-  assert_param(IS_TIM3_BREAK_STATE(TIM3_BreakState));
-  assert_param(IS_TIM3_BREAK_POLARITY(TIM3_BreakPolarity));
-  assert_param(IS_TIM3_AUTOMATIC_OUTPUT_STATE(TIM3_AutomaticOutput));
-
-
-
-  /* Set the Lock level, the Break enable Bit and the Polarity, the OSSI State,
-  the dead time value and the Automatic Output Enable Bit */
-  TIM3->BKR = (uint8_t)((uint8_t)((uint8_t)((uint8_t)((uint8_t)TIM3_OSSIState | (uint8_t)TIM3_LockLevel) | \
-                                  (uint8_t)((uint8_t)TIM3_BreakState | (uint8_t)TIM3_BreakPolarity)) | \
-                                  TIM3_AutomaticOutput));
-}
+//void TIM3_BKRConfig(TIM3_OSSIState_TypeDef TIM3_OSSIState,
+//                    TIM3_LockLevel_TypeDef TIM3_LockLevel,
+//                    TIM3_BreakState_TypeDef TIM3_BreakState,
+//                    TIM3_BreakPolarity_TypeDef TIM3_BreakPolarity,
+//                    TIM3_AutomaticOutput_TypeDef TIM3_AutomaticOutput)
+//
+//{
+//  /* Check the parameters */
+//  assert_param(IS_TIM3_OSSI_STATE(TIM3_OSSIState));
+//  assert_param(IS_TIM3_LOCK_LEVEL(TIM3_LockLevel));
+//  assert_param(IS_TIM3_BREAK_STATE(TIM3_BreakState));
+//  assert_param(IS_TIM3_BREAK_POLARITY(TIM3_BreakPolarity));
+//  assert_param(IS_TIM3_AUTOMATIC_OUTPUT_STATE(TIM3_AutomaticOutput));
+//
+//
+//
+//  /* Set the Lock level, the Break enable Bit and the Polarity, the OSSI State,
+//  the dead time value and the Automatic Output Enable Bit */
+//  TIM3->BKR = (uint8_t)((uint8_t)((uint8_t)((uint8_t)((uint8_t)TIM3_OSSIState | (uint8_t)TIM3_LockLevel) | \
+//                                  (uint8_t)((uint8_t)TIM3_BreakState | (uint8_t)TIM3_BreakPolarity)) | \
+//                                  TIM3_AutomaticOutput));
+//}
 
 /**
   * @brief  Enables or disables the TIM3 peripheral Main Outputs.
@@ -930,180 +930,180 @@ void TIM3_ForcedOC2Config(TIM3_ForcedAction_TypeDef TIM3_ForcedAction)
   *          This parameter can be ENABLE or DISABLE
   * @retval None
   */
-void TIM3_OC1PreloadConfig(FunctionalState NewState)
-{
-  /* Check the parameters */
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  /* Set or Reset the OC1PE Bit */
-  if (NewState != DISABLE)
-  {
-    TIM3->CCMR1 |= TIM_CCMR_OCxPE ;
-  }
-  else
-  {
-    TIM3->CCMR1 &= (uint8_t)(~TIM_CCMR_OCxPE) ;
-  }
-}
-
-/**
-  * @brief  Enables or disables the TIM3 peripheral Preload Register on CCR2.
-  * @param  NewState: The new state of the Capture Compare Preload register.
-  *          This parameter can be ENABLE or DISABLE
-  * @retval None
-  */
-void TIM3_OC2PreloadConfig(FunctionalState NewState)
-{
-  /* Check the parameters */
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  /* Set or Reset the OC2PE Bit */
-  if (NewState != DISABLE)
-  {
-    TIM3->CCMR2 |= TIM_CCMR_OCxPE ;
-  }
-  else
-  {
-    TIM3->CCMR2 &= (uint8_t)(~TIM_CCMR_OCxPE) ;
-  }
-}
-
-/**
-  * @brief  Configures the TIM3 Capture Compare 1 Fast feature.
-  * @param  NewState: The new state of the Output Compare Fast Enable bit.
-  *          This parameter can be ENABLE or DISABLE
-  * @retval None
-  */
-void TIM3_OC1FastConfig(FunctionalState NewState)
-{
-  /* Check the parameters */
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  /* Set or Reset the OC1FE Bit */
-  if (NewState != DISABLE)
-  {
-    TIM3->CCMR1 |= TIM_CCMR_OCxFE ;
-  }
-  else
-  {
-    TIM3->CCMR1 &= (uint8_t)(~TIM_CCMR_OCxFE) ;
-  }
-}
-
-/**
-  * @brief  Configures the TIM3 Capture Compare 2 Fast feature.
-  * @param  NewState: The new state of the Output Compare Fast Enable bit.
-  *          This parameter can be ENABLE or DISABLE
-  * @retval None
-  */
-
-void TIM3_OC2FastConfig(FunctionalState NewState)
-{
-  /* Check the parameters */
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  /* Set or Reset the OC2FE Bit */
-  if (NewState != DISABLE)
-  {
-    TIM3->CCMR2 |= TIM_CCMR_OCxFE ;
-  }
-  else
-  {
-    TIM3->CCMR2 &= (uint8_t)(~TIM_CCMR_OCxFE) ;
-  }
-}
-
-/**
-  * @brief  Configures the TIM3 Channel 1 polarity.
-  * @param  TIM3_OCPolarity: Specifies the OC1 Polarity.
-  *          This parameter can be one of the following values:
-  *            @arg TIM3_OCPolarity_High: Output compare polarity  = High
-  *            @arg TIM3_OCPolarity_Low: Output compare polarity  = Low 
-  * @retval None
-  */
-void TIM3_OC1PolarityConfig(TIM3_OCPolarity_TypeDef TIM3_OCPolarity)
-{
-  /* Check the parameters */
-  assert_param(IS_TIM3_OC_POLARITY(TIM3_OCPolarity));
-
-  /* Set or Reset the CC1P Bit */
-  if (TIM3_OCPolarity == TIM3_OCPolarity_Low)
-  {
-    TIM3->CCER1 |= TIM_CCER1_CC1P ;
-  }
-  else
-  {
-    TIM3->CCER1 &= (uint8_t)(~TIM_CCER1_CC1P) ;
-  }
-}
-
-/**
-  * @brief  Configures the TIM3 Channel 2 polarity.
-  * @param  TIM3_OCPolarity: Specifies the OC2 Polarity.
-  *          This parameter can be one of the following values:
-  *            @arg TIM3_OCPolarity_High: Output compare polarity  = High
-  *            @arg TIM3_OCPolarity_Low: Output compare polarity  = Low 
-  * @retval None
-  */
-void TIM3_OC2PolarityConfig(TIM3_OCPolarity_TypeDef TIM3_OCPolarity)
-{
-  /* Check the parameters */
-  assert_param(IS_TIM3_OC_POLARITY(TIM3_OCPolarity));
-
-  /* Set or Reset the CC2P Bit */
-  if (TIM3_OCPolarity == TIM3_OCPolarity_Low)
-  {
-    TIM3->CCER1 |= TIM_CCER1_CC2P ;
-  }
-  else
-  {
-    TIM3->CCER1 &= (uint8_t)(~TIM_CCER1_CC2P) ;
-  }
-}
-
-/**
-  * @brief  Enables or disables the TIM3 Capture Compare Channel x.
-  * @param  TIM3_Channel: Specifies the TIM3 Channel.
-  *          This parameter can be one of the following values:
-  *            @arg TIM3_Channel_1: Channel 1
-  *            @arg TIM3_Channel_2: Channel 2  
-  * @param  NewState: Specifies the TIM3 Channel CCxE bit new state.
-  *          This parameter can be ENABLE or DISABLE
-  * @retval None
-  */
-void TIM3_CCxCmd(TIM3_Channel_TypeDef TIM3_Channel,
-                 FunctionalState NewState)
-{
-  /* Check the parameters */
-  assert_param(IS_TIM3_CHANNEL(TIM3_Channel));
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  if (TIM3_Channel == TIM3_Channel_1)
-  {
-    /* Set or Reset the CC1E Bit */
-    if (NewState != DISABLE)
-    {
-      TIM3->CCER1 |= TIM_CCER1_CC1E ;
-    }
-    else
-    {
-      TIM3->CCER1 &= (uint8_t)(~TIM_CCER1_CC1E) ;
-    }
-
-  }
-  else /* if (TIM3_Channel == TIM3_Channel_2) */
-  {
-    /* Set or Reset the CC2E Bit */
-    if (NewState != DISABLE)
-    {
-      TIM3->CCER1 |= TIM_CCER1_CC2E;
-    }
-    else
-    {
-      TIM3->CCER1 &= (uint8_t)(~TIM_CCER1_CC2E) ;
-    }
-  }
-}
+//void TIM3_OC1PreloadConfig(FunctionalState NewState)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  /* Set or Reset the OC1PE Bit */
+//  if (NewState != DISABLE)
+//  {
+//    TIM3->CCMR1 |= TIM_CCMR_OCxPE ;
+//  }
+//  else
+//  {
+//    TIM3->CCMR1 &= (uint8_t)(~TIM_CCMR_OCxPE) ;
+//  }
+//}
+//
+///**
+//  * @brief  Enables or disables the TIM3 peripheral Preload Register on CCR2.
+//  * @param  NewState: The new state of the Capture Compare Preload register.
+//  *          This parameter can be ENABLE or DISABLE
+//  * @retval None
+//  */
+//void TIM3_OC2PreloadConfig(FunctionalState NewState)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  /* Set or Reset the OC2PE Bit */
+//  if (NewState != DISABLE)
+//  {
+//    TIM3->CCMR2 |= TIM_CCMR_OCxPE ;
+//  }
+//  else
+//  {
+//    TIM3->CCMR2 &= (uint8_t)(~TIM_CCMR_OCxPE) ;
+//  }
+//}
+//
+///**
+//  * @brief  Configures the TIM3 Capture Compare 1 Fast feature.
+//  * @param  NewState: The new state of the Output Compare Fast Enable bit.
+//  *          This parameter can be ENABLE or DISABLE
+//  * @retval None
+//  */
+//void TIM3_OC1FastConfig(FunctionalState NewState)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  /* Set or Reset the OC1FE Bit */
+//  if (NewState != DISABLE)
+//  {
+//    TIM3->CCMR1 |= TIM_CCMR_OCxFE ;
+//  }
+//  else
+//  {
+//    TIM3->CCMR1 &= (uint8_t)(~TIM_CCMR_OCxFE) ;
+//  }
+//}
+//
+///**
+//  * @brief  Configures the TIM3 Capture Compare 2 Fast feature.
+//  * @param  NewState: The new state of the Output Compare Fast Enable bit.
+//  *          This parameter can be ENABLE or DISABLE
+//  * @retval None
+//  */
+//
+//void TIM3_OC2FastConfig(FunctionalState NewState)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  /* Set or Reset the OC2FE Bit */
+//  if (NewState != DISABLE)
+//  {
+//    TIM3->CCMR2 |= TIM_CCMR_OCxFE ;
+//  }
+//  else
+//  {
+//    TIM3->CCMR2 &= (uint8_t)(~TIM_CCMR_OCxFE) ;
+//  }
+//}
+//
+///**
+//  * @brief  Configures the TIM3 Channel 1 polarity.
+//  * @param  TIM3_OCPolarity: Specifies the OC1 Polarity.
+//  *          This parameter can be one of the following values:
+//  *            @arg TIM3_OCPolarity_High: Output compare polarity  = High
+//  *            @arg TIM3_OCPolarity_Low: Output compare polarity  = Low 
+//  * @retval None
+//  */
+//void TIM3_OC1PolarityConfig(TIM3_OCPolarity_TypeDef TIM3_OCPolarity)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_TIM3_OC_POLARITY(TIM3_OCPolarity));
+//
+//  /* Set or Reset the CC1P Bit */
+//  if (TIM3_OCPolarity == TIM3_OCPolarity_Low)
+//  {
+//    TIM3->CCER1 |= TIM_CCER1_CC1P ;
+//  }
+//  else
+//  {
+//    TIM3->CCER1 &= (uint8_t)(~TIM_CCER1_CC1P) ;
+//  }
+//}
+//
+///**
+//  * @brief  Configures the TIM3 Channel 2 polarity.
+//  * @param  TIM3_OCPolarity: Specifies the OC2 Polarity.
+//  *          This parameter can be one of the following values:
+//  *            @arg TIM3_OCPolarity_High: Output compare polarity  = High
+//  *            @arg TIM3_OCPolarity_Low: Output compare polarity  = Low 
+//  * @retval None
+//  */
+//void TIM3_OC2PolarityConfig(TIM3_OCPolarity_TypeDef TIM3_OCPolarity)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_TIM3_OC_POLARITY(TIM3_OCPolarity));
+//
+//  /* Set or Reset the CC2P Bit */
+//  if (TIM3_OCPolarity == TIM3_OCPolarity_Low)
+//  {
+//    TIM3->CCER1 |= TIM_CCER1_CC2P ;
+//  }
+//  else
+//  {
+//    TIM3->CCER1 &= (uint8_t)(~TIM_CCER1_CC2P) ;
+//  }
+//}
+//
+///**
+//  * @brief  Enables or disables the TIM3 Capture Compare Channel x.
+//  * @param  TIM3_Channel: Specifies the TIM3 Channel.
+//  *          This parameter can be one of the following values:
+//  *            @arg TIM3_Channel_1: Channel 1
+//  *            @arg TIM3_Channel_2: Channel 2  
+//  * @param  NewState: Specifies the TIM3 Channel CCxE bit new state.
+//  *          This parameter can be ENABLE or DISABLE
+//  * @retval None
+//  */
+//void TIM3_CCxCmd(TIM3_Channel_TypeDef TIM3_Channel,
+//                 FunctionalState NewState)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_TIM3_CHANNEL(TIM3_Channel));
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  if (TIM3_Channel == TIM3_Channel_1)
+//  {
+//    /* Set or Reset the CC1E Bit */
+//    if (NewState != DISABLE)
+//    {
+//      TIM3->CCER1 |= TIM_CCER1_CC1E ;
+//    }
+//    else
+//    {
+//      TIM3->CCER1 &= (uint8_t)(~TIM_CCER1_CC1E) ;
+//    }
+//
+//  }
+//  else /* if (TIM3_Channel == TIM3_Channel_2) */
+//  {
+//    /* Set or Reset the CC2E Bit */
+//    if (NewState != DISABLE)
+//    {
+//      TIM3->CCER1 |= TIM_CCER1_CC2E;
+//    }
+//    else
+//    {
+//      TIM3->CCER1 &= (uint8_t)(~TIM_CCER1_CC2E) ;
+//    }
+//  }
+//}
 
 /** @defgroup TIM3_Group3 Input Capture management functions
  *  @brief    Input Capture management functions 

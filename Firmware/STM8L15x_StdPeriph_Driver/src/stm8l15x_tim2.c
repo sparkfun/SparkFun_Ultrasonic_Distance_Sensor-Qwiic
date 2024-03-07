@@ -303,23 +303,23 @@ void TIM2_PrescalerConfig(TIM2_Prescaler_TypeDef Prescaler,
   *            @arg TIM2_CounterMode_CenterAligned3: Counter Central aligned Mode 3      
   * @retval None
   */
-void TIM2_CounterModeConfig(TIM2_CounterMode_TypeDef TIM2_CounterMode)
-{
-  uint8_t tmpcr1 = 0;
-
-  /* Check the parameters */
-  assert_param(IS_TIM2_COUNTER_MODE(TIM2_CounterMode));
-
-  tmpcr1 = TIM2->CR1;
-
-  /* Reset the CMS and DIR Bits */
-  tmpcr1 &= (uint8_t)((uint8_t)(~TIM_CR1_CMS) & (uint8_t)(~TIM_CR1_DIR));
-
-  /* Set the Counter Mode */
-  tmpcr1 |= (uint8_t)TIM2_CounterMode;
-
-  TIM2->CR1 = tmpcr1;
-}
+//void TIM2_CounterModeConfig(TIM2_CounterMode_TypeDef TIM2_CounterMode)
+//{
+//  uint8_t tmpcr1 = 0;
+//
+//  /* Check the parameters */
+//  assert_param(IS_TIM2_COUNTER_MODE(TIM2_CounterMode));
+//
+//  tmpcr1 = TIM2->CR1;
+//
+//  /* Reset the CMS and DIR Bits */
+//  tmpcr1 &= (uint8_t)((uint8_t)(~TIM_CR1_CMS) & (uint8_t)(~TIM_CR1_DIR));
+//
+//  /* Set the Counter Mode */
+//  tmpcr1 |= (uint8_t)TIM2_CounterMode;
+//
+//  TIM2->CR1 = tmpcr1;
+//}
 
 /**
   * @brief  Sets the TIM2 Counter Register value.
@@ -393,52 +393,52 @@ TIM2_Prescaler_TypeDef TIM2_GetPrescaler(void)
   * @retval None
   */
 
-void TIM2_UpdateDisableConfig(FunctionalState NewState)
-{
-  /* Check the parameters */
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  /* Set or Reset the UDIS Bit */
-  if (NewState != DISABLE)
-  {
-    TIM2->CR1 |= TIM_CR1_UDIS;
-  }
-  else
-  {
-    TIM2->CR1 &= (uint8_t)(~TIM_CR1_UDIS);
-  }
-}
-
-/**
-  * @brief  Selects the TIM2 Update Request Interrupt source.
-  * @param  TIM2_UpdateSource: Specifies the Update source.
-  *          This parameter can be one of the following values:
-  *            @arg TIM2_UpdateSource_Global: Global Update request source
-  *            @arg TIM2_UpdateSource_Regular: Regular Update request source 
-  * @retval None
-  */
-void TIM2_UpdateRequestConfig(TIM2_UpdateSource_TypeDef TIM2_UpdateSource)
-{
-  /* Check the parameters */
-  assert_param(IS_TIM2_UPDATE_SOURCE(TIM2_UpdateSource));
-
-  /* Set or Reset the URS Bit */
-  if (TIM2_UpdateSource == TIM2_UpdateSource_Regular)
-  {
-    TIM2->CR1 |= TIM_CR1_URS ;
-  }
-  else
-  {
-    TIM2->CR1 &= (uint8_t)(~TIM_CR1_URS);
-  }
-}
-
-/**
-  * @brief  Enables or disables TIM2 peripheral Preload register on ARR.
-  * @param  NewState: The new state of the TIM2 peripheral Preload register.
-  *          This parameter can be ENABLE or DISABLE
-  * @retval None
-  */
+//void TIM2_UpdateDisableConfig(FunctionalState NewState)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  /* Set or Reset the UDIS Bit */
+//  if (NewState != DISABLE)
+//  {
+//    TIM2->CR1 |= TIM_CR1_UDIS;
+//  }
+//  else
+//  {
+//    TIM2->CR1 &= (uint8_t)(~TIM_CR1_UDIS);
+//  }
+//}
+//
+///**
+//  * @brief  Selects the TIM2 Update Request Interrupt source.
+//  * @param  TIM2_UpdateSource: Specifies the Update source.
+//  *          This parameter can be one of the following values:
+//  *            @arg TIM2_UpdateSource_Global: Global Update request source
+//  *            @arg TIM2_UpdateSource_Regular: Regular Update request source 
+//  * @retval None
+//  */
+//void TIM2_UpdateRequestConfig(TIM2_UpdateSource_TypeDef TIM2_UpdateSource)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_TIM2_UPDATE_SOURCE(TIM2_UpdateSource));
+//
+//  /* Set or Reset the URS Bit */
+//  if (TIM2_UpdateSource == TIM2_UpdateSource_Regular)
+//  {
+//    TIM2->CR1 |= TIM_CR1_URS ;
+//  }
+//  else
+//  {
+//    TIM2->CR1 &= (uint8_t)(~TIM_CR1_URS);
+//  }
+//}
+//
+///**
+//  * @brief  Enables or disables TIM2 peripheral Preload register on ARR.
+//  * @param  NewState: The new state of the TIM2 peripheral Preload register.
+//  *          This parameter can be ENABLE or DISABLE
+//  * @retval None
+//  */
 void TIM2_ARRPreloadConfig(FunctionalState NewState)
 {
   /* Check the parameters */
@@ -463,21 +463,21 @@ void TIM2_ARRPreloadConfig(FunctionalState NewState)
   *            @arg TIM2_OPMode_Repetitive: Single one Pulse mode (OPM Active)  
   * @retval None
   */
-void TIM2_SelectOnePulseMode(TIM2_OPMode_TypeDef TIM2_OPMode)
-{
-  /* Check the parameters */
-  assert_param(IS_TIM2_OPM_MODE(TIM2_OPMode));
-
-  /* Set or Reset the OPM Bit */
-  if (TIM2_OPMode == TIM2_OPMode_Single)
-  {
-    TIM2->CR1 |= TIM_CR1_OPM ;
-  }
-  else
-  {
-    TIM2->CR1 &= (uint8_t)(~TIM_CR1_OPM);
-  }
-}
+//void TIM2_SelectOnePulseMode(TIM2_OPMode_TypeDef TIM2_OPMode)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_TIM2_OPM_MODE(TIM2_OPMode));
+//
+//  /* Set or Reset the OPM Bit */
+//  if (TIM2_OPMode == TIM2_OPMode_Single)
+//  {
+//    TIM2->CR1 |= TIM_CR1_OPM ;
+//  }
+//  else
+//  {
+//    TIM2->CR1 &= (uint8_t)(~TIM_CR1_OPM);
+//  }
+//}
 
 /**
   * @brief  Enables or disables the TIM2 peripheral.
@@ -751,28 +751,28 @@ void TIM2_OC2Init(TIM2_OCMode_TypeDef TIM2_OCMode,
   *            @arg TIM2_AutomaticOutput_Disable: Automatic Output option disabled
   * @retval None
   */
-void TIM2_BKRConfig(TIM2_OSSIState_TypeDef TIM2_OSSIState,
-                    TIM2_LockLevel_TypeDef TIM2_LockLevel,
-                    TIM2_BreakState_TypeDef TIM2_BreakState,
-                    TIM2_BreakPolarity_TypeDef TIM2_BreakPolarity,
-                    TIM2_AutomaticOutput_TypeDef TIM2_AutomaticOutput)
-
-{
-  /* Check the parameters */
-  assert_param(IS_TIM2_OSSI_STATE(TIM2_OSSIState));
-  assert_param(IS_TIM2_LOCK_LEVEL(TIM2_LockLevel));
-  assert_param(IS_TIM2_BREAK_STATE(TIM2_BreakState));
-  assert_param(IS_TIM2_BREAK_POLARITY(TIM2_BreakPolarity));
-  assert_param(IS_TIM2_AUTOMATIC_OUTPUT_STATE(TIM2_AutomaticOutput));
-
-
-
-  /* Set the Lock level, the Break enable Bit and the Polarity, the OSSI State,
-  the dead time value and the Automatic Output Enable Bit */
-  TIM2->BKR = (uint8_t)((uint8_t)((uint8_t)((uint8_t)((uint8_t)TIM2_OSSIState | (uint8_t)TIM2_LockLevel) | \
-                                  (uint8_t)((uint8_t)TIM2_BreakState | (uint8_t)TIM2_BreakPolarity)) | \
-                                  TIM2_AutomaticOutput));
-}
+//void TIM2_BKRConfig(TIM2_OSSIState_TypeDef TIM2_OSSIState,
+//                    TIM2_LockLevel_TypeDef TIM2_LockLevel,
+//                    TIM2_BreakState_TypeDef TIM2_BreakState,
+//                    TIM2_BreakPolarity_TypeDef TIM2_BreakPolarity,
+//                    TIM2_AutomaticOutput_TypeDef TIM2_AutomaticOutput)
+//
+//{
+//  /* Check the parameters */
+//  assert_param(IS_TIM2_OSSI_STATE(TIM2_OSSIState));
+//  assert_param(IS_TIM2_LOCK_LEVEL(TIM2_LockLevel));
+//  assert_param(IS_TIM2_BREAK_STATE(TIM2_BreakState));
+//  assert_param(IS_TIM2_BREAK_POLARITY(TIM2_BreakPolarity));
+//  assert_param(IS_TIM2_AUTOMATIC_OUTPUT_STATE(TIM2_AutomaticOutput));
+//
+//
+//
+//  /* Set the Lock level, the Break enable Bit and the Polarity, the OSSI State,
+//  the dead time value and the Automatic Output Enable Bit */
+//  TIM2->BKR = (uint8_t)((uint8_t)((uint8_t)((uint8_t)((uint8_t)TIM2_OSSIState | (uint8_t)TIM2_LockLevel) | \
+//                                  (uint8_t)((uint8_t)TIM2_BreakState | (uint8_t)TIM2_BreakPolarity)) | \
+//                                  TIM2_AutomaticOutput));
+//}
 
 /**
   * @brief  Enables or disables the TIM2 peripheral Main Outputs.
@@ -930,89 +930,89 @@ void TIM2_ForcedOC2Config(TIM2_ForcedAction_TypeDef TIM2_ForcedAction)
   *          This parameter can be ENABLE or DISABLE
   * @retval None
   */
-void TIM2_OC1PreloadConfig(FunctionalState NewState)
-{
-  /* Check the parameters */
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  /* Set or Reset the OC1PE Bit */
-  if (NewState != DISABLE)
-  {
-    TIM2->CCMR1 |= TIM_CCMR_OCxPE ;
-  }
-  else
-  {
-    TIM2->CCMR1 &= (uint8_t)(~TIM_CCMR_OCxPE) ;
-  }
-}
-
-/**
-  * @brief  Enables or disables the TIM2 peripheral Preload Register on CCR2.
-  * @param  NewState: The new state of the Capture Compare Preload register.
-  *          This parameter can be ENABLE or DISABLE
-  * @retval None
-  */
-void TIM2_OC2PreloadConfig(FunctionalState NewState)
-{
-  /* Check the parameters */
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  /* Set or Reset the OC2PE Bit */
-  if (NewState != DISABLE)
-  {
-    TIM2->CCMR2 |= TIM_CCMR_OCxPE ;
-  }
-  else
-  {
-    TIM2->CCMR2 &= (uint8_t)(~TIM_CCMR_OCxPE) ;
-  }
-}
-
-/**
-  * @brief  Configures the TIM2 Capture Compare 1 Fast feature.
-  * @param  NewState: The new state of the Output Compare Fast Enable bit.
-  *          This parameter can be ENABLE or DISABLE
-  * @retval None
-  */
-void TIM2_OC1FastConfig(FunctionalState NewState)
-{
-  /* Check the parameters */
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  /* Set or Reset the OC1FE Bit */
-  if (NewState != DISABLE)
-  {
-    TIM2->CCMR1 |= TIM_CCMR_OCxFE ;
-  }
-  else
-  {
-    TIM2->CCMR1 &= (uint8_t)(~TIM_CCMR_OCxFE) ;
-  }
-}
-
-/**
-  * @brief  Configures the TIM2 Capture Compare 2 Fast feature.
-  * @param  NewState: The new state of the Output Compare Fast Enable bit.
-  *          This parameter can be ENABLE or DISABLE
-  * @retval None
-  */
-
-void TIM2_OC2FastConfig(FunctionalState NewState)
-{
-  /* Check the parameters */
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  /* Set or Reset the OC2FE Bit */
-  if (NewState != DISABLE)
-  {
-    TIM2->CCMR2 |= TIM_CCMR_OCxFE ;
-  }
-  else
-  {
-    TIM2->CCMR2 &= (uint8_t)(~TIM_CCMR_OCxFE) ;
-  }
-}
-
+//void TIM2_OC1PreloadConfig(FunctionalState NewState)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  /* Set or Reset the OC1PE Bit */
+//  if (NewState != DISABLE)
+//  {
+//    TIM2->CCMR1 |= TIM_CCMR_OCxPE ;
+//  }
+//  else
+//  {
+//    TIM2->CCMR1 &= (uint8_t)(~TIM_CCMR_OCxPE) ;
+//  }
+//}
+//
+///**
+//  * @brief  Enables or disables the TIM2 peripheral Preload Register on CCR2.
+//  * @param  NewState: The new state of the Capture Compare Preload register.
+//  *          This parameter can be ENABLE or DISABLE
+//  * @retval None
+//  */
+//void TIM2_OC2PreloadConfig(FunctionalState NewState)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  /* Set or Reset the OC2PE Bit */
+//  if (NewState != DISABLE)
+//  {
+//    TIM2->CCMR2 |= TIM_CCMR_OCxPE ;
+//  }
+//  else
+//  {
+//    TIM2->CCMR2 &= (uint8_t)(~TIM_CCMR_OCxPE) ;
+//  }
+//}
+//
+///**
+//  * @brief  Configures the TIM2 Capture Compare 1 Fast feature.
+//  * @param  NewState: The new state of the Output Compare Fast Enable bit.
+//  *          This parameter can be ENABLE or DISABLE
+//  * @retval None
+//  */
+//void TIM2_OC1FastConfig(FunctionalState NewState)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  /* Set or Reset the OC1FE Bit */
+//  if (NewState != DISABLE)
+//  {
+//    TIM2->CCMR1 |= TIM_CCMR_OCxFE ;
+//  }
+//  else
+//  {
+//    TIM2->CCMR1 &= (uint8_t)(~TIM_CCMR_OCxFE) ;
+//  }
+//}
+//
+///**
+//  * @brief  Configures the TIM2 Capture Compare 2 Fast feature.
+//  * @param  NewState: The new state of the Output Compare Fast Enable bit.
+//  *          This parameter can be ENABLE or DISABLE
+//  * @retval None
+//  */
+//
+//void TIM2_OC2FastConfig(FunctionalState NewState)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  /* Set or Reset the OC2FE Bit */
+//  if (NewState != DISABLE)
+//  {
+//    TIM2->CCMR2 |= TIM_CCMR_OCxFE ;
+//  }
+//  else
+//  {
+//    TIM2->CCMR2 &= (uint8_t)(~TIM_CCMR_OCxFE) ;
+//  }
+//}
+//
 /**
   * @brief  Configures the TIM2 Channel 1 polarity.
   * @param  TIM2_OCPolarity: Specifies the OC1 Polarity.
@@ -1021,45 +1021,45 @@ void TIM2_OC2FastConfig(FunctionalState NewState)
   *            @arg TIM2_OCPolarity_Low: Output compare polarity  = Low 
   * @retval None
   */
-void TIM2_OC1PolarityConfig(TIM2_OCPolarity_TypeDef TIM2_OCPolarity)
-{
-  /* Check the parameters */
-  assert_param(IS_TIM2_OC_POLARITY(TIM2_OCPolarity));
-
-  /* Set or Reset the CC1P Bit */
-  if (TIM2_OCPolarity == TIM2_OCPolarity_Low)
-  {
-    TIM2->CCER1 |= TIM_CCER1_CC1P ;
-  }
-  else
-  {
-    TIM2->CCER1 &= (uint8_t)(~TIM_CCER1_CC1P) ;
-  }
-}
-
-/**
-  * @brief  Configures the TIM2 Channel 2 polarity.
-  * @param  TIM2_OCPolarity: Specifies the OC2 Polarity.
-  *          This parameter can be one of the following values:
-  *            @arg TIM2_OCPolarity_High: Output compare polarity  = High
-  *            @arg TIM2_OCPolarity_Low: Output compare polarity  = Low 
-  * @retval None
-  */
-void TIM2_OC2PolarityConfig(TIM2_OCPolarity_TypeDef TIM2_OCPolarity)
-{
-  /* Check the parameters */
-  assert_param(IS_TIM2_OC_POLARITY(TIM2_OCPolarity));
-
-  /* Set or Reset the CC2P Bit */
-  if (TIM2_OCPolarity == TIM2_OCPolarity_Low)
-  {
-    TIM2->CCER1 |= TIM_CCER1_CC2P ;
-  }
-  else
-  {
-    TIM2->CCER1 &= (uint8_t)(~TIM_CCER1_CC2P) ;
-  }
-}
+//void TIM2_OC1PolarityConfig(TIM2_OCPolarity_TypeDef TIM2_OCPolarity)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_TIM2_OC_POLARITY(TIM2_OCPolarity));
+//
+//  /* Set or Reset the CC1P Bit */
+//  if (TIM2_OCPolarity == TIM2_OCPolarity_Low)
+//  {
+//    TIM2->CCER1 |= TIM_CCER1_CC1P ;
+//  }
+//  else
+//  {
+//    TIM2->CCER1 &= (uint8_t)(~TIM_CCER1_CC1P) ;
+//  }
+//}
+//
+///**
+//  * @brief  Configures the TIM2 Channel 2 polarity.
+//  * @param  TIM2_OCPolarity: Specifies the OC2 Polarity.
+//  *          This parameter can be one of the following values:
+//  *            @arg TIM2_OCPolarity_High: Output compare polarity  = High
+//  *            @arg TIM2_OCPolarity_Low: Output compare polarity  = Low 
+//  * @retval None
+//  */
+//void TIM2_OC2PolarityConfig(TIM2_OCPolarity_TypeDef TIM2_OCPolarity)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_TIM2_OC_POLARITY(TIM2_OCPolarity));
+//
+//  /* Set or Reset the CC2P Bit */
+//  if (TIM2_OCPolarity == TIM2_OCPolarity_Low)
+//  {
+//    TIM2->CCER1 |= TIM_CCER1_CC2P ;
+//  }
+//  else
+//  {
+//    TIM2->CCER1 &= (uint8_t)(~TIM_CCER1_CC2P) ;
+//  }
+//}
 
 /**
   * @brief  Enables or disables the TIM2 Capture Compare Channel x.
@@ -1071,40 +1071,40 @@ void TIM2_OC2PolarityConfig(TIM2_OCPolarity_TypeDef TIM2_OCPolarity)
   *          This parameter can be ENABLE or DISABLE
   * @retval None
   */
-void TIM2_CCxCmd(TIM2_Channel_TypeDef TIM2_Channel,
-                 FunctionalState NewState)
-{
-  /* Check the parameters */
-  assert_param(IS_TIM2_CHANNEL(TIM2_Channel));
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  if (TIM2_Channel == TIM2_Channel_1)
-  {
-    /* Set or Reset the CC1E Bit */
-    if (NewState != DISABLE)
-    {
-      TIM2->CCER1 |= TIM_CCER1_CC1E ;
-    }
-    else
-    {
-      TIM2->CCER1 &= (uint8_t)(~TIM_CCER1_CC1E) ;
-    }
-
-  }
-  else /* if (TIM2_Channel == TIM2_Channel_2) */
-  {
-    /* Set or Reset the CC2E Bit */
-    if (NewState != DISABLE)
-    {
-      TIM2->CCER1 |= TIM_CCER1_CC2E;
-    }
-    else
-    {
-      TIM2->CCER1 &= (uint8_t)(~TIM_CCER1_CC2E) ;
-    }
-  }
-}
-
+//void TIM2_CCxCmd(TIM2_Channel_TypeDef TIM2_Channel,
+//                 FunctionalState NewState)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_TIM2_CHANNEL(TIM2_Channel));
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  if (TIM2_Channel == TIM2_Channel_1)
+//  {
+//    /* Set or Reset the CC1E Bit */
+//    if (NewState != DISABLE)
+//    {
+//      TIM2->CCER1 |= TIM_CCER1_CC1E ;
+//    }
+//    else
+//    {
+//      TIM2->CCER1 &= (uint8_t)(~TIM_CCER1_CC1E) ;
+//    }
+//
+//  }
+//  else /* if (TIM2_Channel == TIM2_Channel_2) */
+//  {
+//    /* Set or Reset the CC2E Bit */
+//    if (NewState != DISABLE)
+//    {
+//      TIM2->CCER1 |= TIM_CCER1_CC2E;
+//    }
+//    else
+//    {
+//      TIM2->CCER1 &= (uint8_t)(~TIM_CCER1_CC2E) ;
+//    }
+//  }
+//}
+//
 /** @defgroup TIM2_Group3 Input Capture management functions
  *  @brief    Input Capture management functions 
  *

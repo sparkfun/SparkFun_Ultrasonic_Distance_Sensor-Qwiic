@@ -2406,124 +2406,124 @@ ADC_TypeDef;
 /*----------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------*/
 
-/**
- * @brief Digital to Analog Converter (DAC) peripheral
-  */
-typedef struct DAC_struct
-{
-  __IO uint8_t  CH1CR1;   /*!< DAC control register 1  */
-  __IO uint8_t  CH1CR2;   /*!< DAC control register 2  */
-  __IO uint8_t  CH2CR1;   /*!< DAC channel 2 control register 1  */
-  __IO uint8_t  CH2CR2;   /*!< DAC channel 2 control register 2  */
-  __IO uint8_t  SWTRIGR; /*!< DAC software trigger register */
-  __IO uint8_t  SR;      /*!< DAC status register */
-
-  /*Channel 1 registers*/
-  __IO uint8_t  RESERVED0[2];
-  __IO uint8_t  CH1RDHRH; /*!< DAC Channel 1 right aligned data holding register MSB */
-  __IO uint8_t  CH1RDHRL; /*!< DAC Channel 1 right aligned data holding register LSB */
-  __IO uint8_t  RESERVED1[2];
-  __IO uint8_t  CH1LDHRH; /*!< DAC Channel 1 left aligned data holding register MSB */
-  __IO uint8_t  CH1LDHRL; /*!< DAC Channel 1 left aligned data holding register LSB */
-  __IO uint8_t  RESERVED2[2];
-  __IO uint8_t  CH1DHR8; /*!< DAC Channel 1 8-bit data holding register */
-
-  /*Channel 2 registers*/
-  __IO uint8_t  RESERVED3[3];
-  __IO uint8_t  CH2RDHRH; /*!< DAC Channel 2 right aligned data holding register MSB */
-  __IO uint8_t  CH2RDHRL; /*!< DAC Channel 2 right aligned data holding register LSB */
-  __IO uint8_t  RESERVED4[2];
-  __IO uint8_t  CH2LDHRH; /*!< DAC Channel 2 left aligned data holding register MSB */
-  __IO uint8_t  CH2LDHRL; /*!< DAC Channel 2 left aligned data holding register LSB */
-  __IO uint8_t  RESERVED5[2];
-  __IO uint8_t  CH2DHR8; /*!< DAC Channel 2 8-bit data holding register */
-
-
-  /* Dual mode registers */
-  __IO uint8_t  RESERVED6[3];
-  __IO uint8_t  DCH1RDHRH; /*!< DAC Dual mode Channel 1 right aligned data holding register MSB */
-  __IO uint8_t  DCH1RDHRL; /*!< DAC Dual mode Channel 1 right aligned data holding register LSB */
-  __IO uint8_t  DCH2RDHRH; /*!< DAC Dual mode Channel 2 right aligned data holding register MSB */
-  __IO uint8_t  DCH2RDHRL; /*!< DAC Dual mode Channel 2 right aligned data holding register LSB */
-  __IO uint8_t  DCH1LDHRH; /*!< DAC Dual mode Channel 1 left aligned data holding register MSB */
-  __IO uint8_t  DCH1LDHRL; /*!< DAC Dual mode Channel 1 left aligned data holding register LSB */
-  __IO uint8_t  DCH2LDHRH; /*!< DAC Dual mode Channel 2 left aligned data holding register MSB */
-  __IO uint8_t  DCH2LDHRL; /*!< DAC Dual mode Channel 2 left aligned data holding register LSB */
-  __IO uint8_t  DCH1DHR8; /*!< DAC Dual mode Channel 1 8-bit data holding register */
-  __IO uint8_t  DCH2DHR8; /*!< DAC Dual mode Channel 2 8-bit data holding register */
-
-  /* DOR registers*/
-  __IO uint8_t  RESERVED7[2];
-  __IO uint8_t  CH1DORH; /*!< DAC Channel 1 data output register MSB */
-  __IO uint8_t  CH1DORL; /*!< DAC Channel 1 data output register LSB */
-  __IO uint8_t  RESERVED8[2];
-  __IO uint8_t  CH2DORH; /*!< DAC Channel 2 data output register MSB */
-  __IO uint8_t  CH2DORL; /*!< DAC Channel 2 data output register LSB */
-}
-DAC_TypeDef;
-
-/** @addtogroup DAC_Registers_Reset_Value
-  * @{
-  */
-#define DAC_CR1_RESET_VALUE       ((uint8_t)0x00)
-#define DAC_CR2_RESET_VALUE       ((uint8_t)0x00)
-#define DAC_SWTRIGR_RESET_VALUE   ((uint8_t)0x00)
-#define DAC_SR_RESET_VALUE        ((uint8_t)0x00)
-#define DAC_RDHRH_RESET_VALUE     ((uint8_t)0x00)
-#define DAC_RDHRL_RESET_VALUE     ((uint8_t)0x00)
-#define DAC_LDHRH_RESET_VALUE     ((uint8_t)0x00)
-#define DAC_LDHRL_RESET_VALUE     ((uint8_t)0x00)
-#define DAC_DHR8_RESET_VALUE      ((uint8_t)0x00)
-#define DAC_DORH_RESET_VALUE      ((uint8_t)0x00)
-#define DAC_DORL_RESET_VALUE      ((uint8_t)0x00)
-/**
-  * @}
-  */
-
-/** @addtogroup DAC_Registers_Bits_Definition
-  * @{
-  */
-
-/* CR1*/
-#define DAC_CR1_TSEL          ((uint8_t)0x38) /*!<  DAC channel trigger selection. */
-#define DAC_CR1_TEN           ((uint8_t)0x04) /*!<  DAC channel trigger enable. */
-#define DAC_CR1_BOFF          ((uint8_t)0x02) /*!<  DAC channel output buffer disable. */
-#define DAC_CR1_EN            ((uint8_t)0x01) /*!<  DAC channel enable. */
-#define DAC_CR1_WAVEN         ((uint8_t)0xC0) /*!<  DAC channel wave generation enable. */
-
-/* CR2*/
-#define DAC_CR2_DMAUDRIE      ((uint8_t)0x20) /*!<  DAC channel DMA underrun interrupt enable. */
-#define DAC_CR2_DMAEN         ((uint8_t)0x10) /*!<  DAC DMA enable. */
-#define DAC_CR2_MAMPx         ((uint8_t)0x0F) /*!<  DAC Dchannel wave generation config. */
-
-/* SWTRIGR*/
-#define DAC_SWTRIGR_SWTRIG1   ((uint8_t)0x01) /*!<  DAC channel 1 software trigger. */
-#define DAC_SWTRIGR_SWTRIG2   ((uint8_t)0x02) /*!<  DAC channel 2 software trigger. */
-
-/* SR*/
-#define DAC_SR_DMAUDR1        ((uint8_t)0x01) /*!<  DAC channel 1 DMA underrun flag. */
-#define DAC_SR_DMAUDR2        ((uint8_t)0x02) /*!<  DAC channel 2 DMA underrun flag. */
-
-/* RDHRH*/
-#define DAC_RDHRH_RDHRH       ((uint8_t)0x0F) /*!<  DAC right aligned data holding register most significant bits. */
-
-/* RDHRL*/
-#define DAC_RDHRL_RDHRL       ((uint8_t)0xFF) /*!<  DAC right aligned data holding register least significant bits. */
-
-/* LDHRL*/
-#define DAC_LDHRH_LDHRH       ((uint8_t)0xFF) /*!<  DAC left aligned data holding register most significant bits. */
-
-/* LDHRL*/
-#define DAC_LDHRL_LDHRL       ((uint8_t)0xF0) /*!<  DAC left aligned data holding register least significant bits. */
-
-/* DHR8*/
-#define DAC_DHR8_8DHR         ((uint8_t)0xFF) /*!< DAC 8bit data holding bits */
-
-/* DORH*/
-#define DAC_DORH_DORH         ((uint8_t)0x0F) /*!< DAC data output register most significant bit */
-
-/* DORL*/
-#define DAC_DORL_DORL         ((uint8_t)0xFF) /*!< DAC data output register least significant bit */
+///**
+// * @brief Digital to Analog Converter (DAC) peripheral
+//  */
+//typedef struct DAC_struct
+//{
+//  __IO uint8_t  CH1CR1;   /*!< DAC control register 1  */
+//  __IO uint8_t  CH1CR2;   /*!< DAC control register 2  */
+//  __IO uint8_t  CH2CR1;   /*!< DAC channel 2 control register 1  */
+//  __IO uint8_t  CH2CR2;   /*!< DAC channel 2 control register 2  */
+//  __IO uint8_t  SWTRIGR; /*!< DAC software trigger register */
+//  __IO uint8_t  SR;      /*!< DAC status register */
+//
+//  /*Channel 1 registers*/
+//  __IO uint8_t  RESERVED0[2];
+//  __IO uint8_t  CH1RDHRH; /*!< DAC Channel 1 right aligned data holding register MSB */
+//  __IO uint8_t  CH1RDHRL; /*!< DAC Channel 1 right aligned data holding register LSB */
+//  __IO uint8_t  RESERVED1[2];
+//  __IO uint8_t  CH1LDHRH; /*!< DAC Channel 1 left aligned data holding register MSB */
+//  __IO uint8_t  CH1LDHRL; /*!< DAC Channel 1 left aligned data holding register LSB */
+//  __IO uint8_t  RESERVED2[2];
+//  __IO uint8_t  CH1DHR8; /*!< DAC Channel 1 8-bit data holding register */
+//
+//  /*Channel 2 registers*/
+//  __IO uint8_t  RESERVED3[3];
+//  __IO uint8_t  CH2RDHRH; /*!< DAC Channel 2 right aligned data holding register MSB */
+//  __IO uint8_t  CH2RDHRL; /*!< DAC Channel 2 right aligned data holding register LSB */
+//  __IO uint8_t  RESERVED4[2];
+//  __IO uint8_t  CH2LDHRH; /*!< DAC Channel 2 left aligned data holding register MSB */
+//  __IO uint8_t  CH2LDHRL; /*!< DAC Channel 2 left aligned data holding register LSB */
+//  __IO uint8_t  RESERVED5[2];
+//  __IO uint8_t  CH2DHR8; /*!< DAC Channel 2 8-bit data holding register */
+//
+//
+//  /* Dual mode registers */
+//  __IO uint8_t  RESERVED6[3];
+//  __IO uint8_t  DCH1RDHRH; /*!< DAC Dual mode Channel 1 right aligned data holding register MSB */
+//  __IO uint8_t  DCH1RDHRL; /*!< DAC Dual mode Channel 1 right aligned data holding register LSB */
+//  __IO uint8_t  DCH2RDHRH; /*!< DAC Dual mode Channel 2 right aligned data holding register MSB */
+//  __IO uint8_t  DCH2RDHRL; /*!< DAC Dual mode Channel 2 right aligned data holding register LSB */
+//  __IO uint8_t  DCH1LDHRH; /*!< DAC Dual mode Channel 1 left aligned data holding register MSB */
+//  __IO uint8_t  DCH1LDHRL; /*!< DAC Dual mode Channel 1 left aligned data holding register LSB */
+//  __IO uint8_t  DCH2LDHRH; /*!< DAC Dual mode Channel 2 left aligned data holding register MSB */
+//  __IO uint8_t  DCH2LDHRL; /*!< DAC Dual mode Channel 2 left aligned data holding register LSB */
+//  __IO uint8_t  DCH1DHR8; /*!< DAC Dual mode Channel 1 8-bit data holding register */
+//  __IO uint8_t  DCH2DHR8; /*!< DAC Dual mode Channel 2 8-bit data holding register */
+//
+//  /* DOR registers*/
+//  __IO uint8_t  RESERVED7[2];
+//  __IO uint8_t  CH1DORH; /*!< DAC Channel 1 data output register MSB */
+//  __IO uint8_t  CH1DORL; /*!< DAC Channel 1 data output register LSB */
+//  __IO uint8_t  RESERVED8[2];
+//  __IO uint8_t  CH2DORH; /*!< DAC Channel 2 data output register MSB */
+//  __IO uint8_t  CH2DORL; /*!< DAC Channel 2 data output register LSB */
+//}
+//DAC_TypeDef;
+//
+///** @addtogroup DAC_Registers_Reset_Value
+//  * @{
+//  */
+//#define DAC_CR1_RESET_VALUE       ((uint8_t)0x00)
+//#define DAC_CR2_RESET_VALUE       ((uint8_t)0x00)
+//#define DAC_SWTRIGR_RESET_VALUE   ((uint8_t)0x00)
+//#define DAC_SR_RESET_VALUE        ((uint8_t)0x00)
+//#define DAC_RDHRH_RESET_VALUE     ((uint8_t)0x00)
+//#define DAC_RDHRL_RESET_VALUE     ((uint8_t)0x00)
+//#define DAC_LDHRH_RESET_VALUE     ((uint8_t)0x00)
+//#define DAC_LDHRL_RESET_VALUE     ((uint8_t)0x00)
+//#define DAC_DHR8_RESET_VALUE      ((uint8_t)0x00)
+//#define DAC_DORH_RESET_VALUE      ((uint8_t)0x00)
+//#define DAC_DORL_RESET_VALUE      ((uint8_t)0x00)
+///**
+//  * @}
+//  */
+//
+///** @addtogroup DAC_Registers_Bits_Definition
+//  * @{
+//  */
+//
+///* CR1*/
+//#define DAC_CR1_TSEL          ((uint8_t)0x38) /*!<  DAC channel trigger selection. */
+//#define DAC_CR1_TEN           ((uint8_t)0x04) /*!<  DAC channel trigger enable. */
+//#define DAC_CR1_BOFF          ((uint8_t)0x02) /*!<  DAC channel output buffer disable. */
+//#define DAC_CR1_EN            ((uint8_t)0x01) /*!<  DAC channel enable. */
+//#define DAC_CR1_WAVEN         ((uint8_t)0xC0) /*!<  DAC channel wave generation enable. */
+//
+///* CR2*/
+//#define DAC_CR2_DMAUDRIE      ((uint8_t)0x20) /*!<  DAC channel DMA underrun interrupt enable. */
+//#define DAC_CR2_DMAEN         ((uint8_t)0x10) /*!<  DAC DMA enable. */
+//#define DAC_CR2_MAMPx         ((uint8_t)0x0F) /*!<  DAC Dchannel wave generation config. */
+//
+///* SWTRIGR*/
+//#define DAC_SWTRIGR_SWTRIG1   ((uint8_t)0x01) /*!<  DAC channel 1 software trigger. */
+//#define DAC_SWTRIGR_SWTRIG2   ((uint8_t)0x02) /*!<  DAC channel 2 software trigger. */
+//
+///* SR*/
+//#define DAC_SR_DMAUDR1        ((uint8_t)0x01) /*!<  DAC channel 1 DMA underrun flag. */
+//#define DAC_SR_DMAUDR2        ((uint8_t)0x02) /*!<  DAC channel 2 DMA underrun flag. */
+//
+///* RDHRH*/
+//#define DAC_RDHRH_RDHRH       ((uint8_t)0x0F) /*!<  DAC right aligned data holding register most significant bits. */
+//
+///* RDHRL*/
+//#define DAC_RDHRL_RDHRL       ((uint8_t)0xFF) /*!<  DAC right aligned data holding register least significant bits. */
+//
+///* LDHRL*/
+//#define DAC_LDHRH_LDHRH       ((uint8_t)0xFF) /*!<  DAC left aligned data holding register most significant bits. */
+//
+///* LDHRL*/
+//#define DAC_LDHRL_LDHRL       ((uint8_t)0xF0) /*!<  DAC left aligned data holding register least significant bits. */
+//
+///* DHR8*/
+//#define DAC_DHR8_8DHR         ((uint8_t)0xFF) /*!< DAC 8bit data holding bits */
+//
+///* DORH*/
+//#define DAC_DORH_DORH         ((uint8_t)0x0F) /*!< DAC data output register most significant bit */
+//
+///* DORL*/
+//#define DAC_DORL_DORL         ((uint8_t)0xFF) /*!< DAC data output register least significant bit */
 
 /**
   * @}
@@ -2531,105 +2531,105 @@ DAC_TypeDef;
 
 /*----------------------------------------------------------------------------*/
 
-/**
-  * @brief  Direct-Memory Access (DMA)
-  */
-typedef struct DMA_struct
-{
-  __IO uint8_t  GCSR;     /*!<  Global configuration and status register  */
-  __IO uint8_t  GIR1;     /*!<  Global interrupt register 1  */
-}
-DMA_TypeDef;
-/**
-  * @}
-  */
-typedef struct DMA_Channel_struct
-{
-  __IO uint8_t  CCR;       /*!<  CHx Control register  */
-  __IO uint8_t  CSPR;      /*!<  CHx Status & Priority register  */
-  __IO uint8_t  CNBTR;     /*!<  CHx Number of Bytes to Tranfer register  */
-  __IO uint8_t  CPARH;     /*!<  Peripheral Address High register  */
-  __IO uint8_t  CPARL;     /*!<  Peripheral Address Low register  */
-  __IO uint8_t  CM0EAR;    /*!<  Memory 0 Extended Address register  (for channel3)*/
-  __IO uint8_t  CM0ARH;    /*!<  Memory 0 Address High register  */
-  __IO uint8_t  CM0ARL;    /*!<  Memory 0 Address Low register  */
-}
-DMA_Channel_TypeDef;
-/**
-  * @}
-  */
-
-/** @addtogroup DMA_Registers_Reset_Value
-  * @{
-  */
-#define DMA_GCSR_RESET_VALUE       ((uint8_t)0xFC)
-#define DMA_GIR1_RESET_VALUE       ((uint8_t)0x00)
-/**
-  * @}
-  */
-
-/** @addtogroup DMA_Channels_Registers_Reset_Value
-  * @{
-  */
-#define DMA_CCR_RESET_VALUE          ((uint8_t)0x00)
-#define DMA_CSPR_RESET_VALUE         ((uint8_t)0x00)
-#define DMA_CNBTR_RESET_VALUE        ((uint8_t)0x00)
-#define DMA_CPARH_RESET_VALUE        ((uint8_t)0x52)
-#define DMA_C3PARH_RESET_VALUE       ((uint8_t)0x40)
-#define DMA_CPARL_RESET_VALUE        ((uint8_t)0x00)
-#define DMA_C3M0EAR_RESET_VALUE      ((uint8_t)0x00)
-#define DMA_CM0ARH_RESET_VALUE       ((uint8_t)0x00)
-#define DMA_CM0ARL_RESET_VALUE       ((uint8_t)0x00)
-/** @addtogroup DMA_Registers_Bits_Definition
-  * @{
-  */
-
-/*  Bit definition for DMA_GCSR register  */
-
-#define  DMA_GCSR_GE        ((uint8_t)0x01)            /*!<Global Enable */
-#define  DMA_GCSR_GB        ((uint8_t)0x02)            /*!<Global Busy */
-#define  DMA_GCSR_TO        ((uint8_t)0xFC)            /*!<Time Out */
-
-/*  Bit definition for DMA_GIR1 register  */
-#define  DMA_GIR1_IFC0      ((uint8_t)0x01)            /*!< Interrupt Flag Channel 0 */
-#define  DMA_GIR1_IFC1      ((uint8_t)0x02)            /*!< Interrupt Flag Channel 1 */
-#define  DMA_GIR1_IFC2      ((uint8_t)0x04)            /*!< Interrupt Flag Channel 2 */
-#define  DMA_GIR1_IFC3      ((uint8_t)0x08)            /*!< Interrupt Flag Channel 3 */
-
-
-/*  Bit definition for DMA_CCR registers  */
-#define  DMA_CCR_CE         ((uint8_t)0x01)            /*!<Channel enable*/
-#define  DMA_CCR_TCIE       ((uint8_t)0x02)            /*!<Transfer complete interrupt enable */
-#define  DMA_CCR_HTIE       ((uint8_t)0x04)            /*!<Half Transfer interrupt enable */
-#define  DMA_CCR_DTD        ((uint8_t)0x08)            /*!<Data transfer direction */
-#define  DMA_CCR_ARM        ((uint8_t)0x10)            /*!<Autorelaod mode Circular buffer mode */
-#define  DMA_CCR_IDM        ((uint8_t)0x20)            /*!<Inc/Dec mode */
-#define  DMA_CCR_MEM        ((uint8_t)0x40)            /*!<Memory Transfer Enable */
-
-
-/*  Bit definition for DMA_CSPR registers  */
-#define  DMA_CSPR_TCIF      ((uint8_t)0x02)            /*!<Transaction Complete Interrupt Flag*/
-#define  DMA_CSPR_HTIF      ((uint8_t)0x04)            /*!<Half Transaction Interrupt Flag*/
-#define  DMA_CSPR_16BM      ((uint8_t)0x08)            /*!<16 bit mode*/
-#define  DMA_CSPR_PL        ((uint8_t)0x30)            /*!<Channel priority level*/
-#define  DMA_CSPR_PEND      ((uint8_t)0x40)            /*!<Channel pending*/
-#define  DMA_CSPR_BUSY      ((uint8_t)0x80)            /*!<Channel Busy */
-
-
-/*  Bit definition for DMA_CNBTR register */
-#define  DMA_CNBTR_NDT      ((uint8_t)0xFF)            /*!<Number of data to Transfer */
-
-
-/*  Bit definition for DMA_CPARH register  */
-#define  DMA_CPARH_PA       ((uint8_t)0xFF)        /*!<Peripheral MSB Address Pointer */
-/*  Bit definition for DMA_CPARL register  */
-#define  DMA_CPARL_PA       ((uint8_t)0xFF)        /*!<Peripheral LSB Address Pointer */
-
-
-/*  Bit definition for DMA_CMAR registers  */
-#define  DMA_CM0EAR_MA      ((uint8_t)0x01)        /* Memory Extended Address Pointer only for channel 3 in Memory to memory transfer*/
-#define  DMA_CM0ARH_MA      ((uint8_t)0xFF)        /*!<Memory MSB Address Pointer*/
-#define  DMA_CM0ARL_MA      ((uint8_t)0xFF)        /*!<Memory LSB Address Pointer */
+///**
+//  * @brief  Direct-Memory Access (DMA)
+//  */
+//typedef struct DMA_struct
+//{
+//  __IO uint8_t  GCSR;     /*!<  Global configuration and status register  */
+//  __IO uint8_t  GIR1;     /*!<  Global interrupt register 1  */
+//}
+//DMA_TypeDef;
+///**
+//  * @}
+//  */
+//typedef struct DMA_Channel_struct
+//{
+//  __IO uint8_t  CCR;       /*!<  CHx Control register  */
+//  __IO uint8_t  CSPR;      /*!<  CHx Status & Priority register  */
+//  __IO uint8_t  CNBTR;     /*!<  CHx Number of Bytes to Tranfer register  */
+//  __IO uint8_t  CPARH;     /*!<  Peripheral Address High register  */
+//  __IO uint8_t  CPARL;     /*!<  Peripheral Address Low register  */
+//  __IO uint8_t  CM0EAR;    /*!<  Memory 0 Extended Address register  (for channel3)*/
+//  __IO uint8_t  CM0ARH;    /*!<  Memory 0 Address High register  */
+//  __IO uint8_t  CM0ARL;    /*!<  Memory 0 Address Low register  */
+//}
+//DMA_Channel_TypeDef;
+///**
+//  * @}
+//  */
+//
+///** @addtogroup DMA_Registers_Reset_Value
+//  * @{
+//  */
+//#define DMA_GCSR_RESET_VALUE       ((uint8_t)0xFC)
+//#define DMA_GIR1_RESET_VALUE       ((uint8_t)0x00)
+///**
+//  * @}
+//  */
+//
+///** @addtogroup DMA_Channels_Registers_Reset_Value
+//  * @{
+//  */
+//#define DMA_CCR_RESET_VALUE          ((uint8_t)0x00)
+//#define DMA_CSPR_RESET_VALUE         ((uint8_t)0x00)
+//#define DMA_CNBTR_RESET_VALUE        ((uint8_t)0x00)
+//#define DMA_CPARH_RESET_VALUE        ((uint8_t)0x52)
+//#define DMA_C3PARH_RESET_VALUE       ((uint8_t)0x40)
+//#define DMA_CPARL_RESET_VALUE        ((uint8_t)0x00)
+//#define DMA_C3M0EAR_RESET_VALUE      ((uint8_t)0x00)
+//#define DMA_CM0ARH_RESET_VALUE       ((uint8_t)0x00)
+//#define DMA_CM0ARL_RESET_VALUE       ((uint8_t)0x00)
+///** @addtogroup DMA_Registers_Bits_Definition
+//  * @{
+//  */
+//
+///*  Bit definition for DMA_GCSR register  */
+//
+//#define  DMA_GCSR_GE        ((uint8_t)0x01)            /*!<Global Enable */
+//#define  DMA_GCSR_GB        ((uint8_t)0x02)            /*!<Global Busy */
+//#define  DMA_GCSR_TO        ((uint8_t)0xFC)            /*!<Time Out */
+//
+///*  Bit definition for DMA_GIR1 register  */
+//#define  DMA_GIR1_IFC0      ((uint8_t)0x01)            /*!< Interrupt Flag Channel 0 */
+//#define  DMA_GIR1_IFC1      ((uint8_t)0x02)            /*!< Interrupt Flag Channel 1 */
+//#define  DMA_GIR1_IFC2      ((uint8_t)0x04)            /*!< Interrupt Flag Channel 2 */
+//#define  DMA_GIR1_IFC3      ((uint8_t)0x08)            /*!< Interrupt Flag Channel 3 */
+//
+//
+///*  Bit definition for DMA_CCR registers  */
+//#define  DMA_CCR_CE         ((uint8_t)0x01)            /*!<Channel enable*/
+//#define  DMA_CCR_TCIE       ((uint8_t)0x02)            /*!<Transfer complete interrupt enable */
+//#define  DMA_CCR_HTIE       ((uint8_t)0x04)            /*!<Half Transfer interrupt enable */
+//#define  DMA_CCR_DTD        ((uint8_t)0x08)            /*!<Data transfer direction */
+//#define  DMA_CCR_ARM        ((uint8_t)0x10)            /*!<Autorelaod mode Circular buffer mode */
+//#define  DMA_CCR_IDM        ((uint8_t)0x20)            /*!<Inc/Dec mode */
+//#define  DMA_CCR_MEM        ((uint8_t)0x40)            /*!<Memory Transfer Enable */
+//
+//
+///*  Bit definition for DMA_CSPR registers  */
+//#define  DMA_CSPR_TCIF      ((uint8_t)0x02)            /*!<Transaction Complete Interrupt Flag*/
+//#define  DMA_CSPR_HTIF      ((uint8_t)0x04)            /*!<Half Transaction Interrupt Flag*/
+//#define  DMA_CSPR_16BM      ((uint8_t)0x08)            /*!<16 bit mode*/
+//#define  DMA_CSPR_PL        ((uint8_t)0x30)            /*!<Channel priority level*/
+//#define  DMA_CSPR_PEND      ((uint8_t)0x40)            /*!<Channel pending*/
+//#define  DMA_CSPR_BUSY      ((uint8_t)0x80)            /*!<Channel Busy */
+//
+//
+///*  Bit definition for DMA_CNBTR register */
+//#define  DMA_CNBTR_NDT      ((uint8_t)0xFF)            /*!<Number of data to Transfer */
+//
+//
+///*  Bit definition for DMA_CPARH register  */
+//#define  DMA_CPARH_PA       ((uint8_t)0xFF)        /*!<Peripheral MSB Address Pointer */
+///*  Bit definition for DMA_CPARL register  */
+//#define  DMA_CPARL_PA       ((uint8_t)0xFF)        /*!<Peripheral LSB Address Pointer */
+//
+//
+///*  Bit definition for DMA_CMAR registers  */
+//#define  DMA_CM0EAR_MA      ((uint8_t)0x01)        /* Memory Extended Address Pointer only for channel 3 in Memory to memory transfer*/
+//#define  DMA_CM0ARH_MA      ((uint8_t)0xFF)        /*!<Memory MSB Address Pointer*/
+//#define  DMA_CM0ARL_MA      ((uint8_t)0xFF)        /*!<Memory LSB Address Pointer */
 
 
 /**
@@ -2640,36 +2640,36 @@ DMA_Channel_TypeDef;
 /**
   * @brief Window Watchdog (WWDG)
   */
-typedef struct WWDG_struct
-{
-  __IO uint8_t CR; /*!< Control Register */
-  __IO uint8_t WR; /*!< Window Register */
-}
-WWDG_TypeDef;
-
-/** @addtogroup WWDG_Registers_Reset_Value
-  * @{
-  */
-
-#define WWDG_CR_RESET_VALUE ((uint8_t)0x7F)
-#define WWDG_WR_RESET_VALUE ((uint8_t)0x7F)
-
-/**
-* @}
-*/
-
-/** @addtogroup WWDG_Registers_Bits_Definition
-  * @{
-  */
-
-#define WWDG_CR_WDGA ((uint8_t)0x80) /*!< WDGA bit mask */
-#define WWDG_CR_T6   ((uint8_t)0x40) /*!< T6 bit mask */
-#define WWDG_CR_T    ((uint8_t)0x7F) /*!< T bits mask */
-
-#define WWDG_WR_MSB  ((uint8_t)0x80) /*!< MSB bit mask */
-#define WWDG_WR_W    ((uint8_t)0x7F) /*!< W bits mask */
-
-
+//typedef struct WWDG_struct
+//{
+//  __IO uint8_t CR; /*!< Control Register */
+//  __IO uint8_t WR; /*!< Window Register */
+//}
+//WWDG_TypeDef;
+//
+///** @addtogroup WWDG_Registers_Reset_Value
+//  * @{
+//  */
+//
+//#define WWDG_CR_RESET_VALUE ((uint8_t)0x7F)
+//#define WWDG_WR_RESET_VALUE ((uint8_t)0x7F)
+//
+///**
+//* @}
+//*/
+//
+///** @addtogroup WWDG_Registers_Bits_Definition
+//  * @{
+//  */
+//
+//#define WWDG_CR_WDGA ((uint8_t)0x80) /*!< WDGA bit mask */
+//#define WWDG_CR_T6   ((uint8_t)0x40) /*!< T6 bit mask */
+//#define WWDG_CR_T    ((uint8_t)0x7F) /*!< T bits mask */
+//
+//#define WWDG_WR_MSB  ((uint8_t)0x80) /*!< MSB bit mask */
+//#define WWDG_WR_W    ((uint8_t)0x7F) /*!< W bits mask */
+//
+//
 /**
   * @}
   */
@@ -2678,63 +2678,63 @@ WWDG_TypeDef;
 /**
   * @brief LCD Controller (LCD)
   */
-typedef struct LCD_struct
-{
-  __IO uint8_t CR1;      /*!< LCD control register 1 */
-  __IO uint8_t CR2;      /*!< LCD control register 2 */
-  __IO uint8_t CR3;      /*!< LCD control register 3 */
-  __IO uint8_t FRQ;      /*!< LCD frequency register */
-  __IO uint8_t PM[6];    /*!< LCD portmask registers*/
-  uint8_t RESERVED1[2];  /*!< Reserved */
-  __IO uint8_t RAM[22];  /*!< LCD RAM registers*/
-  uint8_t RESERVED2[13]; /*!< Reserved */
-  __IO uint8_t CR4;      /*!< LCD control register 4 */
-}
-LCD_TypeDef;
-/** @addtogroup LCD_Registers_Reset_Value
-  * @{
-  */
-#define LCD_CR1_RESET_VALUE    ((uint8_t)0x00) /*!< Control Register 1 reset value */
-#define LCD_CR2_RESET_VALUE    ((uint8_t)0x00) /*!< Control Register 2 reset value */
-#define LCD_CR3_RESET_VALUE    ((uint8_t)0x00) /*!< Control Register 3 reset value */
-#define LCD_FRQ_RESET_VALUE    ((uint8_t)0x00) /*!< Register Frequency reset value */
-#define LCD_PM_RESET_VALUE     ((uint8_t)0x00) /*!< Port mask Register reset value */
-#define LCD_RAM_RESET_VALUE    ((uint8_t)0x00) /*!< RAM Register reset value       */
-#define LCD_CR4_RESET_VALUE    ((uint8_t)0x00) /*!< Control Register 4 reset value */
-
-
-/**
-* @}
-*/
-
-/** @addtogroup LCD_Registers_Bits_Definition
-  * @{
-  */
-#define LCD_CR1_BLINK    ((uint8_t)0xC0) /*!< Blink bits mask           */
-#define LCD_CR1_BLINKF   ((uint8_t)0x38) /*!< Blink frequency bits mask */
-#define LCD_CR1_DUTY     ((uint8_t)0x06) /*!< Duty bits mask            */
-#define LCD_CR1_B2       ((uint8_t)0x01) /*!< Bias selector bit mask    */
-
-
-#define LCD_CR2_PON      ((uint8_t)0xE0) /*!< Pulse on duration bits mask */
-#define LCD_CR2_HD       ((uint8_t)0x10) /*!< High drive enable bit mask  */
-#define LCD_CR2_CC       ((uint8_t)0x0E) /*!< Contrast control bits mask  */
-#define LCD_CR2_VSEL     ((uint8_t)0x01) /*!< Voltage source bit mask     */
-
-#define LCD_CR3_LCDEN    ((uint8_t)0x40) /*!< Enable bit mask           */
-#define LCD_CR3_SOFIE    ((uint8_t)0x20) /*!< Start of frame interrupt enable mask */
-#define LCD_CR3_SOF      ((uint8_t)0x10) /*!< Start of frame bit mask              */
-#define LCD_CR3_SOFC     ((uint8_t)0x08) /*!< Clear start of frame bit mask        */
-#define LCD_CR3_DEAD     ((uint8_t)0x07) /*!< DEAD time bits mask                  */
-
-#define LCD_FRQ_DIV      ((uint8_t)0x0F) /*!< Divider bits mask */
-#define LCD_FRQ_PS       ((uint8_t)0xF0) /*!< 16 bits prescaler bits mask */
-
-#define LCD_CR4_MAPCOM   ((uint8_t)0x08) /*!< Select the mapping scheme for the COM[7:4] */
-#define LCD_CR4_PAGECOM  ((uint8_t)0x04) /*!< Select the LCD RAM page sector */
-#define LCD_CR4_DUTY8    ((uint8_t)0x02) /*!< Enable the 1/8 duty */
-#define LCD_CR4_B4       ((uint8_t)0x01) /*!< Enable the 1/4 bias */
-
+//typedef struct LCD_struct
+//{
+//  __IO uint8_t CR1;      /*!< LCD control register 1 */
+//  __IO uint8_t CR2;      /*!< LCD control register 2 */
+//  __IO uint8_t CR3;      /*!< LCD control register 3 */
+//  __IO uint8_t FRQ;      /*!< LCD frequency register */
+//  __IO uint8_t PM[6];    /*!< LCD portmask registers*/
+//  uint8_t RESERVED1[2];  /*!< Reserved */
+//  __IO uint8_t RAM[22];  /*!< LCD RAM registers*/
+//  uint8_t RESERVED2[13]; /*!< Reserved */
+//  __IO uint8_t CR4;      /*!< LCD control register 4 */
+//}
+//LCD_TypeDef;
+///** @addtogroup LCD_Registers_Reset_Value
+//  * @{
+//  */
+//#define LCD_CR1_RESET_VALUE    ((uint8_t)0x00) /*!< Control Register 1 reset value */
+//#define LCD_CR2_RESET_VALUE    ((uint8_t)0x00) /*!< Control Register 2 reset value */
+//#define LCD_CR3_RESET_VALUE    ((uint8_t)0x00) /*!< Control Register 3 reset value */
+//#define LCD_FRQ_RESET_VALUE    ((uint8_t)0x00) /*!< Register Frequency reset value */
+//#define LCD_PM_RESET_VALUE     ((uint8_t)0x00) /*!< Port mask Register reset value */
+//#define LCD_RAM_RESET_VALUE    ((uint8_t)0x00) /*!< RAM Register reset value       */
+//#define LCD_CR4_RESET_VALUE    ((uint8_t)0x00) /*!< Control Register 4 reset value */
+//
+//
+///**
+//* @}
+//*/
+//
+///** @addtogroup LCD_Registers_Bits_Definition
+//  * @{
+//  */
+//#define LCD_CR1_BLINK    ((uint8_t)0xC0) /*!< Blink bits mask           */
+//#define LCD_CR1_BLINKF   ((uint8_t)0x38) /*!< Blink frequency bits mask */
+//#define LCD_CR1_DUTY     ((uint8_t)0x06) /*!< Duty bits mask            */
+//#define LCD_CR1_B2       ((uint8_t)0x01) /*!< Bias selector bit mask    */
+//
+//
+//#define LCD_CR2_PON      ((uint8_t)0xE0) /*!< Pulse on duration bits mask */
+//#define LCD_CR2_HD       ((uint8_t)0x10) /*!< High drive enable bit mask  */
+//#define LCD_CR2_CC       ((uint8_t)0x0E) /*!< Contrast control bits mask  */
+//#define LCD_CR2_VSEL     ((uint8_t)0x01) /*!< Voltage source bit mask     */
+//
+//#define LCD_CR3_LCDEN    ((uint8_t)0x40) /*!< Enable bit mask           */
+//#define LCD_CR3_SOFIE    ((uint8_t)0x20) /*!< Start of frame interrupt enable mask */
+//#define LCD_CR3_SOF      ((uint8_t)0x10) /*!< Start of frame bit mask              */
+//#define LCD_CR3_SOFC     ((uint8_t)0x08) /*!< Clear start of frame bit mask        */
+//#define LCD_CR3_DEAD     ((uint8_t)0x07) /*!< DEAD time bits mask                  */
+//
+//#define LCD_FRQ_DIV      ((uint8_t)0x0F) /*!< Divider bits mask */
+//#define LCD_FRQ_PS       ((uint8_t)0xF0) /*!< 16 bits prescaler bits mask */
+//
+//#define LCD_CR4_MAPCOM   ((uint8_t)0x08) /*!< Select the mapping scheme for the COM[7:4] */
+//#define LCD_CR4_PAGECOM  ((uint8_t)0x04) /*!< Select the LCD RAM page sector */
+//#define LCD_CR4_DUTY8    ((uint8_t)0x02) /*!< Enable the 1/8 duty */
+//#define LCD_CR4_B4       ((uint8_t)0x01) /*!< Enable the 1/4 bias */
+//
 
 /**
   * @}

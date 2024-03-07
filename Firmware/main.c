@@ -8,10 +8,8 @@
 #include "stm8l15x.h"
 #include "bsp.h"
 
-#define TIM4_PERIOD       16*10
-
+#define TIM4_PERIOD   16*10
 //#define SLAVE_ADDR 0x00
-//#define I2CSPEED 400000 //i2c Speed
 
 //extern uint8_t SLAVE_ADDRESS[10]={0xA0,0xA1,0xA2,0xA3,0xA4,0xA5,0xA6,0xA7,0xA8,0xA9};
 extern uint8_t SLAVE_ADDR=0x00;
@@ -79,12 +77,12 @@ int main( void )
   CLK_PeripheralClockConfig(CLK_Peripheral_I2C1, ENABLE);
   I2C_DeInit_Config(EEPROM_ReadByte(0));
   GPIO_SetBits(GPIOB,GPIO_Pin_4);
-  enableInterrupts();
 
   //I2C_DeInit(I2C1);
   //I2C_Init(I2C1, I2CSPEED, PERIPH_ADDRESS, I2C_Mode_I2C, I2C_DutyCycle_2, I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
   //I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF), ENABLE);
   //I2C_Cmd(I2C1, ENABLE);
+  enableInterrupts();
    
   while(1)
   {

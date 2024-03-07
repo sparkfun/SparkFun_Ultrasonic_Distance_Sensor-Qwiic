@@ -801,15 +801,15 @@ void TIM3_TimeBaseInit(TIM3_Prescaler_TypeDef TIM3_Prescaler,
                        uint16_t TIM3_Period);
 void TIM3_PrescalerConfig(TIM3_Prescaler_TypeDef Prescaler,
                           TIM3_PSCReloadMode_TypeDef TIM3_PSCReloadMode);
-void TIM3_CounterModeConfig(TIM3_CounterMode_TypeDef TIM3_CounterMode);
+//void TIM3_CounterModeConfig(TIM3_CounterMode_TypeDef TIM3_CounterMode);
 void TIM3_SetCounter(uint16_t Counter);
 void TIM3_SetAutoreload(uint16_t Autoreload);
 uint16_t TIM3_GetCounter(void);
 TIM3_Prescaler_TypeDef TIM3_GetPrescaler(void);
-void TIM3_UpdateDisableConfig(FunctionalState NewState);
-void TIM3_UpdateRequestConfig(TIM3_UpdateSource_TypeDef TIM3_UpdateSource);
+//void TIM3_UpdateDisableConfig(FunctionalState NewState);
+//void TIM3_UpdateRequestConfig(TIM3_UpdateSource_TypeDef TIM3_UpdateSource);
 void TIM3_ARRPreloadConfig(FunctionalState NewState);
-void TIM3_SelectOnePulseMode(TIM3_OPMode_TypeDef TIM3_OPMode);
+//void TIM3_SelectOnePulseMode(TIM3_OPMode_TypeDef TIM3_OPMode);
 void TIM3_Cmd(FunctionalState NewState);
 
 /* Output Compare management **************************************************/
@@ -823,11 +823,11 @@ void TIM3_OC2Init(TIM3_OCMode_TypeDef TIM3_OCMode,
                   uint16_t TIM3_Pulse,
                   TIM3_OCPolarity_TypeDef TIM3_OCPolarity,
                   TIM3_OCIdleState_TypeDef TIM3_OCIdleState);
-void TIM3_BKRConfig(TIM3_OSSIState_TypeDef TIM3_OSSIState,
-                    TIM3_LockLevel_TypeDef TIM3_LockLevel,
-                    TIM3_BreakState_TypeDef TIM3_BreakState,
-                    TIM3_BreakPolarity_TypeDef TIM3_BreakPolarity,
-                    TIM3_AutomaticOutput_TypeDef TIM3_AutomaticOutput);
+//void TIM3_BKRConfig(TIM3_OSSIState_TypeDef TIM3_OSSIState,
+//                    TIM3_LockLevel_TypeDef TIM3_LockLevel,
+//                    TIM3_BreakState_TypeDef TIM3_BreakState,
+//                    TIM3_BreakPolarity_TypeDef TIM3_BreakPolarity,
+//                    TIM3_AutomaticOutput_TypeDef TIM3_AutomaticOutput);
 void TIM3_CtrlPWMOutputs(FunctionalState NewState);
 void TIM3_SelectOCxM(TIM3_Channel_TypeDef TIM3_Channel,
                      TIM3_OCMode_TypeDef TIM3_OCMode);
@@ -835,13 +835,13 @@ void TIM3_SetCompare1(uint16_t Compare);
 void TIM3_SetCompare2(uint16_t Compare);
 void TIM3_ForcedOC1Config(TIM3_ForcedAction_TypeDef TIM3_ForcedAction);
 void TIM3_ForcedOC2Config(TIM3_ForcedAction_TypeDef TIM3_ForcedAction);
-void TIM3_OC1PreloadConfig(FunctionalState NewState);
-void TIM3_OC2PreloadConfig(FunctionalState NewState);
-void TIM3_OC1FastConfig(FunctionalState NewState);
-void TIM3_OC2FastConfig(FunctionalState NewState);
-void TIM3_OC1PolarityConfig(TIM3_OCPolarity_TypeDef TIM3_OCPolarity);
-void TIM3_OC2PolarityConfig(TIM3_OCPolarity_TypeDef TIM3_OCPolarity);
-void TIM3_CCxCmd(TIM3_Channel_TypeDef TIM3_Channel, FunctionalState NewState);
+//void TIM3_OC1PreloadConfig(FunctionalState NewState);
+//void TIM3_OC2PreloadConfig(FunctionalState NewState);
+//void TIM3_OC1FastConfig(FunctionalState NewState);
+//void TIM3_OC2FastConfig(FunctionalState NewState);
+//void TIM3_OC1PolarityConfig(TIM3_OCPolarity_TypeDef TIM3_OCPolarity);
+//void TIM3_OC2PolarityConfig(TIM3_OCPolarity_TypeDef TIM3_OCPolarity);
+//void TIM3_CCxCmd(TIM3_Channel_TypeDef TIM3_Channel, FunctionalState NewState);
 
 /* Input Capture management ***************************************************/
 void TIM3_ICInit(TIM3_Channel_TypeDef TIM3_Channel,

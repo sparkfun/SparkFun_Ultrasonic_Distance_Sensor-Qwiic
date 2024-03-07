@@ -185,48 +185,48 @@ void CLK_HSICmd(FunctionalState NewState)
   *         register values. 
   * @retval None
   */
-void CLK_AdjustHSICalibrationValue(uint8_t CLK_HSICalibrationValue)
-{
-  /* two consecutive write access to HSIUNLCKR register to unlock HSITRIMR */
-  CLK->HSIUNLCKR = 0xAC;
-  CLK->HSIUNLCKR = 0x35;
-
-  /* Store the new value */
-  CLK->HSITRIMR = (uint8_t)CLK_HSICalibrationValue;
-}
-
-/**
-  * @brief  Enables or disables the Internal Low Speed oscillator (LSI).
-  * @note   After enabling the LSI, the application software should wait on 
-  *         LSIRDY flag to be set indicating that LSI clock is stable and can
-  *         be used to clock the IWDG and/or the RTC.
-  * @note   LSI can not be disabled if used as system clock source, as active CCO 
-  *         source, as BEEP clock source while BEEPAHALT bit is set or, as RTC active 
-  *         clock source.     
-  * @param  NewState: new state of the LSI.
-  *          This parameter can be: ENABLE or DISABLE.
-  * @note   When the LSI is stopped, LSIRDY flag goes low after 6 LSI oscillator
-  *         clock cycles. 
-  * @retval None
-  */
-void CLK_LSICmd(FunctionalState NewState)
-{
-
-  /* Check the parameters */
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  if (NewState != DISABLE)
-  {
-    /* Set LSION bit */
-    CLK->ICKCR |= CLK_ICKCR_LSION;
-  }
-  else
-  {
-    /* Reset LSION bit */
-    CLK->ICKCR &= (uint8_t)(~CLK_ICKCR_LSION);
-  }
-}
-
+//void CLK_AdjustHSICalibrationValue(uint8_t CLK_HSICalibrationValue)
+//{
+//  /* two consecutive write access to HSIUNLCKR register to unlock HSITRIMR */
+//  CLK->HSIUNLCKR = 0xAC;
+//  CLK->HSIUNLCKR = 0x35;
+//
+//  /* Store the new value */
+//  CLK->HSITRIMR = (uint8_t)CLK_HSICalibrationValue;
+//}
+//
+///**
+//  * @brief  Enables or disables the Internal Low Speed oscillator (LSI).
+//  * @note   After enabling the LSI, the application software should wait on 
+//  *         LSIRDY flag to be set indicating that LSI clock is stable and can
+//  *         be used to clock the IWDG and/or the RTC.
+//  * @note   LSI can not be disabled if used as system clock source, as active CCO 
+//  *         source, as BEEP clock source while BEEPAHALT bit is set or, as RTC active 
+//  *         clock source.     
+//  * @param  NewState: new state of the LSI.
+//  *          This parameter can be: ENABLE or DISABLE.
+//  * @note   When the LSI is stopped, LSIRDY flag goes low after 6 LSI oscillator
+//  *         clock cycles. 
+//  * @retval None
+//  */
+//void CLK_LSICmd(FunctionalState NewState)
+//{
+//
+//  /* Check the parameters */
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  if (NewState != DISABLE)
+//  {
+//    /* Set LSION bit */
+//    CLK->ICKCR |= CLK_ICKCR_LSION;
+//  }
+//  else
+//  {
+//    /* Reset LSION bit */
+//    CLK->ICKCR &= (uint8_t)(~CLK_ICKCR_LSION);
+//  }
+//}
+//
 /**
   * @brief  Configures the External High Speed oscillator (HSE).
   * @note   After enabling the HSE (CLK_HSE_ON or CLK_HSE_Bypass), the application
@@ -246,90 +246,90 @@ void CLK_LSICmd(FunctionalState NewState)
   *         not used by the RTC, output or involved in a switching operation.
   * @retval None
   */
-void CLK_HSEConfig(CLK_HSE_TypeDef CLK_HSE)
-{
-  /* Check the parameters */
-  assert_param(IS_CLK_HSE(CLK_HSE));
-
-  /* Reset HSEON and HSEBYP bits before configuring the HSE ------------------*/
-  /* Reset HSEON bit */
-  CLK->ECKCR &= (uint8_t)~CLK_ECKCR_HSEON;
-
-  /* Reset HSEBYP bit */
-  CLK->ECKCR &= (uint8_t)~CLK_ECKCR_HSEBYP;
-
-  /* Configure HSE */
-  CLK->ECKCR |= (uint8_t)CLK_HSE;
-}
-
-/**
-  * @brief  Configures the External Low Speed oscillator (LSE).
-  * @note   After enabling the LSE (CLK_LSE_ON or CLK_LSE_Bypass), the application
-  *         software should wait on LSERDY flag to be set indicating that LSE clock
-  *         is stable and can be used to clock the RTC.
-  * @param  CLK_LSE: specifies the new state of the LSE.
-  *         This parameter can be one of the following values:
-  *            @arg CLK_LSE_OFF: turn OFF the LSE oscillator, LSERDY flag goes low after
-  *                              6 LSE oscillator clock cycles.
-  *            @arg CLK_LSE_ON: turn ON the LSE oscillator
-  *            @arg CLK_LSE_Bypass: LSE oscillator bypassed with external clock
-  * @note   In case of Enabling LSE Bypass make sure that the LSE clock source is
-  *         not used by the RTC, output or involved in a switching operation.  
-  * @retval None
-  */
-void CLK_LSEConfig(CLK_LSE_TypeDef CLK_LSE)
-{
-  /* Check the parameters */
-  assert_param(IS_CLK_LSE(CLK_LSE));
-
-  /* Reset LSEON and LSEBYP bits before configuring the LSE ------------------*/
-  /* Reset LSEON bit */
-  CLK->ECKCR &= (uint8_t)~CLK_ECKCR_LSEON;
-
-  /* Reset LSEBYP bit */
-  CLK->ECKCR &= (uint8_t)~CLK_ECKCR_LSEBYP;
-
-  /* Configure LSE */
-  CLK->ECKCR |= (uint8_t)CLK_LSE;
-
-}
-
-/**
-  * @brief  Enables the Clock Security System.
-  * @note   If a failure is detected on the HSE oscillator clock, this oscillator
-  *         is automatically disabled and an interrupt is generated to inform the
-  *         software about the failure allowing the MCU to perform rescue operations.
-  * @note   Once CSS is enabled it cannot be disabled until the next reset.  
-  * @param  None
-  * @retval None
-  */
-void CLK_ClockSecuritySystemEnable(void)
-{
-  /* Set CSSEN bit */
-  CLK->CSSR |= CLK_CSSR_CSSEN;
-}
-
+//void CLK_HSEConfig(CLK_HSE_TypeDef CLK_HSE)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_CLK_HSE(CLK_HSE));
+//
+//  /* Reset HSEON and HSEBYP bits before configuring the HSE ------------------*/
+//  /* Reset HSEON bit */
+//  CLK->ECKCR &= (uint8_t)~CLK_ECKCR_HSEON;
+//
+//  /* Reset HSEBYP bit */
+//  CLK->ECKCR &= (uint8_t)~CLK_ECKCR_HSEBYP;
+//
+//  /* Configure HSE */
+//  CLK->ECKCR |= (uint8_t)CLK_HSE;
+//}
+//
+///**
+//  * @brief  Configures the External Low Speed oscillator (LSE).
+//  * @note   After enabling the LSE (CLK_LSE_ON or CLK_LSE_Bypass), the application
+//  *         software should wait on LSERDY flag to be set indicating that LSE clock
+//  *         is stable and can be used to clock the RTC.
+//  * @param  CLK_LSE: specifies the new state of the LSE.
+//  *         This parameter can be one of the following values:
+//  *            @arg CLK_LSE_OFF: turn OFF the LSE oscillator, LSERDY flag goes low after
+//  *                              6 LSE oscillator clock cycles.
+//  *            @arg CLK_LSE_ON: turn ON the LSE oscillator
+//  *            @arg CLK_LSE_Bypass: LSE oscillator bypassed with external clock
+//  * @note   In case of Enabling LSE Bypass make sure that the LSE clock source is
+//  *         not used by the RTC, output or involved in a switching operation.  
+//  * @retval None
+//  */
+//void CLK_LSEConfig(CLK_LSE_TypeDef CLK_LSE)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_CLK_LSE(CLK_LSE));
+//
+//  /* Reset LSEON and LSEBYP bits before configuring the LSE ------------------*/
+//  /* Reset LSEON bit */
+//  CLK->ECKCR &= (uint8_t)~CLK_ECKCR_LSEON;
+//
+//  /* Reset LSEBYP bit */
+//  CLK->ECKCR &= (uint8_t)~CLK_ECKCR_LSEBYP;
+//
+//  /* Configure LSE */
+//  CLK->ECKCR |= (uint8_t)CLK_LSE;
+//
+//}
+//
+///**
+//  * @brief  Enables the Clock Security System.
+//  * @note   If a failure is detected on the HSE oscillator clock, this oscillator
+//  *         is automatically disabled and an interrupt is generated to inform the
+//  *         software about the failure allowing the MCU to perform rescue operations.
+//  * @note   Once CSS is enabled it cannot be disabled until the next reset.  
+//  * @param  None
+//  * @retval None
+//  */
+//void CLK_ClockSecuritySystemEnable(void)
+//{
+//  /* Set CSSEN bit */
+//  CLK->CSSR |= CLK_CSSR_CSSEN;
+//}
+//
 /**
   * @brief  Enables the Clock Security System deglitcher system.
   * @param  None
   * @retval None
   */
-void CLK_ClockSecuritySytemDeglitchCmd(FunctionalState NewState)
-{
-  /* Check the parameters */
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  if (NewState != DISABLE)
-  {
-    /* Set CSSDGON bit */
-    CLK->CSSR |= CLK_CSSR_CSSDGON;
-  }
-  else
-  {
-    /* Reset CSSDGON  bit */
-    CLK->CSSR &= (uint8_t)(~CLK_CSSR_CSSDGON);
-  }
-}
+//void CLK_ClockSecuritySytemDeglitchCmd(FunctionalState NewState)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  if (NewState != DISABLE)
+//  {
+//    /* Set CSSDGON bit */
+//    CLK->CSSR |= CLK_CSSR_CSSDGON;
+//  }
+//  else
+//  {
+//    /* Reset CSSDGON  bit */
+//    CLK->CSSR &= (uint8_t)(~CLK_CSSR_CSSDGON);
+//  }
+//}
 
 /**
   * @brief  Selects the clock source to output on CCO pin(PC4).
@@ -353,15 +353,15 @@ void CLK_ClockSecuritySytemDeglitchCmd(FunctionalState NewState)
   *            @arg CLK_CCODiv_64: division by 64 applied to CCO clock
   * @retval None
   */
-void CLK_CCOConfig(CLK_CCOSource_TypeDef CLK_CCOSource, CLK_CCODiv_TypeDef CLK_CCODiv)
-{
-  /* check teh parameters */
-  assert_param(IS_CLK_OUTPUT(CLK_CCOSource));
-  assert_param(IS_CLK_OUTPUT_DIVIDER(CLK_CCODiv));
-
-  /* Selects the source provided on cco_ck output and its divider*/
-  CLK->CCOR = (uint8_t)((uint8_t)CLK_CCOSource | (uint8_t)CLK_CCODiv);
-}
+//void CLK_CCOConfig(CLK_CCOSource_TypeDef CLK_CCOSource, CLK_CCODiv_TypeDef CLK_CCODiv)
+//{
+//  /* check teh parameters */
+//  assert_param(IS_CLK_OUTPUT(CLK_CCOSource));
+//  assert_param(IS_CLK_OUTPUT_DIVIDER(CLK_CCODiv));
+//
+//  /* Selects the source provided on cco_ck output and its divider*/
+//  CLK->CCOR = (uint8_t)((uint8_t)CLK_CCOSource | (uint8_t)CLK_CCODiv);
+//}
 
 /**
   * @}
@@ -632,15 +632,15 @@ void CLK_RTCClockConfig(CLK_RTCCLKSource_TypeDef CLK_RTCCLKSource, CLK_RTCCLKDiv
   *            @arg CLK_BEEPCLKSource_LSI: LSI selected as BEEP clock  
   * @retval None
   */
-void CLK_BEEPClockConfig(CLK_BEEPCLKSource_TypeDef CLK_BEEPCLKSource)
-{
-  /* check the parameters */
-  assert_param(IS_CLK_CLOCK_BEEP(CLK_BEEPCLKSource));
-
-  /* Selects the source provided to BEEP*/
-  CLK->CBEEPR = (uint8_t)(CLK_BEEPCLKSource);
-
-}
+//void CLK_BEEPClockConfig(CLK_BEEPCLKSource_TypeDef CLK_BEEPCLKSource)
+//{
+//  /* check the parameters */
+//  assert_param(IS_CLK_CLOCK_BEEP(CLK_BEEPCLKSource));
+//
+//  /* Selects the source provided to BEEP*/
+//  CLK->CBEEPR = (uint8_t)(CLK_BEEPCLKSource);
+//
+//}
 
 /**
 * @brief  Enables or disables the specified peripheral clock.
@@ -762,23 +762,23 @@ void CLK_PeripheralClockConfig(CLK_Peripheral_TypeDef CLK_Peripheral, Functional
   * @param  None
   * @retval None
   */
-void CLK_LSEClockSecuritySystemEnable(void)
-{
-  /* Set CSSEN bit */
-  CSSLSE->CSR |= CSSLSE_CSR_CSSEN;
-}
-
-/**
-  * @brief  Enables RTC clock switch to LSI in case of LSE failure.
-  * @note   Once Enabled, only POR can Disable it.
-  * @param  None
-  * @retval None
-  */
-void CLK_RTCCLKSwitchOnLSEFailureEnable(void)
-{
-  /* Set SWITCHEN bit */
-  CSSLSE->CSR |= CSSLSE_CSR_SWITCHEN;
-}
+//void CLK_LSEClockSecuritySystemEnable(void)
+//{
+//  /* Set CSSEN bit */
+//  CSSLSE->CSR |= CSSLSE_CSR_CSSEN;
+//}
+//
+///**
+//  * @brief  Enables RTC clock switch to LSI in case of LSE failure.
+//  * @note   Once Enabled, only POR can Disable it.
+//  * @param  None
+//  * @retval None
+//  */
+//void CLK_RTCCLKSwitchOnLSEFailureEnable(void)
+//{
+//  /* Set SWITCHEN bit */
+//  CSSLSE->CSR |= CSSLSE_CSR_SWITCHEN;
+//}
 
 /**
   * @}
@@ -804,21 +804,21 @@ void CLK_RTCCLKSwitchOnLSEFailureEnable(void)
   *         This parameter can be ENABLE or DISABLE.
   * @retval None
   */
-void CLK_HaltConfig(CLK_Halt_TypeDef CLK_Halt, FunctionalState NewState)
-{
-  /* check the parameters */
-  assert_param(IS_CLK_HALT(CLK_Halt));
-  assert_param(IS_FUNCTIONAL_STATE(NewState));
-
-  if (NewState != DISABLE)
-  {
-    CLK->ICKCR |= (uint8_t)(CLK_Halt);
-  }
-  else
-  {
-    CLK->ICKCR &= (uint8_t)(~CLK_Halt);
-  }
-}
+//void CLK_HaltConfig(CLK_Halt_TypeDef CLK_Halt, FunctionalState NewState)
+//{
+//  /* check the parameters */
+//  assert_param(IS_CLK_HALT(CLK_Halt));
+//  assert_param(IS_FUNCTIONAL_STATE(NewState));
+//
+//  if (NewState != DISABLE)
+//  {
+//    CLK->ICKCR |= (uint8_t)(CLK_Halt);
+//  }
+//  else
+//  {
+//    CLK->ICKCR &= (uint8_t)(~CLK_Halt);
+//  }
+//}
 
 /**
   * @brief  Configures the main voltage regulator

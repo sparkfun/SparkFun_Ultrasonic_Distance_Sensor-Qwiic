@@ -395,13 +395,13 @@ void CLK_DeInit(void);
 
 /* Internal/external clocks, CSS and CCO configuration functions **************/
 void CLK_HSICmd(FunctionalState NewState);
-void CLK_AdjustHSICalibrationValue(uint8_t CLK_HSICalibrationValue);
-void CLK_LSICmd(FunctionalState NewState);
-void CLK_HSEConfig(CLK_HSE_TypeDef CLK_HSE);
-void CLK_LSEConfig(CLK_LSE_TypeDef CLK_LSE);
-void CLK_ClockSecuritySystemEnable(void);
-void CLK_ClockSecuritySytemDeglitchCmd(FunctionalState NewState);
-void CLK_CCOConfig(CLK_CCOSource_TypeDef CLK_CCOSource, CLK_CCODiv_TypeDef CLK_CCODiv);
+//void CLK_AdjustHSICalibrationValue(uint8_t CLK_HSICalibrationValue);
+//void CLK_LSICmd(FunctionalState NewState);
+//void CLK_HSEConfig(CLK_HSE_TypeDef CLK_HSE);
+//void CLK_LSEConfig(CLK_LSE_TypeDef CLK_LSE);
+//void CLK_ClockSecuritySystemEnable(void);
+//void CLK_ClockSecuritySytemDeglitchCmd(FunctionalState NewState);
+//void CLK_CCOConfig(CLK_CCOSource_TypeDef CLK_CCOSource, CLK_CCODiv_TypeDef CLK_CCODiv);
 
 /* System clocks configuration functions ******************/
 void CLK_SYSCLKSourceConfig(CLK_SYSCLKSource_TypeDef CLK_SYSCLKSource);
@@ -412,15 +412,15 @@ void CLK_SYSCLKSourceSwitchCmd(FunctionalState NewState);
 
 /* Peripheral clocks configuration functions **********************************/
 void CLK_RTCClockConfig(CLK_RTCCLKSource_TypeDef CLK_RTCCLKSource, CLK_RTCCLKDiv_TypeDef CLK_RTCCLKDiv);
-void CLK_BEEPClockConfig(CLK_BEEPCLKSource_TypeDef CLK_BEEPCLKSource);
+//void CLK_BEEPClockConfig(CLK_BEEPCLKSource_TypeDef CLK_BEEPCLKSource);
 void CLK_PeripheralClockConfig(CLK_Peripheral_TypeDef CLK_Peripheral, FunctionalState NewState);
 
 /* CSS on LSE configuration functions *****************************************/
-void CLK_LSEClockSecuritySystemEnable(void);
-void CLK_RTCCLKSwitchOnLSEFailureEnable(void);
+//void CLK_LSEClockSecuritySystemEnable(void);
+//void CLK_RTCCLKSwitchOnLSEFailureEnable(void);
 
 /* Low power clock configuration functions ************************************/
-void CLK_HaltConfig(CLK_Halt_TypeDef CLK_Halt, FunctionalState NewState);
+//void CLK_HaltConfig(CLK_Halt_TypeDef CLK_Halt, FunctionalState NewState);
 void CLK_MainRegulatorCmd(FunctionalState NewState);
 
 /* Interrupts and flags management functions **********************************/

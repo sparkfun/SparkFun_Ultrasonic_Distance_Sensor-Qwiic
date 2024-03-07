@@ -798,15 +798,15 @@ void TIM2_TimeBaseInit(TIM2_Prescaler_TypeDef TIM2_Prescaler,
                        TIM2_CounterMode_TypeDef TIM2_CounterMode, uint16_t TIM2_Period);
 void TIM2_PrescalerConfig(TIM2_Prescaler_TypeDef Prescaler,
                           TIM2_PSCReloadMode_TypeDef TIM2_PSCReloadMode);
-void TIM2_CounterModeConfig(TIM2_CounterMode_TypeDef TIM2_CounterMode);
+//void TIM2_CounterModeConfig(TIM2_CounterMode_TypeDef TIM2_CounterMode);
 void TIM2_SetCounter(uint16_t Counter);
 void TIM2_SetAutoreload(uint16_t Autoreload);
 uint16_t TIM2_GetCounter(void);
 TIM2_Prescaler_TypeDef TIM2_GetPrescaler(void);
-void TIM2_UpdateDisableConfig(FunctionalState NewState);
-void TIM2_UpdateRequestConfig(TIM2_UpdateSource_TypeDef TIM2_UpdateSource);
+//void TIM2_UpdateDisableConfig(FunctionalState NewState);
+//void TIM2_UpdateRequestConfig(TIM2_UpdateSource_TypeDef TIM2_UpdateSource);
 void TIM2_ARRPreloadConfig(FunctionalState NewState);
-void TIM2_SelectOnePulseMode(TIM2_OPMode_TypeDef TIM2_OPMode);
+//void TIM2_SelectOnePulseMode(TIM2_OPMode_TypeDef TIM2_OPMode);
 void TIM2_Cmd(FunctionalState NewState);
 
 /* Output Compare management **************************************************/
@@ -820,24 +820,24 @@ void TIM2_OC2Init(TIM2_OCMode_TypeDef TIM2_OCMode,
                   uint16_t TIM2_Pulse,
                   TIM2_OCPolarity_TypeDef TIM2_OCPolarity,
                   TIM2_OCIdleState_TypeDef TIM2_OCIdleState);
-void TIM2_BKRConfig(TIM2_OSSIState_TypeDef TIM2_OSSIState,
-                    TIM2_LockLevel_TypeDef TIM2_LockLevel,
-                    TIM2_BreakState_TypeDef TIM2_BreakState,
-                    TIM2_BreakPolarity_TypeDef TIM2_BreakPolarity,
-                    TIM2_AutomaticOutput_TypeDef TIM2_AutomaticOutput);
+//void TIM2_BKRConfig(TIM2_OSSIState_TypeDef TIM2_OSSIState,
+//                    TIM2_LockLevel_TypeDef TIM2_LockLevel,
+//                    TIM2_BreakState_TypeDef TIM2_BreakState,
+//                    TIM2_BreakPolarity_TypeDef TIM2_BreakPolarity,
+//                    TIM2_AutomaticOutput_TypeDef TIM2_AutomaticOutput);
 void TIM2_CtrlPWMOutputs(FunctionalState NewState);
 void TIM2_SelectOCxM(TIM2_Channel_TypeDef TIM2_Channel, TIM2_OCMode_TypeDef TIM2_OCMode);
 void TIM2_SetCompare1(uint16_t Compare);
 void TIM2_SetCompare2(uint16_t Compare);
 void TIM2_ForcedOC1Config(TIM2_ForcedAction_TypeDef TIM2_ForcedAction);
 void TIM2_ForcedOC2Config(TIM2_ForcedAction_TypeDef TIM2_ForcedAction);
-void TIM2_OC1PreloadConfig(FunctionalState NewState);
-void TIM2_OC2PreloadConfig(FunctionalState NewState);
-void TIM2_OC1FastConfig(FunctionalState NewState);
-void TIM2_OC2FastConfig(FunctionalState NewState);
-void TIM2_OC1PolarityConfig(TIM2_OCPolarity_TypeDef TIM2_OCPolarity);
-void TIM2_OC2PolarityConfig(TIM2_OCPolarity_TypeDef TIM2_OCPolarity);
-void TIM2_CCxCmd(TIM2_Channel_TypeDef TIM2_Channel, FunctionalState NewState);
+//void TIM2_OC1PreloadConfig(FunctionalState NewState);
+//void TIM2_OC2PreloadConfig(FunctionalState NewState);
+//void TIM2_OC1FastConfig(FunctionalState NewState);
+//void TIM2_OC2FastConfig(FunctionalState NewState);
+//void TIM2_OC1PolarityConfig(TIM2_OCPolarity_TypeDef TIM2_OCPolarity);
+//void TIM2_OC2PolarityConfig(TIM2_OCPolarity_TypeDef TIM2_OCPolarity);
+//void TIM2_CCxCmd(TIM2_Channel_TypeDef TIM2_Channel, FunctionalState NewState);
 
 /* Input Capture management ***************************************************/
 void TIM2_ICInit(TIM2_Channel_TypeDef TIM2_Channel,
