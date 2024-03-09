@@ -1,5 +1,5 @@
 
-Map of Release\firmware_v01.sm8 from link file Release\firmware_v01.lkf - Thu Mar  7 13:19:28 2024
+Map of Release\firmware_v01.sm8 from link file Release\firmware_v01.lkf - Fri Mar  8 21:37:28 2024
 
 
                                --------
@@ -7,13 +7,13 @@ Map of Release\firmware_v01.sm8 from link file Release\firmware_v01.lkf - Thu Ma
                                --------
 
 start 00008080 end 00008099 length    25 segment .const
-start 000080b1 end 00009f91 length  7904 segment .text
+start 000080b3 end 00009f68 length  7861 segment .text
 start 00001000 end 00001000 length     0 segment .eeprom
-start 00000000 end 00000010 length    16 segment .bsct, initialized
-start 000080a1 end 000080b1 length    16 segment .bsct, from
-start 00000010 end 0000001d length    13 segment .ubsct
-start 0000001d end 0000001d length     0 segment .bit
-start 0000001d end 0000001d length     0 segment .share
+start 00000000 end 00000012 length    18 segment .bsct, initialized
+start 000080a1 end 000080b3 length    18 segment .bsct, from
+start 00000012 end 0000001c length    10 segment .ubsct
+start 0000001c end 0000001c length     0 segment .bit
+start 0000001c end 0000001c length     0 segment .share
 start 00000100 end 00000100 length     0 segment .data
 start 00000100 end 00000100 length     0 segment .bss
 start 00000000 end 00000c4a length  3146 segment .info.
@@ -26,30 +26,29 @@ start 00008099 end 000080a1 length     8 segment .init
                                -------
 
 C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\crtsi0.sm8:
-start 000080b1 end 00008101 length    80 section .text
+start 000080b3 end 00008103 length    80 section .text
 start 00000100 end 00000100 length     0 section .bss
-start 00000010 end 00000010 length     0 section .ubsct
+start 00000012 end 00000012 length     0 section .ubsct
 start 00000000 end 00000033 length    51 section .info.
 
 Release\bsp.o:
-start 00008101 end 000081ec length   235 section .text
+start 00008103 end 000081ad length   170 section .text
 start 00000033 end 000000ba length   135 section .info.
 start 00008080 end 00008084 length     4 section .const
 
 Release\main.o:
-start 000081ec end 00008302 length   278 section .text
+start 000081ad end 000082da length   301 section .text
 start 00000000 end 00000004 length     4 section .bsct
 start 000000ba end 00000142 length   136 section .info.
 
 Release\stm8l15x_it.o:
-start 00008302 end 00008628 length   806 section .text
-start 00000004 end 00000010 length    12 section .bsct
-start 00000010 end 00000013 length     3 section .ubsct
+start 000082da end 000085ff length   805 section .text
+start 00000004 end 00000012 length    14 section .bsct
 start 00000142 end 000001d1 length   143 section .info.
 start 00008084 end 00008088 length     4 section .const
 
 Release\stm8l15x_clk.o:
-start 00008628 end 0000887a length   594 section .text
+start 000085ff end 00008851 length   594 section .text
 start 000001d1 end 00000261 length   144 section .info.
 start 00008088 end 0000808d length     5 section .const
 
@@ -58,19 +57,19 @@ start ******** end ******** length     0 section .text *** removed ***
 start 00000261 end 000002f2 length   145 section .info.
 
 Release\stm8l15x_exti.o:
-start 0000887a end 00008b07 length   653 section .text
+start 00008851 end 00008ade length   653 section .text
 start 000002f2 end 00000383 length   145 section .info.
 
 Release\stm8l15x_flash.o:
-start 00008b07 end 00008cb8 length   433 section .text
+start 00008ade end 00008c8f length   433 section .text
 start 00000383 end 00000415 length   146 section .info.
 
 Release\stm8l15x_gpio.o:
-start 00008cb8 end 00008d54 length   156 section .text
+start 00008c8f end 00008d2b length   156 section .text
 start 00000415 end 000004a6 length   145 section .info.
 
 Release\stm8l15x_i2c.o:
-start 00008d54 end 00009125 length   977 section .text
+start 00008d2b end 000090fc length   977 section .text
 start 000004a6 end 00000536 length   144 section .info.
 start 0000808d end 00008099 length    12 section .const
 
@@ -79,103 +78,103 @@ start ******** end ******** length     0 section .text *** removed ***
 start 00000536 end 000005c7 length   145 section .info.
 
 Release\stm8l15x_tim2.o:
-start 00009125 end 00009622 length  1277 section .text
+start 000090fc end 000095f9 length  1277 section .text
 start 000005c7 end 00000658 length   145 section .info.
 
 Release\stm8l15x_tim3.o:
-start 00009622 end 00009aae length  1164 section .text
+start 000095f9 end 00009a85 length  1164 section .text
 start 00000658 end 000006e9 length   145 section .info.
 
 Release\stm8l15x_tim4.o:
-start 00009aae end 00009b6e length   192 section .text
+start 00009a85 end 00009b45 length   192 section .text
 start 000006e9 end 0000077a length   145 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)cmulx.o:
-start 00009b6e end 00009b82 length    20 section .text
+start 00009b45 end 00009b59 length    20 section .text
 start 0000077a end 000007a9 length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)fmul.o:
-start 00009b82 end 00009c57 length   213 section .text
+start 00009b59 end 00009c2e length   213 section .text
 start 000007a9 end 000007d7 length    46 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ftol.o:
-start 00009c57 end 00009cb9 length    98 section .text
+start 00009c2e end 00009c90 length    98 section .text
 start 000007d7 end 00000805 length    46 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ladd.o:
-start 00009cb9 end 00009cd1 length    24 section .text
+start 00009c90 end 00009ca8 length    24 section .text
 start 00000805 end 00000833 length    46 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lcmp.o:
-start 00009cd1 end 00009cf1 length    32 section .text
+start 00009ca8 end 00009cc8 length    32 section .text
 start 00000833 end 00000861 length    46 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lgadd.o:
-start 00009cf1 end 00009d08 length    23 section .text
+start 00009cc8 end 00009cdf length    23 section .text
 start 00000861 end 00000890 length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lmul.o:
-start 00009d08 end 00009d93 length   139 section .text
+start 00009cdf end 00009d6a length   139 section .text
 start 00000890 end 000008be length    46 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lreg.o:
-start 00000013 end 00000017 length     4 section .ubsct
+start 00000012 end 00000016 length     4 section .ubsct
 start 000008be end 000008ec length    46 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ltor.o:
-start 00009d93 end 00009da5 length    18 section .text
+start 00009d6a end 00009d7c length    18 section .text
 start 000008ec end 0000091a length    46 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ludiv.o:
-start 00009da5 end 00009db9 length    20 section .text
+start 00009d7c end 00009d90 length    20 section .text
 start 0000091a end 00000949 length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ldiv.o:
-start 00009db9 end 00009ea4 length   235 section .text
+start 00009d90 end 00009e7b length   235 section .text
 start 00000949 end 00000977 length    46 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lgneg.o:
-start 00009ea4 end 00009eb7 length    19 section .text
+start 00009e7b end 00009e8e length    19 section .text
 start 00000977 end 000009a6 length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lneg.o:
-start 00009eb7 end 00009ecc length    21 section .text
+start 00009e8e end 00009ea3 length    21 section .text
 start 000009a6 end 000009d4 length    46 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lzmp.o:
-start 00009ecc end 00009edf length    19 section .text
+start 00009ea3 end 00009eb6 length    19 section .text
 start 000009d4 end 00000a02 length    46 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)rtol.o:
-start 00009edf end 00009ef1 length    18 section .text
+start 00009eb6 end 00009ec8 length    18 section .text
 start 00000a02 end 00000a30 length    46 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)sdivx.o:
-start 00009ef1 end 00009f1c length    43 section .text
+start 00009ec8 end 00009ef3 length    43 section .text
 start 00000a30 end 00000a5f length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)smul.o:
-start 00009f1c end 00009f5b length    63 section .text
+start 00009ef3 end 00009f32 length    63 section .text
 start 00000a5f end 00000a8d length    46 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)uitof.o:
-start 00009f5b end 00009f7f length    36 section .text
+start 00009f32 end 00009f56 length    36 section .text
 start 00000a8d end 00000abc length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)utol.o:
-start 00009f7f end 00009f8a length    11 section .text
+start 00009f56 end 00009f61 length    11 section .text
 start 00000abc end 00000aea length    46 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)utolx.o:
-start 00009f8a end 00009f91 length     7 section .text
+start 00009f61 end 00009f68 length     7 section .text
 start 00000aea end 00000b19 length    47 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)xreg.o:
-start 00000017 end 0000001a length     3 section .ubsct
+start 00000016 end 00000019 length     3 section .ubsct
 start 00000b19 end 00000b47 length    46 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)yreg.o:
-start 0000001a end 0000001d length     3 section .ubsct
+start 00000019 end 0000001c length     3 section .ubsct
 start 00000b47 end 00000b75 length    46 section .info.
 
 Release\stm8_interrupt_vector.o:
@@ -193,17 +192,19 @@ _Delay                                            4   (4)
 _EEPROM_ReadByte                             >    6   (4)
 _EEPROM_WriteByte                                10   (7)
 _EIGHT                                            8   (3)
-_I2C_DeInit_Config                           >   10   (3)
 
 Release\main.o:
-_main                                        >   53   (2)
+_main                                        >   55   (2)
+_ultrasonicCLKSetup                               7   (2)
+_ultrasonicGPIOSetup                              8   (2)
+_ultrasonicI2CSetup                              53   (2)
 
 Release\stm8l15x_clk.o:
 _CLK_ClearFlag                               >    2   (2)
 _CLK_ClearITPendingBit                       >    2   (2)
 _CLK_DeInit                                  >    2   (2)
 _CLK_GetClockFreq                                25   (11)
-_CLK_GetFlagStatus                           >    5   (5)
+_CLK_GetFlagStatus                                5   (5)
 _CLK_GetITStatus                             >    4   (4)
 _CLK_GetSYSCLKSource                         >    2   (2)
 _CLK_HSICmd                                       2   (2)
@@ -227,7 +228,7 @@ _EXTI_SetPinSensitivity                           4   (4)
 _EXTI_SetPortSensitivity                     >    4   (4)
 
 Release\stm8l15x_flash.o:
-_FLASH_DeInit                                     2   (2)
+_FLASH_DeInit                                >    2   (2)
 _FLASH_EraseBlock                            >   13   (11)
 _FLASH_EraseByte                             >    6   (6)
 _FLASH_EraseOptionByte                       >    7   (2)
@@ -283,14 +284,14 @@ _I2C_GenerateSTART                           >    5   (5)
 _I2C_GenerateSTOP                            >    5   (5)
 _I2C_GetFlagStatus                           >    8   (8)
 _I2C_GetITStatus                             >   10   (10)
-_I2C_GetLastEvent                            >   10   (10)
+_I2C_GetLastEvent                                10   (10)
 _I2C_GetPEC                                  >    2   (2)
 _I2C_ITConfig                                     7   (7)
 _I2C_Init                                        51   (26)
 _I2C_OwnAddress2Config                       >    6   (6)
 _I2C_PECPositionConfig                       >    5   (5)
-_I2C_ReadRegister                            >    9   (9)
-_I2C_ReceiveData                             >    2   (2)
+_I2C_ReadRegister                                 9   (9)
+_I2C_ReceiveData                                  2   (2)
 _I2C_SMBusAlertConfig                        >    5   (5)
 _I2C_Send7bitAddress                         >    6   (6)
 _I2C_SendData                                >    5   (5)
@@ -312,7 +313,7 @@ f_TRAP_IRQHandler                            >    6   (6)
 
 Release\stm8l15x_tim2.o:
 _TIM2_ARRPreloadConfig                            2   (2)
-_TIM2_ClearFlag                              >    4   (4)
+_TIM2_ClearFlag                                   4   (4)
 _TIM2_ClearITPendingBit                           2   (2)
 _TIM2_Cmd                                         2   (2)
 _TIM2_CtrlPWMOutputs                         >    2   (2)
@@ -358,7 +359,7 @@ Release\stm8l15x_tim3.o:
 L3_TI1_Config                                     7   (7)
 L5_TI2_Config                                     7   (7)
 _TIM3_ARRPreloadConfig                            2   (2)
-_TIM3_ClearFlag                              >    4   (4)
+_TIM3_ClearFlag                                   4   (4)
 _TIM3_ClearITPendingBit                           2   (2)
 _TIM3_Cmd                                         2   (2)
 _TIM3_CtrlPWMOutputs                         >    2   (2)
@@ -400,7 +401,7 @@ _TIM3_TimeBaseInit                                6   (6)
 
 Release\stm8l15x_tim4.o:
 _TIM4_ARRPreloadConfig                            2   (2)
-_TIM4_ClearFlag                              >    2   (2)
+_TIM4_ClearFlag                                   2   (2)
 _TIM4_ClearITPendingBit                           2   (2)
 _TIM4_Cmd                                         2   (2)
 _TIM4_DeInit                                      2   (2)
@@ -416,7 +417,7 @@ _TIM4_SetAutoreload                          >    2   (2)
 _TIM4_SetCounter                                  2   (2)
 _TIM4_TimeBaseInit                                2   (2)
 
-Stack size: 120
+Stack size: 122
 
 
                               ---------
@@ -437,33 +438,33 @@ Stack size: 120
 
   10 > _CLK_DeInit: (2)
 
-  11 > _CLK_GetFlagStatus: (5)
+  11 > _CLK_GetITStatus: (4)
 
-  12 > _CLK_GetITStatus: (4)
+  12 > _CLK_GetSYSCLKSource: (2)
 
-  13 > _CLK_GetSYSCLKSource: (2)
+  13 > _CLK_ITConfig: (4)
 
-  14 > _CLK_ITConfig: (4)
+  14 > _CLK_MainRegulatorCmd: (2)
 
-  15 > _CLK_MainRegulatorCmd: (2)
+  15 > _CLK_RTCClockConfig: (4)
 
-  16 > _CLK_RTCClockConfig: (4)
+  16 > _CLK_SYSCLKSourceSwitchCmd: (2)
 
-  17 > _CLK_SYSCLKSourceSwitchCmd: (2)
+  17 > _EEPROM_ReadByte: (4)
 
-  18 > _EEPROM_ReadByte: (4)
+  18 > _EXTI_GetITStatus: (5)
 
-  19 > _EXTI_GetITStatus: (5)
+  19 > _EXTI_GetPinSensitivity: (3)
 
-  20 > _EXTI_GetPinSensitivity: (3)
+  20 > _EXTI_GetPortSensitivity: (4)
 
-  21 > _EXTI_GetPortSensitivity: (4)
+  21 > _EXTI_SelectPort: (3)
 
-  22 > _EXTI_SelectPort: (3)
+  22 > _EXTI_SetHalfPortSelection: (4)
 
-  23 > _EXTI_SetHalfPortSelection: (4)
+  23 > _EXTI_SetPortSensitivity: (4)
 
-  24 > _EXTI_SetPortSensitivity: (4)
+  24 > _FLASH_DeInit: (2)
 
   25 > _FLASH_EraseBlock: (11)
 
@@ -537,419 +538,432 @@ Stack size: 120
 
   61 > _I2C_DMALastTransferCmd: (5)
 
-  62 > _I2C_DeInit_Config: (3)
-  63      + _I2C_Cmd: (5)
-  64      + _I2C_DeInit: (2)
-  65      + _I2C_ITConfig: (7)
+  62 > _I2C_DualAddressCmd: (5)
+
+  63 > _I2C_FastModeDutyCycleConfig: (5)
+
+  64 > _I2C_GeneralCallCmd: (5)
+
+  65 > _I2C_GenerateSTART: (5)
+
+  66 > _I2C_GenerateSTOP: (5)
+
+  67 > _I2C_GetFlagStatus: (8)
+
+  68 > _I2C_GetITStatus: (10)
+
+  69 > _I2C_GetPEC: (2)
+
+  70 > _I2C_OwnAddress2Config: (6)
+
+  71 > _I2C_PECPositionConfig: (5)
+
+  72 > _I2C_SMBusAlertConfig: (5)
+
+  73 > _I2C_Send7bitAddress: (6)
+
+  74 > _I2C_SendData: (5)
+
+  75 > _I2C_SoftwareResetCmd: (5)
+
+  76 > _I2C_StretchClockCmd: (5)
+
+  77 > _I2C_TransmitPEC: (5)
+
+  78 > _TIM2_CtrlPWMOutputs: (2)
+
+  79 > _TIM2_DMACmd: (4)
+
+  80 > _TIM2_ETRClockMode1Config: (5)
+  81      + _TIM2_ETRConfig: (5)
        
-  66 > _I2C_DualAddressCmd: (5)
-
-  67 > _I2C_FastModeDutyCycleConfig: (5)
-
-  68 > _I2C_GeneralCallCmd: (5)
-
-  69 > _I2C_GenerateSTART: (5)
-
-  70 > _I2C_GenerateSTOP: (5)
-
-  71 > _I2C_GetFlagStatus: (8)
-
-  72 > _I2C_GetITStatus: (10)
-
-  73 > _I2C_GetLastEvent: (10)
-
-  74 > _I2C_GetPEC: (2)
-
-  75 > _I2C_OwnAddress2Config: (6)
-
-  76 > _I2C_PECPositionConfig: (5)
-
-  77 > _I2C_ReadRegister: (9)
-
-  78 > _I2C_ReceiveData: (2)
-
-  79 > _I2C_SMBusAlertConfig: (5)
-
-  80 > _I2C_Send7bitAddress: (6)
-
-  81 > _I2C_SendData: (5)
-
-  82 > _I2C_SoftwareResetCmd: (5)
-
-  83 > _I2C_StretchClockCmd: (5)
-
-  84 > _I2C_TransmitPEC: (5)
-
-  85 > _TIM2_ClearFlag: (4)
-
-  86 > _TIM2_CtrlPWMOutputs: (2)
-
-  87 > _TIM2_DMACmd: (4)
-
-  88 > _TIM2_ETRClockMode1Config: (5)
-  89      + _TIM2_ETRConfig: (5)
+  82 > _TIM2_ETRClockMode2Config: (5)
+  83      + _TIM2_ETRConfig --> 81
        
-  90 > _TIM2_ETRClockMode2Config: (5)
-  91      + _TIM2_ETRConfig --> 89
+  84 > _TIM2_EncoderInterfaceConfig: (8)
+
+  85 > _TIM2_ForcedOC1Config: (4)
+
+  86 > _TIM2_ForcedOC2Config: (4)
+
+  87 > _TIM2_GenerateEvent: (2)
+
+  88 > _TIM2_GetCapture1: (6)
+
+  89 > _TIM2_GetCapture2: (6)
+
+  90 > _TIM2_GetFlagStatus: (6)
+
+  91 > _TIM2_GetITStatus: (5)
+
+  92 > _TIM2_GetPrescaler: (2)
+
+  93 > _TIM2_ICInit: (7)
+  94      + L3_TI1_Config: (7)
+  95      + L5_TI2_Config: (7)
+  96      + _TIM2_SetIC1Prescaler: (4)
+  97      + _TIM2_SetIC2Prescaler: (4)
        
-  92 > _TIM2_EncoderInterfaceConfig: (8)
+  98 > _TIM2_InternalClockConfig: (2)
 
-  93 > _TIM2_ForcedOC1Config: (4)
+  99 > _TIM2_OC1Init: (9)
 
-  94 > _TIM2_ForcedOC2Config: (4)
+ 100 > _TIM2_OC2Init: (9)
 
-  95 > _TIM2_GenerateEvent: (2)
-
-  96 > _TIM2_GetCapture1: (6)
-
-  97 > _TIM2_GetCapture2: (6)
-
-  98 > _TIM2_GetFlagStatus: (6)
-
-  99 > _TIM2_GetITStatus: (5)
-
- 100 > _TIM2_GetPrescaler: (2)
-
- 101 > _TIM2_ICInit: (7)
- 102      + L3_TI1_Config: (7)
- 103      + L5_TI2_Config: (7)
- 104      + _TIM2_SetIC1Prescaler: (4)
- 105      + _TIM2_SetIC2Prescaler: (4)
+ 101 > _TIM2_PWMIConfig: (9)
+ 102      + L3_TI1_Config --> 94
+ 103      + L5_TI2_Config --> 95
+ 104      + _TIM2_SetIC1Prescaler --> 96
+ 105      + _TIM2_SetIC2Prescaler --> 97
        
- 106 > _TIM2_InternalClockConfig: (2)
+ 106 > _TIM2_PrescalerConfig: (2)
 
- 107 > _TIM2_OC1Init: (9)
+ 107 > _TIM2_SelectCCDMA: (2)
 
- 108 > _TIM2_OC2Init: (9)
+ 108 > _TIM2_SelectHallSensor: (2)
 
- 109 > _TIM2_PWMIConfig: (9)
- 110      + L3_TI1_Config --> 102
- 111      + L5_TI2_Config --> 103
- 112      + _TIM2_SetIC1Prescaler --> 104
- 113      + _TIM2_SetIC2Prescaler --> 105
+ 109 > _TIM2_SelectMasterSlaveMode: (2)
+
+ 110 > _TIM2_SelectOCxM: (4)
+
+ 111 > _TIM2_SelectOutputTrigger: (4)
+
+ 112 > _TIM2_SelectSlaveMode: (4)
+
+ 113 > _TIM2_SetAutoreload: (2)
+
+ 114 > _TIM2_SetCompare1: (2)
+
+ 115 > _TIM2_SetCompare2: (2)
+
+ 116 > _TIM2_TIxExternalClockConfig: (5)
+ 117      + L3_TI1_Config --> 94
+ 118      + L5_TI2_Config --> 95
+ 119      + _TIM2_SelectInputTrigger: (4)
        
- 114 > _TIM2_PrescalerConfig: (2)
+ 120 > _TIM3_CtrlPWMOutputs: (2)
 
- 115 > _TIM2_SelectCCDMA: (2)
+ 121 > _TIM3_DMACmd: (4)
 
- 116 > _TIM2_SelectHallSensor: (2)
-
- 117 > _TIM2_SelectMasterSlaveMode: (2)
-
- 118 > _TIM2_SelectOCxM: (4)
-
- 119 > _TIM2_SelectOutputTrigger: (4)
-
- 120 > _TIM2_SelectSlaveMode: (4)
-
- 121 > _TIM2_SetAutoreload: (2)
-
- 122 > _TIM2_SetCompare1: (2)
-
- 123 > _TIM2_SetCompare2: (2)
-
- 124 > _TIM2_TIxExternalClockConfig: (5)
- 125      + L3_TI1_Config --> 102
- 126      + L5_TI2_Config --> 103
- 127      + _TIM2_SelectInputTrigger: (4)
+ 122 > _TIM3_ETRClockMode1Config: (5)
+ 123      + _TIM3_ETRConfig: (5)
        
- 128 > _TIM3_ClearFlag: (4)
-
- 129 > _TIM3_CtrlPWMOutputs: (2)
-
- 130 > _TIM3_DMACmd: (4)
-
- 131 > _TIM3_ETRClockMode1Config: (5)
- 132      + _TIM3_ETRConfig: (5)
+ 124 > _TIM3_ETRClockMode2Config: (5)
+ 125      + _TIM3_ETRConfig --> 123
        
- 133 > _TIM3_ETRClockMode2Config: (5)
- 134      + _TIM3_ETRConfig --> 132
+ 126 > _TIM3_ForcedOC1Config: (4)
+
+ 127 > _TIM3_ForcedOC2Config: (4)
+
+ 128 > _TIM3_GenerateEvent: (2)
+
+ 129 > _TIM3_GetCapture1: (6)
+
+ 130 > _TIM3_GetCapture2: (6)
+
+ 131 > _TIM3_GetCounter: (6)
+
+ 132 > _TIM3_GetFlagStatus: (6)
+
+ 133 > _TIM3_GetITStatus: (5)
+
+ 134 > _TIM3_GetPrescaler: (2)
+
+ 135 > _TIM3_ICInit: (7)
+ 136      + L3_TI1_Config --> 94
+ 137      + L5_TI2_Config --> 95
+ 138      + _TIM3_SetIC1Prescaler: (4)
+ 139      + _TIM3_SetIC2Prescaler: (4)
        
- 135 > _TIM3_ForcedOC1Config: (4)
+ 140 > _TIM3_InternalClockConfig: (2)
 
- 136 > _TIM3_ForcedOC2Config: (4)
+ 141 > _TIM3_OC1Init: (9)
 
- 137 > _TIM3_GenerateEvent: (2)
+ 142 > _TIM3_OC2Init: (9)
 
- 138 > _TIM3_GetCapture1: (6)
-
- 139 > _TIM3_GetCapture2: (6)
-
- 140 > _TIM3_GetCounter: (6)
-
- 141 > _TIM3_GetFlagStatus: (6)
-
- 142 > _TIM3_GetITStatus: (5)
-
- 143 > _TIM3_GetPrescaler: (2)
-
- 144 > _TIM3_ICInit: (7)
- 145      + L3_TI1_Config --> 102
- 146      + L5_TI2_Config --> 103
- 147      + _TIM3_SetIC1Prescaler: (4)
- 148      + _TIM3_SetIC2Prescaler: (4)
+ 143 > _TIM3_PWMIConfig: (9)
+ 144      + L3_TI1_Config --> 94
+ 145      + L5_TI2_Config --> 95
+ 146      + _TIM3_SetIC1Prescaler --> 138
+ 147      + _TIM3_SetIC2Prescaler --> 139
        
- 149 > _TIM3_InternalClockConfig: (2)
+ 148 > _TIM3_PrescalerConfig: (2)
 
- 150 > _TIM3_OC1Init: (9)
+ 149 > _TIM3_SelectCCDMA: (2)
 
- 151 > _TIM3_OC2Init: (9)
+ 150 > _TIM3_SelectMasterSlaveMode: (2)
 
- 152 > _TIM3_PWMIConfig: (9)
- 153      + L3_TI1_Config --> 102
- 154      + L5_TI2_Config --> 103
- 155      + _TIM3_SetIC1Prescaler --> 147
- 156      + _TIM3_SetIC2Prescaler --> 148
+ 151 > _TIM3_SelectOCxM: (4)
+
+ 152 > _TIM3_SelectOutputTrigger: (4)
+
+ 153 > _TIM3_SelectSlaveMode: (4)
+
+ 154 > _TIM3_SetAutoreload: (2)
+
+ 155 > _TIM3_SetCompare1: (2)
+
+ 156 > _TIM3_SetCompare2: (2)
+
+ 157 > _TIM3_TIxExternalClockConfig: (5)
+ 158      + L3_TI1_Config --> 94
+ 159      + L5_TI2_Config --> 95
+ 160      + _TIM3_SelectInputTrigger: (4)
        
- 157 > _TIM3_PrescalerConfig: (2)
+ 161 > _TIM4_GenerateEvent: (2)
 
- 158 > _TIM3_SelectCCDMA: (2)
+ 162 > _TIM4_GetCounter: (3)
 
- 159 > _TIM3_SelectMasterSlaveMode: (2)
+ 163 > _TIM4_GetFlagStatus: (3)
 
- 160 > _TIM3_SelectOCxM: (4)
+ 164 > _TIM4_GetITStatus: (5)
 
- 161 > _TIM3_SelectOutputTrigger: (4)
+ 165 > _TIM4_GetPrescaler: (2)
 
- 162 > _TIM3_SelectSlaveMode: (4)
+ 166 > _TIM4_InternalClockConfig: (2)
 
- 163 > _TIM3_SetAutoreload: (2)
+ 167 > _TIM4_PrescalerConfig: (2)
 
- 164 > _TIM3_SetCompare1: (2)
+ 168 > _TIM4_SetAutoreload: (2)
 
- 165 > _TIM3_SetCompare2: (2)
+ 169 > __stext: (0)
 
- 166 > _TIM3_TIxExternalClockConfig: (5)
- 167      + L3_TI1_Config --> 102
- 168      + L5_TI2_Config --> 103
- 169      + _TIM3_SelectInputTrigger: (4)
-       
- 170 > _TIM4_ClearFlag: (2)
-
- 171 > _TIM4_GenerateEvent: (2)
-
- 172 > _TIM4_GetCounter: (3)
-
- 173 > _TIM4_GetFlagStatus: (3)
-
- 174 > _TIM4_GetITStatus: (5)
-
- 175 > _TIM4_GetPrescaler: (2)
-
- 176 > _TIM4_InternalClockConfig: (2)
-
- 177 > _TIM4_PrescalerConfig: (2)
-
- 178 > _TIM4_SetAutoreload: (2)
-
- 179 > __stext: (0)
-
- 180 > _main: (2)
- 181      + _CLK_HSICmd: (2)
- 182      + _CLK_PeripheralClockConfig: (5)
- 183      + _CLK_SYSCLKDivConfig: (2)
- 184      + _CLK_SYSCLKSourceConfig: (2)
- 185      + _EXTI_DeInit: (2)
- 186      + _EXTI_SetPinSensitivity: (4)
- 187      + _FLASH_DeInit: (2)
- 188      + _GPIO_Init: (6)
- 189      + _GPIO_SetBits --> 5
- 190      + _I2C_Cmd --> 63
- 191      + _I2C_DeInit --> 64
- 192      + _I2C_ITConfig --> 65
- 193      + _I2C_Init: (26)
- 194      |    + _CLK_GetClockFreq: (11)
+ 170 > _main: (2)
+ 171      + _CLK_PeripheralClockConfig: (5)
+ 172      + _TIM2_ARRPreloadConfig: (2)
+ 173      + _TIM2_ClearFlag: (4)
+ 174      + _TIM2_DeInit: (2)
+ 175      + _TIM2_ITConfig: (4)
+ 176      + _TIM2_TimeBaseInit: (6)
+ 177      + _TIM3_ARRPreloadConfig: (2)
+ 178      + _TIM3_ClearFlag: (4)
+ 179      + _TIM3_DeInit: (2)
+ 180      + _TIM3_ITConfig: (4)
+ 181      + _TIM3_TimeBaseInit: (6)
+ 182      + _TIM4_ARRPreloadConfig: (2)
+ 183      + _TIM4_ClearFlag: (2)
+ 184      + _TIM4_DeInit: (2)
+ 185      + _TIM4_ITConfig: (4)
+ 186      + _TIM4_TimeBaseInit: (2)
+ 187      + _ultrasonicCLKSetup: (2)
+ 188      |    + _CLK_GetFlagStatus: (5)
+ 189      |    + _CLK_HSICmd: (2)
+ 190      |    + _CLK_SYSCLKDivConfig: (2)
+ 191      |    + _CLK_SYSCLKSourceConfig: (2)
           | 
- 195      + _TIM2_ARRPreloadConfig: (2)
- 196      + _TIM2_DeInit: (2)
- 197      + _TIM2_ITConfig: (4)
- 198      + _TIM2_TimeBaseInit: (6)
- 199      + _TIM3_ARRPreloadConfig: (2)
- 200      + _TIM3_DeInit: (2)
- 201      + _TIM3_ITConfig: (4)
- 202      + _TIM3_TimeBaseInit: (6)
- 203      + _TIM4_ARRPreloadConfig: (2)
- 204      + _TIM4_DeInit: (2)
- 205      + _TIM4_ITConfig: (4)
- 206      + _TIM4_TimeBaseInit: (2)
-       
- 207 > f_EXTI3_IRQHandler: (12)
- 208      + _EIGHT --> 2
- 209      + _EXTI_ClearITPendingBit: (6)
- 210      + _GPIO_Init --> 188
- 211      + _GPIO_ReadInputDataBit: (5)
- 212      + _GPIO_ResetBits --> 4
- 213      + _TIM3_Cmd: (2)
- 214      + _TIM3_SetCounter: (2)
- 215      + _TIM4_Cmd: (2)
- 216      + _TIM4_SetCounter: (2)
- 217      + _delay: (4)
-       
- 218 > f_EXTI5_IRQHandler: (16)
- 219      + _EEPROM_WriteByte: (7)
- 220      |    + _FLASH_Lock: (2)
- 221      |    + _FLASH_Unlock: (3)
+ 192      + _ultrasonicGPIOSetup: (2)
+ 193      |    + _EXTI_DeInit: (2)
+ 194      |    + _EXTI_SetPinSensitivity: (4)
+ 195      |    + _GPIO_Init: (6)
           | 
- 222      + _EXTI_ClearITPendingBit --> 209
- 223      + _I2C_Cmd --> 63
- 224      + _I2C_DeInit --> 64
- 225      + _I2C_ITConfig --> 65
- 226      + _I2C_Init --> 193
+ 196      + _ultrasonicI2CSetup: (2)
+ 197      |    + _CLK_PeripheralClockConfig --> 171
+ 198      |    + _I2C_Cmd: (5)
+ 199      |    + _I2C_DeInit: (2)
+ 200      |    + _I2C_ITConfig: (7)
+ 201      |    + _I2C_Init: (26)
+ 202      |    |    + _CLK_GetClockFreq: (11)
+          |    | 
+          | 
        
- 227 > f_EXTI6_IRQHandler: (16)
- 228      + _EXTI_ClearITPendingBit --> 209
- 229      + _GPIO_Init --> 188
- 230      + _GPIO_ResetBits --> 4
- 231      + _GPIO_SetBits --> 5
- 232      + _TIM2_Cmd --> 6
- 233      + _TIM2_GetCounter: (6)
- 234      + _TIM3_Cmd --> 213
+ 203 > f_EXTI3_IRQHandler: (12)
+ 204      + _EIGHT --> 2
+ 205      + _EXTI_ClearITPendingBit: (6)
+ 206      + _GPIO_Init --> 195
+ 207      + _GPIO_ReadInputDataBit: (5)
+ 208      + _GPIO_ResetBits --> 4
+ 209      + _TIM3_Cmd: (2)
+ 210      + _TIM3_SetCounter: (2)
+ 211      + _TIM4_Cmd: (2)
+ 212      + _TIM4_SetCounter: (2)
+ 213      + _delay: (4)
        
- 235 > f_I2C1_SPI2_IRQHandler: (16)
- 236      + _EEPROM_WriteByte --> 219
- 237      + _EIGHT --> 2
- 238      + _GPIO_Init --> 188
- 239      + _GPIO_ResetBits --> 4
- 240      + _I2C_Cmd --> 63
- 241      + _I2C_DeInit --> 64
- 242      + _I2C_ITConfig --> 65
- 243      + _I2C_Init --> 193
- 244      + _TIM3_Cmd --> 213
- 245      + _TIM3_SetCounter --> 214
- 246      + _TIM4_Cmd --> 215
- 247      + _TIM4_SetCounter --> 216
+ 214 > f_EXTI5_IRQHandler: (16)
+ 215      + _EEPROM_WriteByte: (7)
+ 216      |    + _FLASH_Lock: (2)
+ 217      |    + _FLASH_Unlock: (3)
+          | 
+ 218      + _EXTI_ClearITPendingBit --> 205
+ 219      + _I2C_Cmd --> 198
+ 220      + _I2C_DeInit --> 199
+ 221      + _I2C_ITConfig --> 200
+ 222      + _I2C_Init --> 201
        
- 248 > f_NonHandledInterrupt: (6)
-
- 249 > f_TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler: (12)
- 250      + _TIM2_ClearITPendingBit: (2)
- 251      + _TIM2_Cmd --> 6
+ 223 > f_EXTI6_IRQHandler: (16)
+ 224      + _EXTI_ClearITPendingBit --> 205
+ 225      + _GPIO_Init --> 195
+ 226      + _GPIO_ResetBits --> 4
+ 227      + _GPIO_SetBits --> 5
+ 228      + _TIM2_Cmd --> 6
+ 229      + _TIM2_GetCounter: (6)
+ 230      + _TIM3_Cmd --> 209
        
- 252 > f_TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler: (12)
- 253      + _GPIO_Init --> 188
- 254      + _GPIO_ResetBits --> 4
- 255      + _GPIO_SetBits --> 5
- 256      + _TIM3_ClearITPendingBit: (2)
- 257      + _TIM3_Cmd --> 213
+ 231 > f_I2C1_SPI2_IRQHandler: (16)
+ 232      + _EEPROM_WriteByte --> 215
+ 233      + _EIGHT --> 2
+ 234      + _GPIO_Init --> 195
+ 235      + _GPIO_ResetBits --> 4
+ 236      + _I2C_Cmd --> 198
+ 237      + _I2C_DeInit --> 199
+ 238      + _I2C_GetLastEvent: (10)
+ 239      + _I2C_ITConfig --> 200
+ 240      + _I2C_Init --> 201
+ 241      + _I2C_ReadRegister: (9)
+ 242      + _I2C_ReceiveData: (2)
+ 243      + _TIM3_Cmd --> 209
+ 244      + _TIM3_SetCounter --> 210
+ 245      + _TIM4_Cmd --> 211
+ 246      + _TIM4_SetCounter --> 212
        
- 258 > f_TIM4_UPD_OVF_TRG_IRQHandler: (12)
- 259      + _GPIO_Init --> 188
- 260      + _TIM4_ClearITPendingBit: (2)
- 261      + _TIM4_Cmd --> 215
+ 247 > f_NonHandledInterrupt: (6)
+
+ 248 > f_TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler: (12)
+ 249      + _TIM2_ClearITPendingBit: (2)
+ 250      + _TIM2_Cmd --> 6
        
- 262 > f_TRAP_IRQHandler: (6)
+ 251 > f_TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler: (12)
+ 252      + _GPIO_Init --> 195
+ 253      + _GPIO_ResetBits --> 4
+ 254      + _GPIO_SetBits --> 5
+ 255      + _TIM3_ClearITPendingBit: (2)
+ 256      + _TIM3_Cmd --> 209
+       
+ 257 > f_TIM4_UPD_OVF_TRG_IRQHandler: (12)
+ 258      + _GPIO_Init --> 195
+ 259      + _TIM4_ClearITPendingBit: (2)
+ 260      + _TIM4_Cmd --> 211
+       
+ 261 > f_TRAP_IRQHandler: (6)
 
- 263   L3_TI1_Config --> 102
+ 262   L3_TI1_Config --> 94
 
- 264   L5_TI2_Config --> 103
+ 263   L5_TI2_Config --> 95
 
- 265   _CLK_GetClockFreq --> 194
+ 264   _CLK_GetClockFreq --> 202
 
- 266   _CLK_HSICmd --> 181
+ 265   _CLK_GetFlagStatus --> 188
 
- 267   _CLK_PeripheralClockConfig --> 182
+ 266   _CLK_HSICmd --> 189
 
- 268   _CLK_SYSCLKDivConfig --> 183
+ 267   _CLK_PeripheralClockConfig --> 171
 
- 269   _CLK_SYSCLKSourceConfig --> 184
+ 268   _CLK_SYSCLKDivConfig --> 190
+
+ 269   _CLK_SYSCLKSourceConfig --> 191
 
  270   _Delay --> 3
 
- 271   _EEPROM_WriteByte --> 219
+ 271   _EEPROM_WriteByte --> 215
 
  272   _EIGHT --> 2
 
- 273   _EXTI_ClearITPendingBit --> 209
+ 273   _EXTI_ClearITPendingBit --> 205
 
- 274   _EXTI_DeInit --> 185
+ 274   _EXTI_DeInit --> 193
 
- 275   _EXTI_SetPinSensitivity --> 186
+ 275   _EXTI_SetPinSensitivity --> 194
 
- 276   _FLASH_DeInit --> 187
+ 276   _FLASH_Lock --> 216
 
- 277   _FLASH_Lock --> 220
+ 277   _FLASH_Unlock --> 217
 
- 278   _FLASH_Unlock --> 221
+ 278   _FLASH_WaitForLastOperation --> 28
 
- 279   _FLASH_WaitForLastOperation --> 28
+ 279   _GPIO_Init --> 195
 
- 280   _GPIO_Init --> 188
+ 280   _GPIO_ReadInputDataBit --> 207
 
- 281   _GPIO_ReadInputDataBit --> 211
+ 281   _GPIO_ResetBits --> 4
 
- 282   _GPIO_ResetBits --> 4
+ 282   _GPIO_SetBits --> 5
 
- 283   _GPIO_SetBits --> 5
+ 283   _I2C_Cmd --> 198
 
- 284   _I2C_Cmd --> 63
+ 284   _I2C_DeInit --> 199
 
- 285   _I2C_DeInit --> 64
+ 285   _I2C_GetLastEvent --> 238
 
- 286   _I2C_ITConfig --> 65
+ 286   _I2C_ITConfig --> 200
 
- 287   _I2C_Init --> 193
+ 287   _I2C_Init --> 201
 
- 288   _TIM2_ARRPreloadConfig --> 195
+ 288   _I2C_ReadRegister --> 241
 
- 289   _TIM2_ClearITPendingBit --> 250
+ 289   _I2C_ReceiveData --> 242
 
- 290   _TIM2_Cmd --> 6
+ 290   _TIM2_ARRPreloadConfig --> 172
 
- 291   _TIM2_DeInit --> 196
+ 291   _TIM2_ClearFlag --> 173
 
- 292   _TIM2_ETRConfig --> 89
+ 292   _TIM2_ClearITPendingBit --> 249
 
- 293   _TIM2_GetCounter --> 233
+ 293   _TIM2_Cmd --> 6
 
- 294   _TIM2_ITConfig --> 197
+ 294   _TIM2_DeInit --> 174
 
- 295   _TIM2_SelectInputTrigger --> 127
+ 295   _TIM2_ETRConfig --> 81
 
- 296   _TIM2_SetCounter --> 7
+ 296   _TIM2_GetCounter --> 229
 
- 297   _TIM2_SetIC1Prescaler --> 104
+ 297   _TIM2_ITConfig --> 175
 
- 298   _TIM2_SetIC2Prescaler --> 105
+ 298   _TIM2_SelectInputTrigger --> 119
 
- 299   _TIM2_TimeBaseInit --> 198
+ 299   _TIM2_SetCounter --> 7
 
- 300   _TIM3_ARRPreloadConfig --> 199
+ 300   _TIM2_SetIC1Prescaler --> 96
 
- 301   _TIM3_ClearITPendingBit --> 256
+ 301   _TIM2_SetIC2Prescaler --> 97
 
- 302   _TIM3_Cmd --> 213
+ 302   _TIM2_TimeBaseInit --> 176
 
- 303   _TIM3_DeInit --> 200
+ 303   _TIM3_ARRPreloadConfig --> 177
 
- 304   _TIM3_ETRConfig --> 132
+ 304   _TIM3_ClearFlag --> 178
 
- 305   _TIM3_ITConfig --> 201
+ 305   _TIM3_ClearITPendingBit --> 255
 
- 306   _TIM3_SelectInputTrigger --> 169
+ 306   _TIM3_Cmd --> 209
 
- 307   _TIM3_SetCounter --> 214
+ 307   _TIM3_DeInit --> 179
 
- 308   _TIM3_SetIC1Prescaler --> 147
+ 308   _TIM3_ETRConfig --> 123
 
- 309   _TIM3_SetIC2Prescaler --> 148
+ 309   _TIM3_ITConfig --> 180
 
- 310   _TIM3_TimeBaseInit --> 202
+ 310   _TIM3_SelectInputTrigger --> 160
 
- 311   _TIM4_ARRPreloadConfig --> 203
+ 311   _TIM3_SetCounter --> 210
 
- 312   _TIM4_ClearITPendingBit --> 260
+ 312   _TIM3_SetIC1Prescaler --> 138
 
- 313   _TIM4_Cmd --> 215
+ 313   _TIM3_SetIC2Prescaler --> 139
 
- 314   _TIM4_DeInit --> 204
+ 314   _TIM3_TimeBaseInit --> 181
 
- 315   _TIM4_ITConfig --> 205
+ 315   _TIM4_ARRPreloadConfig --> 182
 
- 316   _TIM4_SetCounter --> 216
+ 316   _TIM4_ClearFlag --> 183
 
- 317   _TIM4_TimeBaseInit --> 206
+ 317   _TIM4_ClearITPendingBit --> 259
 
- 318   _delay --> 217
+ 318   _TIM4_Cmd --> 211
+
+ 319   _TIM4_DeInit --> 184
+
+ 320   _TIM4_ITConfig --> 185
+
+ 321   _TIM4_SetCounter --> 212
+
+ 322   _TIM4_TimeBaseInit --> 186
+
+ 323   _delay --> 213
+
+ 324   _ultrasonicCLKSetup --> 187
+
+ 325   _ultrasonicGPIOSetup --> 192
+
+ 326   _ultrasonicI2CSetup --> 196
 
 
 
@@ -957,27 +971,28 @@ Stack size: 120
                                Symbols
                                -------
 
-_BSP_Initializes                              000081e9   defined in Release\bsp.o section .text
-_CLK_ClearFlag                                0000883d   defined in Release\stm8l15x_clk.o section .text
-_CLK_ClearITPendingBit                        0000886a   defined in Release\stm8l15x_clk.o section .text
-_CLK_DeInit                                   00008628   defined in Release\stm8l15x_clk.o section .text
-_CLK_GetClockFreq                             0000867e   defined in Release\stm8l15x_clk.o section .text
+_BSP_Initializes                              000081aa   defined in Release\bsp.o section .text
+_CLK_ClearFlag                                00008814   defined in Release\stm8l15x_clk.o section .text
+_CLK_ClearITPendingBit                        00008841   defined in Release\stm8l15x_clk.o section .text
+_CLK_DeInit                                   000085ff   defined in Release\stm8l15x_clk.o section .text
+_CLK_GetClockFreq                             00008655   defined in Release\stm8l15x_clk.o section .text
                                                          used in Release\stm8l15x_i2c.o
-_CLK_GetFlagStatus                            000087ce   defined in Release\stm8l15x_clk.o section .text
-_CLK_GetITStatus                              00008842   defined in Release\stm8l15x_clk.o section .text
-_CLK_GetSYSCLKSource                          0000867a   defined in Release\stm8l15x_clk.o section .text
-_CLK_HSICmd                                   00008669   defined in Release\stm8l15x_clk.o section .text
+_CLK_GetFlagStatus                            000087a5   defined in Release\stm8l15x_clk.o section .text
                                                          used in Release\main.o
-_CLK_ITConfig                                 00008790   defined in Release\stm8l15x_clk.o section .text
-_CLK_MainRegulatorCmd                         00008783   defined in Release\stm8l15x_clk.o section .text
-_CLK_PeripheralClockConfig                    000086f8   defined in Release\stm8l15x_clk.o section .text
+_CLK_GetITStatus                              00008819   defined in Release\stm8l15x_clk.o section .text
+_CLK_GetSYSCLKSource                          00008651   defined in Release\stm8l15x_clk.o section .text
+_CLK_HSICmd                                   00008640   defined in Release\stm8l15x_clk.o section .text
                                                          used in Release\main.o
-_CLK_RTCClockConfig                           000086ef   defined in Release\stm8l15x_clk.o section .text
-_CLK_SYSCLKDivConfig                          000086de   defined in Release\stm8l15x_clk.o section .text
+_CLK_ITConfig                                 00008767   defined in Release\stm8l15x_clk.o section .text
+_CLK_MainRegulatorCmd                         0000875a   defined in Release\stm8l15x_clk.o section .text
+_CLK_PeripheralClockConfig                    000086cf   defined in Release\stm8l15x_clk.o section .text
                                                          used in Release\main.o
-_CLK_SYSCLKSourceConfig                       00008676   defined in Release\stm8l15x_clk.o section .text
+_CLK_RTCClockConfig                           000086c6   defined in Release\stm8l15x_clk.o section .text
+_CLK_SYSCLKDivConfig                          000086b5   defined in Release\stm8l15x_clk.o section .text
                                                          used in Release\main.o
-_CLK_SYSCLKSourceSwitchCmd                    000086e2   defined in Release\stm8l15x_clk.o section .text
+_CLK_SYSCLKSourceConfig                       0000864d   defined in Release\stm8l15x_clk.o section .text
+                                                         used in Release\main.o
+_CLK_SYSCLKSourceSwitchCmd                    000086b9   defined in Release\stm8l15x_clk.o section .text
 _COMP_ClearFlag                               ********   *** removed from Release\stm8l15x_comp.o ***
 _COMP_ClearITPendingBit                       ********   *** removed from Release\stm8l15x_comp.o ***
 _COMP_DeInit                                  ********   *** removed from Release\stm8l15x_comp.o ***
@@ -992,252 +1007,253 @@ _COMP_TriggerConfig                           ********   *** removed from Releas
 _COMP_VrefintOutputCmd                        ********   *** removed from Release\stm8l15x_comp.o ***
 _COMP_VrefintToCOMP1Connect                   ********   *** removed from Release\stm8l15x_comp.o ***
 _COMP_WindowCmd                               ********   *** removed from Release\stm8l15x_comp.o ***
-_Delay                                        00008101   defined in Release\bsp.o section .text
-_Distance                                     0000000c   defined in Release\stm8l15x_it.o section .bsct, initialized
-_Distance_H                                   0000000e   defined in Release\stm8l15x_it.o section .bsct, initialized
-_Distance_L                                   0000000f   defined in Release\stm8l15x_it.o section .bsct, initialized
-_EEPROM_ReadByte                              000081d4   defined in Release\bsp.o section .text
-_EEPROM_WriteByte                             000081b1   defined in Release\bsp.o section .text
+_Delay                                        00008103   defined in Release\bsp.o section .text
+_Distance                                     0000000e   defined in Release\stm8l15x_it.o section .bsct, initialized
+_Distance_H                                   00000010   defined in Release\stm8l15x_it.o section .bsct, initialized
+_Distance_L                                   00000011   defined in Release\stm8l15x_it.o section .bsct, initialized
+_EEPROM_ReadByte                              00008195   defined in Release\bsp.o section .text
+_EEPROM_WriteByte                             00008172   defined in Release\bsp.o section .text
                                                          used in Release\stm8l15x_it.o
-_EIGHT                                        0000810c   defined in Release\bsp.o section .text
+_EIGHT                                        0000810e   defined in Release\bsp.o section .text
                                                          used in Release\stm8l15x_it.o
-_EXTI_ClearITPendingBit                       00008aec   defined in Release\stm8l15x_exti.o section .text
+_EXTI_ClearITPendingBit                       00008ac3   defined in Release\stm8l15x_exti.o section .text
                                                          used in Release\stm8l15x_it.o
-_EXTI_DeInit                                  0000887a   defined in Release\stm8l15x_exti.o section .text
+_EXTI_DeInit                                  00008851   defined in Release\stm8l15x_exti.o section .text
                                                          used in Release\main.o
-_EXTI_GetITStatus                             00008ad3   defined in Release\stm8l15x_exti.o section .text
-_EXTI_GetPinSensitivity                       00008a54   defined in Release\stm8l15x_exti.o section .text
-_EXTI_GetPortSensitivity                      00008ab0   defined in Release\stm8l15x_exti.o section .text
-_EXTI_SelectPort                              00008991   defined in Release\stm8l15x_exti.o section .text
-_EXTI_SetHalfPortSelection                    000089c2   defined in Release\stm8l15x_exti.o section .text
-_EXTI_SetPinSensitivity                       0000889b   defined in Release\stm8l15x_exti.o section .text
+_EXTI_GetITStatus                             00008aaa   defined in Release\stm8l15x_exti.o section .text
+_EXTI_GetPinSensitivity                       00008a2b   defined in Release\stm8l15x_exti.o section .text
+_EXTI_GetPortSensitivity                      00008a87   defined in Release\stm8l15x_exti.o section .text
+_EXTI_SelectPort                              00008968   defined in Release\stm8l15x_exti.o section .text
+_EXTI_SetHalfPortSelection                    00008999   defined in Release\stm8l15x_exti.o section .text
+_EXTI_SetPinSensitivity                       00008872   defined in Release\stm8l15x_exti.o section .text
                                                          used in Release\main.o
-_EXTI_SetPortSensitivity                      000089f8   defined in Release\stm8l15x_exti.o section .text
-_FLASH_DeInit                                 00008b25   defined in Release\stm8l15x_flash.o section .text
-                                                         used in Release\main.o
-_FLASH_EraseBlock                             00008c43   defined in Release\stm8l15x_flash.o section .text
-_FLASH_EraseByte                              00008b5b   defined in Release\stm8l15x_flash.o section .text
-_FLASH_EraseOptionByte                        00008b8c   defined in Release\stm8l15x_flash.o section .text
-_FLASH_GetBootSize                            00008ba7   defined in Release\stm8l15x_flash.o section .text
-_FLASH_GetCodeSize                            00008bbb   defined in Release\stm8l15x_flash.o section .text
-_FLASH_GetFlagStatus                          00008bdc   defined in Release\stm8l15x_flash.o section .text
-_FLASH_GetPowerStatus                         00008bf1   defined in Release\stm8l15x_flash.o section .text
-_FLASH_GetProgrammingTime                     00008b12   defined in Release\stm8l15x_flash.o section .text
-_FLASH_GetReadOutProtectionStatus             00008b9b   defined in Release\stm8l15x_flash.o section .text
-_FLASH_ITConfig                               00008bcf   defined in Release\stm8l15x_flash.o section .text
-_FLASH_Lock                                   00008b4e   defined in Release\stm8l15x_flash.o section .text
+_EXTI_SetPortSensitivity                      000089cf   defined in Release\stm8l15x_exti.o section .text
+_Event                                        00000004   defined in Release\stm8l15x_it.o section .bsct, initialized
+_FLASH_DeInit                                 00008afc   defined in Release\stm8l15x_flash.o section .text
+_FLASH_EraseBlock                             00008c1a   defined in Release\stm8l15x_flash.o section .text
+_FLASH_EraseByte                              00008b32   defined in Release\stm8l15x_flash.o section .text
+_FLASH_EraseOptionByte                        00008b63   defined in Release\stm8l15x_flash.o section .text
+_FLASH_GetBootSize                            00008b7e   defined in Release\stm8l15x_flash.o section .text
+_FLASH_GetCodeSize                            00008b92   defined in Release\stm8l15x_flash.o section .text
+_FLASH_GetFlagStatus                          00008bb3   defined in Release\stm8l15x_flash.o section .text
+_FLASH_GetPowerStatus                         00008bc8   defined in Release\stm8l15x_flash.o section .text
+_FLASH_GetProgrammingTime                     00008ae9   defined in Release\stm8l15x_flash.o section .text
+_FLASH_GetReadOutProtectionStatus             00008b72   defined in Release\stm8l15x_flash.o section .text
+_FLASH_ITConfig                               00008ba6   defined in Release\stm8l15x_flash.o section .text
+_FLASH_Lock                                   00008b25   defined in Release\stm8l15x_flash.o section .text
                                                          used in Release\bsp.o
-_FLASH_PowerRunModeConfig                     00008be4   defined in Release\stm8l15x_flash.o section .text
-_FLASH_PowerWaitModeConfig                    00008b18   defined in Release\stm8l15x_flash.o section .text
-_FLASH_ProgramBlock                           00008bf7   defined in Release\stm8l15x_flash.o section .text
-_FLASH_ProgramByte                            00008b55   defined in Release\stm8l15x_flash.o section .text
-_FLASH_ProgramOptionByte                      00008b79   defined in Release\stm8l15x_flash.o section .text
-_FLASH_ProgramWord                            00008b5f   defined in Release\stm8l15x_flash.o section .text
-_FLASH_ReadByte                               00008b75   defined in Release\stm8l15x_flash.o section .text
-_FLASH_SetProgrammingTime                     00008b07   defined in Release\stm8l15x_flash.o section .text
-_FLASH_Unlock                                 00008b35   defined in Release\stm8l15x_flash.o section .text
+_FLASH_PowerRunModeConfig                     00008bbb   defined in Release\stm8l15x_flash.o section .text
+_FLASH_PowerWaitModeConfig                    00008aef   defined in Release\stm8l15x_flash.o section .text
+_FLASH_ProgramBlock                           00008bce   defined in Release\stm8l15x_flash.o section .text
+_FLASH_ProgramByte                            00008b2c   defined in Release\stm8l15x_flash.o section .text
+_FLASH_ProgramOptionByte                      00008b50   defined in Release\stm8l15x_flash.o section .text
+_FLASH_ProgramWord                            00008b36   defined in Release\stm8l15x_flash.o section .text
+_FLASH_ReadByte                               00008b4c   defined in Release\stm8l15x_flash.o section .text
+_FLASH_SetProgrammingTime                     00008ade   defined in Release\stm8l15x_flash.o section .text
+_FLASH_Unlock                                 00008b0c   defined in Release\stm8l15x_flash.o section .text
                                                          used in Release\bsp.o
-_FLASH_WaitForLastOperation                   00008c7a   defined in Release\stm8l15x_flash.o section .text
-_GPIO_DeInit                                  00008cb8   defined in Release\stm8l15x_gpio.o section .text
-_GPIO_ExternalPullUpConfig                    00008d11   defined in Release\stm8l15x_gpio.o section .text
-_GPIO_Init                                    00008cc0   defined in Release\stm8l15x_gpio.o section .text
+_FLASH_WaitForLastOperation                   00008c51   defined in Release\stm8l15x_flash.o section .text
+_GPIO_DeInit                                  00008c8f   defined in Release\stm8l15x_gpio.o section .text
+_GPIO_ExternalPullUpConfig                    00008ce8   defined in Release\stm8l15x_gpio.o section .text
+_GPIO_Init                                    00008c97   defined in Release\stm8l15x_gpio.o section .text
                                                          used in Release\main.o
                                                                  Release\stm8l15x_it.o
-_GPIO_ReadInputData                           00008d46   defined in Release\stm8l15x_gpio.o section .text
-_GPIO_ReadInputDataBit                        00008d4b   defined in Release\stm8l15x_gpio.o section .text
+_GPIO_ReadInputData                           00008d1d   defined in Release\stm8l15x_gpio.o section .text
+_GPIO_ReadInputDataBit                        00008d22   defined in Release\stm8l15x_gpio.o section .text
                                                          used in Release\stm8l15x_it.o
-_GPIO_ReadOutputData                          00008d49   defined in Release\stm8l15x_gpio.o section .text
-_GPIO_ReadOutputDataBit                       00008d50   defined in Release\stm8l15x_gpio.o section .text
-_GPIO_ResetBits                               00008d3b   defined in Release\stm8l15x_gpio.o section .text
+_GPIO_ReadOutputData                          00008d20   defined in Release\stm8l15x_gpio.o section .text
+_GPIO_ReadOutputDataBit                       00008d27   defined in Release\stm8l15x_gpio.o section .text
+_GPIO_ResetBits                               00008d12   defined in Release\stm8l15x_gpio.o section .text
                                                          used in Release\bsp.o
                                                                  Release\stm8l15x_it.o
-_GPIO_SetBits                                 00008d36   defined in Release\stm8l15x_gpio.o section .text
+_GPIO_SetBits                                 00008d0d   defined in Release\stm8l15x_gpio.o section .text
                                                          used in Release\bsp.o
-                                                                 Release\main.o
                                                                  Release\stm8l15x_it.o
-_GPIO_ToggleBits                              00008d41   defined in Release\stm8l15x_gpio.o section .text
-_GPIO_Write                                   00008d23   defined in Release\stm8l15x_gpio.o section .text
-_GPIO_WriteBit                                00008d27   defined in Release\stm8l15x_gpio.o section .text
-_I2C_ARPCmd                                   00008f00   defined in Release\stm8l15x_i2c.o section .text
-_I2C_AckPositionConfig                        00008f47   defined in Release\stm8l15x_i2c.o section .text
-_I2C_AcknowledgeConfig                        00008f0e   defined in Release\stm8l15x_i2c.o section .text
-_I2C_CalculatePEC                             00008fa8   defined in Release\stm8l15x_i2c.o section .text
-_I2C_CheckEvent                               00009015   defined in Release\stm8l15x_i2c.o section .text
-_I2C_ClearFlag                                000090be   defined in Release\stm8l15x_i2c.o section .text
-_I2C_ClearITPendingBit                        00009113   defined in Release\stm8l15x_i2c.o section .text
-_I2C_Cmd                                      00008ea3   defined in Release\stm8l15x_i2c.o section .text
-                                                         used in Release\bsp.o
-                                                                 Release\main.o
-                                                                 Release\stm8l15x_it.o
-_I2C_DMACmd                                   00008fc6   defined in Release\stm8l15x_i2c.o section .text
-_I2C_DMALastTransferCmd                       00008fd7   defined in Release\stm8l15x_i2c.o section .text
-_I2C_DeInit                                   00008d54   defined in Release\stm8l15x_i2c.o section .text
-                                                         used in Release\bsp.o
-                                                                 Release\main.o
-                                                                 Release\stm8l15x_it.o
-_I2C_DeInit_Config                            00008170   defined in Release\bsp.o section .text
-_I2C_DualAddressCmd                           00008f36   defined in Release\stm8l15x_i2c.o section .text
-_I2C_FastModeDutyCycleConfig                  00008f65   defined in Release\stm8l15x_i2c.o section .text
-_I2C_GeneralCallCmd                           00008eb1   defined in Release\stm8l15x_i2c.o section .text
-_I2C_GenerateSTART                            00008ebf   defined in Release\stm8l15x_i2c.o section .text
-_I2C_GenerateSTOP                             00008ed0   defined in Release\stm8l15x_i2c.o section .text
-_I2C_GetFlagStatus                            0000908b   defined in Release\stm8l15x_i2c.o section .text
-_I2C_GetITStatus                              000090d0   defined in Release\stm8l15x_i2c.o section .text
-_I2C_GetLastEvent                             0000905d   defined in Release\stm8l15x_i2c.o section .text
-_I2C_GetPEC                                   00008fc3   defined in Release\stm8l15x_i2c.o section .text
-_I2C_ITConfig                                 00008fe8   defined in Release\stm8l15x_i2c.o section .text
-                                                         used in Release\bsp.o
-                                                                 Release\main.o
-                                                                 Release\stm8l15x_it.o
-_I2C_Init                                     00008d6a   defined in Release\stm8l15x_i2c.o section .text
+_GPIO_ToggleBits                              00008d18   defined in Release\stm8l15x_gpio.o section .text
+_GPIO_Write                                   00008cfa   defined in Release\stm8l15x_gpio.o section .text
+_GPIO_WriteBit                                00008cfe   defined in Release\stm8l15x_gpio.o section .text
+_I2C_ARPCmd                                   00008ed7   defined in Release\stm8l15x_i2c.o section .text
+_I2C_AckPositionConfig                        00008f1e   defined in Release\stm8l15x_i2c.o section .text
+_I2C_AcknowledgeConfig                        00008ee5   defined in Release\stm8l15x_i2c.o section .text
+_I2C_CalculatePEC                             00008f7f   defined in Release\stm8l15x_i2c.o section .text
+_I2C_CheckEvent                               00008fec   defined in Release\stm8l15x_i2c.o section .text
+_I2C_ClearFlag                                00009095   defined in Release\stm8l15x_i2c.o section .text
+_I2C_ClearITPendingBit                        000090ea   defined in Release\stm8l15x_i2c.o section .text
+_I2C_Cmd                                      00008e7a   defined in Release\stm8l15x_i2c.o section .text
                                                          used in Release\main.o
                                                                  Release\stm8l15x_it.o
-_I2C_OwnAddress2Config                        00008f1f   defined in Release\stm8l15x_i2c.o section .text
-_I2C_PECPositionConfig                        00008fb6   defined in Release\stm8l15x_i2c.o section .text
-_I2C_ReadRegister                             00008ffa   defined in Release\stm8l15x_i2c.o section .text
-_I2C_ReceiveData                              00008f94   defined in Release\stm8l15x_i2c.o section .text
-_I2C_SMBusAlertConfig                         00008f54   defined in Release\stm8l15x_i2c.o section .text
-_I2C_Send7bitAddress                          00008f78   defined in Release\stm8l15x_i2c.o section .text
-_I2C_SendData                                 00008f8f   defined in Release\stm8l15x_i2c.o section .text
-_I2C_SoftwareResetCmd                         00008ee1   defined in Release\stm8l15x_i2c.o section .text
-_I2C_StretchClockCmd                          00008ef2   defined in Release\stm8l15x_i2c.o section .text
-_I2C_TransmitPEC                              00008f97   defined in Release\stm8l15x_i2c.o section .text
+_I2C_DMACmd                                   00008f9d   defined in Release\stm8l15x_i2c.o section .text
+_I2C_DMALastTransferCmd                       00008fae   defined in Release\stm8l15x_i2c.o section .text
+_I2C_DeInit                                   00008d2b   defined in Release\stm8l15x_i2c.o section .text
+                                                         used in Release\main.o
+                                                                 Release\stm8l15x_it.o
+_I2C_DualAddressCmd                           00008f0d   defined in Release\stm8l15x_i2c.o section .text
+_I2C_FastModeDutyCycleConfig                  00008f3c   defined in Release\stm8l15x_i2c.o section .text
+_I2C_GeneralCallCmd                           00008e88   defined in Release\stm8l15x_i2c.o section .text
+_I2C_GenerateSTART                            00008e96   defined in Release\stm8l15x_i2c.o section .text
+_I2C_GenerateSTOP                             00008ea7   defined in Release\stm8l15x_i2c.o section .text
+_I2C_GetFlagStatus                            00009062   defined in Release\stm8l15x_i2c.o section .text
+_I2C_GetITStatus                              000090a7   defined in Release\stm8l15x_i2c.o section .text
+_I2C_GetLastEvent                             00009034   defined in Release\stm8l15x_i2c.o section .text
+                                                         used in Release\stm8l15x_it.o
+_I2C_GetPEC                                   00008f9a   defined in Release\stm8l15x_i2c.o section .text
+_I2C_ITConfig                                 00008fbf   defined in Release\stm8l15x_i2c.o section .text
+                                                         used in Release\main.o
+                                                                 Release\stm8l15x_it.o
+_I2C_Init                                     00008d41   defined in Release\stm8l15x_i2c.o section .text
+                                                         used in Release\main.o
+                                                                 Release\stm8l15x_it.o
+_I2C_OwnAddress2Config                        00008ef6   defined in Release\stm8l15x_i2c.o section .text
+_I2C_PECPositionConfig                        00008f8d   defined in Release\stm8l15x_i2c.o section .text
+_I2C_ReadRegister                             00008fd1   defined in Release\stm8l15x_i2c.o section .text
+                                                         used in Release\stm8l15x_it.o
+_I2C_ReceiveData                              00008f6b   defined in Release\stm8l15x_i2c.o section .text
+                                                         used in Release\stm8l15x_it.o
+_I2C_SMBusAlertConfig                         00008f2b   defined in Release\stm8l15x_i2c.o section .text
+_I2C_Send7bitAddress                          00008f4f   defined in Release\stm8l15x_i2c.o section .text
+_I2C_SendData                                 00008f66   defined in Release\stm8l15x_i2c.o section .text
+_I2C_SoftwareResetCmd                         00008eb8   defined in Release\stm8l15x_i2c.o section .text
+_I2C_StretchClockCmd                          00008ec9   defined in Release\stm8l15x_i2c.o section .text
+_I2C_TransmitPEC                              00008f6e   defined in Release\stm8l15x_i2c.o section .text
 _IWDG_Enable                                  ********   *** removed from Release\stm8l15x_iwdg.o ***
 _IWDG_ReloadCounter                           ********   *** removed from Release\stm8l15x_iwdg.o ***
 _IWDG_SetPrescaler                            ********   *** removed from Release\stm8l15x_iwdg.o ***
 _IWDG_SetReload                               ********   *** removed from Release\stm8l15x_iwdg.o ***
 _IWDG_WriteAccessCmd                          ********   *** removed from Release\stm8l15x_iwdg.o ***
-_Out_Range                                    00000009   defined in Release\stm8l15x_it.o section .bsct, initialized
+_Out_Range                                    0000000b   defined in Release\stm8l15x_it.o section .bsct, initialized
 _SBUF                                         00000001   defined in Release\main.o section .bsct, initialized
                                                          used in Release\stm8l15x_it.o
 _SLAVE_ADDR                                   00000000   defined in Release\main.o section .bsct, initialized
                                                          *** not used ***
 _SYSDivFactor                                 00008088   defined in Release\stm8l15x_clk.o section .const
-_TIM2_ARRPreloadConfig                        000091f1   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_ARRPreloadConfig                        000091c8   defined in Release\stm8l15x_tim2.o section .text
                                                          used in Release\main.o
-_TIM2_ClearFlag                               00009435   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_ClearITPendingBit                       00009461   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_ClearFlag                               0000940c   defined in Release\stm8l15x_tim2.o section .text
+                                                         used in Release\main.o
+_TIM2_ClearITPendingBit                       00009438   defined in Release\stm8l15x_tim2.o section .text
                                                          used in Release\stm8l15x_it.o
-_TIM2_Cmd                                     000091fe   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_Cmd                                     000091d5   defined in Release\stm8l15x_tim2.o section .text
                                                          used in Release\bsp.o
                                                                  Release\stm8l15x_it.o
-_TIM2_CtrlPWMOutputs                          000092ab   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_DMACmd                                  00009466   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_DeInit                                  00009125   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_CtrlPWMOutputs                          00009282   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_DMACmd                                  0000943d   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_DeInit                                  000090fc   defined in Release\stm8l15x_tim2.o section .text
                                                          used in Release\main.o
-_TIM2_ETRClockMode1Config                     000094c0   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_ETRClockMode2Config                     000094ec   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_ETRConfig                               00009533   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_EncoderInterfaceConfig                  00009541   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_ForcedOC1Config                         000092fa   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_ForcedOC2Config                         00009308   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_GenerateEvent                           00009416   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_GetCapture1                             000093aa   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_GetCapture2                             000093c7   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_GetCounter                              000091d0   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_ETRClockMode1Config                     00009497   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_ETRClockMode2Config                     000094c3   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_ETRConfig                               0000950a   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_EncoderInterfaceConfig                  00009518   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_ForcedOC1Config                         000092d1   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_ForcedOC2Config                         000092df   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_GenerateEvent                           000093ed   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_GetCapture1                             00009381   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_GetCapture2                             0000939e   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_GetCounter                              000091a7   defined in Release\stm8l15x_tim2.o section .text
                                                          used in Release\stm8l15x_it.o
-_TIM2_GetFlagStatus                           0000941d   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_GetITStatus                             00009443   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_GetPrescaler                            000091ed   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_ICInit                                  00009316   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_ITConfig                                00009400   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_GetFlagStatus                           000093f4   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_GetITStatus                             0000941a   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_GetPrescaler                            000091c4   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_ICInit                                  000092ed   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_ITConfig                                000093d7   defined in Release\stm8l15x_tim2.o section .text
                                                          used in Release\main.o
-_TIM2_InternalClockConfig                     00009489   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_OC1Init                                 0000920b   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_OC2Init                                 0000925b   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_PWMIConfig                              00009343   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_PrescalerConfig                         000091ac   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_SelectCCDMA                             0000947c   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_SelectHallSensor                        000095a5   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_SelectInputTrigger                      000094fc   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_SelectMasterSlaveMode                   00009526   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_SelectOCxM                              000092b8   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_SelectOutputTrigger                     0000950a   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_SelectSlaveMode                         00009518   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_SetAutoreload                           000091c7   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_SetCompare1                             000092e8   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_SetCompare2                             000092f1   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_SetCounter                              000091be   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_InternalClockConfig                     00009460   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_OC1Init                                 000091e2   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_OC2Init                                 00009232   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_PWMIConfig                              0000931a   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_PrescalerConfig                         00009183   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_SelectCCDMA                             00009453   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_SelectHallSensor                        0000957c   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_SelectInputTrigger                      000094d3   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_SelectMasterSlaveMode                   000094fd   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_SelectOCxM                              0000928f   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_SelectOutputTrigger                     000094e1   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_SelectSlaveMode                         000094ef   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_SetAutoreload                           0000919e   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_SetCompare1                             000092bf   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_SetCompare2                             000092c8   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_SetCounter                              00009195   defined in Release\stm8l15x_tim2.o section .text
                                                          used in Release\bsp.o
-_TIM2_SetIC1Prescaler                         000093e4   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_SetIC2Prescaler                         000093f2   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_TIxExternalClockConfig                  00009492   defined in Release\stm8l15x_tim2.o section .text
-_TIM2_TimeBaseInit                            0000918a   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_SetIC1Prescaler                         000093bb   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_SetIC2Prescaler                         000093c9   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_TIxExternalClockConfig                  00009469   defined in Release\stm8l15x_tim2.o section .text
+_TIM2_TimeBaseInit                            00009161   defined in Release\stm8l15x_tim2.o section .text
                                                          used in Release\main.o
-_TIM3_ARRPreloadConfig                        000096ee   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_ARRPreloadConfig                        000096c5   defined in Release\stm8l15x_tim3.o section .text
                                                          used in Release\main.o
-_TIM3_ClearFlag                               00009932   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_ClearITPendingBit                       0000995e   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_ClearFlag                               00009909   defined in Release\stm8l15x_tim3.o section .text
+                                                         used in Release\main.o
+_TIM3_ClearITPendingBit                       00009935   defined in Release\stm8l15x_tim3.o section .text
                                                          used in Release\stm8l15x_it.o
-_TIM3_Cmd                                     000096fb   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_Cmd                                     000096d2   defined in Release\stm8l15x_tim3.o section .text
                                                          used in Release\stm8l15x_it.o
-_TIM3_CtrlPWMOutputs                          000097a8   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_DMACmd                                  00009963   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_DeInit                                  00009622   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_CtrlPWMOutputs                          0000977f   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_DMACmd                                  0000993a   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_DeInit                                  000095f9   defined in Release\stm8l15x_tim3.o section .text
                                                          used in Release\main.o
-_TIM3_ETRClockMode1Config                     000099bd   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_ETRClockMode2Config                     000099e9   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_ETRConfig                               00009a30   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_ForcedOC1Config                         000097f7   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_ForcedOC2Config                         00009805   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_GenerateEvent                           00009913   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_GetCapture1                             000098a7   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_GetCapture2                             000098c4   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_GetCounter                              000096cd   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_GetFlagStatus                           0000991a   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_GetITStatus                             00009940   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_GetPrescaler                            000096ea   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_ICInit                                  00009813   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_ITConfig                                000098fd   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_ETRClockMode1Config                     00009994   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_ETRClockMode2Config                     000099c0   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_ETRConfig                               00009a07   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_ForcedOC1Config                         000097ce   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_ForcedOC2Config                         000097dc   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_GenerateEvent                           000098ea   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_GetCapture1                             0000987e   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_GetCapture2                             0000989b   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_GetCounter                              000096a4   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_GetFlagStatus                           000098f1   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_GetITStatus                             00009917   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_GetPrescaler                            000096c1   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_ICInit                                  000097ea   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_ITConfig                                000098d4   defined in Release\stm8l15x_tim3.o section .text
                                                          used in Release\main.o
-_TIM3_InternalClockConfig                     00009986   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_OC1Init                                 00009708   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_OC2Init                                 00009758   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_PWMIConfig                              00009840   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_PrescalerConfig                         000096a9   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_SelectCCDMA                             00009979   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_SelectInputTrigger                      000099f9   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_SelectMasterSlaveMode                   00009a23   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_SelectOCxM                              000097b5   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_SelectOutputTrigger                     00009a07   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_SelectSlaveMode                         00009a15   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_SetAutoreload                           000096c4   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_SetCompare1                             000097e5   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_SetCompare2                             000097ee   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_SetCounter                              000096bb   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_InternalClockConfig                     0000995d   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_OC1Init                                 000096df   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_OC2Init                                 0000972f   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_PWMIConfig                              00009817   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_PrescalerConfig                         00009680   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_SelectCCDMA                             00009950   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_SelectInputTrigger                      000099d0   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_SelectMasterSlaveMode                   000099fa   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_SelectOCxM                              0000978c   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_SelectOutputTrigger                     000099de   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_SelectSlaveMode                         000099ec   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_SetAutoreload                           0000969b   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_SetCompare1                             000097bc   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_SetCompare2                             000097c5   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_SetCounter                              00009692   defined in Release\stm8l15x_tim3.o section .text
                                                          used in Release\stm8l15x_it.o
-_TIM3_SetIC1Prescaler                         000098e1   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_SetIC2Prescaler                         000098ef   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_TIxExternalClockConfig                  0000998f   defined in Release\stm8l15x_tim3.o section .text
-_TIM3_TimeBaseInit                            00009687   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_SetIC1Prescaler                         000098b8   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_SetIC2Prescaler                         000098c6   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_TIxExternalClockConfig                  00009966   defined in Release\stm8l15x_tim3.o section .text
+_TIM3_TimeBaseInit                            0000965e   defined in Release\stm8l15x_tim3.o section .text
                                                          used in Release\main.o
-_TIM4_ARRPreloadConfig                        00009afe   defined in Release\stm8l15x_tim4.o section .text
+_TIM4_ARRPreloadConfig                        00009ad5   defined in Release\stm8l15x_tim4.o section .text
                                                          used in Release\main.o
-_TIM4_ClearFlag                               00009b3d   defined in Release\stm8l15x_tim4.o section .text
-_TIM4_ClearITPendingBit                       00009b60   defined in Release\stm8l15x_tim4.o section .text
+_TIM4_ClearFlag                               00009b14   defined in Release\stm8l15x_tim4.o section .text
+                                                         used in Release\main.o
+_TIM4_ClearITPendingBit                       00009b37   defined in Release\stm8l15x_tim4.o section .text
                                                          used in Release\stm8l15x_it.o
-_TIM4_Cmd                                     00009b0b   defined in Release\stm8l15x_tim4.o section .text
+_TIM4_Cmd                                     00009ae2   defined in Release\stm8l15x_tim4.o section .text
                                                          used in Release\stm8l15x_it.o
-_TIM4_DeInit                                  00009aae   defined in Release\stm8l15x_tim4.o section .text
+_TIM4_DeInit                                  00009a85   defined in Release\stm8l15x_tim4.o section .text
                                                          used in Release\main.o
-_TIM4_GenerateEvent                           00009b2e   defined in Release\stm8l15x_tim4.o section .text
-_TIM4_GetCounter                              00009af6   defined in Release\stm8l15x_tim4.o section .text
-_TIM4_GetFlagStatus                           00009b35   defined in Release\stm8l15x_tim4.o section .text
-_TIM4_GetITStatus                             00009b42   defined in Release\stm8l15x_tim4.o section .text
-_TIM4_GetPrescaler                            00009afa   defined in Release\stm8l15x_tim4.o section .text
-_TIM4_ITConfig                                00009b18   defined in Release\stm8l15x_tim4.o section .text
+_TIM4_GenerateEvent                           00009b05   defined in Release\stm8l15x_tim4.o section .text
+_TIM4_GetCounter                              00009acd   defined in Release\stm8l15x_tim4.o section .text
+_TIM4_GetFlagStatus                           00009b0c   defined in Release\stm8l15x_tim4.o section .text
+_TIM4_GetITStatus                             00009b19   defined in Release\stm8l15x_tim4.o section .text
+_TIM4_GetPrescaler                            00009ad1   defined in Release\stm8l15x_tim4.o section .text
+_TIM4_ITConfig                                00009aef   defined in Release\stm8l15x_tim4.o section .text
                                                          used in Release\main.o
-_TIM4_InternalClockConfig                     00009b65   defined in Release\stm8l15x_tim4.o section .text
-_TIM4_PrescalerConfig                         00009adc   defined in Release\stm8l15x_tim4.o section .text
-_TIM4_SetAutoreload                           00009af2   defined in Release\stm8l15x_tim4.o section .text
-_TIM4_SetCounter                              00009aee   defined in Release\stm8l15x_tim4.o section .text
+_TIM4_InternalClockConfig                     00009b3c   defined in Release\stm8l15x_tim4.o section .text
+_TIM4_PrescalerConfig                         00009ab3   defined in Release\stm8l15x_tim4.o section .text
+_TIM4_SetAutoreload                           00009ac9   defined in Release\stm8l15x_tim4.o section .text
+_TIM4_SetCounter                              00009ac5   defined in Release\stm8l15x_tim4.o section .text
                                                          used in Release\stm8l15x_it.o
-_TIM4_TimeBaseInit                            00009acf   defined in Release\stm8l15x_tim4.o section .text
+_TIM4_TimeBaseInit                            00009aa6   defined in Release\stm8l15x_tim4.o section .text
                                                          used in Release\main.o
-_Timer                                        0000000a   defined in Release\stm8l15x_it.o section .bsct, initialized
+_Timer                                        0000000c   defined in Release\stm8l15x_it.o section .bsct, initialized
 __endmem                                      000001ff   defined in command file
                                                          *** not used ***
-__endzp                                       0000001d   defined in command file section .ubsct
+__endzp                                       0000001c   defined in command file section .ubsct
                                                          used in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\crtsi0.sm8
 __idesc__                                     00008099   defined in linker section .init
                                                          used in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\crtsi0.sm8
@@ -1247,47 +1263,51 @@ __stack                                       000003ff   defined in command file
                                                          used in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\crtsi0.sm8
 __startmem                                    00000100   defined in command file section .bss
                                                          *** not used ***
-__stext                                       000080b1   defined in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\crtsi0.sm8 section .text
+__stext                                       000080b3   defined in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\crtsi0.sm8 section .text
                                                          used in Release\stm8_interrupt_vector.o
 __vectab                                      00008000   defined in Release\stm8_interrupt_vector.o section .const
                                                          *** not used ***
-_delay                                        00008303   defined in Release\stm8l15x_it.o section .text
-_e                                            00000006   defined in Release\stm8l15x_it.o section .bsct, initialized
-_exit                                         000080ff   defined in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\crtsi0.sm8 section .text
-_i                                            00000004   defined in Release\stm8l15x_it.o section .bsct, initialized
+_delay                                        000082db   defined in Release\stm8l15x_it.o section .text
+_e                                            00000008   defined in Release\stm8l15x_it.o section .bsct, initialized
+_exit                                         00008101   defined in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\crtsi0.sm8 section .text
+_i                                            00000006   defined in Release\stm8l15x_it.o section .bsct, initialized
                                                          *** not used ***
-_k                                            00000008   defined in Release\stm8l15x_it.o section .bsct, initialized
-_main                                         000081ec   defined in Release\main.o section .text
+_k                                            0000000a   defined in Release\stm8l15x_it.o section .bsct, initialized
+                                                         *** not used ***
+_main                                         000081ad   defined in Release\main.o section .text
                                                          used in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\crtsi0.sm8
 _measure_flag                                 00000002   defined in Release\main.o section .bsct, initialized
                                                          used in Release\stm8l15x_it.o
-c_cmulx                                       00009b6e   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)cmulx.o section .text
+_ultrasonicCLKSetup                           000082c3   defined in Release\main.o section .text
+_ultrasonicGPIOSetup                          00008221   defined in Release\main.o section .text
+_ultrasonicI2CSetup                           00008283   defined in Release\main.o section .text
+c_cmulx                                       00009b45   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)cmulx.o section .text
                                                          used in Release\stm8l15x_flash.o
-c_divsl                                       00009db9   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ldiv.o section .text
+c_divsl                                       00009d90   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ldiv.o section .text
                                                          *** not used ***
-c_divul                                       00009dd0   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ldiv.o section .text
+c_divul                                       00009da7   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ldiv.o section .text
                                                          used in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ludiv.o
-c_fmul                                        00009b82   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)fmul.o section .text
+c_fmul                                        00009b59   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)fmul.o section .text
                                                          used in Release\stm8l15x_it.o
-c_ftoi                                        00009c57   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ftol.o section .text
+c_ftoi                                        00009c2e   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ftol.o section .text
                                                          used in Release\stm8l15x_it.o
-c_ftol                                        00009c5d   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ftol.o section .text
-c_ladd                                        00009cb9   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ladd.o section .text
+c_ftol                                        00009c34   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ftol.o section .text
+c_ladd                                        00009c90   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ladd.o section .text
                                                          used in Release\bsp.o
                                                                  Release\stm8l15x_flash.o
-c_lcmp                                        00009cd1   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lcmp.o section .text
+c_lcmp                                        00009ca8   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lcmp.o section .text
                                                          used in Release\stm8l15x_i2c.o
-c_lgadd                                       00009cf1   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lgadd.o section .text
+c_lgadd                                       00009cc8   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lgadd.o section .text
                                                          used in Release\stm8l15x_flash.o
-c_lgneg                                       00009ea4   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lgneg.o section .text
+c_lgneg                                       00009e7b   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lgneg.o section .text
                                                          used in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ldiv.o
-c_lmul                                        00009d08   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lmul.o section .text
+c_lmul                                        00009cdf   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lmul.o section .text
                                                          used in Release\stm8l15x_i2c.o
-c_lmulc                                       00009d10   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lmul.o section .text
+c_lmulc                                       00009ce7   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lmul.o section .text
                                                          *** not used ***
-c_lneg                                        00009eb7   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lneg.o section .text
+c_lneg                                        00009e8e   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lneg.o section .text
                                                          used in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ldiv.o
-c_lreg                                        00000013   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lreg.o section .ubsct
+c_lreg                                        00000012   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lreg.o section .ubsct
                                                          used in Release\bsp.o
                                                                  Release\stm8l15x_it.o
                                                                  Release\stm8l15x_clk.o
@@ -1308,56 +1328,56 @@ c_lreg                                        00000013   defined in (C:\Program 
                                                                  (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)uitof.o
                                                                  (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)utol.o
                                                                  (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)utolx.o
-c_ltor                                        00009d93   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ltor.o section .text
+c_ltor                                        00009d6a   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ltor.o section .text
                                                          used in Release\stm8l15x_clk.o
                                                                  Release\stm8l15x_i2c.o
-c_ludv                                        00009da5   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ludiv.o section .text
+c_ludv                                        00009d7c   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ludiv.o section .text
                                                          used in Release\stm8l15x_clk.o
                                                                  Release\stm8l15x_i2c.o
-c_lzmp                                        00009ecc   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lzmp.o section .text
+c_lzmp                                        00009ea3   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lzmp.o section .text
                                                          used in Release\stm8l15x_i2c.o
-c_okmul                                       00009b90   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)fmul.o section .text
+c_okmul                                       00009b67   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)fmul.o section .text
                                                          *** not used ***
-c_rtol                                        00009edf   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)rtol.o section .text
+c_rtol                                        00009eb6   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)rtol.o section .text
                                                          used in Release\stm8l15x_clk.o
                                                                  Release\stm8l15x_i2c.o
-c_sdivx                                       00009ef7   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)sdivx.o section .text
+c_sdivx                                       00009ece   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)sdivx.o section .text
                                                          used in Release\stm8l15x_i2c.o
-c_smodx                                       00009ef1   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)sdivx.o section .text
+c_smodx                                       00009ec8   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)sdivx.o section .text
                                                          *** not used ***
-c_smul                                        00009f1c   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)smul.o section .text
+c_smul                                        00009ef3   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)smul.o section .text
                                                          used in Release\stm8l15x_i2c.o
-c_uitof                                       00009f5b   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)uitof.o section .text
+c_uitof                                       00009f32   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)uitof.o section .text
                                                          used in Release\stm8l15x_it.o
-c_uitol                                       00009f7f   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)utol.o section .text
+c_uitol                                       00009f56   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)utol.o section .text
                                                          used in Release\stm8l15x_i2c.o
-c_uitolx                                      00009f8a   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)utolx.o section .text
+c_uitolx                                      00009f61   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)utolx.o section .text
                                                          used in Release\bsp.o
-c_x                                           00000017   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)xreg.o section .ubsct
+c_x                                           00000016   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)xreg.o section .ubsct
                                                          used in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\crtsi0.sm8
                                                                  Release\stm8l15x_it.o
                                                                  (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)fmul.o
                                                                  (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)lmul.o
                                                                  (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)ldiv.o
                                                                  (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)sdivx.o
-c_y                                           0000001a   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)yreg.o section .ubsct
+c_y                                           00000019   defined in (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\libm0.sm8)yreg.o section .ubsct
                                                          used in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\Lib\crtsi0.sm8
                                                                  Release\stm8l15x_it.o
-f_EXTI3_IRQHandler                            0000830f   defined in Release\stm8l15x_it.o section .text
+f_EXTI3_IRQHandler                            000082e7   defined in Release\stm8l15x_it.o section .text
                                                          used in Release\stm8_interrupt_vector.o
-f_EXTI5_IRQHandler                            0000836f   defined in Release\stm8l15x_it.o section .text
+f_EXTI5_IRQHandler                            00008347   defined in Release\stm8l15x_it.o section .text
                                                          used in Release\stm8_interrupt_vector.o
-f_EXTI6_IRQHandler                            000083e4   defined in Release\stm8l15x_it.o section .text
+f_EXTI6_IRQHandler                            000083b8   defined in Release\stm8l15x_it.o section .text
                                                          used in Release\stm8_interrupt_vector.o
-f_I2C1_SPI2_IRQHandler                        00008502   defined in Release\stm8l15x_it.o section .text
+f_I2C1_SPI2_IRQHandler                        000084d6   defined in Release\stm8l15x_it.o section .text
                                                          used in Release\stm8_interrupt_vector.o
-f_NonHandledInterrupt                         00008302   defined in Release\stm8l15x_it.o section .text
+f_NonHandledInterrupt                         000082da   defined in Release\stm8l15x_it.o section .text
                                                          used in Release\stm8_interrupt_vector.o
-f_TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler   0000845b   defined in Release\stm8l15x_it.o section .text
+f_TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler   0000842f   defined in Release\stm8l15x_it.o section .text
                                                          used in Release\stm8_interrupt_vector.o
-f_TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler   00008483   defined in Release\stm8l15x_it.o section .text
+f_TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler   00008457   defined in Release\stm8l15x_it.o section .text
                                                          used in Release\stm8_interrupt_vector.o
-f_TIM4_UPD_OVF_TRG_IRQHandler                 000084cf   defined in Release\stm8l15x_it.o section .text
+f_TIM4_UPD_OVF_TRG_IRQHandler                 000084a3   defined in Release\stm8l15x_it.o section .text
                                                          used in Release\stm8_interrupt_vector.o
-f_TRAP_IRQHandler                             0000830e   defined in Release\stm8l15x_it.o section .text
+f_TRAP_IRQHandler                             000082e6   defined in Release\stm8l15x_it.o section .text
                                                          *** not used ***

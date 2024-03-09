@@ -8,18 +8,18 @@ void EIGHT(void)
 {
    
   uint8_t i=0;
-  GPIO_ResetBits(GPIOB,GPIO_Pin_1);
+  GPIO_ResetBits(GPIOB,GPIO_Pin_0);
 
   for(i=0;i<4;i++)
   {
    
    GPIO_ResetBits(GPIOD,GPIO_Pin_0);
-   GPIO_SetBits(GPIOB,GPIO_Pin_1);
+   GPIO_SetBits(GPIOB,GPIO_Pin_0);
    
    Delay(22);
    
    GPIO_SetBits(GPIOD,GPIO_Pin_0);
-   GPIO_ResetBits(GPIOB,GPIO_Pin_1);
+   GPIO_ResetBits(GPIOB,GPIO_Pin_0);
    Delay(22);
    }
   
@@ -27,12 +27,12 @@ void EIGHT(void)
   {
    
    GPIO_ResetBits(GPIOD,GPIO_Pin_0);
-   GPIO_SetBits(GPIOB,GPIO_Pin_1);
+   GPIO_SetBits(GPIOB,GPIO_Pin_0);
    
    Delay(22);
    
    GPIO_SetBits(GPIOD,GPIO_Pin_0);
-   GPIO_ResetBits(GPIOB,GPIO_Pin_1);
+   GPIO_ResetBits(GPIOB,GPIO_Pin_0);
    Delay(22);
    }
   GPIO_SetBits(GPIOB,GPIO_Pin_2);

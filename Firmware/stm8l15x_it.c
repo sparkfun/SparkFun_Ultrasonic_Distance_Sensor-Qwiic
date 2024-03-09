@@ -1,42 +1,45 @@
 /**
-  ******************************************************************************
-  * @file    Project/STM8L15x_StdPeriph_Template/stm8l15x_it.c
-  * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    13-May-2011
-  * @brief   Main Interrupt Service Routines.
-  *          This file provides template for all peripherals interrupt service routine.
-  ******************************************************************************
-  * @attention
-  *
-  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
-  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
-  * TIME. AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY
-  * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
-  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
-  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
-  *
-  * <h2><center>&copy; COPYRIGHT 2011 STMicroelectronics</center></h2>
-  ******************************************************************************
-  */  
+ ******************************************************************************
+ * @file    Project/STM8L15x_StdPeriph_Template/stm8l15x_it.c
+ * @author  MCD Application Team
+ * @version V1.5.0
+ * @date    13-May-2011
+ * @brief   Main Interrupt Service Routines.
+ *          This file provides template for all peripherals interrupt service
+ *routine.
+ ******************************************************************************
+ * @attention
+ *
+ * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+ * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+ * TIME. AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY
+ * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+ * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+ * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+ *
+ * <h2><center>&copy; COPYRIGHT 2011 STMicroelectronics</center></h2>
+ ******************************************************************************
+ */
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm8l15x_it.h"
+#include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_i2c.h"
 #include "bsp.h"
-uint16_t i=0,e=0;
-uint8_t k=0;
-uint8_t Out_Range=0;
-uint16_t Timer=0;
-uint16_t Distance=0;
-uint8_t Distance_H=0,Distance_L=0;
+uint16_t Event = 0x00;
+uint16_t i = 0, e = 0;
+uint8_t k = 0;
+uint8_t Out_Range = 0;
+uint16_t Timer = 0;
+uint16_t Distance = 0;
+uint8_t Distance_H = 0, Distance_L = 0;
 extern uint8_t SLAVE_ADDRESS;
-//extern uint8_t SLAVE_ADDR_NUM;
+// extern uint8_t SLAVE_ADDR_NUM;
 extern char SBUF;
 extern uint16_t measure_flag;
 /** @addtogroup STM8L15x_StdPeriph_Template
-  * @{
-  */
-	
+ * @{
+ */
+
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -47,86 +50,84 @@ extern uint16_t measure_flag;
 
 #ifdef _COSMIC_
 /**
-  * @brief Dummy interrupt routine
-  * @par Parameters:
-  * None
-  * @retval 
-  * None
-*/
-INTERRUPT_HANDLER(NonHandledInterrupt,0)
-{
-    /* In order to detect unexpected events during development,
-       it is recommended to set a breakpoint on the following instruction.
-    */
+ * @brief Dummy interrupt routine
+ * @par Parameters:
+ * None
+ * @retval
+ * None
+ */
+INTERRUPT_HANDLER(NonHandledInterrupt, 0) {
+  /* In order to detect unexpected events during development,
+     it is recommended to set a breakpoint on the following instruction.
+  */
 }
 #endif
-void delay(uint16_t z)
-{
-  while(z--);
+void delay(uint16_t z) {
+  while (z--)
+    ;
 }
 /**
-  * @brief TRAP interrupt routine
-  * @par Parameters:
-  * None
-  * @retval 
-  * None
-*/
-INTERRUPT_HANDLER_TRAP(TRAP_IRQHandler)
-{
-    /* In order to detect unexpected events during development,
-       it is recommended to set a breakpoint on the following instruction.
-    */
+ * @brief TRAP interrupt routine
+ * @par Parameters:
+ * None
+ * @retval
+ * None
+ */
+INTERRUPT_HANDLER_TRAP(TRAP_IRQHandler) {
+  /* In order to detect unexpected events during development,
+     it is recommended to set a breakpoint on the following instruction.
+  */
 }
 /**
-  * @brief FLASH Interrupt routine.
-  * @param  None
-  * @retval None
-  */
-//INTERRUPT_HANDLER(FLASH_IRQHandler,1)
+ * @brief FLASH Interrupt routine.
+ * @param  None
+ * @retval None
+ */
+// INTERRUPT_HANDLER(FLASH_IRQHandler,1)
 //{
-//    /* In order to detect unexpected events during development,
-//       it is recommended to set a breakpoint on the following instruction.
-//    */
-//}
+//     /* In order to detect unexpected events during development,
+//        it is recommended to set a breakpoint on the following instruction.
+//     */
+// }
 /**
-  * @brief DMA1 channel0 and channel1 Interrupt routine.
-  * @param  None
-  * @retval None
-  */
-//INTERRUPT_HANDLER(DMA1_CHANNEL0_1_IRQHandler,2)
+ * @brief DMA1 channel0 and channel1 Interrupt routine.
+ * @param  None
+ * @retval None
+ */
+// INTERRUPT_HANDLER(DMA1_CHANNEL0_1_IRQHandler,2)
 //{
-//    /* In order to detect unexpected events during development,
-//       it is recommended to set a breakpoint on the following instruction.
-//    */
-//}
+//     /* In order to detect unexpected events during development,
+//        it is recommended to set a breakpoint on the following instruction.
+//     */
+// }
 ///**
 //  * @brief DMA1 channel2 and channel3 Interrupt routine.
 //  * @param  None
 //  * @retval None
 //  */
-//INTERRUPT_HANDLER(DMA1_CHANNEL2_3_IRQHandler,3)
+// INTERRUPT_HANDLER(DMA1_CHANNEL2_3_IRQHandler,3)
 //{
 //    /* In order to detect unexpected events during development,
 //       it is recommended to set a breakpoint on the following instruction.
 //    */
 //}
 /**
-  * @brief RTC / CSS_LSE Interrupt routine.
-  * @param  None
-  * @retval None
-  */
-//INTERRUPT_HANDLER(RTC_CSSLSE_IRQHandler,4)
+ * @brief RTC / CSS_LSE Interrupt routine.
+ * @param  None
+ * @retval None
+ */
+// INTERRUPT_HANDLER(RTC_CSSLSE_IRQHandler,4)
 //{
-//    /* In order to detect unexpected events during development,
-//       it is recommended to set a breakpoint on the following instruction.
-//    */
-//}
+//     /* In order to detect unexpected events during development,
+//        it is recommended to set a breakpoint on the following instruction.
+//     */
+// }
 ///**
 //  * @brief External IT PORTE/F and PVD Interrupt routine.
 //  * @param  None
 //  * @retval None
 //  */
-//INTERRUPT_HANDLER(EXTIE_F_PVD_IRQHandler,5)
+// INTERRUPT_HANDLER(EXTIE_F_PVD_IRQHandler,5)
 //{
 //    /* In order to detect unexpected events during development,
 //       it is recommended to set a breakpoint on the following instruction.
@@ -138,7 +139,7 @@ INTERRUPT_HANDLER_TRAP(TRAP_IRQHandler)
 //  * @param  None
 //  * @retval None
 //  */
-//INTERRUPT_HANDLER(EXTIB_G_IRQHandler,6)
+// INTERRUPT_HANDLER(EXTIB_G_IRQHandler,6)
 //{
 //    /* In order to detect unexpected events during development,
 //       it is recommended to set a breakpoint on the following instruction.
@@ -146,23 +147,23 @@ INTERRUPT_HANDLER_TRAP(TRAP_IRQHandler)
 //}
 //
 /**
-  * @brief External IT PORTD /PORTH Interrupt routine.
-  * @param  None
-  * @retval None
-  */
-//INTERRUPT_HANDLER(EXTID_H_IRQHandler,7)
+ * @brief External IT PORTD /PORTH Interrupt routine.
+ * @param  None
+ * @retval None
+ */
+// INTERRUPT_HANDLER(EXTID_H_IRQHandler,7)
 //{
-//    /* In order to detect unexpected events during development,
-//       it is recommended to set a breakpoint on the following instruction.
-//    */
-//}
+//     /* In order to detect unexpected events during development,
+//        it is recommended to set a breakpoint on the following instruction.
+//     */
+// }
 //
 ///**
 //  * @brief External IT PIN0 Interrupt routine.
 //  * @param  None
 //  * @retval None
 //  */
-//INTERRUPT_HANDLER(EXTI0_IRQHandler,8)
+// INTERRUPT_HANDLER(EXTI0_IRQHandler,8)
 //{
 //    /* In order to detect unexpected events during development,
 //       it is recommended to set a breakpoint on the following instruction.
@@ -174,7 +175,7 @@ INTERRUPT_HANDLER_TRAP(TRAP_IRQHandler)
 //  * @param  None
 //  * @retval None
 //  */
-//INTERRUPT_HANDLER(EXTI1_IRQHandler,9)
+// INTERRUPT_HANDLER(EXTI1_IRQHandler,9)
 //{
 //    /* In order to detect unexpected events during development,
 //       it is recommended to set a breakpoint on the following instruction.
@@ -186,7 +187,7 @@ INTERRUPT_HANDLER_TRAP(TRAP_IRQHandler)
 //  * @param  None
 //  * @retval None
 //  */
-//INTERRUPT_HANDLER(EXTI2_IRQHandler,10)
+// INTERRUPT_HANDLER(EXTI2_IRQHandler,10)
 //{
 //    /* In order to detect unexpected events during development,
 //       it is recommended to set a breakpoint on the following instruction.
@@ -194,106 +195,102 @@ INTERRUPT_HANDLER_TRAP(TRAP_IRQHandler)
 //}
 //
 /**
-  * @brief External IT PIN3 Interrupt routine.
-  * @param  None
-  * @retval None
+ * @brief External IT PIN3 Interrupt routine.
+ * @param  None
+ * @retval None
+ */
+INTERRUPT_HANDLER(EXTI3_IRQHandler, 11) {
+  /* In order to detect unexpected events during development,
+     it is recommended to set a breakpoint on the following instruction.
   */
-INTERRUPT_HANDLER(EXTI3_IRQHandler,11)
-{
-    /* In order to detect unexpected events during development,
-       it is recommended to set a breakpoint on the following instruction.
-    */
-  EXTI_ClearITPendingBit (EXTI_IT_Pin3);
+  EXTI_ClearITPendingBit(EXTI_IT_Pin3);
   TIM4_SetCounter(0);
   TIM4_Cmd(ENABLE);
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast);
-  GPIO_ResetBits(GPIOB,GPIO_Pin_4);
+  GPIO_ResetBits(GPIOB, GPIO_Pin_4);
   delay(20);
-  if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_3))
-   {
-     EIGHT();
-     TIM3_SetCounter(0);
-     TIM3_Cmd(ENABLE);
-   }
+  if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3)) {
+    EIGHT();
+    TIM3_SetCounter(0);
+    TIM3_Cmd(ENABLE);
+  }
 }
 
 /**
-  * @brief External IT PIN4 Interrupt routine.
-  * @param  None
-  * @retval None
-  */
-//INTERRUPT_HANDLER(EXTI4_IRQHandler,12)
+ * @brief External IT PIN4 Interrupt routine.
+ * @param  None
+ * @retval None
+ */
+// INTERRUPT_HANDLER(EXTI4_IRQHandler,12)
 //{
-//    /* In order to detect unexpected events during development,
-//       it is recommended to set a breakpoint on the following instruction.
-//    */
-//}
+//     /* In order to detect unexpected events during development,
+//        it is recommended to set a breakpoint on the following instruction.
+//     */
+// }
 
 /**
-  * @brief External IT PIN5 Interrupt routine.
-  * @param  None
-  * @retval None
+ * @brief External IT PIN5 Interrupt routine.
+ * @param  None
+ * @retval None
+ */
+@svlreg INTERRUPT_HANDLER(EXTI5_IRQHandler, 13) {
+  /* In order to detect unexpected events during development,
+     it is recommended to set a breakpoint on the following instruction.
   */
-@svlreg INTERRUPT_HANDLER(EXTI5_IRQHandler,13)
-{
-    /* In order to detect unexpected events during development,
-       it is recommended to set a breakpoint on the following instruction.
-    */
-  EXTI_ClearITPendingBit (EXTI_IT_Pin5);
-  EEPROM_WriteByte(0,0x2F);
-  //I2C_DeInit_Config(EEPROM_ReadByte(0));
+  EXTI_ClearITPendingBit(EXTI_IT_Pin5);
+  EEPROM_WriteByte(0, 0x2F);
+  // I2C_DeInit_Config(EEPROM_ReadByte(0));
   I2C_DeInit(I2C1);
-  I2C_Init(I2C1, I2CSPEED, 0x2F, I2C_Mode_I2C, I2C_DutyCycle_2, I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
-  I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF), ENABLE);
+  I2C_Init(I2C1, I2CSPEED, 0x2F, I2C_Mode_I2C, I2C_DutyCycle_2, I2C_Ack_Enable,
+           I2C_AcknowledgedAddress_7bit);
+  I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF),
+               ENABLE);
   I2C_Cmd(I2C1, ENABLE);
-  k=5;
 }
 
 /**
-  * @brief External IT PIN6 Interrupt routine.
-  * @param  None
-  * @retval None
+ * @brief External IT PIN6 Interrupt routine.
+ * @param  None
+ * @retval None
+ */
+INTERRUPT_HANDLER(EXTI6_IRQHandler, 14) {
+  /* In order to detect unexpected events during development,
+     it is recommended to set a breakpoint on the following instruction.
   */
-INTERRUPT_HANDLER(EXTI6_IRQHandler,14)
-{
-    /* In order to detect unexpected events during development,
-       it is recommended to set a breakpoint on the following instruction.
-    */ 
-  Timer=TIM2_GetCounter();
-  GPIO_ResetBits(GPIOB,GPIO_Pin_2);
+  Timer = TIM2_GetCounter();
+  GPIO_ResetBits(GPIOB, GPIO_Pin_2);
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast);
-  GPIO_SetBits(GPIOB,GPIO_Pin_4);
-  EXTI_ClearITPendingBit (EXTI_IT_Pin6);
+  GPIO_SetBits(GPIOB, GPIO_Pin_4);
+  EXTI_ClearITPendingBit(EXTI_IT_Pin6);
   TIM2_Cmd(DISABLE);
   TIM3_Cmd(DISABLE);
-  
-//  Distance=Timer/58*5;
-  if(Out_Range==0)
-  {
-  Distance=(uint16_t) Timer*0.0862;
-  Distance_H=(uint8_t)(Distance>>8);
-  Distance_L=(uint8_t) Distance;
+
+  //  Distance=Timer/58*5;
+  if (Out_Range == 0) {
+    Distance = (uint16_t)Timer * 0.0862;
+    Distance_H = (uint8_t)(Distance >> 8);
+    Distance_L = (uint8_t)Distance;
   }
-  Out_Range=0;
+  Out_Range = 0;
 }
 
 /**
-  * @brief External IT PIN7 Interrupt routine.
-  * @param  None
-  * @retval None
-  */
-//INTERRUPT_HANDLER(EXTI7_IRQHandler,15)
+ * @brief External IT PIN7 Interrupt routine.
+ * @param  None
+ * @retval None
+ */
+// INTERRUPT_HANDLER(EXTI7_IRQHandler,15)
 //{
-//    /* In order to detect unexpected events during development,
-//       it is recommended to set a breakpoint on the following instruction.
-//    */
-//}
+//     /* In order to detect unexpected events during development,
+//        it is recommended to set a breakpoint on the following instruction.
+//     */
+// }
 ///**
 //  * @brief LCD /AES Interrupt routine.
 //  * @param  None
 //  * @retval None
 //  */
-//INTERRUPT_HANDLER(LCD_AES_IRQHandler,16)
+// INTERRUPT_HANDLER(LCD_AES_IRQHandler,16)
 //{
 //    /* In order to detect unexpected events during development,
 //       it is recommended to set a breakpoint on the following instruction.
@@ -304,7 +301,7 @@ INTERRUPT_HANDLER(EXTI6_IRQHandler,14)
 //  * @param  None
 //  * @retval None
 //  */
-//INTERRUPT_HANDLER(SWITCH_CSS_BREAK_DAC_IRQHandler,17)
+// INTERRUPT_HANDLER(SWITCH_CSS_BREAK_DAC_IRQHandler,17)
 //{
 //    /* In order to detect unexpected events during development,
 //       it is recommended to set a breakpoint on the following instruction.
@@ -312,79 +309,76 @@ INTERRUPT_HANDLER(EXTI6_IRQHandler,14)
 //}
 //
 /**
-  * @brief ADC1/Comparator Interrupt routine.
-  * @param  None
-  * @retval None
-  */
-//INTERRUPT_HANDLER(ADC1_COMP_IRQHandler,18)
+ * @brief ADC1/Comparator Interrupt routine.
+ * @param  None
+ * @retval None
+ */
+// INTERRUPT_HANDLER(ADC1_COMP_IRQHandler,18)
 //{
-//    /* In order to detect unexpected events during development,
-//       it is recommended to set a breakpoint on the following instruction.
-//    */
-//}
+//     /* In order to detect unexpected events during development,
+//        it is recommended to set a breakpoint on the following instruction.
+//     */
+// }
 
 /**
-  * @brief TIM2 Update/Overflow/Trigger/Break /USART2 TX Interrupt routine.
-  * @param  None
-  * @retval None
+ * @brief TIM2 Update/Overflow/Trigger/Break /USART2 TX Interrupt routine.
+ * @param  None
+ * @retval None
+ */
+INTERRUPT_HANDLER(TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler, 19) {
+  /* In order to detect unexpected events during development,
+     it is recommended to set a breakpoint on the following instruction.
   */
-INTERRUPT_HANDLER(TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler,19)
-{
-    /* In order to detect unexpected events during development,
-       it is recommended to set a breakpoint on the following instruction.
-    */
-    TIM2_ClearITPendingBit(TIM2_IT_Update);
-    TIM2_Cmd(DISABLE);
+  TIM2_ClearITPendingBit(TIM2_IT_Update);
+  TIM2_Cmd(DISABLE);
 }
 
 /**
-  * @brief Timer2 Capture/Compare / USART2 RX Interrupt routine.
-  * @param  None
-  * @retval None
-  */
-//INTERRUPT_HANDLER(TIM2_CC_USART2_RX_IRQHandler,20)
+ * @brief Timer2 Capture/Compare / USART2 RX Interrupt routine.
+ * @param  None
+ * @retval None
+ */
+// INTERRUPT_HANDLER(TIM2_CC_USART2_RX_IRQHandler,20)
 //{
-//    /* In order to detect unexpected events during development,
-//       it is recommended to set a breakpoint on the following instruction.
-//    */
-//}
-
+//     /* In order to detect unexpected events during development,
+//        it is recommended to set a breakpoint on the following instruction.
+//     */
+// }
 
 /**
-  * @brief Timer3 Update/Overflow/Trigger/Break Interrupt routine.
-  * @param  None
-  * @retval None
+ * @brief Timer3 Update/Overflow/Trigger/Break Interrupt routine.
+ * @param  None
+ * @retval None
+ */
+INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler, 21) {
+  /* In order to detect unexpected events during development,
+     it is recommended to set a breakpoint on the following instruction.
   */
-INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler,21)
-{
-    /* In order to detect unexpected events during development,
-       it is recommended to set a breakpoint on the following instruction.
-    */
-  TIM3_ClearITPendingBit(TIM3_IT_Update);  
+  TIM3_ClearITPendingBit(TIM3_IT_Update);
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast);
-  GPIO_SetBits(GPIOB,GPIO_Pin_4);
+  GPIO_SetBits(GPIOB, GPIO_Pin_4);
   TIM3_Cmd(DISABLE);
-  measure_flag=0;
-  Out_Range=1;
-  GPIO_ResetBits(GPIOB,GPIO_Pin_2);
+  measure_flag = 0;
+  Out_Range = 1;
+  GPIO_ResetBits(GPIOB, GPIO_Pin_2);
 }
 /**
-  * @brief Timer3 Capture/Compare /USART3 RX Interrupt routine.
-  * @param  None
-  * @retval None
-  */
-//INTERRUPT_HANDLER(TIM3_CC_USART3_RX_IRQHandler,22)
+ * @brief Timer3 Capture/Compare /USART3 RX Interrupt routine.
+ * @param  None
+ * @retval None
+ */
+// INTERRUPT_HANDLER(TIM3_CC_USART3_RX_IRQHandler,22)
 //{
-//    /* In order to detect unexpected events during development,
-//       it is recommended to set a breakpoint on the following instruction.
-//    */
-//}
+//     /* In order to detect unexpected events during development,
+//        it is recommended to set a breakpoint on the following instruction.
+//     */
+// }
 ///**
 //  * @brief TIM1 Update/Overflow/Trigger/Commutation Interrupt routine.
 //  * @param  None
 //  * @retval None
 //  */
-//INTERRUPT_HANDLER(TIM1_UPD_OVF_TRG_COM_IRQHandler,23)
+// INTERRUPT_HANDLER(TIM1_UPD_OVF_TRG_COM_IRQHandler,23)
 //{
 //    /* In order to detect unexpected events during development,
 //       it is recommended to set a breakpoint on the following instruction.
@@ -395,7 +389,7 @@ INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler,21)
 //  * @param  None
 //  * @retval None
 //  */
-//INTERRUPT_HANDLER(TIM1_CC_IRQHandler,24)
+// INTERRUPT_HANDLER(TIM1_CC_IRQHandler,24)
 //{
 //    /* In order to detect unexpected events during development,
 //       it is recommended to set a breakpoint on the following instruction.
@@ -403,39 +397,37 @@ INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler,21)
 //}
 
 /**
-  * @brief TIM4 Update/Overflow/Trigger Interrupt routine.
-  * @param  None
-  * @retval None
+ * @brief TIM4 Update/Overflow/Trigger Interrupt routine.
+ * @param  None
+ * @retval None
+ */
+INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
+  /* In order to detect unexpected events during development,
+     it is recommended to set a breakpoint on the following instruction.
   */
-INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler,25)
-{
-    /* In order to detect unexpected events during development,
-       it is recommended to set a breakpoint on the following instruction.
-    */
-  
-   TIM4_ClearITPendingBit(TIM4_IT_Update);
-   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_In_FL_No_IT);
-   TIM4_Cmd(DISABLE);
-     
+
+  TIM4_ClearITPendingBit(TIM4_IT_Update);
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_In_FL_No_IT);
+  TIM4_Cmd(DISABLE);
 }
 /**
-  * @brief SPI1 Interrupt routine.
-  * @param  None
-  * @retval None
-  */
-//INTERRUPT_HANDLER(SPI1_IRQHandler,26)
+ * @brief SPI1 Interrupt routine.
+ * @param  None
+ * @retval None
+ */
+// INTERRUPT_HANDLER(SPI1_IRQHandler,26)
 //{
-//    /* In order to detect unexpected events during development,
-//       it is recommended to set a breakpoint on the following instruction.
-//    */		
-//}
+//     /* In order to detect unexpected events during development,
+//        it is recommended to set a breakpoint on the following instruction.
+//     */
+// }
 //
 ///**
 //  * @brief USART1 TX / TIM5 Update/Overflow/Trigger/Break Interrupt  routine.
 //  * @param  None
 //  * @retval None
 //  */
-//INTERRUPT_HANDLER(USART1_TX_TIM5_UPD_OVF_TRG_BRK_IRQHandler,27)
+// INTERRUPT_HANDLER(USART1_TX_TIM5_UPD_OVF_TRG_BRK_IRQHandler,27)
 //{
 //    /* In order to detect unexpected events during development,
 //       it is recommended to set a breakpoint on the following instruction.
@@ -447,7 +439,7 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler,25)
 //  * @param  None
 //  * @retval None
 //  */
-//INTERRUPT_HANDLER(USART1_RX_TIM5_CC_IRQHandler,28)
+// INTERRUPT_HANDLER(USART1_RX_TIM5_CC_IRQHandler,28)
 //{
 //    /* In order to detect unexpected events during development,
 //       it is recommended to set a breakpoint on the following instruction.
@@ -455,100 +447,163 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler,25)
 //}
 
 /**
-  * @brief I2C1 / SPI2 Interrupt routine.
-  * @param  None
-  * @retval None
-  */
-@svlreg INTERRUPT_HANDLER(I2C1_SPI2_IRQHandler,29)
-{
-    /* In order to detect unexpected events during development,
-       it is recommended to set a breakpoint on the following instruction.
-    */ 
-//    char temp = 0;
+ * @brief I2C1 / SPI2 Interrupt routine.
+ * @param  None
+ * @retval None
+ */
+//@svlreg INTERRUPT_HANDLER(I2C1_SPI2_IRQHandler, 29) {
+//  /* In order to detect unexpected events during development,
+//     it is recommended to set a breakpoint on the following instruction.
+//  */
+//  //    char temp = 0;
+//
+//  static u8 sr1, sr2, sr3;
+//  ;
+//  // save the I2C registers configuration
+//  sr1 = I2C1->SR1;
+//  sr2 = I2C1->SR2;
+//  sr3 = I2C1->SR3;
+//  // Communication error? //
+//
+//  if (sr2 & (I2C_SR2_WUFH | I2C_SR2_OVR | I2C_SR2_ARLO | I2C_SR2_BERR)) {
+//    //   I2C1->CR2|= I2C_CR2_STOP;  // stop communication - release the lines
+//    I2C1->SR2 = 0; // clear all error flags
+//    e = 1;
+//    Distance_H = 0;
+//    Distance_L = 0;
+//  }
+//
+//  // More bytes received ?
+//  if ((sr1 & (I2C_SR1_RXNE | I2C_SR1_BTF)) == (I2C_SR1_RXNE | I2C_SR1_BTF)) {
+//    //   I2C_byte_received(I2C1->DR);
+//  }
+//
+//  // Byte received ? //
+//  if ((sr1 & I2C_SR1_RXNE) && (sr3 & I2C_SR3_BUSY)) {
+//    GPIOE->ODR ^= 0X80;
+//    SBUF = I2C1->DR;
+//    k = 2;
+//    if (SBUF == 1) {
+//      measure_flag = 1;
+//      TIM4_SetCounter(0);
+//      TIM4_Cmd(ENABLE);
+//      GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast);
+//      GPIO_ResetBits(GPIOB, GPIO_Pin_4);
+//      EIGHT();
+//      TIM3_SetCounter(0);
+//      TIM3_Cmd(ENABLE);
+//    } else if (0xA0 <= SBUF <= 0xAF) {
+//      EEPROM_WriteByte(0, SBUF);
+//      I2C_DeInit(I2C1);
+//      I2C_Init(I2C1, I2CSPEED, 0x2F, I2C_Mode_I2C, I2C_DutyCycle_2,
+//               I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
+//      I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF),
+//                   ENABLE);
+//      I2C_Cmd(I2C1, ENABLE);
+//      k = 1;
+//    } else {
+//      measure_flag = 0;
+//    }
+//  }
+//
+//  // NAK? (=end of slave transmit comm)//
+//  if (sr2 & I2C_SR2_AF) {
+//    I2C1->SR2 &= ~I2C_SR2_AF; // clear AF
+//  }
+//
+//  // Stop bit from Master  (= end of slave receive comm) //
+//  if (sr1 & I2C_SR1_STOPF) {
+//    I2C1->CR2 |= I2C_CR2_ACK; // CR2 write to clear STOPF
+// }
+//  // Slave address matched (= Start Comm) //
+//  if ((sr1 & I2C_SR1_ADDR) && (sr3 & I2C_SR3_BUSY)) {
+//    GPIOC->ODR ^= 0X80;
+//  }
+//  // More bytes to transmit ? //
+//  if ((sr1 & (I2C_SR1_TXE | I2C_SR1_BTF)) == (I2C_SR1_TXE | I2C_SR1_BTF)) {
+//  }
+//  // Byte to transmit ? //
+//  if (sr1 & I2C_SR1_TXE) {
+//    I2C1->DR = Distance_H;
+//    I2C1->DR = Distance_L;
+//  } else {
+//  };
+//}
 
-  static u8 sr1,sr2,sr3;;                                        
-// save the I2C registers configuration
-sr1 = I2C1->SR1;
-sr2 = I2C1->SR2;
-sr3 = I2C1->SR3;
-//Communication error? //
+@svlreg INTERRUPT_HANDLER(I2C1_SPI2_IRQHandler, 29) {
 
-if (sr2 & (I2C_SR2_WUFH | I2C_SR2_OVR |I2C_SR2_ARLO |I2C_SR2_BERR))
-  {                
-//   I2C1->CR2|= I2C_CR2_STOP;  // stop communication - release the lines
-    I2C1->SR2= 0;                 // clear all error flags
-     e=1;
-     Distance_H=0;
-     Distance_L=0;
+  if (I2C_ReadRegister(I2C1, I2C_Register_SR2)) {
+    // Clears SR2 register
+    I2C1->SR2 = 0;
+    e = 1;
+    Distance_H = 0;
+    Distance_L = 0;
   }
 
-// More bytes received ? 
-if ((sr1 & (I2C_SR1_RXNE | I2C_SR1_BTF)) == (I2C_SR1_RXNE | I2C_SR1_BTF))
-  {
-//   I2C_byte_received(I2C1->DR);
-  }
+  Event = I2C_GetLastEvent(I2C1);
+  switch (Event) {
+    /******* Slave transmitter ******/
+    /* check on EV1 */
 
-// Byte received ? //
-  if( (sr1 & I2C_SR1_RXNE)&&(sr3 &I2C_SR3_BUSY))
-  {
-      GPIOE->ODR^=0X80; 
-      SBUF=I2C1->DR;
-      k=2;
-      if(SBUF==1)
-      {
-      measure_flag=1;
+  case I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED:
+    break;
+
+    /* check on EV3 */
+  case I2C_EVENT_SLAVE_BYTE_TRANSMITTING:
+    /* Transmit data */
+    I2C1->DR = Distance_H;
+    I2C1->DR = Distance_L;
+    break;
+    /******* Slave receiver **********/
+    /* check on EV1*/
+  case I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED:
+    GPIOC->ODR ^= 0X80;
+    break;
+
+    /* Check on EV2*/
+  case I2C_EVENT_SLAVE_BYTE_RECEIVED:
+    GPIOE->ODR ^= 0X80;
+    SBUF = I2C_ReceiveData(I2C1);
+    if (SBUF == 1) {
+      measure_flag = 1;
       TIM4_SetCounter(0);
       TIM4_Cmd(ENABLE);
       GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast);
-      GPIO_ResetBits(GPIOB,GPIO_Pin_4);
+      GPIO_ResetBits(GPIOB, GPIO_Pin_4);
       EIGHT();
       TIM3_SetCounter(0);
       TIM3_Cmd(ENABLE);
-      }
-      else if(0xA0<=SBUF<=0xAF)
-      {
-       EEPROM_WriteByte(0,SBUF);
-  //     I2C_DeInit_Config(EEPROM_ReadByte(0));
-         I2C_DeInit(I2C1);
-         I2C_Init(I2C1, I2CSPEED, 0x2F, I2C_Mode_I2C, I2C_DutyCycle_2, I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
-         I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF), ENABLE);
-         I2C_Cmd(I2C1, ENABLE);
-       k=1;
-      }
-      else{measure_flag=0;}
-   }
-
-//NAK? (=end of slave transmit comm)//
-if (sr2 & I2C_SR2_AF)
-    {        
-       I2C1->SR2 &= ~I2C_SR2_AF;          // clear AF
+    } else if (0xA0 <= SBUF <= 0xAF) {
+      EEPROM_WriteByte(0, SBUF);
+      I2C_DeInit(I2C1);
+      I2C_Init(I2C1, I2CSPEED, 0x2F, I2C_Mode_I2C, I2C_DutyCycle_2,
+               I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
+      I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF),
+                   ENABLE);
+      I2C_Cmd(I2C1, ENABLE);
+    } else {
+      measure_flag = 0;
     }
+    break;
 
-// Stop bit from Master  (= end of slave receive comm) //
-if (sr1 & I2C_SR1_STOPF) 
-  {
-    I2C1->CR2 |= I2C_CR2_ACK;          // CR2 write to clear STOPF
+    // NAK received
+  case (I2C_EVENT_SLAVE_ACK_FAILURE):
+    I2C1->SR2 &= ~I2C_SR2_AF; // clear AF
+    break;
+    /* Check on EV4 */
+  case (I2C_EVENT_SLAVE_STOP_DETECTED):
+    /* write to CR2 to clear STOPF flag */
+    I2C1->CR2 |= I2C_CR2_ACK;
+    break;
 
+  default:
+    break;
   }
-// Slave address matched (= Start Comm) //
-if( (sr1 & I2C_SR1_ADDR)&&(sr3 &I2C_SR3_BUSY)) 
-    {        
-    GPIOC->ODR^=0X80;
-    }
-// More bytes to transmit ? //
-if ((sr1 & (I2C_SR1_TXE | I2C_SR1_BTF)) == (I2C_SR1_TXE | I2C_SR1_BTF))
-  {       
-  }
-// Byte to transmit ? //
-if (sr1 & I2C_SR1_TXE)
-  {
- I2C1->DR =Distance_H;
- I2C1->DR =Distance_L; 
-  } 
-else{};
 }
-/**
-  * @}
-  */ 
 
-/******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/
+/**
+ * @}
+ */
+
+/******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF
+   FILE****/
