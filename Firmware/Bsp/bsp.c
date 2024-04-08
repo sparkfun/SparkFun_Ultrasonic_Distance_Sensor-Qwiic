@@ -4,11 +4,14 @@ void Delay(uint16_t n)
 {
   while(n--);
 }
-void EIGHT(void)
+void pulseTransmitter(void)
 {
    
   uint8_t i=0;
   GPIO_ResetBits(GPIOB,GPIO_Pin_0);
+  // Lower the inverting pin on the op-amp, turning it on.   
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast);
+  GPIO_ResetBits(GPIOB, GPIO_Pin_4);
 
   for(i=0;i<4;i++)
   {
@@ -23,7 +26,7 @@ void EIGHT(void)
    Delay(22);
    }
   
-  for(i=0;i<4;i++)
+
   {
    
    GPIO_ResetBits(GPIOD,GPIO_Pin_0);
@@ -35,40 +38,11 @@ void EIGHT(void)
    GPIO_ResetBits(GPIOB,GPIO_Pin_0);
    Delay(22);
    }
+    //ECHO pin high
   GPIO_SetBits(GPIOB,GPIO_Pin_2);
   TIM2_SetCounter(0);
   TIM2_Cmd(ENABLE);
 }
-
-//void I2C_DeInit_Config(uint8_t SLAVE_ADDR)
-//{
-//      I2C_DeInit(I2C1);
-//
-//    /* Set I2C registers for 7Bits Address */
-//
-//    I2C1->CR1 |= 0x01;
-//    // Enable I2C peripheral
-//
-//    I2C1->CR2 |= 0x04;
-//    // Enable I2C acknowledgement
-//
-//    I2C1->FREQR = 16; 
-//    // Set I2C Freq value (16MHz)
-//
-//    I2C1->OARL |= (SLAVE_ADDR << 1) ;
-//    // set slave address to 0xA5(put 0x4A for the register dues to7bit address) 
-//
-//    I2C1->OARH |= 0x40;
-//    // Set 7bit address mode
-//           
-//
-//    I2C1->ITR|= 0x07;
-//
-//    // all I2C interrupt enable
-//    /* Enable Error Interrupt*/
-//    I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF), ENABLE);
-//    I2C_Cmd(I2C1,ENABLE);
-//}
 
 /******************************************************************************************************
 
@@ -144,6 +118,6 @@ RETURN £º NONE
 *************************************************/
 void BSP_Initializes(void)
 {
-  EIGHT();
+  pulseTransmitter();
 }
 
