@@ -1332,7 +1332,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="3.2512" y1="2.3876" x2="-3.048" y2="2.3876" width="0.1524" layer="39"/>
 <circle x="-2.6416" y="2.6924" radius="0.227184375" width="0" layer="21"/>
 </package>
-<package name="CUSA-R80">
+<package name="TCT40-16R">
 <description>&lt;h3&gt;Ultrasonic Sensor&lt;/h3&gt;
 &lt;p&gt;Mechanical Specifications:
 &lt;ul&gt;
@@ -1350,7 +1350,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <circle x="0" y="0" radius="8.09020625" width="0" layer="39"/>
 <circle x="0" y="0" radius="8.0772375" width="0.127" layer="21"/>
 </package>
-<package name="CUSA-T80">
+<package name="TFT40-16T">
 <description>&lt;h3&gt;Ultrasonic Sensor&lt;/h3&gt;
 &lt;p&gt;Mechanical Specifications:
 &lt;ul&gt;
@@ -1399,7 +1399,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <text x="-12.7" y="20.32" size="1.778" layer="95" font="vector">&gt;NAME</text>
 <text x="-12.7" y="-27.94" size="1.778" layer="96" font="vector">&gt;VALUE</text>
 </symbol>
-<symbol name="SP3232EB">
+<symbol name="UT3232">
 <description>&lt;h3&gt;SP3232EB&lt;/h3&gt;</description>
 <wire x1="-10.16" y1="20.32" x2="-10.16" y2="-22.86" width="0.1524" layer="94"/>
 <wire x1="-10.16" y1="-22.86" x2="10.16" y2="-22.86" width="0.1524" layer="94"/>
@@ -1501,26 +1501,18 @@ set of development tools.&lt;/p&gt;</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="SP3232EB" prefix="U">
-<description>&lt;h3&gt;Maxlinear - SP3232EB&lt;/h3&gt;
-&lt;p&gt;The SP3222EB and SP3232EB series are RS-232
-transceiver solutions intended for portable or hand-held
-applications such as notebook or laptop computers. The
-SP3222EB / SP3232EB series has a high-efficiency,
-charge-pump power supply that requires only 0.1μF
-capacitors in 3.3V operation. This charge pump allows the
-SP3222EB / SP3232EB series to deliver true RS-232
-performance from a single power supply ranging from
-3.0V to 5.5V. The SP3222EB / SP3232EB are 2-driver /
-2-receiver devices. The ESD tolerance of the SP3222EB /
-SP3232E devices is over ±15kV for both Human Body
-Model and IEC61000-4-2 Air discharge test methods. The
-SP3222EB device has a low-power shutdown mode
-where the devices’ driver outputs and charge pumps are
-disabled. During shutdown, the supply current falls to less
-than 1μA.&lt;/p&gt;</description>
+<deviceset name="UT3232" prefix="U">
+<description>&lt;h3&gt;Unisonic Technologies - UT3232&lt;/h3&gt;
+&lt;p&gt;TThe UTC UT3232 has two receivers and two drivers, and a dual
+charge-pump circuit. The device meets the requirements of
+TIA/EIA-232-F and provides the electrical interface between an
+asynchronous communication controller and the serial-port connector.
+The charge pump and four small external capacitors allow operation
+from a single 3.0V to 5.5V supply. The device operates at data
+signaling rates up to 250kbit/s and a maximum of 35V/μs driver output
+slew rate.&lt;/p&gt;</description>
 <gates>
-<gate name="G$1" symbol="SP3232EB" x="0" y="0"/>
+<gate name="G$1" symbol="UT3232" x="0" y="0"/>
 </gates>
 <devices>
 <device name="" package="TSSOP16">
@@ -1557,7 +1549,7 @@ than 1μA.&lt;/p&gt;</description>
 <gate name="G$1" symbol="ULTRASONIC_SENSOR" x="0" y="0"/>
 </gates>
 <devices>
-<device name="_RECEIVER" package="CUSA-R80">
+<device name="_RECEIVER" package="TCT40-16R">
 <connects>
 <connect gate="G$1" pin="1" pad="P1"/>
 <connect gate="G$1" pin="2" pad="P2"/>
@@ -1568,7 +1560,7 @@ than 1μA.&lt;/p&gt;</description>
 </technology>
 </technologies>
 </device>
-<device name="_TRANSMITTER" package="CUSA-T80">
+<device name="_TRANSMITTER" package="TFT40-16T">
 <connects>
 <connect gate="G$1" pin="1" pad="P1"/>
 <connect gate="G$1" pin="2" pad="P2"/>
@@ -25267,7 +25259,7 @@ Standard 0402 sized pads with cathode pin indicator.
 <part name="GND17" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="GND18" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="TP1" library="SparkFun-Connectors" deviceset="TEST-POINT" device="3X5" value="TEST-POINT3X5"/>
-<part name="U8" library="new_parts" deviceset="SP3232EB" device=""/>
+<part name="U8" library="new_parts" deviceset="UT3232" device=""/>
 <part name="FRAME1" library="SparkFun-Aesthetics" deviceset="FRAME-LEDGER" device="">
 <attribute name="DESIGNER" value="NOA Labs"/>
 <attribute name="REV" value="v11"/>
@@ -25336,10 +25328,10 @@ Standard 0402 sized pads with cathode pin indicator.
 <wire x1="259.08" y1="142.24" x2="431.8" y2="142.24" width="0.254" layer="97" style="longdash"/>
 <text x="96.52" y="266.7" size="2.54" layer="94" font="vector" align="center">Microcontroller - STM8L051F3</text>
 <text x="218.44" y="193.04" size="2.54" layer="94" font="vector" align="center">Testpoints</text>
-<text x="342.9" y="266.7" size="2.54" layer="94" font="vector" align="center">RS-232 Transceiver - SP3232EB
-Ultrasonic Transmitter - CUSA-T80</text>
+<text x="342.9" y="266.7" size="2.54" layer="94" font="vector" align="center">RS-232 Transceiver - UT3232G
+Ultrasonic Transmitter - TCT40-16T</text>
 <text x="119.38" y="129.54" size="2.54" layer="94" font="vector" align="center">OP-AMP - LMV324
-Ultrasonic Receiver - CUSA-R80</text>
+Ultrasonic Receiver - TCT40-16R</text>
 <text x="347.98" y="129.54" size="2.54" layer="94" font="vector" align="center">Qwiic Conncectors</text>
 <text x="215.9" y="266.7" size="2.54" layer="94" font="vector" align="center">Header</text>
 <wire x1="177.8" y1="279.4" x2="177.8" y2="208.28" width="0.254" layer="97" style="longdash"/>
