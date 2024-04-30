@@ -4,17 +4,18 @@
 
 #define TIM4_PERIOD 16 * 10
 #define BUFFER_SIZE 4
-#define I2CSPEED 10000
+#define I2C_SPEED 10000
 #define PERIPH_ADDRESS (0x2F << 1)
 
-#define DISTANCE_READING 0x01
-#define CHANGE_ADDRESS 0x04
-#define RESET_ADDRESS 0x06
+#define CMD_READ_DISTANCE 0x01
+#define CMD_CHANGE_ADDRESS 0x04
+#define CMD_RESET_ADDRESS 0x06
 
 uint8_t OUT_RANGE = 0;
 uint8_t OPAMP_INTERRUPT = 0;
 uint8_t ADDRESS_INTERRUPT = 0;
 uint8_t TRIGGER_INTERRUPT = 0;
+uint8_t I2C_INTERRUPT = 0;
 
 uint8_t userAddress;
 uint8_t Distance_H = 0, Distance_L = 0;

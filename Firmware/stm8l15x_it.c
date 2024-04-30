@@ -219,7 +219,7 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
     /* Check on EV2*/
   }
   if (Event == I2C_EVENT_SLAVE_BYTE_RECEIVED) {
-    I2C_START = 0;
+    I2C_INTERRUPT = 0;
     peripheralBuffer[rxIndex++] = I2C_ReceiveData(I2C1);
   }
   // NAK received
@@ -231,7 +231,7 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
     /* write to CR2 to clear STOPF flag */
     I2C1->CR2 |= I2C_CR2_ACK;
     rxIndex = 0;
-    I2C_START = 1;
+    I2C_INTERRUPT = 1;
   }
 }
 /**

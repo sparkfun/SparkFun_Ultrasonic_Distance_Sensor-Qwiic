@@ -27,10 +27,10 @@ int main(void) {
   while (1) {
     // Loop until something comes in.
     if (I2C_INTERRUPT == 1) {
-      if (peripheralBuffer[0] == DISTANCE_READING) {
+      if (peripheralBuffer[0] == CMD_READ_DISTANCE) {
         pulseTransmitter();
       }
-      if (peripheralBuffer[0] == CHANGE_ADDRESS) {
+      if (peripheralBuffer[0] == CMD_CHANGE_ADDRESS) {
         if (peripheralBuffer[1] != 0x00) {
           userAddress = peripheralBuffer[1];
           changeAddress(userAddress);
@@ -123,7 +123,7 @@ void setGPIO(void) {
 void setI2C(void) {
   CLK_PeripheralClockConfig(CLK_Peripheral_I2C1, ENABLE);
   I2C_DeInit(I2C1);
-  I2C_Init(I2C1, I2CSPEED, PERIPH_ADDRESS, I2C_Mode_I2C, I2C_DutyCycle_2,
+  I2C_Init(I2C1, I2C_SPEED, PERIPH_ADDRESS, I2C_Mode_I2C, I2C_DutyCycle_2,
            I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
   I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF),
                ENABLE);
@@ -172,7 +172,7 @@ setTimers(void) {
  */
 void changeAddress(uint8_t address) {
   I2C_DeInit(I2C1);
-  I2C_Init(I2C1, I2CSPEED, address, I2C_Mode_I2C, I2C_DutyCycle_2,
+  I2C_Init(I2C1, I2C_SPEED, address, I2C_Mode_I2C, I2C_DutyCycle_2,
            I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
   I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF),
                ENABLE);
