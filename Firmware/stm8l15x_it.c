@@ -22,19 +22,13 @@
  */
 
 /* Includes ------------------------------------------------------------------*/
-#include "bsp.h"
-// #include <stdint.h>
+#include "main.h"
+//#include <stdint.h>
 
 uint16_t Event = 0x00;
-uint8_t Out_Range = 0;
-uint16_t Timer = 0;
-uint16_t Distance = 0;
-uint8_t Distance_H = 0, Distance_L = 0;
 volatile uint8_t rxIndex = 0;
 volatile uint8_t txIndex = 0;
-extern uint8_t PERIPH_ADDRESS;
-extern uint8_t COMMUNICATION_END;
-volatile extern uint8_t peripheralBuffer[4];
+
 /** @addtogroup STM8L15x_StdPeriph_Template
  * @{
  */
@@ -73,42 +67,21 @@ void delay(uint16_t z) {
  * @retval None
  */
 INTERRUPT_HANDLER(EXTI3_IRQHandler, 11) {
-  /* In order to detect unexpected events during development,
-     it is recommended to set a breakpoint on the following instruction.
-  */
   EXTI_ClearITPendingBit(EXTI_IT_Pin3);
   TIM4_SetCounter(0);
   TIM4_Cmd(ENABLE);
-
-  // Raises the inverting pin on the op-amp, thus turning it off.
-  // GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast);
-  // GPIO_SetBits(GPIOB, GPIO_Pin_4);
-  // delay(20);
-  if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3)) {
-    pulseTransmitter();
-    TIM3_SetCounter(0);
-    TIM3_Cmd(ENABLE);
-  }
+  TRIGGER_ENABLE = 1;
 }
+
 /*
  * @brief External IT PIN5 Interrupt routine.
  * @param  None
  * @retval None
  */
-// NOT IMPLEMENTED
+
 @svlreg INTERRUPT_HANDLER(EXTI5_IRQHandler, 13) {
-  /* In order to detect unexpected events during development,
-     it is recommended to set a breakpoint on the following instruction.
-  */
   EXTI_ClearITPendingBit(EXTI_IT_Pin5);
-  // EEPROM_WriteByte(0, 0x2F);
-  //  I2C_DeInit_Config(EEPROM_ReadByte(0));
-  I2C_DeInit(I2C1);
-  I2C_Init(I2C1, 10000, 0x2F, I2C_Mode_I2C, I2C_DutyCycle_2, I2C_Ack_Enable,
-           I2C_AcknowledgedAddress_7bit);
-  I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF),
-               ENABLE);
-  I2C_Cmd(I2C1, ENABLE);
+  RESET_ADDRESS = 1;
 }
 
 /**
@@ -117,27 +90,9 @@ INTERRUPT_HANDLER(EXTI3_IRQHandler, 11) {
  * @retval None
  */
 INTERRUPT_HANDLER(EXTI6_IRQHandler, 14) {
-  /* In order to detect unexpected events during development,
-     it is recommended to set a breakpoint on the following instruction.
-  */
   EXTI_ClearITPendingBit(EXTI_IT_Pin6);
-  Timer = TIM2_GetCounter();
-  TIM2_Cmd(DISABLE);
-  // IM3_Cmd(DISABLE);
-  //  ECHO pulled low
-  GPIO_ResetBits(GPIOB, GPIO_Pin_2);
-  // Raises the inverting pin on the op-amp, thus turning it off.
-  // GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast);
-  GPIO_SetBits(GPIOB, GPIO_Pin_4);
-  //  Distance=Timer/58*5;
-  //if (Out_Range == 0) {
-  //  Distance = (uint16_t)Timer * 0.0862;
-  //  Distance_H = (uint8_t)(Distance >> 8);
-  //  Distance_L = (uint8_t)Distance;
-  //}
-  Distance_H = (uint8_t)(Distance >> 8);
-  Distance_L = (uint8_t)Distance;
-  Out_Range = 0;
+  OPAMP_INT_TRIGGER = 1;
+
 }
 
 /**
@@ -282,7 +237,6 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
     rxIndex = 0;
     COMMUNICATION_END = 1;
   }
-}
 }
 /**
  * @}
