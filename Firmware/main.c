@@ -1,5 +1,4 @@
-/*******************************************************************************
-***********************Zio Ultrasonic Distance Sensor***************************
+/***********************Zio Ultrasonic Distance Sensor***************************
 ***********************************ZIO.CC***************************************
 *******************************************************************************/
 
@@ -7,7 +6,6 @@
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_gpio.h"
 #include "bsp.h"
 #include "stm8l15x.h"
-// #include <cstdint>
 
 #define TIM4_PERIOD 16 * 10
 #define BUFFER_SIZE 4
@@ -28,56 +26,57 @@ void changeAddress(uint8_t userAddress);
 int main(void) {
 
   ultrasonicCLKSetup();
-  ultrasonicGPIOSetup();
+  //ultrasonicGPIOSetup();
   ultrasonicI2CSetup();
 
-  TIM2_DeInit();
-  CLK_PeripheralClockConfig(CLK_Peripheral_TIM2, ENABLE);
-  TIM2_TimeBaseInit(TIM2_Prescaler_8, TIM2_CounterMode_Up, 0xFFFF);
-  TIM2_ARRPreloadConfig(ENABLE);
+  //TIM2_DeInit();
+  //CLK_PeripheralClockConfig(CLK_Peripheral_TIM2, ENABLE);
+  //TIM2_TimeBaseInit(TIM2_Prescaler_8, TIM2_CounterMode_Up, 0xFFFF);
+  //TIM2_ARRPreloadConfig(ENABLE);
 
-  TIM3_DeInit();
-  CLK_PeripheralClockConfig(CLK_Peripheral_TIM3, ENABLE);
-  TIM3_TimeBaseInit(TIM3_Prescaler_128, TIM3_CounterMode_Up, 5500);
-  TIM3_ARRPreloadConfig(ENABLE);
+  //TIM3_DeInit();
+  //CLK_PeripheralClockConfig(CLK_Peripheral_TIM3, ENABLE);
+  //TIM3_TimeBaseInit(TIM3_Prescaler_128, TIM3_CounterMode_Up, 5500);
+  //TIM3_ARRPreloadConfig(ENABLE);
 
-  TIM4_DeInit();
-  CLK_PeripheralClockConfig(CLK_Peripheral_TIM4, ENABLE);
-  TIM4_TimeBaseInit(TIM4_Prescaler_128, TIM4_PERIOD);
-  TIM4_ARRPreloadConfig(ENABLE);
-  // FLASH_DeInit();
+  //TIM4_DeInit();
+  //CLK_PeripheralClockConfig(CLK_Peripheral_TIM4, ENABLE);
+  //TIM4_TimeBaseInit(TIM4_Prescaler_128, TIM4_PERIOD);
+  //TIM4_ARRPreloadConfig(ENABLE);
+  //// FLASH_DeInit();
 
-  enableInterrupts();
+  //enableInterrupts();
 
-  TIM2_ClearFlag(TIM2_FLAG_Update);
-  TIM3_ClearFlag(TIM3_FLAG_Update);
-  TIM4_ClearFlag(TIM4_FLAG_Update);
-  
-  TIM2_ITConfig(TIM2_IT_Update, ENABLE);
-  TIM3_ITConfig(TIM3_IT_Update, ENABLE);
-  TIM4_ITConfig(TIM4_IT_Update, ENABLE);
+  //TIM2_ClearFlag(TIM2_FLAG_Update);
+  //TIM3_ClearFlag(TIM3_FLAG_Update);
+  //TIM4_ClearFlag(TIM4_FLAG_Update);
+  //
+  //TIM2_ITConfig(TIM2_IT_Update, ENABLE);
+  //TIM3_ITConfig(TIM3_IT_Update, ENABLE);
+  //TIM4_ITConfig(TIM4_IT_Update, ENABLE);
 
-  // Raises the inverting pin on the op-amp, thus turning it off. 
-  GPIO_ResetBits(GPIOB, GPIO_Pin_4);
+  //// Raises the inverting pin on the op-amp, thus turning it off. 
+  //GPIO_SetBits(GPIOB, GPIO_Pin_4);
 
-  while (1) {
-    // Loop until something comes in.
-    while (!COMMUNICATION_END); 
-    COMMUNICATION_END = 1;
-      switch (peripheralBuffer[0]) {
-      case DISTANCE_READING:
-        pulseTransmitter();
-        break;
-      case CHANGE_ADDRESS:
-        if (peripheralBuffer[1] != 0x00) {
-          userAddress = peripheralBuffer[1];
-          changeAddress(userAddress);
-        }
-        break;
-      default:
-        break;
-      }
-    }
+  //while (1) {
+  //  // Loop until something comes in.
+  //  while (COMMUNICATION_END == 0); 
+  //  COMMUNICATION_END = 1;
+  //    switch (peripheralBuffer[0]) {
+  //    case DISTANCE_READING:
+  //      pulseTransmitter();
+  //      break;
+  //    case CHANGE_ADDRESS:
+  //      if (peripheralBuffer[1] != 0x00) {
+  //        userAddress = peripheralBuffer[1];
+  //        changeAddress(userAddress);
+  //      }
+  //      break;
+  //    default:
+  //      break;
+  //    }
+  //  }
+    while(1);
 }
 
 void ultrasonicGPIOSetup(void) {
