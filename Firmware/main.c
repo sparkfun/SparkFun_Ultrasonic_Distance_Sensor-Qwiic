@@ -26,7 +26,7 @@ int main(void) {
 
   while (1) {
     // Loop until something comes in.
-    if (COMMUNICATION_START == 1) {
+    if (I2C_INTERRUPT == 1) {
       if (peripheralBuffer[0] == DISTANCE_READING) {
         pulseTransmitter();
       }
@@ -36,27 +36,27 @@ int main(void) {
           changeAddress(userAddress);
         }
       }
-      COMMUNICATION_START = 0;
+      I2C_INTERRUPT = 0;
     }
 
-    if (TRIGGER_ENABLE == 1) {
+    if (TRIGGER_INTERRUPT == 1) {
       if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3)) {
         pulseTransmitter();
         TIM3_SetCounter(0);
         TIM3_Cmd(ENABLE);
         enableOPAMP(0);
       }
-      TRIGGER_ENABLE = 0;
+      TRIGGER_INTERRUPT = 0;
     }
 
-    if (RESET_ADDRESS) {
+    if (ADDRESS_INTERRUPT == 1) {
       changeAddress(0x2F);
-      RESET_ADDRESS = 0;
+      ADDRESS_INTERRUPT = 0;
       // EEPROM_WriteByte(0, 0x2F);
       // I2C_DeInit_Config(EEPROM_ReadByte(0));
     }
 
-    if (OPAMP_INT_TRIGGER == 1) {
+    if (OPAMP_INTERRUPT == 1) {
       Timer = TIM2_GetCounter();
       TIM2_Cmd(DISABLE);
       // TIM3_Cmd(DISABLE);
@@ -70,7 +70,7 @@ int main(void) {
         Distance_L = (uint8_t)Distance;
       }
       OUT_RANGE = 0;
-      OPAMP_INT_TRIGGER = 0;
+      OPAMP_INTERRUPT = 0;
     }
   }
   // while (1)
@@ -227,10 +227,10 @@ void pulseTransmitter(void) {
 void enableOPAMP(uint8_t enable) {
   if (enable) {
     GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast);
-    GPIO_SetBits(GPIOB, GPIO_Pin_4);
+    GPIO_ResetBits(GPIOB, GPIO_Pin_4);
   } else {
     GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast);
-    GPIO_ResetBits(GPIOB, GPIO_Pin_4);
+    GPIO_SetBits(GPIOB, GPIO_Pin_4);
   }
 }
 

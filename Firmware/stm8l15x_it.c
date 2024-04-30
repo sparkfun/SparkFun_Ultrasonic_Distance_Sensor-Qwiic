@@ -70,7 +70,7 @@ INTERRUPT_HANDLER(EXTI3_IRQHandler, 11) {
   EXTI_ClearITPendingBit(EXTI_IT_Pin3);
   TIM4_SetCounter(0);
   TIM4_Cmd(ENABLE);
-  TRIGGER_ENABLE = 1;
+  TRIGGER_INTERRUPT = 1;
 }
 
 /*
@@ -81,7 +81,7 @@ INTERRUPT_HANDLER(EXTI3_IRQHandler, 11) {
 
 @svlreg INTERRUPT_HANDLER(EXTI5_IRQHandler, 13) {
   EXTI_ClearITPendingBit(EXTI_IT_Pin5);
-  RESET_ADDRESS = 1;
+  ADDRESS_INTERRUPT = 1;
 }
 
 /**
@@ -91,8 +91,7 @@ INTERRUPT_HANDLER(EXTI3_IRQHandler, 11) {
  */
 INTERRUPT_HANDLER(EXTI6_IRQHandler, 14) {
   EXTI_ClearITPendingBit(EXTI_IT_Pin6);
-  OPAMP_INT_TRIGGER = 1;
-
+  OPAMP_INTERRUPT = 1;
 }
 
 /**
@@ -118,12 +117,10 @@ INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler, 21) {
      it is recommended to set a breakpoint on the following instruction.
   */
   TIM3_ClearITPendingBit(TIM3_IT_Update);
-  // TIM3_ClearFlag(TIM3_FLAG_Update);
-  // GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast);
-  GPIO_SetBits(GPIOB, GPIO_Pin_4);
   TIM3_Cmd(DISABLE);
+  enableOPAMP(0);
   GPIO_SetBits(GPIOB, GPIO_Pin_2);
-  Out_Range = 1;
+  OUT_RANGE = 1;
 }
 
 /**
@@ -135,8 +132,7 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
 
   // TIM4_ClearFlag(TIM4_FLAG_Update);
   TIM4_ClearITPendingBit(TIM4_IT_Update);
-  // GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_In_FL_No_IT);
-  GPIO_SetBits(GPIOB, GPIO_Pin_4);
+  enableOPAMP(0);
   TIM4_Cmd(DISABLE);
 }
 
@@ -173,7 +169,7 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
 //    break;
 //    /* Check on EV2*/
 //  case I2C_EVENT_SLAVE_BYTE_RECEIVED:
-//    COMMUNICATION_END = 0;
+//    I2C_START = 0;
 //    peripheralBuffer[rxIndex++] = I2C_ReceiveData(I2C1);
 //    break;
 //    // NAK received
@@ -185,7 +181,7 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
 //    /* write to CR2 to clear STOPF flag */
 //    I2C1->CR2 |= I2C_CR2_ACK;
 //    rxIndex = 0;
-//    COMMUNICATION_END = 1;
+//    I2C_START = 1;
 //    break;
 //
 //  default:
@@ -223,7 +219,7 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
     /* Check on EV2*/
   }
   if (Event == I2C_EVENT_SLAVE_BYTE_RECEIVED) {
-    COMMUNICATION_END = 0;
+    I2C_START = 0;
     peripheralBuffer[rxIndex++] = I2C_ReceiveData(I2C1);
   }
   // NAK received
@@ -235,7 +231,7 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
     /* write to CR2 to clear STOPF flag */
     I2C1->CR2 |= I2C_CR2_ACK;
     rxIndex = 0;
-    COMMUNICATION_END = 1;
+    I2C_START = 1;
   }
 }
 /**
