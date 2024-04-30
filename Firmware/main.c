@@ -94,20 +94,14 @@ void delay(uint16_t n) {
  * @retval None
  */
 void setGPIO(void) {
-  GPIO_Init(GPIOD, (GPIO_Pin_TypeDef)GPIO_Pin_0,
-            GPIO_Mode_Out_PP_Low_Fast); // DIN2
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_0,
-            GPIO_Mode_Out_PP_Low_Fast); // DIN1
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_2,
-            GPIO_Mode_Out_PP_Low_Fast); // ECHO
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4,
-            GPIO_Mode_Out_PP_Low_Slow); // PB4
+  GPIO_Init(GPIOD, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_Low_Fast); // DIN2
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_Low_Fast); // DIN1
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_2, GPIO_Mode_Out_PP_Low_Fast); // ECHO
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Slow); // PB4
 
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_3, GPIO_Mode_In_FL_IT); // TRIG
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_5,
-            GPIO_Mode_In_PU_IT); // ADDR_RST
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_5, GPIO_Mode_In_PU_IT); // ADDR_RST
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_6, GPIO_Mode_In_FL_IT); // INT
-
   // Exterinal interrups for TRIG, INT, ADDR_RST
   EXTI_DeInit();
   EXTI_SetPinSensitivity(EXTI_Pin_3, EXTI_Trigger_Rising);  // TRIG
@@ -148,7 +142,7 @@ void setCLK(void) {
  * @param  None
  * @retval None
  */
-setTimers(void) {
+void setTimers(void) {
   TIM2_DeInit();
   CLK_PeripheralClockConfig(CLK_Peripheral_TIM2, ENABLE);
   TIM2_TimeBaseInit(TIM2_Prescaler_8, TIM2_CounterMode_Up, 0xFFFF);
