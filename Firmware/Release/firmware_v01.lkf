@@ -50,7 +50,6 @@ crtsi0.sm8
 
 # Object files list - section reserved for STVD
 #<BEGIN OBJECT_FILES>
-Release\bsp.o
 Release\main.o
 Release\stm8l15x_it.o
 Release\stm8l15x_clk.o

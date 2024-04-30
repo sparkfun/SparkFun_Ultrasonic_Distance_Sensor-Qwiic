@@ -2,6 +2,9 @@
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_gpio.h"
 #include "stm8l15x.h"
 
+#ifndef MAIN_H
+#define MAIN_H
+
 #define TIM4_PERIOD 16 * 10
 #define BUFFER_SIZE 4
 #define I2C_SPEED 10000
@@ -33,3 +36,5 @@ void pulseTransmitter(void);
 void EEPROM_WriteByte(uint16_t Addr,uint8_t Data);
 uint8_t EEPROM_ReadByte(uint16_t Addr);
 void enableOPAMP(uint8_t enable);
+
+#endif

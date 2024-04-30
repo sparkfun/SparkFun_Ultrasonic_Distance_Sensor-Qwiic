@@ -56,11 +56,6 @@ INTERRUPT_HANDLER(NonHandledInterrupt, 0) {
 }
 #endif
 
-void delay(uint16_t z) {
-  while (z--)
-    ;
-}
-
 /**
  * @brief External IT PIN3 Interrupt routine, on the trigger pin.
  * @param  None
