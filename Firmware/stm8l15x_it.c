@@ -23,11 +23,24 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+//#include "stm8l15x_it.h"
 //#include <stdint.h>
 
 uint16_t Event = 0x00;
 volatile uint8_t rxIndex = 0;
 volatile uint8_t txIndex = 0;
+
+extern uint8_t OUT_RANGE;
+extern uint8_t OPAMP_INTERRUPT;
+extern uint8_t ADDRESS_INTERRUPT ;
+extern uint8_t TRIGGER_INTERRUPT;
+extern uint8_t I2C_INTERRUPT ;
+
+extern uint8_t userAddress;
+extern uint8_t Distance_H, Distance_L;
+extern uint16_t Distance;
+extern uint16_t Timer ;
+extern volatile uint8_t peripheralBuffer[BUFFER_SIZE];
 
 /** @addtogroup STM8L15x_StdPeriph_Template
  * @{

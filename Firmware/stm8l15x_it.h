@@ -68,6 +68,7 @@
  INTERRUPT void I2C1_SPI2_IRQHandler(void); /* I2C1 / SPI2 */
 #endif /* _RAISONANCE_ */
 
+
 #endif /* __STM8L15x_IT_H */
 
 /******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/

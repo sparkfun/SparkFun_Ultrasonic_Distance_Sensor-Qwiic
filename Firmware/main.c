@@ -4,6 +4,18 @@
  *******************************************************************************/
 #include "main.h"
 
+uint8_t OUT_RANGE = 0;
+uint8_t OPAMP_INTERRUPT = 0;
+uint8_t ADDRESS_INTERRUPT = 0;
+uint8_t TRIGGER_INTERRUPT = 0;
+uint8_t I2C_INTERRUPT = 0;
+
+uint8_t userAddress = 0x2F;
+uint8_t Distance_H = 0, Distance_L = 0;
+uint16_t Distance = 0;
+uint16_t Timer = 0;
+volatile uint8_t peripheralBuffer[BUFFER_SIZE] = {0};
+
 int main(void) {
 
   setCLK();
