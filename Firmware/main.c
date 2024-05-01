@@ -4,11 +4,11 @@
  *******************************************************************************/
 #include "main.h"
 
-uint8_t OUT_RANGE = 0;
-uint8_t OPAMP_INTERRUPT = 0;
-uint8_t ADDRESS_INTERRUPT = 0;
-uint8_t TRIGGER_INTERRUPT = 0;
-uint8_t I2C_INTERRUPT = 0;
+uint9_t outRange = 0;
+uint8_t opAmpInterrupt = 0;
+uint8_t addressInterrupt = 0;
+uint8_t triggerInterrupt = 0;
+uint8_t i2cInterrupt = 0;
 
 uint8_t userAddress = 0x2F;
 uint8_t distanceH = 0, distanceL = 0;
@@ -38,7 +38,7 @@ int main(void) {
 
   while (1) {
     // Loop until something comes in.
-    if (I2C_INTERRUPT == 1) {
+    if (i2cInterrupt == 1) {
       if (peripheralBuffer[0] == kCmdReadDistance) {
         pulseTransmitter();
       }
@@ -48,27 +48,27 @@ int main(void) {
           changeAddress(userAddress);
         }
       }
-      I2C_INTERRUPT = 0;
+      i2cInterrupt = 0;
     }
 
-    if (TRIGGER_INTERRUPT == 1) {
+    if (triggerInterrupt == 1) {
       if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3)) {
         pulseTransmitter();
         TIM3_SetCounter(0);
         TIM3_Cmd(ENABLE);
         setOpAmp(kDisableOpAmp);
       }
-      TRIGGER_INTERRUPT = 0;
+      triggerInterrupt = 0;
     }
 
-    if (ADDRESS_INTERRUPT == 1) {
+    if (addressInterrupt == 1) {
       changeAddress(0x2F);
-      ADDRESS_INTERRUPT = 0;
+      addressInterrupt = 0;
       // EEPROM_WriteByte(0, 0x2F);
       // I2C_DeInit_Config(EEPROM_ReadByte(0));
     }
 
-    if (OPAMP_INTERRUPT == 1) {
+    if (opAmpInterrupt == 1) {
       timer = TIM2_GetCounter();
       TIM2_Cmd(DISABLE);
       // TIM3_Cmd(DISABLE);
@@ -76,13 +76,13 @@ int main(void) {
       GPIO_ResetBits(GPIOB, GPIO_Pin_2);
       setOpAmp(kDisableOpAmp);
       //  distance=timer/58*5;
-      if (OUT_RANGE == 0) {
+      if (outRange == 0) {
         distance = (uint16_t)timer * 0.0862;
         distanceH = (uint8_t)(distance >> 8);
         distanceL = (uint8_t)distance;
       }
-      OUT_RANGE = 0;
-      OPAMP_INTERRUPT = 0;
+      outRange = 0;
+      opAmpInterrupt = 0;
     }
   }
   // while (1)

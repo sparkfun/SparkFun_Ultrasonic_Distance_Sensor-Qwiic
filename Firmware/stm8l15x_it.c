@@ -30,11 +30,11 @@ uint16_t event = 0x00;
 volatile uint8_t rxIndex = 0;
 volatile uint8_t txIndex = 0;
 
-extern uint8_t OUT_RANGE;
-extern uint8_t OPAMP_INTERRUPT;
-extern uint8_t ADDRESS_INTERRUPT;
-extern uint8_t TRIGGER_INTERRUPT;
-extern uint8_t I2C_INTERRUPT;
+extern uint8_t outRange;
+extern uint8_t opAmpInterrupt;
+extern uint8_t addressInterrupt;
+extern uint8_t triggerInterrupt;
+extern uint8_t i2cInterrupt;
 
 extern uint8_t userAddress;
 extern uint8_t distanceH, distanceL;
@@ -63,7 +63,7 @@ INTERRUPT_HANDLER(EXTI3_IRQHandler, 11) {
   EXTI_ClearITPendingBit(EXTI_IT_Pin3);
   TIM4_SetCounter(0);
   TIM4_Cmd(ENABLE);
-  TRIGGER_INTERRUPT = 1;
+  triggerInterrupt = 1;
 }
 
 /*
@@ -74,7 +74,7 @@ INTERRUPT_HANDLER(EXTI3_IRQHandler, 11) {
 
 @svlreg INTERRUPT_HANDLER(EXTI5_IRQHandler, 13) {
   EXTI_ClearITPendingBit(EXTI_IT_Pin5);
-  ADDRESS_INTERRUPT = 1;
+  addressInterrupt = 1;
 }
 
 /**
@@ -84,7 +84,7 @@ INTERRUPT_HANDLER(EXTI3_IRQHandler, 11) {
  */
 INTERRUPT_HANDLER(EXTI6_IRQHandler, 14) {
   EXTI_ClearITPendingBit(EXTI_IT_Pin6);
-  OPAMP_INTERRUPT = 1;
+  opAmpInterrupt = 1;
 }
 
 /**
@@ -107,7 +107,7 @@ INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler, 21) {
   TIM3_Cmd(DISABLE);
   setOpAmp(DISABLE_OPAMP);
   GPIO_SetBits(GPIOB, GPIO_Pin_2);
-  OUT_RANGE = 1;
+  outRange = 1;
 }
 
 /**
@@ -206,7 +206,7 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
     /* Check on EV2*/
   }
   if (event == I2C_EVENT_SLAVE_BYTE_RECEIVED) {
-    I2C_INTERRUPT = 0;
+    i2cInterrupt = 0;
     peripheralBuffer[rxIndex++] = I2C_ReceiveData(I2C1);
   }
   // NAK received
@@ -218,7 +218,7 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
     /* write to CR2 to clear STOPF flag */
     I2C1->CR2 |= I2C_CR2_ACK;
     rxIndex = 0;
-    I2C_INTERRUPT = 1;
+    i2cInterrupt = 1;
   }
 }
 /**
