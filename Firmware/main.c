@@ -4,7 +4,7 @@
  *******************************************************************************/
 #include "main.h"
 
-uint9_t outRange = 0;
+uint8_t outRange = 0;
 uint8_t opAmpInterrupt = 0;
 uint8_t addressInterrupt = 0;
 uint8_t triggerInterrupt = 0;
@@ -106,13 +106,18 @@ void delay(uint16_t n) {
  * @retval None
  */
 void initializeGPIO(void) {
-  GPIO_Init(GPIOD, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_Low_Fast); // DIN2
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_Low_Fast); // DIN1
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_2, GPIO_Mode_Out_PP_Low_Fast); // ECHO
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Slow); // PB4
+  GPIO_Init(GPIOD, (GPIO_Pin_TypeDef)GPIO_Pin_0,
+            GPIO_Mode_Out_PP_Low_Fast); // DIN2
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_0,
+            GPIO_Mode_Out_PP_Low_Fast); // DIN1
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_2,
+            GPIO_Mode_Out_PP_Low_Fast); // ECHO
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4,
+            GPIO_Mode_Out_PP_Low_Slow); // PB4
 
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_3, GPIO_Mode_In_FL_IT); // TRIG
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_5, GPIO_Mode_In_PU_IT); // ADDR_RST
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_5,
+            GPIO_Mode_In_PU_IT); // ADDR_RST
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_6, GPIO_Mode_In_FL_IT); // INT
   // Exterinal interrups for TRIG, INT, ADDR_RST
   EXTI_DeInit();
@@ -167,7 +172,7 @@ void initializeTimers(void) {
 
   TIM4_DeInit();
   CLK_PeripheralClockConfig(CLK_Peripheral_TIM4, ENABLE);
-  TIM4_TimeBaseInit(TIM4_Prescaler_128, TIM4_PERIOD);
+  TIM4_TimeBaseInit(TIM4_Prescaler_128, kTim4Period);
   TIM4_ARRPreloadConfig(ENABLE);
 }
 
@@ -208,7 +213,7 @@ void pulseTransmitter(void) {
     delay(22);
   }
 
-  {
+  for (i = 0; i < 4; i++) {
 
     GPIO_ResetBits(GPIOD, GPIO_Pin_0);
     GPIO_SetBits(GPIOB, GPIO_Pin_0);

@@ -105,7 +105,7 @@ INTERRUPT_HANDLER(TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler, 19) {
 INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler, 21) {
   TIM3_ClearITPendingBit(TIM3_IT_Update);
   TIM3_Cmd(DISABLE);
-  setOpAmp(DISABLE_OPAMP);
+  setOpAmp(kDisableOpAmp);
   GPIO_SetBits(GPIOB, GPIO_Pin_2);
   outRange = 1;
 }
@@ -119,7 +119,7 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
 
   // TIM4_ClearFlag(TIM4_FLAG_Update);
   TIM4_ClearITPendingBit(TIM4_IT_Update);
-  setOpAmp(DISABLE_OPAMP);
+  setOpAmp(kDisableOpAmp);
   TIM4_Cmd(DISABLE);
 }
 
