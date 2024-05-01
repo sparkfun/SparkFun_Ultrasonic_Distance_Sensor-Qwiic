@@ -6,24 +6,25 @@
 #include "stm8l15x.h"
 
 
-#define TIM4_PERIOD 16 * 10
-#define BUFFER_SIZE 4
-#define I2C_SPEED 10000
-#define PERIPH_ADDRESS (0x2F << 1)
-
-#define CMD_READ_DISTANCE 0x01
-#define CMD_CHANGE_ADDRESS 0x04
-#define CMD_RESET_ADDRESS 0x06
+#define kTim4Period 16 * 10
+#define kBufferSize 4
+#define kI2CSpeed 10000 
+#define kUltrasonicAddress (0x2F << 1) 
+#define kDisableOpAmp 0x00
+#define kEnableOpAmp 0x00
+#define kCmdReadDistance 0x01
+#define kCmdChangeAddress 0x04
+#define kCmdResetAddress 0x06
 
 void delay(uint16_t n);
-void setGPIO(void);
-void setI2C(void);
-void setCLK(void);
-void setTimers(void);
+void initializeGPIO(void);
+void initializeI2C(void);
+void initializeCLK(void);
+void initializeTimers(void);
 void changeAddress(uint8_t address);
 void pulseTransmitter(void);
 void EEPROM_WriteByte(uint16_t Addr,uint8_t Data);
 uint8_t EEPROM_ReadByte(uint16_t Addr);
-void enableOPAMP(uint8_t enable);
+void setOpAmp(uint8_t enable);
 
 #endif

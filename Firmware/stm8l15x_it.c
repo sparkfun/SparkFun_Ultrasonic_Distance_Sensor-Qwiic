@@ -23,36 +23,24 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-//#include "stm8l15x_it.h"
-//#include <stdint.h>
+// #include "stm8l15x_it.h"
+// #include <stdint.h>
 
-uint16_t Event = 0x00;
+uint16_t event = 0x00;
 volatile uint8_t rxIndex = 0;
 volatile uint8_t txIndex = 0;
 
 extern uint8_t OUT_RANGE;
 extern uint8_t OPAMP_INTERRUPT;
-extern uint8_t ADDRESS_INTERRUPT ;
+extern uint8_t ADDRESS_INTERRUPT;
 extern uint8_t TRIGGER_INTERRUPT;
-extern uint8_t I2C_INTERRUPT ;
+extern uint8_t I2C_INTERRUPT;
 
 extern uint8_t userAddress;
-extern uint8_t Distance_H, Distance_L;
-extern uint16_t Distance;
-extern uint16_t Timer ;
-extern volatile uint8_t peripheralBuffer[BUFFER_SIZE];
-
-/** @addtogroup STM8L15x_StdPeriph_Template
- * @{
- */
-
-/* Private typedef -----------------------------------------------------------*/
-/* Private define ------------------------------------------------------------*/
-/* Private macro -------------------------------------------------------------*/
-/* Private variables ---------------------------------------------------------*/
-/* Private function prototypes -----------------------------------------------*/
-/* Private functions ---------------------------------------------------------*/
-/* Public functions ----------------------------------------------------------*/
+extern uint8_t distanceH, distanceL;
+extern uint16_t distance;
+extern uint16_t timer;
+extern volatile uint8_t peripheralBuffer[kBufferSize];
 
 #ifdef _COSMIC_
 /**
@@ -63,9 +51,6 @@ extern volatile uint8_t peripheralBuffer[BUFFER_SIZE];
  * None
  */
 INTERRUPT_HANDLER(NonHandledInterrupt, 0) {
-  /* In order to detect unexpected events during development,
-     it is recommended to set a breakpoint on the following instruction.
-  */
 }
 #endif
 
@@ -108,9 +93,6 @@ INTERRUPT_HANDLER(EXTI6_IRQHandler, 14) {
  * @retval None
  */
 INTERRUPT_HANDLER(TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler, 19) {
-  /* In order to detect unexpected events during development,
-     it is recommended to set a breakpoint on the following instruction.
-  */
   TIM2_ClearITPendingBit(TIM2_IT_Update);
   TIM2_Cmd(DISABLE);
 }
@@ -121,12 +103,9 @@ INTERRUPT_HANDLER(TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler, 19) {
  * @retval None
  */
 INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler, 21) {
-  /* In order to detect unexpected events during development,
-     it is recommended to set a breakpoint on the following instruction.
-  */
   TIM3_ClearITPendingBit(TIM3_IT_Update);
   TIM3_Cmd(DISABLE);
-  enableOPAMP(0);
+  setOpAmp(DISABLE_OPAMP);
   GPIO_SetBits(GPIOB, GPIO_Pin_2);
   OUT_RANGE = 1;
 }
@@ -140,7 +119,7 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
 
   // TIM4_ClearFlag(TIM4_FLAG_Update);
   TIM4_ClearITPendingBit(TIM4_IT_Update);
-  enableOPAMP(0);
+  setOpAmp(DISABLE_OPAMP);
   TIM4_Cmd(DISABLE);
 }
 
@@ -154,12 +133,12 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
 //  if (I2C_ReadRegister(I2C1, I2C_Register_SR2)) {
 //    // Clears SR2 register
 //    I2C1->SR2 = 0;
-//    Distance_H = 0;
-//    Distance_L = 0;
+//    distanceH = 0;
+//    distanceL = 0;
 //  }
 //
-//  Event = I2C_GetLastEvent(I2C1);
-//  switch (Event) {
+//  event = I2C_GetLastEvent(I2C1);
+//  switch (event) {
 //    /******* Slave transmitter ******/
 //    /* check on EV1 */
 //  case I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED:
@@ -167,8 +146,8 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
 //    break;
 //    /* check on EV3 */
 //  case I2C_EVENT_SLAVE_BYTE_TRANSMITTING:
-//    I2C_SendData(I2C1, Distance_H);
-//    // I2C_SendData(I2C1, Distance_L);
+//    I2C_SendData(I2C1, distanceH);
+//    // I2C_SendData(I2C1, distanceL);
 //    break;
 //    /******* Slave receiver **********/
 //    /* check on EV1*/
@@ -202,40 +181,40 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
   if (I2C_ReadRegister(I2C1, I2C_Register_SR2)) {
     // Clears SR2 register
     I2C1->SR2 = 0;
-    Distance_H = 0;
-    Distance_L = 0;
+    distanceH = 0;
+    distanceL = 0;
   }
 
-  Event = I2C_GetLastEvent(I2C1);
+  event = I2C_GetLastEvent(I2C1);
 
-  if (Event == I2C_EVENT_SLAVE_ACK_FAILURE) {
+  if (event == I2C_EVENT_SLAVE_ACK_FAILURE) {
   }
-  //Slave transmitter 
-  //Check on EV1
-  if (Event == I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED) {
+  // Slave transmitter
+  // Check on EV1
+  if (event == I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED) {
     txIndex = 0;
   }
-  // Check on EV3 
-  if (Event == I2C_EVENT_SLAVE_BYTE_TRANSMITTING) {
-    I2C_SendData(I2C1, Distance_H);
-    // I2C_SendData(I2C1, Distance_L);
+  // Check on EV3
+  if (event == I2C_EVENT_SLAVE_BYTE_TRANSMITTING) {
+    I2C_SendData(I2C1, distanceH);
+    // I2C_SendData(I2C1, distanceL);
   }
-  // Slave receiver 
+  // Slave receiver
   /* check on EV1*/
-  if (Event == I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED) {
+  if (event == I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED) {
     rxIndex = 0;
     /* Check on EV2*/
   }
-  if (Event == I2C_EVENT_SLAVE_BYTE_RECEIVED) {
+  if (event == I2C_EVENT_SLAVE_BYTE_RECEIVED) {
     I2C_INTERRUPT = 0;
     peripheralBuffer[rxIndex++] = I2C_ReceiveData(I2C1);
   }
   // NAK received
-  if (Event == (I2C_EVENT_SLAVE_ACK_FAILURE)) {
+  if (event == (I2C_EVENT_SLAVE_ACK_FAILURE)) {
     I2C1->SR2 &= ~I2C_SR2_AF; // clear AF
     /* Check on EV4 */
   }
-  if (Event == (I2C_EVENT_SLAVE_STOP_DETECTED)) {
+  if (event == (I2C_EVENT_SLAVE_STOP_DETECTED)) {
     /* write to CR2 to clear STOPF flag */
     I2C1->CR2 |= I2C_CR2_ACK;
     rxIndex = 0;

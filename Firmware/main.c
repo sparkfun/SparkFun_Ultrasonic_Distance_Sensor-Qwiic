@@ -1,4 +1,4 @@
-/***********************Zio Ultrasonic Distance
+/***********************Zio Ultrasonic distance
  *Sensor***************************
  ***********************************ZIO.CC***************************************
  *******************************************************************************/
@@ -11,17 +11,17 @@ uint8_t TRIGGER_INTERRUPT = 0;
 uint8_t I2C_INTERRUPT = 0;
 
 uint8_t userAddress = 0x2F;
-uint8_t Distance_H = 0, Distance_L = 0;
-uint16_t Distance = 0;
-uint16_t Timer = 0;
-volatile uint8_t peripheralBuffer[BUFFER_SIZE] = {0};
+uint8_t distanceH = 0, distanceL = 0;
+uint16_t distance = 0;
+uint16_t timer = 0;
+volatile uint8_t peripheralBuffer[kBufferSize] = {0};
 
 int main(void) {
 
-  setCLK();
-  // setGPIO();
-  setI2C();
-  setTimers();
+  initializeCLK();
+  // initializeGPIO();
+  initializeI2C();
+  initializeTimers();
 
   // FLASH_DeInit();
   // enableInterrupts();
@@ -34,15 +34,15 @@ int main(void) {
   // TIM3_ITConfig(TIM3_IT_Update, ENABLE);
   // TIM4_ITConfig(TIM4_IT_Update, ENABLE);
 
-  // enableOPAMP(0);
+  // setOpAmp(kDisableOpAmp);
 
   while (1) {
     // Loop until something comes in.
     if (I2C_INTERRUPT == 1) {
-      if (peripheralBuffer[0] == CMD_READ_DISTANCE) {
+      if (peripheralBuffer[0] == kCmdReadDistance) {
         pulseTransmitter();
       }
-      if (peripheralBuffer[0] == CMD_CHANGE_ADDRESS) {
+      if (peripheralBuffer[0] == kCmdChangeAddress) {
         if (peripheralBuffer[1] != 0x00) {
           userAddress = peripheralBuffer[1];
           changeAddress(userAddress);
@@ -56,7 +56,7 @@ int main(void) {
         pulseTransmitter();
         TIM3_SetCounter(0);
         TIM3_Cmd(ENABLE);
-        enableOPAMP(0);
+        setOpAmp(kDisableOpAmp);
       }
       TRIGGER_INTERRUPT = 0;
     }
@@ -69,17 +69,17 @@ int main(void) {
     }
 
     if (OPAMP_INTERRUPT == 1) {
-      Timer = TIM2_GetCounter();
+      timer = TIM2_GetCounter();
       TIM2_Cmd(DISABLE);
       // TIM3_Cmd(DISABLE);
       //  ECHO pulled low
       GPIO_ResetBits(GPIOB, GPIO_Pin_2);
-      enableOPAMP(0);
-      //  Distance=Timer/58*5;
+      setOpAmp(kDisableOpAmp);
+      //  distance=timer/58*5;
       if (OUT_RANGE == 0) {
-        Distance = (uint16_t)Timer * 0.0862;
-        Distance_H = (uint8_t)(Distance >> 8);
-        Distance_L = (uint8_t)Distance;
+        distance = (uint16_t)timer * 0.0862;
+        distanceH = (uint8_t)(distance >> 8);
+        distanceL = (uint8_t)distance;
       }
       OUT_RANGE = 0;
       OPAMP_INTERRUPT = 0;
@@ -105,7 +105,7 @@ void delay(uint16_t n) {
  * @param  None
  * @retval None
  */
-void setGPIO(void) {
+void initializeGPIO(void) {
   GPIO_Init(GPIOD, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_Low_Fast); // DIN2
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_Low_Fast); // DIN1
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_2, GPIO_Mode_Out_PP_Low_Fast); // ECHO
@@ -126,10 +126,10 @@ void setGPIO(void) {
  * @param  None
  * @retval None
  */
-void setI2C(void) {
+void initializeI2C(void) {
   CLK_PeripheralClockConfig(CLK_Peripheral_I2C1, ENABLE);
   I2C_DeInit(I2C1);
-  I2C_Init(I2C1, I2C_SPEED, PERIPH_ADDRESS, I2C_Mode_I2C, I2C_DutyCycle_2,
+  I2C_Init(I2C1, kI2CSpeed, kUltrasonicAddress, I2C_Mode_I2C, I2C_DutyCycle_2,
            I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
   I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF),
                ENABLE);
@@ -141,7 +141,7 @@ void setI2C(void) {
  * @param  None
  * @retval None
  */
-void setCLK(void) {
+void initializeCLK(void) {
   CLK_SYSCLKSourceConfig(CLK_SYSCLKSource_HSI);
   CLK_SYSCLKDivConfig(CLK_SYSCLKDiv_1);
   CLK_HSICmd(ENABLE);
@@ -154,7 +154,7 @@ void setCLK(void) {
  * @param  None
  * @retval None
  */
-void setTimers(void) {
+void initializeTimers(void) {
   TIM2_DeInit();
   CLK_PeripheralClockConfig(CLK_Peripheral_TIM2, ENABLE);
   TIM2_TimeBaseInit(TIM2_Prescaler_8, TIM2_CounterMode_Up, 0xFFFF);
@@ -178,7 +178,7 @@ void setTimers(void) {
  */
 void changeAddress(uint8_t address) {
   I2C_DeInit(I2C1);
-  I2C_Init(I2C1, I2C_SPEED, address, I2C_Mode_I2C, I2C_DutyCycle_2,
+  I2C_Init(I2C1, kI2CSpeed, address, I2C_Mode_I2C, I2C_DutyCycle_2,
            I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
   I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF),
                ENABLE);
@@ -194,7 +194,7 @@ void pulseTransmitter(void) {
 
   uint8_t i = 0;
   GPIO_ResetBits(GPIOB, GPIO_Pin_0);
-  enableOPAMP(1);
+  setOpAmp(kEnableOpAmp);
 
   for (i = 0; i < 4; i++) {
 
@@ -230,7 +230,7 @@ void pulseTransmitter(void) {
  * @param  enable: 1 to enable, 0 to disable.
  * @retval None
  */
-void enableOPAMP(uint8_t enable) {
+void setOpAmp(uint8_t enable) {
   if (enable) {
     GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast);
     GPIO_ResetBits(GPIOB, GPIO_Pin_4);
