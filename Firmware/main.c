@@ -3,6 +3,7 @@
  ***********************************ZIO.CC***************************************
  *******************************************************************************/
 #include "main.h"
+#include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_i2c.h"
 
 uint8_t outRange = 0;
 uint8_t opAmpInterrupt = 0;
@@ -19,9 +20,9 @@ volatile uint8_t peripheralBuffer[kBufferSize] = {0};
 int main(void) {
 
   initializeCLK();
-  // initializeGPIO();
   initializeI2C();
-  initializeTimers();
+  // initializeGPIO();
+  // initializeTimers();
 
   // FLASH_DeInit();
   // enableInterrupts();
@@ -36,57 +37,57 @@ int main(void) {
 
   // setOpAmp(kDisableOpAmp);
 
-  while (1) {
-    // Loop until something comes in.
-    if (i2cInterrupt == 1) {
-      if (peripheralBuffer[0] == kCmdReadDistance) {
-        pulseTransmitter();
-      }
-      if (peripheralBuffer[0] == kCmdChangeAddress) {
-        if (peripheralBuffer[1] != 0x00) {
-          userAddress = peripheralBuffer[1];
-          changeAddress(userAddress);
-        }
-      }
-      i2cInterrupt = 0;
-    }
-
-    if (triggerInterrupt == 1) {
-      if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3)) {
-        pulseTransmitter();
-        TIM3_SetCounter(0);
-        TIM3_Cmd(ENABLE);
-        setOpAmp(kDisableOpAmp);
-      }
-      triggerInterrupt = 0;
-    }
-
-    if (addressInterrupt == 1) {
-      changeAddress(0x2F);
-      addressInterrupt = 0;
-      // EEPROM_WriteByte(0, 0x2F);
-      // I2C_DeInit_Config(EEPROM_ReadByte(0));
-    }
-
-    if (opAmpInterrupt == 1) {
-      timer = TIM2_GetCounter();
-      TIM2_Cmd(DISABLE);
-      // TIM3_Cmd(DISABLE);
-      //  ECHO pulled low
-      GPIO_ResetBits(GPIOB, GPIO_Pin_2);
-      setOpAmp(kDisableOpAmp);
-      //  distance=timer/58*5;
-      if (outRange == 0) {
-        distance = (uint16_t)timer * 0.0862;
-        distanceH = (uint8_t)(distance >> 8);
-        distanceL = (uint8_t)distance;
-      }
-      outRange = 0;
-      opAmpInterrupt = 0;
-    }
-  }
-  // while (1)
-  //   ;
+  // while (1) {
+  //   // Loop until something comes in.
+  //   if (i2cInterrupt == 1) {
+  //     if (peripheralBuffer[0] == kCmdReadDistance) {
+  //       pulseTransmitter();
+  //     }
+  //     if (peripheralBuffer[0] == kCmdChangeAddress) {
+  //       if (peripheralBuffer[1] != 0x00) {
+  //         userAddress = peripheralBuffer[1];
+  //         changeAddress(userAddress);
+  //       }
+  //     }
+  //     i2cInterrupt = 0;
+  //   }
+  //
+  //   if (triggerInterrupt == 1) {
+  //     if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3)) {
+  //       pulseTransmitter();
+  //       TIM3_SetCounter(0);
+  //       TIM3_Cmd(ENABLE);
+  //       setOpAmp(kDisableOpAmp);
+  //     }
+  //     triggerInterrupt = 0;
+  //   }
+  //
+  //   if (addressInterrupt == 1) {
+  //     changeAddress(0x2F);
+  //     addressInterrupt = 0;
+  //     // EEPROM_WriteByte(0, 0x2F);
+  //     // I2C_DeInit_Config(EEPROM_ReadByte(0));
+  //   }
+  //
+  //   if (opAmpInterrupt == 1) {
+  //     timer = TIM2_GetCounter();
+  //     TIM2_Cmd(DISABLE);
+  //     // TIM3_Cmd(DISABLE);
+  //     //  ECHO pulled low
+  //     GPIO_ResetBits(GPIOB, GPIO_Pin_2);
+  //     setOpAmp(kDisableOpAmp);
+  //     //  distance=timer/58*5;
+  //     if (outRange == 0) {
+  //       distance = (uint16_t)timer * 0.0862;
+  //       distanceH = (uint8_t)(distance >> 8);
+  //       distanceL = (uint8_t)distance;
+  //     }
+  //     outRange = 0;
+  //     opAmpInterrupt = 0;
+  //   }
+  // }
+  while (1)
+    ;
 }
 
 /*
@@ -106,18 +107,13 @@ void delay(uint16_t n) {
  * @retval None
  */
 void initializeGPIO(void) {
-  GPIO_Init(GPIOD, (GPIO_Pin_TypeDef)GPIO_Pin_0,
-            GPIO_Mode_Out_PP_Low_Fast); // DIN2
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_0,
-            GPIO_Mode_Out_PP_Low_Fast); // DIN1
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_2,
-            GPIO_Mode_Out_PP_Low_Fast); // ECHO
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4,
-            GPIO_Mode_Out_PP_Low_Slow); // PB4
+  GPIO_Init(GPIOD, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_Low_Fast); // DIN2
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_Low_Fast); // DIN1
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_2, GPIO_Mode_Out_PP_Low_Fast); // ECHO
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Slow); // PB4
 
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_3, GPIO_Mode_In_FL_IT); // TRIG
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_5,
-            GPIO_Mode_In_PU_IT); // ADDR_RST
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_5, GPIO_Mode_In_PU_IT); // ADDR_RST
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_6, GPIO_Mode_In_FL_IT); // INT
   // Exterinal interrups for TRIG, INT, ADDR_RST
   EXTI_DeInit();
@@ -138,7 +134,9 @@ void initializeI2C(void) {
            I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
   I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF),
                ENABLE);
+  //I2C_StretchClockCmd(I2C1, ENABLE);
   I2C_Cmd(I2C1, ENABLE);
+  I2C_ClearITPendingBit(I2C1, I2C_IT_BERR);
 }
 
 /*

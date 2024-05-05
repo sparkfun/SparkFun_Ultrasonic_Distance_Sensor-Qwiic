@@ -128,6 +128,49 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
  * @param  None
  * @retval None
  */
+@svlreg INTERRUPT_HANDLER(I2C1_SPI2_IRQHandler, 29) {
+
+ if (I2C_ReadRegister(I2C1, I2C_Register_SR2)) {
+   // Clears SR2 register
+   I2C1->SR2 = 0;
+   distanceH = 0;
+   distanceL = 0;
+ }
+
+ event = I2C_GetLastEvent(I2C1);
+ switch (event) {
+   /******* Slave transmitter ******/
+   /* check on EV1 */
+ case I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED:
+   txIndex = 0;
+   break;
+   /* check on EV3 */
+ case I2C_EVENT_SLAVE_BYTE_TRANSMITTING:
+   I2C_SendData(I2C1, distanceH);
+   // I2C_SendData(I2C1, distanceL);
+   break;
+   /******* Slave receiver **********/
+   /* check on EV1*/
+ case I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED:
+   rxIndex = 0;
+   break;
+   /* Check on EV2*/
+ case I2C_EVENT_SLAVE_BYTE_RECEIVED:
+   i2cInterrupt = 0;
+   peripheralBuffer[rxIndex++] = I2C_ReceiveData(I2C1);
+   break;
+ case (I2C_EVENT_SLAVE_STOP_DETECTED):
+   /* write to CR2 to clear STOPF flag */
+   I2C1->CR2 |= I2C_CR2_ACK;
+   rxIndex = 0;
+   i2cInterrupt = 1;
+   break;
+
+ default:
+   break;
+ }
+}
+
 //@svlreg INTERRUPT_HANDLER(I2C1_SPI2_IRQHandler, 29) {
 //
 //  if (I2C_ReadRegister(I2C1, I2C_Register_SR2)) {
@@ -138,89 +181,36 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
 //  }
 //
 //  event = I2C_GetLastEvent(I2C1);
-//  switch (event) {
-//    /******* Slave transmitter ******/
-//    /* check on EV1 */
-//  case I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED:
+//
+//  if (event == I2C_EVENT_SLAVE_ACK_FAILURE) {
+//  }
+//  // Slave transmitter
+//  // Check on EV1
+//  if (event == I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED) {
 //    txIndex = 0;
-//    break;
-//    /* check on EV3 */
-//  case I2C_EVENT_SLAVE_BYTE_TRANSMITTING:
+//  }
+//  // Check on EV3
+//  if (event == I2C_EVENT_SLAVE_BYTE_TRANSMITTING) {
 //    I2C_SendData(I2C1, distanceH);
 //    // I2C_SendData(I2C1, distanceL);
-//    break;
-//    /******* Slave receiver **********/
-//    /* check on EV1*/
-//  case I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED:
+//  }
+//  // Slave receiver
+//  /* check on EV1*/
+//  if (event == I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED) {
 //    rxIndex = 0;
-//    break;
 //    /* Check on EV2*/
-//  case I2C_EVENT_SLAVE_BYTE_RECEIVED:
-//    I2C_START = 0;
+//  }
+//  if (event == I2C_EVENT_SLAVE_BYTE_RECEIVED) {
+//    i2cInterrupt = 1;
 //    peripheralBuffer[rxIndex++] = I2C_ReceiveData(I2C1);
-//    break;
-//    // NAK received
-//  case (I2C_EVENT_SLAVE_ACK_FAILURE):
-//    I2C1->SR2 &= ~I2C_SR2_AF; // clear AF
-//    break;
-//    /* Check on EV4 */
-//  case (I2C_EVENT_SLAVE_STOP_DETECTED):
+//  }
+//  if (event == (I2C_EVENT_SLAVE_STOP_DETECTED)) {
 //    /* write to CR2 to clear STOPF flag */
 //    I2C1->CR2 |= I2C_CR2_ACK;
 //    rxIndex = 0;
-//    I2C_START = 1;
-//    break;
-//
-//  default:
-//    break;
+//    i2cInterrupt = 1;
 //  }
 //}
-
-@svlreg INTERRUPT_HANDLER(I2C1_SPI2_IRQHandler, 29) {
-
-  if (I2C_ReadRegister(I2C1, I2C_Register_SR2)) {
-    // Clears SR2 register
-    I2C1->SR2 = 0;
-    distanceH = 0;
-    distanceL = 0;
-  }
-
-  event = I2C_GetLastEvent(I2C1);
-
-  if (event == I2C_EVENT_SLAVE_ACK_FAILURE) {
-  }
-  // Slave transmitter
-  // Check on EV1
-  if (event == I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED) {
-    txIndex = 0;
-  }
-  // Check on EV3
-  if (event == I2C_EVENT_SLAVE_BYTE_TRANSMITTING) {
-    I2C_SendData(I2C1, distanceH);
-    // I2C_SendData(I2C1, distanceL);
-  }
-  // Slave receiver
-  /* check on EV1*/
-  if (event == I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED) {
-    rxIndex = 0;
-    /* Check on EV2*/
-  }
-  if (event == I2C_EVENT_SLAVE_BYTE_RECEIVED) {
-    i2cInterrupt = 0;
-    peripheralBuffer[rxIndex++] = I2C_ReceiveData(I2C1);
-  }
-  // NAK received
-  if (event == (I2C_EVENT_SLAVE_ACK_FAILURE)) {
-    I2C1->SR2 &= ~I2C_SR2_AF; // clear AF
-    /* Check on EV4 */
-  }
-  if (event == (I2C_EVENT_SLAVE_STOP_DETECTED)) {
-    /* write to CR2 to clear STOPF flag */
-    I2C1->CR2 |= I2C_CR2_ACK;
-    rxIndex = 0;
-    i2cInterrupt = 1;
-  }
-}
 /**
  * @}
  */

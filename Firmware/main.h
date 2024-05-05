@@ -8,7 +8,7 @@
 
 #define kTim4Period 16 * 10
 #define kBufferSize 4
-#define kI2CSpeed 10000 
+#define kI2CSpeed 100000 
 #define kUltrasonicAddress (0x2F << 1) 
 #define kDisableOpAmp 0x00
 #define kEnableOpAmp 0x00
