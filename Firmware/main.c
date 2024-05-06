@@ -21,11 +21,11 @@ int main(void) {
 
   initializeCLK();
   initializeI2C();
+  enableInterrupts();
   // initializeGPIO();
   // initializeTimers();
 
   // FLASH_DeInit();
-  // enableInterrupts();
 
   // TIM2_ClearFlag(TIM2_FLAG_Update);
   // TIM3_ClearFlag(TIM3_FLAG_Update);
@@ -148,6 +148,7 @@ void initializeCLK(void) {
   CLK_SYSCLKSourceConfig(CLK_SYSCLKSource_HSI);
   CLK_SYSCLKDivConfig(CLK_SYSCLKDiv_1);
   CLK_HSICmd(ENABLE);
+  // Is low?
   while (CLK_GetFlagStatus(CLK_FLAG_HSIRDY) == RESET)
     ;
 }
