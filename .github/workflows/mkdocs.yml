@@ -2,7 +2,7 @@ name: Run mkdocs
 on:
   push:
     branches:
-      - main
+      - v11_Firmware_v01
 
 permissions:
   contents: write
