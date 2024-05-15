@@ -54,6 +54,24 @@ INTERRUPT_HANDLER(NonHandledInterrupt, 0) {
 }
 #endif
 
+INTERRUPT_HANDLER_TRAP(TRAP_IRQHandler)
+{
+  /* In order to detect unexpected events during development,
+     it is recommended to set a breakpoint on the following instruction.
+  */
+}
+/**
+  * @brief FLASH Interrupt routine.
+  * @param  None
+  * @retval None
+  */
+INTERRUPT_HANDLER(FLASH_IRQHandler, 1)
+{
+  /* In order to detect unexpected events during development,
+     it is recommended to set a breakpoint on the following instruction.
+  */
+}
+
 /**
  * @brief External IT PIN3 Interrupt routine, on the trigger pin.
  * @param  None
@@ -94,7 +112,7 @@ INTERRUPT_HANDLER(EXTI6_IRQHandler, 14) {
  */
 INTERRUPT_HANDLER(TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler, 19) {
   TIM2_ClearITPendingBit(TIM2_IT_Update);
-  TIM2_Cmd(DISABLE);
+  //TIM2_Cmd(DISABLE);
 }
 
 /**
@@ -104,7 +122,6 @@ INTERRUPT_HANDLER(TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler, 19) {
  */
 INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler, 21) {
   TIM3_ClearITPendingBit(TIM3_IT_Update);
-  TIM3_Cmd(DISABLE);
   setOpAmp(kDisableOpAmp);
   GPIO_SetBits(GPIOB, GPIO_Pin_2);
   outRange = 1;
@@ -115,12 +132,9 @@ INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler, 21) {
  * @param  None
  * @retval None
  */
-INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
-
-  // TIM4_ClearFlag(TIM4_FLAG_Update);
+@svlreg INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
   TIM4_ClearITPendingBit(TIM4_IT_Update);
-  setOpAmp(kDisableOpAmp);
-  TIM4_Cmd(DISABLE);
+  //setOpAmp(kDisableOpAmp);
 }
 
 /**
@@ -147,7 +161,7 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
    /* check on EV3 */
  case I2C_EVENT_SLAVE_BYTE_TRANSMITTING:
    I2C_SendData(I2C1, distanceH);
-   // I2C_SendData(I2C1, distanceL);
+   I2C_SendData(I2C1, distanceL);
    break;
    /******* Slave receiver **********/
    /* check on EV1*/

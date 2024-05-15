@@ -806,7 +806,7 @@ TIM2_Prescaler_TypeDef TIM2_GetPrescaler(void);
 //void TIM2_UpdateDisableConfig(FunctionalState NewState);
 //void TIM2_UpdateRequestConfig(TIM2_UpdateSource_TypeDef TIM2_UpdateSource);
 void TIM2_ARRPreloadConfig(FunctionalState NewState);
-//void TIM2_SelectOnePulseMode(TIM2_OPMode_TypeDef TIM2_OPMode);
+void TIM2_SelectOnePulseMode(TIM2_OPMode_TypeDef TIM2_OPMode);
 void TIM2_Cmd(FunctionalState NewState);
 
 /* Output Compare management **************************************************/

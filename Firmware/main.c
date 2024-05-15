@@ -4,6 +4,7 @@
  *******************************************************************************/
 #include "main.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_i2c.h"
+#include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_tim2.h"
 
 uint8_t outRange = 0;
 uint8_t opAmpInterrupt = 0;
@@ -14,6 +15,7 @@ uint8_t i2cInterrupt = 0;
 uint8_t userAddress = 0x2F;
 uint8_t distanceH = 0, distanceL = 0;
 uint16_t distance = 0;
+uint16_t counts = 0;
 uint16_t timer = 0;
 volatile uint8_t peripheralBuffer[kBufferSize] = {0};
 
@@ -21,73 +23,62 @@ int main(void) {
 
   initializeCLK();
   initializeI2C();
-  enableInterrupts();
-  // initializeGPIO();
-  // initializeTimers();
+  initializeTimers();
+  initializeGPIO();
 
   // FLASH_DeInit();
+  enableInterrupts();
 
-  // TIM2_ClearFlag(TIM2_FLAG_Update);
-  // TIM3_ClearFlag(TIM3_FLAG_Update);
-  // TIM4_ClearFlag(TIM4_FLAG_Update);
-  //
-  // TIM2_ITConfig(TIM2_IT_Update, ENABLE);
-  // TIM3_ITConfig(TIM3_IT_Update, ENABLE);
-  // TIM4_ITConfig(TIM4_IT_Update, ENABLE);
+  while (1) {
+    // Loop until something comes in.
+    if (i2cInterrupt == 1) {
+      if (peripheralBuffer[0] == kCmdReadDistance) {
+        pulseTransmitter();
+      }
+      // if (peripheralBuffer[0] == kCmdChangeAddress) {
+      //   if (peripheralBuffer[1] != 0x00) {
+      //     userAddress = peripheralBuffer[1];
+      //     changeAddress(userAddress);
+      //   }
+      // }
+      i2cInterrupt = 0;
+    }
 
-  // setOpAmp(kDisableOpAmp);
+    if (opAmpInterrupt == 1) {
+      counts = TIM2_GetCounter();
+      TIM2_Cmd(DISABLE);
+      timer = counts * 0.000008;
+      // TIM3_Cmd(DISABLE);
+      //  ECHO pulled low
+      GPIO_ResetBits(GPIOB, GPIO_Pin_2);
+      setOpAmp(kDisableOpAmp);
+      //  distance=timer/58*5;
+      if (outRange == 0) {
+        distance = (uint16_t)timer * 0.0862;
+        distanceH = (uint8_t)(distance >> 8);
+        distanceL = (uint8_t)distance;
+      }
+      outRange = 0;
+      opAmpInterrupt = 0;
+    }
 
-  // while (1) {
-  //   // Loop until something comes in.
-  //   if (i2cInterrupt == 1) {
-  //     if (peripheralBuffer[0] == kCmdReadDistance) {
-  //       pulseTransmitter();
-  //     }
-  //     if (peripheralBuffer[0] == kCmdChangeAddress) {
-  //       if (peripheralBuffer[1] != 0x00) {
-  //         userAddress = peripheralBuffer[1];
-  //         changeAddress(userAddress);
-  //       }
-  //     }
-  //     i2cInterrupt = 0;
-  //   }
-  //
-  //   if (triggerInterrupt == 1) {
-  //     if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3)) {
-  //       pulseTransmitter();
-  //       TIM3_SetCounter(0);
-  //       TIM3_Cmd(ENABLE);
-  //       setOpAmp(kDisableOpAmp);
-  //     }
-  //     triggerInterrupt = 0;
-  //   }
-  //
-  //   if (addressInterrupt == 1) {
-  //     changeAddress(0x2F);
-  //     addressInterrupt = 0;
-  //     // EEPROM_WriteByte(0, 0x2F);
-  //     // I2C_DeInit_Config(EEPROM_ReadByte(0));
-  //   }
-  //
-  //   if (opAmpInterrupt == 1) {
-  //     timer = TIM2_GetCounter();
-  //     TIM2_Cmd(DISABLE);
-  //     // TIM3_Cmd(DISABLE);
-  //     //  ECHO pulled low
-  //     GPIO_ResetBits(GPIOB, GPIO_Pin_2);
-  //     setOpAmp(kDisableOpAmp);
-  //     //  distance=timer/58*5;
-  //     if (outRange == 0) {
-  //       distance = (uint16_t)timer * 0.0862;
-  //       distanceH = (uint8_t)(distance >> 8);
-  //       distanceL = (uint8_t)distance;
-  //     }
-  //     outRange = 0;
-  //     opAmpInterrupt = 0;
-  //   }
-  // }
-  while (1)
-    ;
+    // if (triggerInterrupt == 1) {
+    //   if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3)) {
+    //     pulseTransmitter();
+    //     TIM3_SetCounter(0);
+    //     TIM3_Cmd(ENABLE);
+    //     setOpAmp(kDisableOpAmp);
+    //   }
+    //   triggerInterrupt = 0;
+    // }
+
+    // if (addressInterrupt == 1) {
+    //   changeAddress(0x2F);
+    //   addressInterrupt = 0;
+    //   // EEPROM_WriteByte(0, 0x2F);
+    //   // I2C_DeInit_Config(EEPROM_ReadByte(0));
+    // }
+  }
 }
 
 /*
@@ -119,7 +110,7 @@ void initializeGPIO(void) {
   EXTI_DeInit();
   EXTI_SetPinSensitivity(EXTI_Pin_3, EXTI_Trigger_Rising);  // TRIG
   EXTI_SetPinSensitivity(EXTI_Pin_5, EXTI_Trigger_Falling); // ADDR_RST
-  EXTI_SetPinSensitivity(EXTI_Pin_6, EXTI_Trigger_Rising);  // INT
+  EXTI_SetPinSensitivity(EXTI_Pin_6, EXTI_Trigger_Falling);  // INT
 }
 
 /*
@@ -134,9 +125,7 @@ void initializeI2C(void) {
            I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
   I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF),
                ENABLE);
-  //I2C_StretchClockCmd(I2C1, ENABLE);
   I2C_Cmd(I2C1, ENABLE);
-  I2C_ClearITPendingBit(I2C1, I2C_IT_BERR);
 }
 
 /*
@@ -159,20 +148,23 @@ void initializeCLK(void) {
  * @retval None
  */
 void initializeTimers(void) {
+
   TIM2_DeInit();
   CLK_PeripheralClockConfig(CLK_Peripheral_TIM2, ENABLE);
-  TIM2_TimeBaseInit(TIM2_Prescaler_8, TIM2_CounterMode_Up, 0xFFFF);
-  TIM2_ARRPreloadConfig(ENABLE);
+  TIM2_TimeBaseInit(TIM2_Prescaler_128, TIM2_CounterMode_Up, kTim2Period);
+  TIM2_ClearFlag(TIM2_FLAG_Update);
+  TIM2_ITConfig(TIM2_IT_Update, ENABLE);
+  // TIM2_Cmd(ENABLE);
 
-  TIM3_DeInit();
-  CLK_PeripheralClockConfig(CLK_Peripheral_TIM3, ENABLE);
-  TIM3_TimeBaseInit(TIM3_Prescaler_128, TIM3_CounterMode_Up, 5500);
-  TIM3_ARRPreloadConfig(ENABLE);
-
-  TIM4_DeInit();
-  CLK_PeripheralClockConfig(CLK_Peripheral_TIM4, ENABLE);
-  TIM4_TimeBaseInit(TIM4_Prescaler_128, kTim4Period);
-  TIM4_ARRPreloadConfig(ENABLE);
+  // TIM3_DeInit();
+  // CLK_PeripheralClockConfig(CLK_Peripheral_TIM3, ENABLE);
+  // TIM3_TimeBaseInit(TIM3_Prescaler_128, TIM3_CounterMode_Up, 5500);
+  // TIM3_ARRPreloadConfig(ENABLE);
+  //
+  // TIM4_DeInit();
+  // CLK_PeripheralClockConfig(CLK_Peripheral_TIM4, ENABLE);
+  // TIM4_TimeBaseInit(TIM4_Prescaler_128, kTim4Period);
+  // TIM4_ARRPreloadConfig(ENABLE);
 }
 
 /*
@@ -209,9 +201,9 @@ void pulseTransmitter(void) {
 
     GPIO_SetBits(GPIOD, GPIO_Pin_0);
     GPIO_ResetBits(GPIOB, GPIO_Pin_0);
+
     delay(22);
   }
-
   for (i = 0; i < 4; i++) {
 
     GPIO_ResetBits(GPIOD, GPIO_Pin_0);
@@ -221,6 +213,7 @@ void pulseTransmitter(void) {
 
     GPIO_SetBits(GPIOD, GPIO_Pin_0);
     GPIO_ResetBits(GPIOB, GPIO_Pin_0);
+
     delay(22);
   }
   // ECHO pin high
@@ -236,10 +229,8 @@ void pulseTransmitter(void) {
  */
 void setOpAmp(uint8_t enable) {
   if (enable) {
-    GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast);
     GPIO_ResetBits(GPIOB, GPIO_Pin_4);
   } else {
-    GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast);
     GPIO_SetBits(GPIOB, GPIO_Pin_4);
   }
 }

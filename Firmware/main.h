@@ -15,6 +15,7 @@
 #define kCmdReadDistance 0x01
 #define kCmdChangeAddress 0x04
 #define kCmdResetAddress 0x06
+#define kTim2Period 0xFFFF
 
 void delay(uint16_t n);
 void initializeGPIO(void);

@@ -3,6 +3,7 @@
 #include <Wire.h>
 #define PERIPH_ADDR 0x2F
 #define BEGIN_MEASURE 0x01
+#define GET_COUNTER 0x02
 uint8_t distance_H=0;
 uint8_t distance_L=0;
 uint16_t distance=0;
@@ -37,15 +38,17 @@ void loop() {
   Serial.println("Requesting distance.");
   Wire.requestFrom(PERIPH_ADDR, 2);
   delay(20);
-  while (Wire.available()) { 
-  distance_H = Wire.read(); 
-  distance_L = Wire.read();  
-  distance = (uint16_t)distance_H<<8;
-  distance = distance|distance_L; 
 
-  Serial.println("Distance: ");
-  Serial.print(distance);         
-  Serial.println("mm"); 
-  delay(100);
- }
+  while (Wire.available()) { 
+    distance_H = Wire.read(); 
+    distance_L = Wire.read();  
+    distance = (uint16_t)distance_H<<8;
+    distance = distance|distance_L; 
+
+    Serial.print("Distance: ");
+    Serial.print(distance);         
+    Serial.println("mm"); 
+  }
+
+  delay(500);
 }
