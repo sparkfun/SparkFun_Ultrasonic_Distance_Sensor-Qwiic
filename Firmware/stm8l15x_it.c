@@ -102,6 +102,7 @@ INTERRUPT_HANDLER(EXTI3_IRQHandler, 11) {
  */
 INTERRUPT_HANDLER(EXTI6_IRQHandler, 14) {
   EXTI_ClearITPendingBit(EXTI_IT_Pin6);
+  setOpAmp(kDisableOpAmp);
   opAmpInterrupt = 1;
 }
 
@@ -112,7 +113,7 @@ INTERRUPT_HANDLER(EXTI6_IRQHandler, 14) {
  */
 INTERRUPT_HANDLER(TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler, 19) {
   TIM2_ClearITPendingBit(TIM2_IT_Update);
-  //TIM2_Cmd(DISABLE);
+  TIM2_Cmd(DISABLE);
 }
 
 /**

@@ -3,8 +3,10 @@
  ***********************************ZIO.CC***************************************
  *******************************************************************************/
 #include "main.h"
+#include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_gpio.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_i2c.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_tim2.h"
+// #include <cstdint>
 
 uint8_t outRange = 0;
 uint8_t opAmpInterrupt = 0;
@@ -28,11 +30,13 @@ int main(void) {
 
   // FLASH_DeInit();
   enableInterrupts();
+  setOpAmp(kDisableOpAmp);
 
   while (1) {
     // Loop until something comes in.
     if (i2cInterrupt == 1) {
       if (peripheralBuffer[0] == kCmdReadDistance) {
+        setOpAmp(kEnableOpAmp);
         pulseTransmitter();
       }
       // if (peripheralBuffer[0] == kCmdChangeAddress) {
@@ -47,17 +51,19 @@ int main(void) {
     if (opAmpInterrupt == 1) {
       counts = TIM2_GetCounter();
       TIM2_Cmd(DISABLE);
-      timer = counts * 0.000008;
-      // TIM3_Cmd(DISABLE);
+      //TIM3_Cmd(DISABLE);
       //  ECHO pulled low
-      GPIO_ResetBits(GPIOB, GPIO_Pin_2);
-      setOpAmp(kDisableOpAmp);
+      //GPIO_ResetBits(GPIOB, GPIO_Pin_2);
+      //setOpAmp(kDisableOpAmp);
       //  distance=timer/58*5;
-      if (outRange == 0) {
-        distance = (uint16_t)timer * 0.0862;
-        distanceH = (uint8_t)(distance >> 8);
-        distanceL = (uint8_t)distance;
-      }
+      
+      distanceH = counts >> 8 ;
+      distanceL = counts;
+     // if (outRange == 0) {
+     //    // distance = (uint16_t)timer * 0.0862;
+     //    // distanceH = (uint8_t)(distance >> 8);
+     //    // distanceL = (uint8_t)distance;
+     //  }
       outRange = 0;
       opAmpInterrupt = 0;
     }
@@ -101,16 +107,20 @@ void initializeGPIO(void) {
   GPIO_Init(GPIOD, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_Low_Fast); // DIN2
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_Low_Fast); // DIN1
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_2, GPIO_Mode_Out_PP_Low_Fast); // ECHO
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Slow); // PB4
-
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_3, GPIO_Mode_In_FL_IT); // TRIG
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_5, GPIO_Mode_In_PU_IT); // ADDR_RST
+  // Does this need to be an output?
+  // Do I need to set any of these?
+  // Write it low and then to Hi-Z?
+  // See if there is a time delay for decapcitorkg    
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast); // PB4
+  //GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_3, GPIO_Mode_In_FL_IT); // TRIG
+  //GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_5, GPIO_Mode_In_PU_IT); // ADDR_RST
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_6, GPIO_Mode_In_FL_IT); // INT
+
   // Exterinal interrups for TRIG, INT, ADDR_RST
   EXTI_DeInit();
-  EXTI_SetPinSensitivity(EXTI_Pin_3, EXTI_Trigger_Rising);  // TRIG
-  EXTI_SetPinSensitivity(EXTI_Pin_5, EXTI_Trigger_Falling); // ADDR_RST
-  EXTI_SetPinSensitivity(EXTI_Pin_6, EXTI_Trigger_Falling);  // INT
+  //EXTI_SetPinSensitivity(EXTI_Pin_3, EXTI_Trigger_Rising);  // TRIG
+  //EXTI_SetPinSensitivity(EXTI_Pin_5, EXTI_Trigger_Falling); // ADDR_RST
+  EXTI_SetPinSensitivity(EXTI_Pin_6, EXTI_Trigger_Rising);  // INT
 }
 
 /*
@@ -189,32 +199,33 @@ void changeAddress(uint8_t address) {
 void pulseTransmitter(void) {
 
   uint8_t i = 0;
+
   GPIO_ResetBits(GPIOB, GPIO_Pin_0);
-  setOpAmp(kEnableOpAmp);
+  GPIO_SetBits(GPIOD, GPIO_Pin_0);
 
   for (i = 0; i < 4; i++) {
 
     GPIO_ResetBits(GPIOD, GPIO_Pin_0);
     GPIO_SetBits(GPIOB, GPIO_Pin_0);
 
-    delay(22);
+    delay(25);
 
     GPIO_SetBits(GPIOD, GPIO_Pin_0);
     GPIO_ResetBits(GPIOB, GPIO_Pin_0);
 
-    delay(22);
+    delay(25);
   }
   for (i = 0; i < 4; i++) {
-
+  
     GPIO_ResetBits(GPIOD, GPIO_Pin_0);
     GPIO_SetBits(GPIOB, GPIO_Pin_0);
-
-    delay(22);
-
+  
+    delay(25);
+  
     GPIO_SetBits(GPIOD, GPIO_Pin_0);
     GPIO_ResetBits(GPIOB, GPIO_Pin_0);
-
-    delay(22);
+  
+    delay(25);
   }
   // ECHO pin high
   GPIO_SetBits(GPIOB, GPIO_Pin_2);
@@ -230,7 +241,9 @@ void pulseTransmitter(void) {
 void setOpAmp(uint8_t enable) {
   if (enable) {
     GPIO_ResetBits(GPIOB, GPIO_Pin_4);
+    // GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_OD_HiZ_Fast); // INT
   } else {
+    GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast); // INT
     GPIO_SetBits(GPIOB, GPIO_Pin_4);
   }
 }

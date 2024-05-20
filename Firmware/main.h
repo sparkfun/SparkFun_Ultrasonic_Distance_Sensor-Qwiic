@@ -11,7 +11,7 @@
 #define kI2CSpeed 100000 
 #define kUltrasonicAddress (0x2F << 1) 
 #define kDisableOpAmp 0x00
-#define kEnableOpAmp 0x00
+#define kEnableOpAmp 0x01
 #define kCmdReadDistance 0x01
 #define kCmdChangeAddress 0x04
 #define kCmdResetAddress 0x06

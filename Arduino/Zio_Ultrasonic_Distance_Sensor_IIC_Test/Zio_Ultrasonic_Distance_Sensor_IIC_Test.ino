@@ -1,9 +1,8 @@
 // Zio_Ultrasonic_Distance_Sensor_IIC_Test
   
 #include <Wire.h>
-#define PERIPH_ADDR 0x2F
-#define BEGIN_MEASURE 0x01
-#define GET_COUNTER 0x02
+const uint8_t PERIPH_ADDR = 0x2F;
+const uint8_t BEGIN_MEASURE = 0x01;
 uint8_t distance_H=0;
 uint8_t distance_L=0;
 uint16_t distance=0;
@@ -24,6 +23,8 @@ void setup() {
   }
 
   Serial.println("Communication established.");
+  Serial.println("\n\n");
+  delay(2000);
 
 }
 
@@ -50,5 +51,6 @@ void loop() {
     Serial.println("mm"); 
   }
 
+  Serial.println("\n");
   delay(500);
 }

@@ -15,7 +15,7 @@ struct interrupt_vector {
 struct interrupt_vector const _vectab[] = {
   {0x82, (interrupt_handler_t)_stext},	// Reset 0x8000	              
   {0x82, (interrupt_handler_t)TRAP_IRQHandler}, // TRAP
-  {0x82, (interrupt_handler_t)NonHandledInterrupt},	//TLI
+  {0x82, (interrupt_handler_t)NonHandledInterrupt},	//TLI 0
   {0x82, (interrupt_handler_t)FLASH_IRQHandler}, // Flash 0x008008    1
   {0x82, (interrupt_handler_t)NonHandledInterrupt}, // DMA1 0/1       2
   {0x82, (interrupt_handler_t)NonHandledInterrupt}, // DMA1 2/3       3
@@ -27,10 +27,10 @@ struct interrupt_vector const _vectab[] = {
   {0x82, (interrupt_handler_t)NonHandledInterrupt},	  // EXTI1          9
   {0x82, (interrupt_handler_t)NonHandledInterrupt},	// EXTI2          10
   {0x82, (interrupt_handler_t)EXTI3_IRQHandler},    // EXTI3          11
-  {0x82, (interrupt_handler_t)NonHandledInterrupt},    // 4              12
-  {0x82, (interrupt_handler_t)EXTI5_IRQHandler},	// 5              13
-  {0x82, (interrupt_handler_t)EXTI6_IRQHandler}, // 6              14
-  {0x82, (interrupt_handler_t)NonHandledInterrupt}, // 7              15
+  {0x82, (interrupt_handler_t)NonHandledInterrupt},    //               12
+  {0x82, (interrupt_handler_t)EXTI5_IRQHandler},	//               13
+  {0x82, (interrupt_handler_t)EXTI6_IRQHandler}, //               14
+  {0x82, (interrupt_handler_t)NonHandledInterrupt}, //               15
   {0x82, (interrupt_handler_t)NonHandledInterrupt}, // CLK            16
   {0x82, (interrupt_handler_t)NonHandledInterrupt}, // 17
   {0x82, (interrupt_handler_t)NonHandledInterrupt}, //18
