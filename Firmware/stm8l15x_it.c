@@ -1,4 +1,4 @@
-/**
+ /**
  ******************************************************************************
  * @file    Project/STM8L15x_StdPeriph_Template/stm8l15x_it.c
  * @author  MCD Applicatin Team
@@ -22,6 +22,7 @@
  */
 
 /* Includes ------------------------------------------------------------------*/
+#include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_gpio.h"
 #include "main.h"
 // #include "stm8l15x_it.h"
 // #include <stdint.h>
@@ -113,6 +114,7 @@ INTERRUPT_HANDLER(EXTI6_IRQHandler, 14) {
  */
 INTERRUPT_HANDLER(TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler, 19) {
   TIM2_ClearITPendingBit(TIM2_IT_Update);
+  setOpAmp(kDisableOpAmp);
   TIM2_Cmd(DISABLE);
 }
 
@@ -123,9 +125,9 @@ INTERRUPT_HANDLER(TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler, 19) {
  */
 INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler, 21) {
   TIM3_ClearITPendingBit(TIM3_IT_Update);
-  setOpAmp(kDisableOpAmp);
-  GPIO_SetBits(GPIOB, GPIO_Pin_2);
-  outRange = 1;
+  //setOpAmp(kDisableOpAmp);
+  //GPIO_SetBits(GPIOB, GPIO_Pin_2);
+  //outRange = 1;
 }
 
 /**
@@ -135,7 +137,8 @@ INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler, 21) {
  */
 @svlreg INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
   TIM4_ClearITPendingBit(TIM4_IT_Update);
-  //setOpAmp(kDisableOpAmp);
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_OD_HiZ_Fast); // PB4
+  TIM4_Cmd(DISABLE);
 }
 
 /**

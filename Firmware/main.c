@@ -29,6 +29,8 @@ int main(void) {
   initializeGPIO();
 
   // FLASH_DeInit();
+  TIM2_Cmd(ENABLE);
+  TIM4_Cmd(ENABLE);
   enableInterrupts();
   setOpAmp(kDisableOpAmp);
 
@@ -47,7 +49,6 @@ int main(void) {
       // }
       i2cInterrupt = 0;
     }
-
     if (opAmpInterrupt == 1) {
       counts = TIM2_GetCounter();
       TIM2_Cmd(DISABLE);
@@ -67,7 +68,7 @@ int main(void) {
       outRange = 0;
       opAmpInterrupt = 0;
     }
-
+//
     // if (triggerInterrupt == 1) {
     //   if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3)) {
     //     pulseTransmitter();
@@ -107,10 +108,6 @@ void initializeGPIO(void) {
   GPIO_Init(GPIOD, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_Low_Fast); // DIN2
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_Low_Fast); // DIN1
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_2, GPIO_Mode_Out_PP_Low_Fast); // ECHO
-  // Does this need to be an output?
-  // Do I need to set any of these?
-  // Write it low and then to Hi-Z?
-  // See if there is a time delay for decapcitorkg    
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast); // PB4
   //GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_3, GPIO_Mode_In_FL_IT); // TRIG
   //GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_5, GPIO_Mode_In_PU_IT); // ADDR_RST
@@ -164,17 +161,18 @@ void initializeTimers(void) {
   TIM2_TimeBaseInit(TIM2_Prescaler_128, TIM2_CounterMode_Up, kTim2Period);
   TIM2_ClearFlag(TIM2_FLAG_Update);
   TIM2_ITConfig(TIM2_IT_Update, ENABLE);
-  // TIM2_Cmd(ENABLE);
 
-  // TIM3_DeInit();
-  // CLK_PeripheralClockConfig(CLK_Peripheral_TIM3, ENABLE);
-  // TIM3_TimeBaseInit(TIM3_Prescaler_128, TIM3_CounterMode_Up, 5500);
-  // TIM3_ARRPreloadConfig(ENABLE);
-  //
-  // TIM4_DeInit();
-  // CLK_PeripheralClockConfig(CLK_Peripheral_TIM4, ENABLE);
-  // TIM4_TimeBaseInit(TIM4_Prescaler_128, kTim4Period);
-  // TIM4_ARRPreloadConfig(ENABLE);
+  TIM3_DeInit();
+  CLK_PeripheralClockConfig(CLK_Peripheral_TIM3, ENABLE);
+  TIM3_TimeBaseInit(TIM3_Prescaler_128, TIM3_CounterMode_Up, kTim3Period);
+  TIM3_ClearFlag(TIM3_FLAG_Update);
+  TIM3_ITConfig(TIM3_IT_Update, ENABLE);
+  
+  TIM4_DeInit();
+  CLK_PeripheralClockConfig(CLK_Peripheral_TIM4, ENABLE);
+  TIM4_TimeBaseInit(TIM4_Prescaler_128, kTim4Period);
+  TIM4_ClearFlag(TIM4_FLAG_Update);
+  TIM4_ITConfig(TIM4_IT_Update, ENABLE);
 }
 
 /*
@@ -208,29 +206,41 @@ void pulseTransmitter(void) {
     GPIO_ResetBits(GPIOD, GPIO_Pin_0);
     GPIO_SetBits(GPIOB, GPIO_Pin_0);
 
-    delay(25);
+    delay(20);
 
     GPIO_SetBits(GPIOD, GPIO_Pin_0);
     GPIO_ResetBits(GPIOB, GPIO_Pin_0);
 
-    delay(25);
+    delay(20);
   }
   for (i = 0; i < 4; i++) {
   
     GPIO_ResetBits(GPIOD, GPIO_Pin_0);
     GPIO_SetBits(GPIOB, GPIO_Pin_0);
   
-    delay(25);
+    delay(20);
   
     GPIO_SetBits(GPIOD, GPIO_Pin_0);
     GPIO_ResetBits(GPIOB, GPIO_Pin_0);
   
-    delay(25);
+    delay(20);
   }
   // ECHO pin high
+
   GPIO_SetBits(GPIOB, GPIO_Pin_2);
   TIM2_SetCounter(0);
+  TIM4_SetCounter(0);
   TIM2_Cmd(ENABLE);
+  TIM4_Cmd(ENABLE);
+  //GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_In_PU_No_IT ); // PB4
+  //GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_In_FL_IT); // INT
+  //GPIO_Mode_In_PU_No_IT      = (uint8_t)0x40,   /*!< Input pull-up, no external interrupt */
+  //GPIO_Mode_Out_OD_Low_Fast  = (uint8_t)0xA0,   /*!< Output open-drain, low level, 10MHz */
+  //GPIO_Mode_Out_PP_Low_Fast  = (uint8_t)0xE0,   /*!< Output push-pull, low level, 10MHz */
+  //GPIO_Mode_Out_OD_Low_Slow  = (uint8_t)0x80,   /*!< Output open-drain, low level, 2MHz */
+  //GPIO_Mode_Out_PP_Low_Slow  = (uint8_t)0xC0,   /*!< Output push-pull, low level, 2MHz */
+  //GPIO_Mode_Out_OD_HiZ_Fast  = (uint8_t)0xB0,   /*!< Output open-drain, high-impedance level, 10MHz */
+  //GPIO_Mode_Out_PP_High_Slow = (uint8_t)0xD0    /*!< Output push-pull, high level, 2MHz */
 }
 
 /*

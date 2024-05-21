@@ -5,8 +5,6 @@
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_gpio.h"
 #include "stm8l15x.h"
 
-
-#define kTim4Period 16 * 10
 #define kBufferSize 4
 #define kI2CSpeed 100000 
 #define kUltrasonicAddress (0x2F << 1) 
@@ -16,6 +14,8 @@
 #define kCmdChangeAddress 0x04
 #define kCmdResetAddress 0x06
 #define kTim2Period 0xFFFF
+#define kTim3Period 0xFFFF
+#define kTim4Period 0x7C
 
 void delay(uint16_t n);
 void initializeGPIO(void);
