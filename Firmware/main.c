@@ -29,10 +29,8 @@ int main(void) {
   initializeGPIO();
 
   // FLASH_DeInit();
-  TIM2_Cmd(ENABLE);
-  TIM4_Cmd(ENABLE);
   enableInterrupts();
-  setOpAmp(kDisableOpAmp);
+  //setOpAmp(kDisableOpAmp);
 
   while (1) {
     // Loop until something comes in.
@@ -52,32 +50,30 @@ int main(void) {
     if (opAmpInterrupt == 1) {
       counts = TIM2_GetCounter();
       TIM2_Cmd(DISABLE);
-      //TIM3_Cmd(DISABLE);
       //  ECHO pulled low
-      //GPIO_ResetBits(GPIOB, GPIO_Pin_2);
-      //setOpAmp(kDisableOpAmp);
-      //  distance=timer/58*5;
+      GPIO_ResetBits(GPIOB, GPIO_Pin_2);
+      //distance=timer/58*5;
       
       distanceH = counts >> 8 ;
       distanceL = counts;
-     // if (outRange == 0) {
-     //    // distance = (uint16_t)timer * 0.0862;
-     //    // distanceH = (uint8_t)(distance >> 8);
-     //    // distanceL = (uint8_t)distance;
-     //  }
+      if (outRange == 0) {
+         // distance = (uint16_t)timer * 0.0862;
+         // distanceH = (uint8_t)(distance >> 8);
+         // distanceL = (uint8_t)distance;
+       }
       outRange = 0;
       opAmpInterrupt = 0;
     }
 //
-    // if (triggerInterrupt == 1) {
-    //   if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3)) {
-    //     pulseTransmitter();
-    //     TIM3_SetCounter(0);
-    //     TIM3_Cmd(ENABLE);
-    //     setOpAmp(kDisableOpAmp);
-    //   }
-    //   triggerInterrupt = 0;
-    // }
+    if (triggerInterrupt == 1) {
+      if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3)) {
+        pulseTransmitter();
+        TIM3_SetCounter(0);
+        TIM3_Cmd(ENABLE);
+        setOpAmp(kEnableOpAmp);
+      }
+      triggerInterrupt = 0;
+    }
 
     // if (addressInterrupt == 1) {
     //   changeAddress(0x2F);
@@ -105,17 +101,17 @@ void delay(uint16_t n) {
  * @retval None
  */
 void initializeGPIO(void) {
-  GPIO_Init(GPIOD, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_Low_Fast); // DIN2
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_Low_Fast); // DIN1
+  GPIO_Init(GPIOD, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_High_Fast); // DIN2
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_High_Fast); // DIN1
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_2, GPIO_Mode_Out_PP_Low_Fast); // ECHO
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast); // PB4
-  //GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_3, GPIO_Mode_In_FL_IT); // TRIG
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Slow); // PB4
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_3, GPIO_Mode_In_FL_IT); // TRIG
   //GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_5, GPIO_Mode_In_PU_IT); // ADDR_RST
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_6, GPIO_Mode_In_FL_IT); // INT
 
   // Exterinal interrups for TRIG, INT, ADDR_RST
   EXTI_DeInit();
-  //EXTI_SetPinSensitivity(EXTI_Pin_3, EXTI_Trigger_Rising);  // TRIG
+  EXTI_SetPinSensitivity(EXTI_Pin_3, EXTI_Trigger_Rising);  // TRIG
   //EXTI_SetPinSensitivity(EXTI_Pin_5, EXTI_Trigger_Falling); // ADDR_RST
   EXTI_SetPinSensitivity(EXTI_Pin_6, EXTI_Trigger_Rising);  // INT
 }
@@ -144,7 +140,6 @@ void initializeCLK(void) {
   CLK_SYSCLKSourceConfig(CLK_SYSCLKSource_HSI);
   CLK_SYSCLKDivConfig(CLK_SYSCLKDiv_1);
   CLK_HSICmd(ENABLE);
-  // Is low?
   while (CLK_GetFlagStatus(CLK_FLAG_HSIRDY) == RESET)
     ;
 }
@@ -206,24 +201,24 @@ void pulseTransmitter(void) {
     GPIO_ResetBits(GPIOD, GPIO_Pin_0);
     GPIO_SetBits(GPIOB, GPIO_Pin_0);
 
-    delay(20);
+    delay(15);
 
     GPIO_SetBits(GPIOD, GPIO_Pin_0);
     GPIO_ResetBits(GPIOB, GPIO_Pin_0);
 
-    delay(20);
+    delay(15);
   }
   for (i = 0; i < 4; i++) {
   
     GPIO_ResetBits(GPIOD, GPIO_Pin_0);
     GPIO_SetBits(GPIOB, GPIO_Pin_0);
   
-    delay(20);
+    delay(15);
   
     GPIO_SetBits(GPIOD, GPIO_Pin_0);
     GPIO_ResetBits(GPIOB, GPIO_Pin_0);
   
-    delay(20);
+    delay(15);
   }
   // ECHO pin high
 
@@ -232,15 +227,6 @@ void pulseTransmitter(void) {
   TIM4_SetCounter(0);
   TIM2_Cmd(ENABLE);
   TIM4_Cmd(ENABLE);
-  //GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_In_PU_No_IT ); // PB4
-  //GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_In_FL_IT); // INT
-  //GPIO_Mode_In_PU_No_IT      = (uint8_t)0x40,   /*!< Input pull-up, no external interrupt */
-  //GPIO_Mode_Out_OD_Low_Fast  = (uint8_t)0xA0,   /*!< Output open-drain, low level, 10MHz */
-  //GPIO_Mode_Out_PP_Low_Fast  = (uint8_t)0xE0,   /*!< Output push-pull, low level, 10MHz */
-  //GPIO_Mode_Out_OD_Low_Slow  = (uint8_t)0x80,   /*!< Output open-drain, low level, 2MHz */
-  //GPIO_Mode_Out_PP_Low_Slow  = (uint8_t)0xC0,   /*!< Output push-pull, low level, 2MHz */
-  //GPIO_Mode_Out_OD_HiZ_Fast  = (uint8_t)0xB0,   /*!< Output open-drain, high-impedance level, 10MHz */
-  //GPIO_Mode_Out_PP_High_Slow = (uint8_t)0xD0    /*!< Output push-pull, high level, 2MHz */
 }
 
 /*
@@ -250,10 +236,10 @@ void pulseTransmitter(void) {
  */
 void setOpAmp(uint8_t enable) {
   if (enable) {
+    GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast); // PB4
     GPIO_ResetBits(GPIOB, GPIO_Pin_4);
-    // GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_OD_HiZ_Fast); // INT
   } else {
-    GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast); // INT
+    GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Fast); // PB4
     GPIO_SetBits(GPIOB, GPIO_Pin_4);
   }
 }
