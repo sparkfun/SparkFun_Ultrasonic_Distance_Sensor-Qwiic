@@ -24,8 +24,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_gpio.h"
 #include "main.h"
-// #include "stm8l15x_it.h"
-// #include <stdint.h>
 
 uint16_t event = 0x00;
 volatile uint8_t rxIndex = 0;
@@ -138,7 +136,6 @@ INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler, 21) {
 @svlreg INTERRUPT_HANDLER(TIM4_UPD_OVF_TRG_IRQHandler, 25) {
   TIM4_ClearITPendingBit(TIM4_IT_Update);
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_In_FL_No_IT); // PB4
-  //GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_OD_HiZ_Fast); // PB4
   TIM4_Cmd(DISABLE);
 }
 
@@ -189,50 +186,6 @@ INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler, 21) {
    break;
  }
 }
-
-//@svlreg INTERRUPT_HANDLER(I2C1_SPI2_IRQHandler, 29) {
-//
-//  if (I2C_ReadRegister(I2C1, I2C_Register_SR2)) {
-//    // Clears SR2 register
-//    I2C1->SR2 = 0;
-//    distanceH = 0;
-//    distanceL = 0;
-//  }
-//
-//  event = I2C_GetLastEvent(I2C1);
-//
-//  if (event == I2C_EVENT_SLAVE_ACK_FAILURE) {
-//  }
-//  // Slave transmitter
-//  // Check on EV1
-//  if (event == I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED) {
-//    txIndex = 0;
-//  }
-//  // Check on EV3
-//  if (event == I2C_EVENT_SLAVE_BYTE_TRANSMITTING) {
-//    I2C_SendData(I2C1, distanceH);
-//    // I2C_SendData(I2C1, distanceL);
-//  }
-//  // Slave receiver
-//  /* check on EV1*/
-//  if (event == I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED) {
-//    rxIndex = 0;
-//    /* Check on EV2*/
-//  }
-//  if (event == I2C_EVENT_SLAVE_BYTE_RECEIVED) {
-//    i2cInterrupt = 1;
-//    peripheralBuffer[rxIndex++] = I2C_ReceiveData(I2C1);
-//  }
-//  if (event == (I2C_EVENT_SLAVE_STOP_DETECTED)) {
-//    /* write to CR2 to clear STOPF flag */
-//    I2C1->CR2 |= I2C_CR2_ACK;
-//    rxIndex = 0;
-//    i2cInterrupt = 1;
-//  }
-//}
-/**
- * @}
- */
 
 /******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF
    FILE****/

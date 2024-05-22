@@ -3,6 +3,8 @@
  ***********************************ZIO.CC***************************************
  *******************************************************************************/
 #include "main.h"
+#include "STM8L15x_StdPeriph_Driver/inc/stm8l15x.h"
+#include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_flash.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_gpio.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_i2c.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_tim2.h"
@@ -17,9 +19,13 @@ uint8_t i2cInterrupt = 0;
 uint8_t userAddress = 0x2F;
 uint8_t distanceH = 0, distanceL = 0;
 uint16_t distance = 0;
-uint16_t counts = 0;
-uint16_t timer = 0;
+uint16_t cycles = 0;
+uint16_t time = 0;
 volatile uint8_t peripheralBuffer[kBufferSize] = {0};
+
+#ifdef _COSMIC_
+ int _fctcpy(char name);
+#endif /*_COSMIC_*/
 
 int main(void) {
 
@@ -28,9 +34,8 @@ int main(void) {
   initializeTimers();
   initializeGPIO();
 
-  // FLASH_DeInit();
   enableInterrupts();
-  //setOpAmp(kDisableOpAmp);
+  setOpAmp(kDisableOpAmp);
 
   while (1) {
     // Loop until something comes in.
@@ -39,32 +44,32 @@ int main(void) {
         setOpAmp(kEnableOpAmp);
         pulseTransmitter();
       }
-      // if (peripheralBuffer[0] == kCmdChangeAddress) {
-      //   if (peripheralBuffer[1] != 0x00) {
-      //     userAddress = peripheralBuffer[1];
-      //     changeAddress(userAddress);
-      //   }
-      // }
+      if (peripheralBuffer[0] == kCmdChangeAddress) {
+        if (peripheralBuffer > 0x00 && peripheralBuffer[1] < 0x7F) {
+          userAddress = peripheralBuffer[1];
+          changeAddress(userAddress);
+          setAddr(userAddress);
+        }
+      }
       i2cInterrupt = 0;
     }
+
     if (opAmpInterrupt == 1) {
-      counts = TIM2_GetCounter();
+      cycles = TIM2_GetCounter();
       TIM2_Cmd(DISABLE);
-      //  ECHO pulled low
       GPIO_ResetBits(GPIOB, GPIO_Pin_2);
-      //distance=timer/58*5;
+      //cycle in seconds * number of cycles = time
+      time = .000008 * cycles;
       
-      distanceH = counts >> 8 ;
-      distanceL = counts;
       if (outRange == 0) {
-         // distance = (uint16_t)timer * 0.0862;
-         // distanceH = (uint8_t)(distance >> 8);
-         // distanceL = (uint8_t)distance;
+         distance = (uint16_t)time * 343; // speed of sound in air 343m/s
+         distanceH = (uint8_t)(distance >> 8);
+         distanceL = (uint8_t)distance;
        }
       outRange = 0;
       opAmpInterrupt = 0;
     }
-//
+
     if (triggerInterrupt == 1) {
       if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3)) {
         pulseTransmitter();
@@ -75,12 +80,11 @@ int main(void) {
       triggerInterrupt = 0;
     }
 
-    // if (addressInterrupt == 1) {
-    //   changeAddress(0x2F);
-    //   addressInterrupt = 0;
-    //   // EEPROM_WriteByte(0, 0x2F);
-    //   // I2C_DeInit_Config(EEPROM_ReadByte(0));
-    // }
+    if (addressInterrupt == 1) {
+      changeAddress(kUltrasonicAddress);
+      setAddr(kUltrasonicAddress);
+      addressInterrupt = 0;
+    }
   }
 }
 
@@ -250,30 +254,26 @@ void setOpAmp(uint8_t enable) {
  * @param  Data: The data to write.
  * @retval None
  */
-void EEPROM_WriteByte(uint16_t Addr, uint8_t Data) {
+void setAddr(uint8_t userAddr) {
 
-  uint8_t *Ptr_SegAddr; // Segment pointer
+  FLASH_DeInit();
+  FLASH_SetProgrammingTime(FLASH_ProgramTime_Standard);
 
-  Ptr_SegAddr = (uint8_t *)(FLASH_DATA_EEPROM_START_PHYSICAL_ADDRESS +
-                            Addr); // Initialize  pointer
+  FLASH_Unlock(FLASH_MemType_Program);
+  while (FLASH_GetFlagStatus(FLASH_FLAG_PUL) == RESET)
+    ;
 
   FLASH_Unlock(FLASH_MemType_Data);
-
-  while (!FLASH_IAPSR_DUL)
-    // need timer here.
+  while (FLASH_GetFlagStatus(FLASH_FLAG_DUL) == RESET)
     ;
 
-  disableInterrupts();
+  FLASH_ProgramByte(FLASH_DATA_EEPROM_START_PHYSICAL_ADDRESS, userAddr);
 
-  *Ptr_SegAddr = Data;
-
-  while (!FLASH_IAPSR_EOP)
-    // need timer here.
+  while (FLASH_GetFlagStatus(FLASH_FLAG_HVOFF) == RESET)
     ;
-
-  enableInterrupts();
 
   FLASH_Lock(FLASH_MemType_Data);
+  FLASH_Lock(FLASH_MemType_Program);
 }
 
 /*
@@ -281,16 +281,25 @@ void EEPROM_WriteByte(uint16_t Addr, uint8_t Data) {
  * @param  Addr: The address to read from.
  * @retval The data read.
  */
-uint8_t EEPROM_ReadByte(uint16_t Addr) {
+uint8_t getAddr(void) {
+  
+  uint8_t addr = 0;
 
-  uint16_t Data = 0;
+  FLASH_DeInit();
+  FLASH_SetProgrammingTime(FLASH_ProgramTime_Standard);
 
-  uint8_t *Ptr_SegAddr;
+  FLASH_Unlock(FLASH_MemType_Program);
+  while (FLASH_GetFlagStatus(FLASH_FLAG_PUL) == RESET)
+    ;
 
-  Ptr_SegAddr = (uint8_t *)(FLASH_DATA_EEPROM_START_PHYSICAL_ADDRESS +
-                            Addr); // Initialize  pointer
+  FLASH_Unlock(FLASH_MemType_Data);
+  while (FLASH_GetFlagStatus(FLASH_FLAG_DUL) == RESET)
+    ;
 
-  Data = *Ptr_SegAddr;
+  addr = FLASH_ReadByte(FLASH_DATA_EEPROM_START_PHYSICAL_ADDRESS);
 
-  return Data;
+  FLASH_Lock(FLASH_MemType_Data);
+  FLASH_Lock(FLASH_MemType_Program);
+
+  return addr; 
 }

@@ -24,8 +24,8 @@ void initializeCLK(void);
 void initializeTimers(void);
 void changeAddress(uint8_t address);
 void pulseTransmitter(void);
-void EEPROM_WriteByte(uint16_t Addr,uint8_t Data);
-uint8_t EEPROM_ReadByte(uint16_t Addr);
+void setAddr(uint8_t addr);
+uint8_t getAddr(void);
 void setOpAmp(uint8_t enable);
 
 #endif
