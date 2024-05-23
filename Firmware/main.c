@@ -1,14 +1,13 @@
-/***********************Zio Ultrasonic distance
- *Sensor***************************
- ***********************************ZIO.CC***************************************
- *******************************************************************************/
+/*
+ * SparkFun Ultrasonic Distance Sensor
+ */
+
 #include "main.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_flash.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_gpio.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_i2c.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_tim2.h"
-// #include <cstdint>
 
 uint8_t outRange = 0;
 uint8_t opAmpInterrupt = 0;
@@ -16,13 +15,15 @@ uint8_t addressInterrupt = 0;
 uint8_t triggerInterrupt = 0;
 uint8_t i2cInterrupt = 0;
 
-uint8_t userAddress = 0x2F;
 uint8_t distanceH = 0, distanceL = 0;
-uint16_t distance = 0;
+uint8_t userAddress = 0x2F;
+double totalTime = 0.0; 
+double distance = 0.0;
 uint16_t cycles = 0;
-uint16_t time = 0;
+uint8_t writeAddressMemory = 0x01; 
 volatile uint8_t peripheralBuffer[kBufferSize] = {0};
 
+// Needed for ST's perhiperhal library memory functions.
 #ifdef _COSMIC_
  int _fctcpy(char name);
 #endif /*_COSMIC_*/
@@ -30,12 +31,21 @@ volatile uint8_t peripheralBuffer[kBufferSize] = {0};
 int main(void) {
 
   initializeCLK();
-  initializeI2C();
   initializeTimers();
   initializeGPIO();
 
+  if(writeAddressMemory == 1)
+  {
+    setAddr(kUltrasonicAddress);
+    writeAddressMemory = 0;
+  }
+
+  initializeI2C();
+
   enableInterrupts();
   setOpAmp(kDisableOpAmp);
+  
+
 
   while (1) {
     // Loop until something comes in.
@@ -57,13 +67,15 @@ int main(void) {
     if (opAmpInterrupt == 1) {
       cycles = TIM2_GetCounter();
       TIM2_Cmd(DISABLE);
+      TIM3_Cmd(DISABLE);
       GPIO_ResetBits(GPIOB, GPIO_Pin_2);
-      //cycle in seconds * number of cycles = time
-      time = .000008 * cycles;
+      //time = time per cycle(in seconds) * number of cycles
+      totalTime = (1/kTIM2CycleTime) * (double)cycles;
+      distance = totalTime * kSpeedOfSound * kConvertMM; // speed of sound in air 343m/s
       
       if (outRange == 0) {
-         distance = (uint16_t)time * 343; // speed of sound in air 343m/s
-         distanceH = (uint8_t)(distance >> 8);
+         //distance = cycles; // speed of sound in air 343m/s
+         distanceH = (uint16_t)(distance) >> 8;
          distanceL = (uint8_t)distance;
        }
       outRange = 0;
@@ -130,13 +142,12 @@ void initializeI2C(void) {
   I2C_DeInit(I2C1);
   I2C_Init(I2C1, kI2CSpeed, kUltrasonicAddress, I2C_Mode_I2C, I2C_DutyCycle_2,
            I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
-  I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF),
-               ENABLE);
+  I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF), ENABLE);
   I2C_Cmd(I2C1, ENABLE);
 }
 
 /*
- * @brief Default clock setup for the ultrasonic sensor.
+ * @brief Setup for the 16MHz internal High Speed Clock for the STM8L051F3.
  * @param  None
  * @retval None
  */
@@ -155,18 +166,22 @@ void initializeCLK(void) {
  */
 void initializeTimers(void) {
 
+  // Clock used for calculating the transmitter's pulse distance.
   TIM2_DeInit();
   CLK_PeripheralClockConfig(CLK_Peripheral_TIM2, ENABLE);
   TIM2_TimeBaseInit(TIM2_Prescaler_128, TIM2_CounterMode_Up, kTim2Period);
   TIM2_ClearFlag(TIM2_FLAG_Update);
   TIM2_ITConfig(TIM2_IT_Update, ENABLE);
 
+  // Clock used for determining time out with regards to the trigger pin. 
   TIM3_DeInit();
   CLK_PeripheralClockConfig(CLK_Peripheral_TIM3, ENABLE);
   TIM3_TimeBaseInit(TIM3_Prescaler_128, TIM3_CounterMode_Up, kTim3Period);
   TIM3_ClearFlag(TIM3_FLAG_Update);
   TIM3_ITConfig(TIM3_IT_Update, ENABLE);
   
+  // Clock used to delay floating the inverting pin on the last stage (comparator)
+  // of the op-amp.
   TIM4_DeInit();
   CLK_PeripheralClockConfig(CLK_Peripheral_TIM4, ENABLE);
   TIM4_TimeBaseInit(TIM4_Prescaler_128, kTim4Period);
@@ -189,7 +204,7 @@ void changeAddress(uint8_t address) {
 }
 
 /*
- * @brief Pulse the transmitter at
+ * @brief Pulse the transmitter at ~48kHz by toggline the pins on the tranmitter.
  * @param  None
  * @retval None
  */
@@ -205,24 +220,24 @@ void pulseTransmitter(void) {
     GPIO_ResetBits(GPIOD, GPIO_Pin_0);
     GPIO_SetBits(GPIOB, GPIO_Pin_0);
 
-    delay(15);
+    delay(kCycles48kHz);
 
     GPIO_SetBits(GPIOD, GPIO_Pin_0);
     GPIO_ResetBits(GPIOB, GPIO_Pin_0);
 
-    delay(15);
+    delay(kCycles48kHz);
   }
   for (i = 0; i < 4; i++) {
   
     GPIO_ResetBits(GPIOD, GPIO_Pin_0);
     GPIO_SetBits(GPIOB, GPIO_Pin_0);
   
-    delay(15);
+    delay(kCycles48kHz);
   
     GPIO_SetBits(GPIOD, GPIO_Pin_0);
     GPIO_ResetBits(GPIOB, GPIO_Pin_0);
   
-    delay(15);
+    delay(kCycles48kHz);
   }
   // ECHO pin high
 

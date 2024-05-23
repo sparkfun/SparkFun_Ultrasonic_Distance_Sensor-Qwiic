@@ -37,7 +37,6 @@ extern uint8_t i2cInterrupt;
 
 extern uint8_t userAddress;
 extern uint8_t distanceH, distanceL;
-extern uint16_t distance;
 extern uint16_t timer;
 extern volatile uint8_t peripheralBuffer[kBufferSize];
 
