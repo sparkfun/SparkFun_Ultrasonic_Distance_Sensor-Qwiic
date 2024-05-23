@@ -23,7 +23,7 @@
 #define kSpeedOfSound 343.0 //Speed of sound in m/s at 20 degrees Celsius
 #define kTIM2Prescaler 128
 #define kHSIClock 16000000
-#define kTIM2CycleTime kHSIClock/kTIM2Prescaler
+#define kTIM2CycleTime (kHSIClock / kTIM2Prescaler)
 #define kConvertMM 1000
 #define kCycles48kHz 15
 

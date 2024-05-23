@@ -1,7 +1,6 @@
 /*
  * SparkFun Ultrasonic Distance Sensor
  */
-
 #include "main.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_flash.h"
@@ -20,6 +19,7 @@ uint8_t userAddress = 0x2F;
 double totalTime = 0.0; 
 double distance = 0.0;
 uint16_t cycles = 0;
+double cycleTime = 1.0/(double)kTIM2CycleTime;
 uint8_t writeAddressMemory = 0x01; 
 volatile uint8_t peripheralBuffer[kBufferSize] = {0};
 
@@ -70,11 +70,10 @@ int main(void) {
       TIM3_Cmd(DISABLE);
       GPIO_ResetBits(GPIOB, GPIO_Pin_2);
       //time = time per cycle(in seconds) * number of cycles
-      totalTime = (1/kTIM2CycleTime) * (double)cycles;
-      distance = totalTime * kSpeedOfSound * kConvertMM; // speed of sound in air 343m/s
+      totalTime = cycleTime * (double)cycles;
+      distance = (totalTime * (double)kSpeedOfSound * (double)kConvertMM)/2.0; 
       
       if (outRange == 0) {
-         //distance = cycles; // speed of sound in air 343m/s
          distanceH = (uint16_t)(distance) >> 8;
          distanceL = (uint8_t)distance;
        }
