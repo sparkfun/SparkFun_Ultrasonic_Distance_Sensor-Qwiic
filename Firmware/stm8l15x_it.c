@@ -77,8 +77,6 @@ INTERRUPT_HANDLER(FLASH_IRQHandler, 1)
  */
 INTERRUPT_HANDLER(EXTI3_IRQHandler, 11) {
   EXTI_ClearITPendingBit(EXTI_IT_Pin3);
-  TIM4_SetCounter(0);
-  TIM4_Cmd(ENABLE);
   triggerInterrupt = 1;
 }
 

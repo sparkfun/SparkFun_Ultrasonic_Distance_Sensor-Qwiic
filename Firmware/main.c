@@ -79,16 +79,16 @@ int main(void) {
        }
       outRange = 0;
       opAmpInterrupt = 0;
+      triggerInterrupt = 0;
     }
 
     if (triggerInterrupt == 1) {
       if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3)) {
+        setOpAmp(kEnableOpAmp);
         pulseTransmitter();
         TIM3_SetCounter(0);
         TIM3_Cmd(ENABLE);
-        setOpAmp(kEnableOpAmp);
       }
-      triggerInterrupt = 0;
     }
 
     if (addressInterrupt == 1) {
