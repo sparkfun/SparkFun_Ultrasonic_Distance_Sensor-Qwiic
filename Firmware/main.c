@@ -117,7 +117,7 @@ void delay(uint16_t n) {
  */
 void initializeGPIO(void) {
   GPIO_Init(GPIOD, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_High_Fast); // DIN2
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_0, GPIO_Mode_Out_PP_High_Fast); // DIN1
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_1, GPIO_Mode_Out_PP_High_Fast); // DIN1
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_2, GPIO_Mode_Out_PP_Low_Fast); // ECHO
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Slow); // PB4
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_3, GPIO_Mode_In_FL_IT); // TRIG
@@ -211,30 +211,30 @@ void pulseTransmitter(void) {
 
   uint8_t i = 0;
 
-  GPIO_ResetBits(GPIOB, GPIO_Pin_0);
+  GPIO_ResetBits(GPIOB, GPIO_Pin_1);
   GPIO_SetBits(GPIOD, GPIO_Pin_0);
 
   for (i = 0; i < 4; i++) {
 
     GPIO_ResetBits(GPIOD, GPIO_Pin_0);
-    GPIO_SetBits(GPIOB, GPIO_Pin_0);
+    GPIO_SetBits(GPIOB, GPIO_Pin_1);
 
     delay(kCycles48kHz);
 
     GPIO_SetBits(GPIOD, GPIO_Pin_0);
-    GPIO_ResetBits(GPIOB, GPIO_Pin_0);
+    GPIO_ResetBits(GPIOB, GPIO_Pin_1);
 
     delay(kCycles48kHz);
   }
   for (i = 0; i < 4; i++) {
   
     GPIO_ResetBits(GPIOD, GPIO_Pin_0);
-    GPIO_SetBits(GPIOB, GPIO_Pin_0);
+    GPIO_SetBits(GPIOB, GPIO_Pin_1);
   
     delay(kCycles48kHz);
   
     GPIO_SetBits(GPIOD, GPIO_Pin_0);
-    GPIO_ResetBits(GPIOB, GPIO_Pin_0);
+    GPIO_ResetBits(GPIOB, GPIO_Pin_1);
   
     delay(kCycles48kHz);
   }
