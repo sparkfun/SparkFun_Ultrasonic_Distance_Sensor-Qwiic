@@ -1412,15 +1412,15 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pin name="C2-" x="-12.7" y="-12.7" visible="pin" length="short"/>
 <pin name="V+" x="-12.7" y="-15.24" visible="pin" length="short"/>
 <pin name="V-" x="-12.7" y="-17.78" visible="pin" length="short"/>
-<pin name="T1IN" x="12.7" y="17.78" visible="pin" length="short" rot="R180"/>
+<pin name="DIN1" x="12.7" y="17.78" visible="pin" length="short" rot="R180"/>
 <pin name="GND" x="-12.7" y="-20.32" visible="pin" length="short"/>
-<pin name="T2IN" x="12.7" y="15.24" visible="pin" length="short" rot="R180"/>
-<pin name="R1IN" x="12.7" y="-12.7" visible="pin" length="short" rot="R180"/>
-<pin name="R2IN" x="12.7" y="-15.24" visible="pin" length="short" rot="R180"/>
-<pin name="T1OUT" x="12.7" y="12.7" visible="pin" length="short" rot="R180"/>
-<pin name="T2OUT" x="12.7" y="10.16" visible="pin" length="short" rot="R180"/>
-<pin name="R1OUT" x="12.7" y="-17.78" visible="pin" length="short" rot="R180"/>
-<pin name="R2OUT" x="12.7" y="-20.32" visible="pin" length="short" rot="R180"/>
+<pin name="DIN2" x="12.7" y="15.24" visible="pin" length="short" rot="R180"/>
+<pin name="RIN1" x="12.7" y="-12.7" visible="pin" length="short" rot="R180"/>
+<pin name="RIN2" x="12.7" y="-15.24" visible="pin" length="short" rot="R180"/>
+<pin name="DOUT1" x="12.7" y="12.7" visible="pin" length="short" rot="R180"/>
+<pin name="DOUT2" x="12.7" y="10.16" visible="pin" length="short" rot="R180"/>
+<pin name="ROUT1" x="12.7" y="-17.78" visible="pin" length="short" rot="R180"/>
+<pin name="ROUT2" x="12.7" y="-20.32" visible="pin" length="short" rot="R180"/>
 <text x="-10.16" y="20.32" size="1.778" layer="95" font="vector">&gt;NAME</text>
 <text x="-10.16" y="-24.892" size="1.778" layer="96" font="vector">&gt;VALUE</text>
 </symbol>
@@ -1521,15 +1521,15 @@ slew rate.&lt;/p&gt;</description>
 <connect gate="G$1" pin="C1-" pad="P3"/>
 <connect gate="G$1" pin="C2+" pad="P4"/>
 <connect gate="G$1" pin="C2-" pad="P5"/>
+<connect gate="G$1" pin="DIN1" pad="P11"/>
+<connect gate="G$1" pin="DIN2" pad="P10"/>
+<connect gate="G$1" pin="DOUT1" pad="P14"/>
+<connect gate="G$1" pin="DOUT2" pad="P7"/>
 <connect gate="G$1" pin="GND" pad="P15"/>
-<connect gate="G$1" pin="R1IN" pad="P13"/>
-<connect gate="G$1" pin="R1OUT" pad="P12"/>
-<connect gate="G$1" pin="R2IN" pad="P8"/>
-<connect gate="G$1" pin="R2OUT" pad="P9"/>
-<connect gate="G$1" pin="T1IN" pad="P11"/>
-<connect gate="G$1" pin="T1OUT" pad="P14"/>
-<connect gate="G$1" pin="T2IN" pad="P10"/>
-<connect gate="G$1" pin="T2OUT" pad="P7"/>
+<connect gate="G$1" pin="RIN1" pad="P13"/>
+<connect gate="G$1" pin="RIN2" pad="P8"/>
+<connect gate="G$1" pin="ROUT1" pad="P12"/>
+<connect gate="G$1" pin="ROUT2" pad="P9"/>
 <connect gate="G$1" pin="V+" pad="P2"/>
 <connect gate="G$1" pin="V-" pad="P6"/>
 <connect gate="G$1" pin="VCC" pad="P16"/>
@@ -26135,7 +26135,7 @@ Gain: 7.5</text>
 <label x="111.76" y="200.66" size="1.27" layer="95" font="vector" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U8" gate="G$1" pin="T2IN"/>
+<pinref part="U8" gate="G$1" pin="DIN2"/>
 <wire x1="360.68" y1="226.06" x2="358.14" y2="226.06" width="0.1524" layer="91"/>
 <label x="360.68" y="226.06" size="1.27" layer="95" font="vector" xref="yes"/>
 </segment>
@@ -26147,7 +26147,7 @@ Gain: 7.5</text>
 <label x="114.3" y="231.14" size="1.27" layer="95" font="vector" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U8" gate="G$1" pin="T1IN"/>
+<pinref part="U8" gate="G$1" pin="DIN1"/>
 <wire x1="360.68" y1="228.6" x2="358.14" y2="228.6" width="0.1524" layer="91"/>
 <label x="360.68" y="228.6" size="1.27" layer="95" font="vector" xref="yes"/>
 </segment>
@@ -26323,14 +26323,14 @@ Gain: 7.5</text>
 </net>
 <net name="N$48" class="0">
 <segment>
-<pinref part="U8" gate="G$1" pin="T1OUT"/>
+<pinref part="U8" gate="G$1" pin="DOUT1"/>
 <wire x1="365.76" y1="223.52" x2="358.14" y2="223.52" width="0.1524" layer="91"/>
 <pinref part="U5" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="N$49" class="0">
 <segment>
-<pinref part="U8" gate="G$1" pin="T2OUT"/>
+<pinref part="U8" gate="G$1" pin="DOUT2"/>
 <wire x1="365.76" y1="220.98" x2="358.14" y2="220.98" width="0.1524" layer="91"/>
 <pinref part="U5" gate="G$1" pin="2"/>
 </segment>
