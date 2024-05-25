@@ -4,7 +4,7 @@
 #include <Wire.h>
 const int ULTRA_ADDR = 0x2F;
 const int CHANGE_ADDR = 0x04;
-const int NEW_ADDR = (0x1F << 1);
+const int NEW_ADDR = 0x1F;
 int error; 
      
 void setup() {
