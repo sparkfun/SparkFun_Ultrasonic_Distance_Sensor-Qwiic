@@ -111,6 +111,7 @@ INTERRUPT_HANDLER(TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler, 19) {
   TIM2_ClearITPendingBit(TIM2_IT_Update);
   setOpAmp(kDisableOpAmp);
   TIM2_Cmd(DISABLE);
+  outRange = 1;
 }
 
 /**
@@ -123,6 +124,7 @@ INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler, 21) {
   setOpAmp(kDisableOpAmp);
   GPIO_SetBits(GPIOB, GPIO_Pin_2);
   outRange = 1;
+  triggerInterrupt = 0;
 }
 
 /**

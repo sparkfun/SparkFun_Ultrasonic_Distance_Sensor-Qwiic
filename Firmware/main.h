@@ -14,7 +14,6 @@
 
 #define kCmdReadDistance 0x01
 #define kCmdChangeAddress 0x04
-#define kCmdResetAddress 0x06
 
 #define kTim2Period 0xFFFF
 #define kTim3Period 0xFFFF
@@ -26,6 +25,7 @@
 #define kTIM2CycleTime (kHSIClock / kTIM2Prescaler)
 #define kConvertMM 1000
 #define kCycles48kHz 15
+#define kTIM2CycleSeconds (1.0/(double)kTIM2CycleTime)
 
 void delay(uint16_t n);
 void initializeGPIO(void);

@@ -3,6 +3,7 @@
  */
 #include "main.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x.h"
+#include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_exti.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_flash.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_gpio.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_i2c.h"
@@ -13,14 +14,13 @@ uint8_t opAmpInterrupt = 0;
 uint8_t addressInterrupt = 0;
 uint8_t triggerInterrupt = 0;
 uint8_t i2cInterrupt = 0;
+uint8_t eepromIterator = 1;
 
 uint8_t distanceH = 0, distanceL = 0;
 uint8_t userAddress = 0x2F;
 double totalTime = 0.0; 
 double distance = 0.0;
 uint16_t cycles = 0;
-double cycleTime = 1.0/(double)kTIM2CycleTime;
-uint8_t writeAddressMemory = 0x01; 
 volatile uint8_t peripheralBuffer[kBufferSize] = {0};
 
 // Needed for ST's perhiperhal library memory functions.
@@ -34,11 +34,9 @@ int main(void) {
   initializeTimers();
   initializeGPIO();
 
-  if(writeAddressMemory == 1)
-  {
+  //Fresh EEPROM has 0x00 stored within it's memory. 
+  if(getAddr()  == 0x00)
     setAddr(kUltrasonicAddress);
-    writeAddressMemory = 0;
-  }
 
   initializeI2C();
 
@@ -57,8 +55,8 @@ int main(void) {
       if (peripheralBuffer[0] == kCmdChangeAddress) {
         if (peripheralBuffer > 0x00 && peripheralBuffer[1] < 0x7F) {
           userAddress = peripheralBuffer[1];
-          changeAddress(userAddress);
           setAddr(userAddress);
+          initializeI2C();
         }
       }
       i2cInterrupt = 0;
@@ -70,13 +68,17 @@ int main(void) {
       TIM3_Cmd(DISABLE);
       GPIO_ResetBits(GPIOB, GPIO_Pin_2);
       //time = time per cycle(in seconds) * number of cycles
-      totalTime = cycleTime * (double)cycles;
+      totalTime = kTIM2CycleSeconds * (double)cycles;
       distance = (totalTime * (double)kSpeedOfSound * (double)kConvertMM)/2.0; 
       
       if (outRange == 0) {
          distanceH = (uint16_t)(distance) >> 8;
          distanceL = (uint8_t)distance;
        }
+      if(outRange == 1){
+         distanceH = 0;
+         distanceL = 0;
+      }
       outRange = 0;
       opAmpInterrupt = 0;
       triggerInterrupt = 0;
@@ -92,8 +94,8 @@ int main(void) {
     }
 
     if (addressInterrupt == 1) {
-      changeAddress(kUltrasonicAddress);
       setAddr(kUltrasonicAddress);
+      initializeI2C();
       addressInterrupt = 0;
     }
   }
@@ -121,13 +123,13 @@ void initializeGPIO(void) {
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_2, GPIO_Mode_Out_PP_Low_Fast); // ECHO
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_4, GPIO_Mode_Out_PP_Low_Slow); // PB4
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_3, GPIO_Mode_In_FL_IT); // TRIG
-  //GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_5, GPIO_Mode_In_PU_IT); // ADDR_RST
+  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_5, GPIO_Mode_In_PU_IT); // ADDR_RST
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)GPIO_Pin_6, GPIO_Mode_In_FL_IT); // INT
 
-  // Exterinal interrups for TRIG, INT, ADDR_RST
+  // External interrups for TRIG, INT, ADDR_RST
   EXTI_DeInit();
   EXTI_SetPinSensitivity(EXTI_Pin_3, EXTI_Trigger_Rising);  // TRIG
-  //EXTI_SetPinSensitivity(EXTI_Pin_5, EXTI_Trigger_Falling); // ADDR_RST
+  EXTI_SetPinSensitivity(EXTI_Pin_5, EXTI_Trigger_Falling); // ADDR_RST
   EXTI_SetPinSensitivity(EXTI_Pin_6, EXTI_Trigger_Rising);  // INT
 }
 
@@ -139,7 +141,7 @@ void initializeGPIO(void) {
 void initializeI2C(void) {
   CLK_PeripheralClockConfig(CLK_Peripheral_I2C1, ENABLE);
   I2C_DeInit(I2C1);
-  I2C_Init(I2C1, kI2CSpeed, kUltrasonicAddress, I2C_Mode_I2C, I2C_DutyCycle_2,
+  I2C_Init(I2C1, kI2CSpeed, getAddr(), I2C_Mode_I2C, I2C_DutyCycle_2,
            I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
   I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF), ENABLE);
   I2C_Cmd(I2C1, ENABLE);
@@ -159,7 +161,7 @@ void initializeCLK(void) {
 }
 
 /*
- * @brief Enables and sets Timers two, three, and four.
+ * @brief Enables and configures timers two, three, and four.
  * @param  None
  * @retval None
  */
@@ -186,20 +188,6 @@ void initializeTimers(void) {
   TIM4_TimeBaseInit(TIM4_Prescaler_128, kTim4Period);
   TIM4_ClearFlag(TIM4_FLAG_Update);
   TIM4_ITConfig(TIM4_IT_Update, ENABLE);
-}
-
-/*
- * @brief Change the I2C address of the ultrasonic sensor.
- * @param  address: The new address to be set.
- * @retval None
- */
-void changeAddress(uint8_t address) {
-  I2C_DeInit(I2C1);
-  I2C_Init(I2C1, kI2CSpeed, address, I2C_Mode_I2C, I2C_DutyCycle_2,
-           I2C_Ack_Enable, I2C_AcknowledgedAddress_7bit);
-  I2C_ITConfig(I2C1, (I2C_IT_TypeDef)(I2C_IT_ERR | I2C_IT_EVT | I2C_IT_BUF),
-               ENABLE);
-  I2C_Cmd(I2C1, ENABLE);
 }
 
 /*
@@ -239,7 +227,6 @@ void pulseTransmitter(void) {
     delay(kCycles48kHz);
   }
   // ECHO pin high
-
   GPIO_SetBits(GPIOB, GPIO_Pin_2);
   TIM2_SetCounter(0);
   TIM4_SetCounter(0);
@@ -248,7 +235,8 @@ void pulseTransmitter(void) {
 }
 
 /*
- * @brief Enable or disable the op-amp.
+ * @brief Enable or disable the op-amp. The inverting pin of the op-amp changes state often, so it's 
+ * reinitialized each time it's enabled/disabled.
  * @param  enable: 1 to enable, 0 to disable.
  * @retval None
  */
@@ -263,9 +251,8 @@ void setOpAmp(uint8_t enable) {
 }
 
 /*
- * @brief Write a byte to the EEPROM, used to store the I2C address.
- * @param  Addr: The address to write to.
- * @param  Data: The data to write.
+ * @brief Write the given I2C address to EEPROM.
+ * @param  userAddr: The given I2C address for the Ultrasonic sensor.
  * @retval None
  */
 void setAddr(uint8_t userAddr) {
@@ -291,9 +278,8 @@ void setAddr(uint8_t userAddr) {
 }
 
 /*
- * @brief Read a byte from the EEPROM, used to read the I2C address.
- * @param  Addr: The address to read from.
- * @retval The data read.
+ * @brief Read the ultarsonic's I2C address byte from the EEPROM
+ * @retval The I2C address of the Ultrasonic sensor.
  */
 uint8_t getAddr(void) {
   

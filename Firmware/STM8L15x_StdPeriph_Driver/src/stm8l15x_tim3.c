@@ -1662,90 +1662,90 @@ void TIM3_InternalClockConfig(void)
   *          This parameter must be a value between 0x00 and 0x0F
   * @retval None
   */
-void TIM3_TIxExternalClockConfig(TIM3_TIxExternalCLK1Source_TypeDef TIM3_TIxExternalCLKSource,
-                                 TIM3_ICPolarity_TypeDef TIM3_ICPolarity,
-                                 uint8_t ICFilter)
-{
-  /* Check the parameters */
-  assert_param(IS_TIM3_TIXCLK_SOURCE(TIM3_TIxExternalCLKSource));
-  assert_param(IS_TIM3_IC_POLARITY(TIM3_ICPolarity));
-  assert_param(IS_TIM3_IC_FILTER(ICFilter));
-
-  /* Configure the TIM3 Input Clock Source */
-  if (TIM3_TIxExternalCLKSource == TIM3_TIxExternalCLK1Source_TI2)
-  {
-    TI2_Config(TIM3_ICPolarity, TIM3_ICSelection_DirectTI, ICFilter);
-  }
-  else
-  {
-    TI1_Config(TIM3_ICPolarity, TIM3_ICSelection_DirectTI, ICFilter);
-  }
-
-  /* Select the Trigger source */
-  TIM3_SelectInputTrigger((TIM3_TRGSelection_TypeDef)TIM3_TIxExternalCLKSource);
-
-  /* Select the External clock mode1 */
-  TIM3->SMCR |= (uint8_t)(TIM3_SlaveMode_External1);
-}
-
-/**
-  * @brief  Configures the TIM3 External clock Mode1.
-  * @param  TIM3_ExtTRGPrescaler: Specifies the external Trigger Prescaler.
-  *          This parameter can be one of the following values:
-  *            @arg TIM3_ExtTRGPSC_OFF: No External Trigger prescaler
-  *            @arg TIM3_ExtTRGPSC_DIV2: External Trigger prescaler = 2 (ETRP frequency divided by 2)
-  *            @arg TIM3_ExtTRGPSC_DIV4: External Trigger prescaler = 4 (ETRP frequency divided by 4) 
-  *            @arg TIM3_ExtTRGPSC_DIV8: External Trigger prescaler = 8 (ETRP frequency divided by 8)   
-  * @param  TIM3_ExtTRGPolarity: Specifies the external Trigger Polarity.
-  *          This parameter can be one of the following values:
-  *            @arg TIM3_ExtTRGPolarity_Inverted: External Trigger Polarity = inverted
-  *            @arg TIM3_ExtTRGPolarity_NonInverted: External Trigger Polarity = non inverted
-  * @param  ExtTRGFilter: Specifies the External Trigger Filter.
-  *          This parameter must be a value between 0x00 and 0x0F
-  * @retval None
-  */
-void TIM3_ETRClockMode1Config(TIM3_ExtTRGPSC_TypeDef TIM3_ExtTRGPrescaler,
-                              TIM3_ExtTRGPolarity_TypeDef TIM3_ExtTRGPolarity,
-                              uint8_t ExtTRGFilter)
-{
-  /* Configure the ETR Clock source */
-  TIM3_ETRConfig(TIM3_ExtTRGPrescaler, TIM3_ExtTRGPolarity, ExtTRGFilter);
-
-  /* Select the External clock mode1 */
-  TIM3->SMCR &= (uint8_t)(~TIM_SMCR_SMS);
-  TIM3->SMCR |= (uint8_t)(TIM3_SlaveMode_External1);
-
-  /* Select the Trigger selection: ETRF */
-  TIM3->SMCR &= (uint8_t)(~TIM_SMCR_TS);
-  TIM3->SMCR |= (uint8_t)((TIM3_TRGSelection_TypeDef)TIM3_TRGSelection_ETRF);
-}
-
-/**
-  * @brief  Configures the TIM3 External clock Mode2.
-  * @param  TIM3_ExtTRGPrescaler: Specifies the external Trigger Prescaler.
-  *          This parameter can be one of the following values:
-  *            @arg TIM3_ExtTRGPSC_OFF: No External Trigger prescaler
-  *            @arg TIM3_ExtTRGPSC_DIV2: External Trigger prescaler = 2 (ETRP frequency divided by 2)
-  *            @arg TIM3_ExtTRGPSC_DIV4: External Trigger prescaler = 4 (ETRP frequency divided by 4) 
-  *            @arg TIM3_ExtTRGPSC_DIV8: External Trigger prescaler = 8 (ETRP frequency divided by 8) 
-  * @param  TIM3_ExtTRGPolarity: Specifies the external Trigger Polarity.
-  *          This parameter can be one of the following values:
-  *            @arg TIM3_ExtTRGPolarity_Inverted: External Trigger Polarity = inverted
-  *            @arg TIM3_ExtTRGPolarity_NonInverted: External Trigger Polarity = non inverted
-  * @param  ExtTRGFilter: Specifies the External Trigger Filter.
-  *          This parameter must be a value between 0x00 and 0x0F
-  * @retval None
-  */
-void TIM3_ETRClockMode2Config(TIM3_ExtTRGPSC_TypeDef TIM3_ExtTRGPrescaler,
-                              TIM3_ExtTRGPolarity_TypeDef TIM3_ExtTRGPolarity,
-                              uint8_t ExtTRGFilter)
-{
-  /* Configure the ETR Clock source */
-  TIM3_ETRConfig(TIM3_ExtTRGPrescaler, TIM3_ExtTRGPolarity, ExtTRGFilter);
-
-  /* Enable the External clock mode2 */
-  TIM3->ETR |= TIM_ETR_ECE ;
-}
+//void TIM3_TIxExternalClockConfig(TIM3_TIxExternalCLK1Source_TypeDef TIM3_TIxExternalCLKSource,
+//                                 TIM3_ICPolarity_TypeDef TIM3_ICPolarity,
+//                                 uint8_t ICFilter)
+//{
+//  /* Check the parameters */
+//  assert_param(IS_TIM3_TIXCLK_SOURCE(TIM3_TIxExternalCLKSource));
+//  assert_param(IS_TIM3_IC_POLARITY(TIM3_ICPolarity));
+//  assert_param(IS_TIM3_IC_FILTER(ICFilter));
+//
+//  /* Configure the TIM3 Input Clock Source */
+//  if (TIM3_TIxExternalCLKSource == TIM3_TIxExternalCLK1Source_TI2)
+//  {
+//    TI2_Config(TIM3_ICPolarity, TIM3_ICSelection_DirectTI, ICFilter);
+//  }
+//  else
+//  {
+//    TI1_Config(TIM3_ICPolarity, TIM3_ICSelection_DirectTI, ICFilter);
+//  }
+//
+//  /* Select the Trigger source */
+//  TIM3_SelectInputTrigger((TIM3_TRGSelection_TypeDef)TIM3_TIxExternalCLKSource);
+//
+//  /* Select the External clock mode1 */
+//  TIM3->SMCR |= (uint8_t)(TIM3_SlaveMode_External1);
+//}
+//
+///**
+//  * @brief  Configures the TIM3 External clock Mode1.
+//  * @param  TIM3_ExtTRGPrescaler: Specifies the external Trigger Prescaler.
+//  *          This parameter can be one of the following values:
+//  *            @arg TIM3_ExtTRGPSC_OFF: No External Trigger prescaler
+//  *            @arg TIM3_ExtTRGPSC_DIV2: External Trigger prescaler = 2 (ETRP frequency divided by 2)
+//  *            @arg TIM3_ExtTRGPSC_DIV4: External Trigger prescaler = 4 (ETRP frequency divided by 4) 
+//  *            @arg TIM3_ExtTRGPSC_DIV8: External Trigger prescaler = 8 (ETRP frequency divided by 8)   
+//  * @param  TIM3_ExtTRGPolarity: Specifies the external Trigger Polarity.
+//  *          This parameter can be one of the following values:
+//  *            @arg TIM3_ExtTRGPolarity_Inverted: External Trigger Polarity = inverted
+//  *            @arg TIM3_ExtTRGPolarity_NonInverted: External Trigger Polarity = non inverted
+//  * @param  ExtTRGFilter: Specifies the External Trigger Filter.
+//  *          This parameter must be a value between 0x00 and 0x0F
+//  * @retval None
+//  */
+//void TIM3_ETRClockMode1Config(TIM3_ExtTRGPSC_TypeDef TIM3_ExtTRGPrescaler,
+//                              TIM3_ExtTRGPolarity_TypeDef TIM3_ExtTRGPolarity,
+//                              uint8_t ExtTRGFilter)
+//{
+//  /* Configure the ETR Clock source */
+//  TIM3_ETRConfig(TIM3_ExtTRGPrescaler, TIM3_ExtTRGPolarity, ExtTRGFilter);
+//
+//  /* Select the External clock mode1 */
+//  TIM3->SMCR &= (uint8_t)(~TIM_SMCR_SMS);
+//  TIM3->SMCR |= (uint8_t)(TIM3_SlaveMode_External1);
+//
+//  /* Select the Trigger selection: ETRF */
+//  TIM3->SMCR &= (uint8_t)(~TIM_SMCR_TS);
+//  TIM3->SMCR |= (uint8_t)((TIM3_TRGSelection_TypeDef)TIM3_TRGSelection_ETRF);
+//}
+//
+///**
+//  * @brief  Configures the TIM3 External clock Mode2.
+//  * @param  TIM3_ExtTRGPrescaler: Specifies the external Trigger Prescaler.
+//  *          This parameter can be one of the following values:
+//  *            @arg TIM3_ExtTRGPSC_OFF: No External Trigger prescaler
+//  *            @arg TIM3_ExtTRGPSC_DIV2: External Trigger prescaler = 2 (ETRP frequency divided by 2)
+//  *            @arg TIM3_ExtTRGPSC_DIV4: External Trigger prescaler = 4 (ETRP frequency divided by 4) 
+//  *            @arg TIM3_ExtTRGPSC_DIV8: External Trigger prescaler = 8 (ETRP frequency divided by 8) 
+//  * @param  TIM3_ExtTRGPolarity: Specifies the external Trigger Polarity.
+//  *          This parameter can be one of the following values:
+//  *            @arg TIM3_ExtTRGPolarity_Inverted: External Trigger Polarity = inverted
+//  *            @arg TIM3_ExtTRGPolarity_NonInverted: External Trigger Polarity = non inverted
+//  * @param  ExtTRGFilter: Specifies the External Trigger Filter.
+//  *          This parameter must be a value between 0x00 and 0x0F
+//  * @retval None
+//  */
+//void TIM3_ETRClockMode2Config(TIM3_ExtTRGPSC_TypeDef TIM3_ExtTRGPrescaler,
+//                              TIM3_ExtTRGPolarity_TypeDef TIM3_ExtTRGPolarity,
+//                              uint8_t ExtTRGFilter)
+//{
+//  /* Configure the ETR Clock source */
+//  TIM3_ETRConfig(TIM3_ExtTRGPrescaler, TIM3_ExtTRGPolarity, ExtTRGFilter);
+//
+//  /* Enable the External clock mode2 */
+//  TIM3->ETR |= TIM_ETR_ECE ;
+//}
 
 /**
   * @}

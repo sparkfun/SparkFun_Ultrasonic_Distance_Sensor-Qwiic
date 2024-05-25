@@ -871,15 +871,15 @@ void TIM3_SelectCCDMA(FunctionalState NewState);
 
 /* Clocks management **********************************************************/
 void TIM3_InternalClockConfig(void);
-void TIM3_TIxExternalClockConfig(TIM3_TIxExternalCLK1Source_TypeDef TIM3_TIxExternalCLKSource,
-                                 TIM3_ICPolarity_TypeDef TIM3_ICPolarity,
-                                 uint8_t ICFilter);
-void TIM3_ETRClockMode1Config(TIM3_ExtTRGPSC_TypeDef TIM3_ExtTRGPrescaler,
-                              TIM3_ExtTRGPolarity_TypeDef TIM3_ExtTRGPolarity,
-                              uint8_t ExtTRGFilter);
-void TIM3_ETRClockMode2Config(TIM3_ExtTRGPSC_TypeDef TIM3_ExtTRGPrescaler,
-                              TIM3_ExtTRGPolarity_TypeDef TIM3_ExtTRGPolarity,
-                              uint8_t ExtTRGFilter);
+//void TIM3_TIxExternalClockConfig(TIM3_TIxExternalCLK1Source_TypeDef TIM3_TIxExternalCLKSource,
+//                                 TIM3_ICPolarity_TypeDef TIM3_ICPolarity,
+//                                 uint8_t ICFilter);
+//void TIM3_ETRClockMode1Config(TIM3_ExtTRGPSC_TypeDef TIM3_ExtTRGPrescaler,
+//                              TIM3_ExtTRGPolarity_TypeDef TIM3_ExtTRGPolarity,
+//                              uint8_t ExtTRGFilter);
+//void TIM3_ETRClockMode2Config(TIM3_ExtTRGPSC_TypeDef TIM3_ExtTRGPrescaler,
+//                              TIM3_ExtTRGPolarity_TypeDef TIM3_ExtTRGPolarity,
+//                              uint8_t ExtTRGFilter);
 
 /* Synchronization management *************************************************/
 void TIM3_SelectInputTrigger(TIM3_TRGSelection_TypeDef TIM3_InputTriggerSource);
