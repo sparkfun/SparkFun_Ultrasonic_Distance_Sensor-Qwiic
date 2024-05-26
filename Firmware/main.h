@@ -34,7 +34,7 @@ void initializeCLK(void);
 void initializeTimers(void);
 void changeAddress(uint8_t address);
 void pulseTransmitter(void);
-void setAddr(uint8_t addr);
+void setAddr(uint8_t userAddr);
 uint8_t getAddr(void);
 void setOpAmp(uint8_t enable);
 

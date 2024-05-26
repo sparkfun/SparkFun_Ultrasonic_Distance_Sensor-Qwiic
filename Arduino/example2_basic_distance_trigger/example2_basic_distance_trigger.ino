@@ -38,11 +38,12 @@ void loop() {
   if(distanceRequested == 0)
   {    
     digitalWrite(triggerPin, HIGH);
+    delay(5);
+    digitalWrite(triggerPin, LOW);
     distanceRequested = 1;
   }
 
   if (digitalRead(echoPin) == LOW) {
-    digitalWrite(triggerPin, LOW);
     Wire.requestFrom(ULTRA_ADDR, 2);
     delay(20);
 

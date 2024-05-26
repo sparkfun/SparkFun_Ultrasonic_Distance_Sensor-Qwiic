@@ -71,7 +71,7 @@ int main(void) {
       totalTime = kTIM2CycleSeconds * (double)cycles;
       distance = (totalTime * (double)kSpeedOfSound * (double)kConvertMM)/2.0; 
       
-      if (outRange == 0) {
+      if(outRange == 0){
          distanceH = (uint16_t)(distance) >> 8;
          distanceL = (uint8_t)distance;
        }
@@ -81,7 +81,6 @@ int main(void) {
       }
       outRange = 0;
       opAmpInterrupt = 0;
-      triggerInterrupt = 0;
     }
 
     if (triggerInterrupt == 1) {
@@ -91,6 +90,7 @@ int main(void) {
         TIM3_SetCounter(0);
         TIM3_Cmd(ENABLE);
       }
+      triggerInterrupt = 0;
     }
 
     if (addressInterrupt == 1) {
