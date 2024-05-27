@@ -25,20 +25,23 @@
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_gpio.h"
 #include "main.h"
 
+ // Following variables are used for I2C communication.
 uint16_t event = 0x00;
 volatile uint8_t rxIndex = 0;
 volatile uint8_t txIndex = 0;
+extern uint8_t userAddress;
+extern volatile uint8_t peripheralBuffer[kBufferSize];
 
+ // Following variables are used for interrupt flags and are used by both this file and main.c.
 extern uint8_t outRange;
 extern uint8_t opAmpInterrupt;
 extern uint8_t addressInterrupt;
 extern uint8_t triggerInterrupt;
 extern uint8_t i2cInterrupt;
 
-extern uint8_t userAddress;
+ // Following variables are used for distance calculations and are used by both this file and main.c.
 extern uint8_t distanceH, distanceL;
 extern uint16_t timer;
-extern volatile uint8_t peripheralBuffer[kBufferSize];
 
 #ifdef _COSMIC_
 /**
@@ -81,7 +84,7 @@ INTERRUPT_HANDLER(EXTI3_IRQHandler, 11) {
 }
 
 /*
- * @brief External IT PIN5 Interrupt routine.
+ * @brief External IT PIN5 Interrupt routine, on the address pin.
  * @param  None
  * @retval None
  */
@@ -103,7 +106,7 @@ INTERRUPT_HANDLER(EXTI6_IRQHandler, 14) {
 }
 
 /**
- * @brief TIM2 Update/Overflow/Trigger/Break /USART2 TX Interrupt routine.
+ * @brief TIM2 Update/Overflow/Trigger/Break /USART2 TX Interrupt routine, used for distance calulations.
  * @param  None
  * @retval None
  */
@@ -115,7 +118,7 @@ INTERRUPT_HANDLER(TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler, 19) {
 }
 
 /**
- * @brief Timer3 Update/Overflow/Trigger/Break Interrupt routine.
+ * @brief Timer3 Update/Overflow/Trigger/Break Interrupt routine, used for trigger pin timeout.
  * @param  None
  * @retval None
  */
@@ -129,7 +132,7 @@ INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler, 21) {
 }
 
 /**
- * @brief TIM4 Update/Overflow/Trigger Interrupt routine.
+ * @brief TIM4 Update/Overflow/Trigger Interrupt routine, used for floating the inverting pin on the op-amp.
  * @param  None
  * @retval None
  */
@@ -155,7 +158,6 @@ INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler, 21) {
 
  event = I2C_GetLastEvent(I2C1);
  switch (event) {
-   /******* Slave transmitter ******/
    /* check on EV1 */
  case I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED:
    txIndex = 0;
@@ -165,7 +167,6 @@ INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler, 21) {
    I2C_SendData(I2C1, distanceH);
    I2C_SendData(I2C1, distanceL);
    break;
-   /******* Slave receiver **********/
    /* check on EV1*/
  case I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED:
    rxIndex = 0;

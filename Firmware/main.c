@@ -1,6 +1,11 @@
 /*
- * SparkFun Ultrasonic Distance Sensor
- */
+  SparkFun Ulrasonic Distance Sensor  
+
+  SPDX-License-Identifier: MIT
+   
+  Copyright (c) 2024 SparkFun Electronics
+*/
+
 #include "main.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_exti.h"
@@ -9,13 +14,14 @@
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_i2c.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_tim2.h"
 
+ // Following variables are used for interrupt flags and are used by both this file and main.c.
 uint8_t outRange = 0;
 uint8_t opAmpInterrupt = 0;
 uint8_t addressInterrupt = 0;
 uint8_t triggerInterrupt = 0;
 uint8_t i2cInterrupt = 0;
-uint8_t eepromIterator = 1;
 
+ // Following variables are used for distance calculations and are used by both this file and main.c.
 uint8_t distanceH = 0, distanceL = 0;
 uint8_t userAddress = 0x2F;
 double totalTime = 0.0; 
@@ -23,7 +29,7 @@ double distance = 0.0;
 uint16_t cycles = 0;
 volatile uint8_t peripheralBuffer[kBufferSize] = {0};
 
-// Needed for ST's perhiperhal library memory functions.
+// Needed for ST's perhiperhal Flash library memory functions.
 #ifdef _COSMIC_
  int _fctcpy(char name);
 #endif /*_COSMIC_*/
@@ -34,19 +40,19 @@ int main(void) {
   initializeTimers();
   initializeGPIO();
 
-  //Fresh EEPROM has 0x00 stored within it's memory. 
-  if(getAddr()  == 0x00)
+  // Before initlizing I2C, check if the EEPROM has been written to. If not, write the default address.
+  if(getAddr()  == kDefaultEEPROMValue)
     setAddr(kUltrasonicAddress);
 
+  // This function reads the I2C address written to EEPROM 
   initializeI2C();
 
   enableInterrupts();
   setOpAmp(kDisableOpAmp);
-  
-
 
   while (1) {
-    // Loop until something comes in.
+
+    // I2C Interrupt Flag Check and only two commands are supported: Read Distance and Change Address.
     if (i2cInterrupt == 1) {
       if (peripheralBuffer[0] == kCmdReadDistance) {
         setOpAmp(kEnableOpAmp);
@@ -62,6 +68,8 @@ int main(void) {
       i2cInterrupt = 0;
     }
 
+    // Op-Amp Interrupt Flag Check which indicates that a Transmit pulse has been sensed by 
+    // the Receiver and the time can now be calculated. 
     if (opAmpInterrupt == 1) {
       cycles = TIM2_GetCounter();
       TIM2_Cmd(DISABLE);
@@ -83,6 +91,8 @@ int main(void) {
       opAmpInterrupt = 0;
     }
 
+    // Trigger Interrupt Flag Check, this allows for starting a distance measurement without
+    // I2C communication, note that the distance still needs to be read over I2C. 
     if (triggerInterrupt == 1) {
       if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3)) {
         setOpAmp(kEnableOpAmp);
@@ -93,6 +103,8 @@ int main(void) {
       triggerInterrupt = 0;
     }
 
+    // Address Interrupt Flag Check.
+    // Write the default address to EEPROM and reinitialize I2C.
     if (addressInterrupt == 1) {
       setAddr(kUltrasonicAddress);
       initializeI2C();
@@ -112,8 +124,7 @@ void delay(uint16_t n) {
 }
 
 /*
- * @brief GPIO setup for the ultrasonic sensor: DIN1, DIN2, ECHO, TRIG,
- * ADDR_RST.
+ * @brief GPIO setup for the ultrasonic sensor: DIN1, DIN2, ECHO, PB4 and interrupts pins TRIG, INT, and ADDR_RST.
  * @param  None
  * @retval None
  */
@@ -134,7 +145,7 @@ void initializeGPIO(void) {
 }
 
 /*
- * @brief I2C setup for the ultrasonic sensor.
+ * @brief 7-bit I2C setup for the ultrasonic sensor.
  * @param  None
  * @retval None
  */
@@ -161,7 +172,8 @@ void initializeCLK(void) {
 }
 
 /*
- * @brief Enables and configures timers two, three, and four.
+ * @brief Enables and configures timers two, three, and four used for distance calculations, trigger timeout, and enabling 
+ * the op-amp respectively.
  * @param  None
  * @retval None
  */
@@ -191,7 +203,7 @@ void initializeTimers(void) {
 }
 
 /*
- * @brief Pulse the transmitter at ~48kHz by toggline the pins on the tranmitter.
+ * @brief Pulse the transmitter at ~48kHz by toggling the pins on the tranmitter.
  * @param  None
  * @retval None
  */
@@ -278,7 +290,7 @@ void setAddr(uint8_t userAddr) {
 }
 
 /*
- * @brief Read the ultarsonic's I2C address byte from the EEPROM
+ * @brief Read the ultarsonic's I2C address byte from the EEPROM.
  * @retval The I2C address of the Ultrasonic sensor.
  */
 uint8_t getAddr(void) {
