@@ -1,9 +1,9 @@
 /*
-  SparkFun Ulrasonic Distance Sensor  
-
-  SPDX-License-Identifier: MIT
-   
-  Copyright (c) 2024 SparkFun Electronics
+ * SparkFun Ulrasonic Distance Sensor  
+ *
+ * SPDX-License-Identifier: MIT
+ *  
+ * Copyright (c) 2024 SparkFun Electronics
 */
 
 #include "main.h"

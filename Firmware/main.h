@@ -1,9 +1,9 @@
 /*
-  SparkFun Ulrasonic Distance Sensor  
-
-  SPDX-License-Identifier: MIT
-   
-  Copyright (c) 2024 SparkFun Electronics
+ * SparkFun Ulrasonic Distance Sensor  
+ *
+ * SPDX-License-Identifier: MIT
+ *  
+ * Copyright (c) 2024 SparkFun Electronics
 */
 
 #ifndef _ULTRASONIC_MAIN_H
@@ -31,7 +31,7 @@
 #define kTim3Period 0xFFFF
 #define kTim4Period 0x7C
 
-// High Speed Internal Clock (HSI) value (16 MHzA
+// High Speed Internal Clock (HSI) value (16 MHz)
 #define kHSIClock 16000000
 
 // Variables used for calculating distance
