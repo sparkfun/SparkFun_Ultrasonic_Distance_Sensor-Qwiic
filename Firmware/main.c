@@ -231,20 +231,7 @@ void pulseTransmitter(void)
     GPIO_ResetBits(GPIOB, GPIO_Pin_1);
     GPIO_SetBits(GPIOD, GPIO_Pin_0);
 
-    for (i = 0; i < 4; i++)
-    {
-
-        GPIO_ResetBits(GPIOD, GPIO_Pin_0);
-        GPIO_SetBits(GPIOB, GPIO_Pin_1);
-
-        delay(kCycles48kHz);
-
-        GPIO_SetBits(GPIOD, GPIO_Pin_0);
-        GPIO_ResetBits(GPIOB, GPIO_Pin_1);
-
-        delay(kCycles48kHz);
-    }
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < 8; i++)
     {
 
         GPIO_ResetBits(GPIOD, GPIO_Pin_0);
