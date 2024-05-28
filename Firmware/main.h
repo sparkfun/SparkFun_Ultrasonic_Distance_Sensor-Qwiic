@@ -1,10 +1,10 @@
 /*
- * SparkFun Ulrasonic Distance Sensor  
+ * SparkFun Ulrasonic Distance Sensor
  *
  * SPDX-License-Identifier: MIT
- *  
+ *
  * Copyright (c) 2024 SparkFun Electronics
-*/
+ */
 
 #ifndef _ULTRASONIC_MAIN_H
 #define _ULTRASONIC_MAIN_H
@@ -15,8 +15,8 @@
 
 // I2C related variables
 #define kBufferSize 4
-#define kI2CSpeed 100000 
-#define kUltrasonicAddress (0x2F << 1) 
+#define kI2CSpeed 100000
+#define kUltrasonicAddress (0x2F << 1)
 #define kDefaultEEPROMValue 0x00
 #define kCmdReadDistance 0x01
 #define kCmdChangeAddress 0x04
@@ -35,11 +35,11 @@
 #define kHSIClock 16000000
 
 // Variables used for calculating distance
-#define kSpeedOfSound 343.0 //Speed of sound in m/s at 20 degrees Celsius
+#define kSpeedOfSound 343.0 // Speed of sound in m/s at 20 degrees Celsius
 #define kTIM2CycleTime (kHSIClock / kTIM2Prescaler)
 #define kConvertMM 1000
 #define kCycles48kHz 15
-#define kTIM2CycleSeconds (1.0/(double)kTIM2CycleTime)
+#define kTIM2CycleSeconds (1.0 / (double)kTIM2CycleTime)
 
 void delay(uint16_t n);
 void initializeGPIO(void);
