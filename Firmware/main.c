@@ -14,19 +14,16 @@
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_i2c.h"
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_tim2.h"
 
-// Following variables are used for interrupt flags and are used by both this file and main.c.
+// Variables are used for interrupt flags 
 uint8_t outRange = 0;
 uint8_t opAmpInterrupt = 0;
 uint8_t addressInterrupt = 0;
 uint8_t triggerInterrupt = 0;
 uint8_t i2cInterrupt = 0;
 
-// Following variables are used for distance calculations and are used by both this file and main.c.
 uint8_t distanceH = 0, distanceL = 0;
 uint8_t userAddress = 0x2F;
-double totalTime = 0.0;
-double distance = 0.0;
-uint16_t cycles = 0;
+
 volatile uint8_t peripheralBuffer[kBufferSize] = {0};
 
 // Needed for ST's perhiperhal Flash library memory functions.
@@ -43,7 +40,7 @@ int main(void)
 
     // Before initlizing I2C, check if the EEPROM has been written to. If not, write the default address.
     if (getAddr() == kDefaultEEPROMValue)
-        setAddr(kUltrasonicAddress);
+        setAddr(kDefaultUltrasonicAddress);
 
     // This function reads the I2C address written to EEPROM
     initializeI2C();
@@ -62,72 +59,70 @@ int main(void)
                 setOpAmp(kEnableOpAmp);
                 pulseTransmitter();
             }
-            if (peripheralBuffer[0] == kCmdChangeAddress)
+            else if (peripheralBuffer[0] == kCmdChangeAddress &&
+                     (peripheralBuffer[1] >= kI2CAddressMin && peripheralBuffer[1] < kI2CAddressMax))
             {
-                if (peripheralBuffer > 0x00 && peripheralBuffer[1] < 0x7F)
-                {
-                    userAddress = peripheralBuffer[1];
-                    setAddr(userAddress);
-                    initializeI2C();
-                }
+                userAddress = peripheralBuffer[1];
+                setAddr(userAddress);
+                initializeI2C();
             }
             i2cInterrupt = 0;
         }
+    
 
-        // Op-Amp Interrupt Flag Check which indicates that a Transmit pulse has been sensed by
-        // the Receiver and the time can now be calculated.
-        if (opAmpInterrupt == 1)
+    // Op-Amp Interrupt Flag Check which indicates that a Transmit pulse has been sensed by
+    // the Receiver and the time can now be calculated.
+    if (opAmpInterrupt == 1)
+    {
+        uint16_t cycles = TIM2_GetCounter();
+        TIM2_Cmd(DISABLE);
+        TIM3_Cmd(DISABLE);
+        GPIO_ResetBits(GPIOB, GPIO_Pin_2);
+    
+        if (outRange == 0)
         {
-            cycles = TIM2_GetCounter();
-            TIM2_Cmd(DISABLE);
-            TIM3_Cmd(DISABLE);
-            GPIO_ResetBits(GPIOB, GPIO_Pin_2);
             // time = time per cycle(in seconds) * number of cycles
-            totalTime = kTIM2CycleSeconds * (double)cycles;
-            distance = (totalTime * (double)kSpeedOfSound * (double)kConvertMM) / 2.0;
-
-            if (outRange == 0)
-            {
-                distanceH = (uint16_t)(distance) >> 8;
-                distanceL = (uint8_t)distance;
-            }
-            if (outRange == 1)
-            {
-                distanceH = 0;
-                distanceL = 0;
-            }
-            outRange = 0;
-            opAmpInterrupt = 0;
+            double distance = (kTIM2CycleSeconds * (double)cycles * (double)kSpeedOfSound * (double)kConvertMM) / 2.0;
+            distanceH = (uint16_t)(distance) >> 8;
+            distanceL = (uint8_t)distance;
         }
-
-        // Trigger Interrupt Flag Check, this allows for starting a distance measurement without
-        // I2C communication, note that the distance still needs to be read over I2C.
-        if (triggerInterrupt == 1)
+        else if (outRange == 1)
         {
-            if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3))
-            {
-                setOpAmp(kEnableOpAmp);
-                pulseTransmitter();
-                TIM3_SetCounter(0);
-                TIM3_Cmd(ENABLE);
-            }
-            triggerInterrupt = 0;
+            distanceH = 0;
+            distanceL = 0;
         }
-
-        // Address Interrupt Flag Check.
-        // Write the default address to EEPROM and reinitialize I2C.
-        if (addressInterrupt == 1)
-        {
-            setAddr(kUltrasonicAddress);
-            initializeI2C();
-            addressInterrupt = 0;
-        }
+        outRange = 0;
+        opAmpInterrupt = 0;
     }
+
+    // Trigger Interrupt Flag Check, this allows for starting a distance measurement without
+    // I2C communication, note that the distance still needs to be read over I2C.
+    if (triggerInterrupt == 1)
+    {
+        if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3))
+        {
+            setOpAmp(kEnableOpAmp);
+            pulseTransmitter();
+            TIM3_SetCounter(0);
+            TIM3_Cmd(ENABLE);
+        }
+        triggerInterrupt = 0;
+    }
+
+    // Address Interrupt Flag Check.
+    // Write the default address to EEPROM and reinitialize I2C.
+    if (addressInterrupt == 1)
+    {
+        setAddr(kDefaultUltrasonicAddress);
+        initializeI2C();
+        addressInterrupt = 0;
+    }
+}
 }
 
 /*
  * @brief  delay function.
- * @param  n : the time to delay
+ * @param  n : the number of cylces to delay: ~15873 cycles per ms at 16MHz.
  * @retval None
  */
 void delay(uint16_t n)
@@ -219,7 +214,7 @@ void initializeTimers(void)
 }
 
 /*
- * @brief Pulse the transmitter at ~48kHz by toggling the pins on the tranmitter.
+ * @brief Pulse the transmitter at ~48kHz by toggling the pins on the transmitter.
  * @param  None
  * @retval None
  */

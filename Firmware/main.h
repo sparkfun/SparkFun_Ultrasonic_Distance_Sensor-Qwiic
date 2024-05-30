@@ -16,10 +16,12 @@
 // I2C related variables
 #define kBufferSize 4
 #define kI2CSpeed 100000
-#define kUltrasonicAddress (0x2F << 1)
+#define kDefaultUltrasonicAddress (0x2F << 1)
 #define kDefaultEEPROMValue 0x00
 #define kCmdReadDistance 0x01
 #define kCmdChangeAddress 0x04
+#define kI2CAddressMin 0x07
+#define kI2CAddressMax 0x7F
 
 // Op-Amp related variables
 #define kDisableOpAmp 0x00
