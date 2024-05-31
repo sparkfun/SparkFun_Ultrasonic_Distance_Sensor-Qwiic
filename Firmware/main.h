@@ -28,9 +28,10 @@
 #define kEnableOpAmp 0x01
 
 // Timer period values
-#define kTim2Period 0xFFFF
-#define kTIM2Prescaler 128
-#define kTim3Period 0xFFFF
+#define kTim2Period 0xFFFF //65535 or 524ms using 128 prescaler
+// Prescaler value allows for about a 1ms time period.
+#define kTIM2Prescaler 128 // ~1ms
+#define kTim3Period 0xFFFF //65535 or 524ms using 128 prescaler
 #define kTim4Period 0x7C
 
 // High Speed Internal Clock (HSI) value (16 MHz)

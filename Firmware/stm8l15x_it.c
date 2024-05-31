@@ -33,15 +33,14 @@ extern uint8_t userAddress;
 extern volatile uint8_t peripheralBuffer[kBufferSize];
 
 // Following variables are used for interrupt flags and are used by both this file and main.c.
-extern uint8_t outRange;
-extern uint8_t opAmpInterrupt;
-extern uint8_t addressInterrupt;
-extern uint8_t triggerInterrupt;
-extern uint8_t i2cInterrupt;
+extern volatile uint8_t outRangeFlag;
+extern volatile uint8_t opAmpInterrupt;
+extern volatile uint8_t addressInterrupt;
+extern volatile uint8_t triggerInterrupt;
+extern volatile uint8_t i2cInterrupt;
 
 // Following variables are used for distance calculations and are used by both this file and main.c.
-extern uint8_t distanceH, distanceL;
-extern uint16_t timer;
+extern volatile uint8_t distanceH, distanceL;
 
 #ifdef _COSMIC_
 /**
@@ -110,7 +109,9 @@ INTERRUPT_HANDLER(EXTI6_IRQHandler, 14)
 }
 
 /**
- * @brief TIM2 Update/Overflow/Trigger/Break /USART2 TX Interrupt routine, used for distance calulations.
+ * @brief TIM2 Update/Overflow/Trigger/Break/USART2 TX Interrupt routine, tracks the number 
+ * of cycles between when a pulse is sent out by the transmitter and then received. Aids in 
+ * calculating the distance.
  * @param  None
  * @retval None
  */
@@ -119,7 +120,7 @@ INTERRUPT_HANDLER(TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler, 19)
     TIM2_ClearITPendingBit(TIM2_IT_Update);
     setOpAmp(kDisableOpAmp);
     TIM2_Cmd(DISABLE);
-    outRange = 1;
+    outRangeFlag = 1;
 }
 
 /**
@@ -133,7 +134,7 @@ INTERRUPT_HANDLER(TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler, 21)
     setOpAmp(kDisableOpAmp);
     GPIO_SetBits(GPIOB, GPIO_Pin_2);
     TIM3_Cmd(DISABLE);
-    outRange = 1;
+    outRangeFlag = 1;
     triggerInterrupt = 0;
 }
 

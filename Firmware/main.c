@@ -15,13 +15,13 @@
 #include "STM8L15x_StdPeriph_Driver/inc/stm8l15x_tim2.h"
 
 // Variables are used for interrupt flags
-uint8_t outRange = 0;
-uint8_t opAmpInterrupt = 0;
-uint8_t addressInterrupt = 0;
-uint8_t triggerInterrupt = 0;
-uint8_t i2cInterrupt = 0;
+volatile uint8_t outRangeFlag = 0;
+volatile uint8_t opAmpInterrupt = 0;
+volatile uint8_t addressInterrupt = 0;
+volatile uint8_t triggerInterrupt = 0;
+volatile uint8_t i2cInterrupt = 0;
 
-uint8_t distanceH = 0, distanceL = 0;
+uint8_t volatile distanceH = 0, distanceL = 0;
 uint8_t userAddress = 0x2F;
 
 volatile uint8_t peripheralBuffer[kBufferSize] = {0};
@@ -54,6 +54,7 @@ int main(void)
         // I2C Interrupt Flag Check and only two commands are supported: Read Distance and Change Address.
         if (i2cInterrupt == 1)
         {
+            i2cInterrupt = 0;
             if (peripheralBuffer[0] == kCmdReadDistance)
             {
                 setOpAmp(kEnableOpAmp);
@@ -63,22 +64,25 @@ int main(void)
                      (peripheralBuffer[1] >= kI2CAddressMin && peripheralBuffer[1] < kI2CAddressMax))
             {
                 userAddress = peripheralBuffer[1];
-                setAddr(userAddress);
-                initializeI2C();
+                if (userAddress != getAddr())
+                {
+                    setAddr(userAddress);
+                    initializeI2C();
+                }
             }
-            i2cInterrupt = 0;
         }
 
         // Op-Amp Interrupt Flag Check which indicates that a Transmit pulse has been sensed by
         // the Receiver and the time can now be calculated.
         if (opAmpInterrupt == 1)
         {
+            opAmpInterrupt = 0;
             uint16_t cycles = TIM2_GetCounter();
             TIM2_Cmd(DISABLE);
             TIM3_Cmd(DISABLE);
-            GPIO_ResetBits(GPIOB, GPIO_Pin_2);
+            GPIO_SetBits(GPIOB, GPIO_Pin_2);
 
-            if (outRange == 0)
+            if (outRangeFlag == 0)
             {
                 // time = time per cycle(in seconds) * number of cycles
                 double distance =
@@ -86,19 +90,19 @@ int main(void)
                 distanceH = (uint16_t)(distance) >> 8;
                 distanceL = (uint8_t)distance;
             }
-            else if (outRange == 1)
+            else
             {
                 distanceH = 0;
                 distanceL = 0;
             }
-            outRange = 0;
-            opAmpInterrupt = 0;
+            outRangeFlag = 0;
         }
 
         // Trigger Interrupt Flag Check, this allows for starting a distance measurement without
         // I2C communication, note that the distance still needs to be read over I2C.
         if (triggerInterrupt == 1)
         {
+            triggerInterrupt = 0;
             if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3))
             {
                 setOpAmp(kEnableOpAmp);
@@ -106,16 +110,15 @@ int main(void)
                 TIM3_SetCounter(0);
                 TIM3_Cmd(ENABLE);
             }
-            triggerInterrupt = 0;
         }
 
         // Address Interrupt Flag Check.
         // Write the default address to EEPROM and reinitialize I2C.
         if (addressInterrupt == 1)
         {
+            addressInterrupt = 0;
             setAddr(kDefaultUltrasonicAddress);
             initializeI2C();
-            addressInterrupt = 0;
         }
     }
 }
@@ -191,6 +194,9 @@ void initializeTimers(void)
 {
 
     // Clock used for calculating the transmitter's pulse distance.
+    // Prescalar sets timer to 125kHz.
+    // Period is the maximum allowed time for a 16 bit timer, which sets
+    // its' overflow around 524ms.
     TIM2_DeInit();
     CLK_PeripheralClockConfig(CLK_Peripheral_TIM2, ENABLE);
     TIM2_TimeBaseInit(TIM2_Prescaler_128, TIM2_CounterMode_Up, kTim2Period);
@@ -198,6 +204,9 @@ void initializeTimers(void)
     TIM2_ITConfig(TIM2_IT_Update, ENABLE);
 
     // Clock used for determining time out with regards to the trigger pin.
+    // Prescalar sets timer to 125kHz.
+    // Period is the maximum allowed time for a 16 bit timer, which puts 
+    // its' overflow around 524ms.
     TIM3_DeInit();
     CLK_PeripheralClockConfig(CLK_Peripheral_TIM3, ENABLE);
     TIM3_TimeBaseInit(TIM3_Prescaler_128, TIM3_CounterMode_Up, kTim3Period);
@@ -206,6 +215,8 @@ void initializeTimers(void)
 
     // Clock used to delay floating the inverting pin on the last stage (comparator)
     // of the op-amp.
+    // Prescalar sets timer to 125kHz.
+    // The period is set to ~1ms. 
     TIM4_DeInit();
     CLK_PeripheralClockConfig(CLK_Peripheral_TIM4, ENABLE);
     TIM4_TimeBaseInit(TIM4_Prescaler_128, kTim4Period);
@@ -223,12 +234,14 @@ void pulseTransmitter(void)
 
     uint8_t i = 0;
 
+    // Set pins to opposite states in case they aren't already.
     GPIO_ResetBits(GPIOB, GPIO_Pin_1);
     GPIO_SetBits(GPIOD, GPIO_Pin_0);
 
+    // Sends 8 pulses at 48kHz by toggling the transmitter pins
+    // in opposite states.
     for (i = 0; i < 8; i++)
     {
-
         GPIO_ResetBits(GPIOD, GPIO_Pin_0);
         GPIO_SetBits(GPIOB, GPIO_Pin_1);
 
@@ -240,7 +253,7 @@ void pulseTransmitter(void)
         delay(kCycles48kHz);
     }
     // ECHO pin high
-    GPIO_SetBits(GPIOB, GPIO_Pin_2);
+    GPIO_ResetBits(GPIOB, GPIO_Pin_2);
     TIM2_SetCounter(0);
     TIM4_SetCounter(0);
     TIM2_Cmd(ENABLE);
