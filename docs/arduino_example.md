@@ -2,7 +2,7 @@
 icon: simple/arduino
 ---
 
-Now that we've installed the Arduino, it's time to upload our first sketch to make sure everything is working properly.
+Now that we've installed the Arduino library, it's time to upload our first sketch to make sure everything is working properly.
 
 
 ###Example 1
