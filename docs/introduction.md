@@ -46,14 +46,14 @@ To follow along with this tutorial, you will need the following materials. You m
             </a>
             CAB-10215
         </td>
-        <td>
+<!--        <td>
             <a href="https://www.sparkfun.com/products/17153">
                 <center><img src="https://cdn.sparkfun.com//assets/parts/1/6/1/3/5/17153-SparkFun_Qwiic_OLED_Display__0.91_in__128x32_-05.jpg" style="width:140px; height:140px; object-fit:contain;" alt="SparkFun Qwiic OLED Display (0.91 in., 128x32)" >
                 </center>
                 <h3 class="title">SparkFun Qwiic OLED Display (0.91 in., 128x32)</h3>
             </a>
             LCD-17153
-        </td>
+        </td>-->
         <td>
             <a href="https://www.sparkfun.com/products/14427">
                 <center><img src="https://cdn.sparkfun.com//assets/parts/1/2/4/5/3/14427-Qwiic_Cable_-_100mm-01.jpg" style="width:140px; height:140px; object-fit:contain;" alt="Qwiic Cable - 100mm" >
