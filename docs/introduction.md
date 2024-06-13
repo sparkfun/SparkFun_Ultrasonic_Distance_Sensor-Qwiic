@@ -15,7 +15,10 @@ icon: material/book-open-page-variant
     ![Product Thumbnail](https://cdn.sparkfun.com/assets/parts/2/5/0/9/7/SEN-24805-Ultrasonic-Distance-Sensor-Feature.jpg)
     </figure></a>
     
--    The [SparkFun Ultrasonic Distance Sensor - TCT40 (Qwiic)](https://www.sparkfun.com/products/24805) is great for providing non-contact distance readings from 2cm to 400cm. It improves on the classic HC-SR04 distance sensor by adding a pair of Qwiic connectors to it, so now you can communicate over I<sup>2</sup>C and daisy chain any other Qwiic product of your choosing.  
+-    The SparkFun Qwiic Ultrasonic Distance Sensor, a user-friendly upgrade to the popular HC-SR04 sensor, offers non-contact distance measurement from 2cm to 400cm with an accuracy of 3mm. This sensor is designed to seamlessly integrate with the Qwiic ecosystem for I<sup>2</sup>C communication, making it a breeze to add to your existing projects and daisy-chain with other Qwiic components.
+
+    With its wide range of applications, the SparkFun Qwiic Ultrasonic Distance Sensor is a versatile tool for robotics projects, obstacle avoidance systems, and any application that requires accurate distance measurement without physical contact. Its adaptability makes it a valuable addition to your toolkit.
+
 
     <center>
     [Purchase from SparkFun :fontawesome-solid-cart-plus:{ .heart }](https://www.sparkfun.com/products/24805){ .md-button .md-button--primary }

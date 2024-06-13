@@ -11,7 +11,6 @@ Overall Features:
 * MCU on board: STM8L051F3
 * 7 bit Unshifted Address: 0x2F
 * Dimensions: 1.75" x 0.85"
-* Weight =: 
 
 ## STM8L051F3 MCU
 
@@ -30,9 +29,10 @@ The TCT40-16R and TCT40-16RT are an analog ultrasonic receiver and transmitter f
 [![TCT40-16R/T](assets/img/24805_SparkFun_Ultrasonic_Distance_Sensor-TCT40-16TR.jpg){ width="600" }](assets/img/24805_SparkFun_Ultrasonic_Distance_Sensor-TCT40-16TR.jpg "Click to enlarge")
 <figcaption markdown>TCT40-16R/T</figcaption>
 </figure>
+
 ## Qwiic connectors
 
-Our Qwiic Ecosystem makes sensors pretty much plug and play. There are two Qwiic connectors on the side of the Qwiic Distance Sensor board to provide power and I<sup>2</sup>C connectivity simultaneously.
+Our Qwiic Ecosystem makes sensors pretty much plug and play. There are two Qwiic connectors on the side of the Qwiic Distance Sensor board to provide power and I<sup>2</sup>C connectivity simultaneously. The default I<sup>2</sup>C address is 0x2F. The `updateAddress()` function allows you to change the I<sup>2</sup>C address to any address from 0x08 to 0x7F. More information on our Qwiic Ecosystem [can be found here](https://www.sparkfun.com/qwiic).  
 
 
 <figure markdown>
