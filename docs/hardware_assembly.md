@@ -12,7 +12,7 @@ Using the Qwiic system, assembling the hardware is simple. Connect the RedBoard 
 </figure>
 
 
-<!-->
+If you don't want to use the Qwiic system, there are Plated Through Holes on the side of the board that you can solder headers to. 
 
 ??? note "New to soldering?"
 	If you have never soldered before or need a quick refresher, check out our [How to Solder: Through-Hole Soldering](https://learn.sparkfun.com/tutorials/how-to-solder-through-hole-soldering) guide.
@@ -29,4 +29,3 @@ Using the Qwiic system, assembling the hardware is simple. Connect the RedBoard 
 		**How to Solder: Through-Hole Soldering**</a>
 
 	</div>
--->
