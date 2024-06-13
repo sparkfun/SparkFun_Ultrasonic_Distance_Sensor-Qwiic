@@ -23,7 +23,6 @@ Using the Qwiic system, assembling the hardware is simple. Connect the RedBoard 
 
 
 <figure markdown>
-[![Ultrasonic Distance Sensor Connected to Programming](assets/img/23386-ESP32-Qwiic-Pro-Mini-Action3.jpg){ width="400" }](assets/img/23386-ESP32-Qwiic-Pro-Mini-Action3.jpg "Click to enlarge")
+[![Ultrasonic Distance Sensor Connected to Programming](assets/img/24805-Ultrasonic-Distance-Sensor-Action-2.jpg){ width="80%" }](assets/img/24805-Ultrasonic-Distance-Sensor-Action-2.jpg "Click to enlarge")
 <figcaption markdown>Ultrasonic Distance Sensor Connected to Programming</figcaption>
 </figure>
-
