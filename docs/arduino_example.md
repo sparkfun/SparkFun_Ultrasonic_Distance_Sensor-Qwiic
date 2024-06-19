@@ -117,18 +117,12 @@ We have code, now let's hookup the hardware! The Qwiic system makes this example
 
 Make sure you've selected the correct board and port in the Tools menu and then hit the upload button. Once the code has finished uploading, you should see something similar to the following. 
 
+
 <figure markdown>
-[![Ultrasonic Distance Sensor Arduino Example 2 Output](assets/img/Example2_Output.jpg){ width="90%" }](assets/img/Example2_Output.jpg "Click to enlarge")
-<figcaption markdown>Example 2 Output</figcaption>
+[![Oh no! A dinosaur is approaching distance sensor and now it's only 61mm away!](assets/img/SEN-24805-GIF.gif){ width="90%" }](assets/img/SEN-24805-GIF.gif "Click to enlarge")
+<figcaption markdown>Run away!</figcaption>
 </figure>
 
 
 Try moving an object (like your hand or a dinosaur) closer to the sensor - notice the output of the OLED shows you how close the object is! Grr. Rawr!
-
-<!--
-<figure markdown>
-[![Oh no! A dinosaur is approaching distance sensor and now it's only 61mm away!](https://cdn.sparkfun.com/assets/learn_tutorials/1/5/9/8/Ultrasonic_HC-SR04.gif){ width="90%" }](https://cdn.sparkfun.com/assets/learn_tutorials/1/5/9/8/Ultrasonic_HC-SR04.gif "Click to enlarge")
-<figcaption markdown>Curse your sudden but inevitable betrayal!</figcaption>
-</figure>
--->
 
