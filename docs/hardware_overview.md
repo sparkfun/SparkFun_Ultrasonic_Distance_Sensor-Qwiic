@@ -50,15 +50,48 @@ Ideally, power will be supplied via the Qwiic connectors on either side of the b
 <figcaption markdown>Power Pins</figcaption>
 </figure>
 
-
 ## Trigger and Echo Pins
 
-If you (for some crazy reason) don't want to utilize the Qwiic connectors, we've broken out the Trigger and Echo pins as PTH. We've included headers that can be soldered in place. 
+The Trigger and Echo pins are available as plated through holes to manually calculate the distance using the Ultrasonic Distance Sensor. To use, pull TRIG HIGH and then LOW, wait for the ECHO pin to go HIGH and then take the time in between to calculate the distance to the object. For more information on how this works, check out Example 3 later in this guide. 
 
 <figure markdown>
 [![Trigger and Echo Pins](assets/img/24805_SparkFun_Ultrasonic_Distance_Sensor-TriggerandEcho.jpg){ width="600" }](assets/img/24805_SparkFun_Ultrasonic_Distance_Sensor-TriggerandEcho.jpg "Click to enlarge")
 <figcaption markdown>Trigger and Echo Pins</figcaption>
 </figure>
+
+## Testpoint Pads
+
+We've provided a number of open pads on the back of the board.
+
+
+
+### I2C Pads
+
+Should you wish to avoid using the Qwiic connectors, you can use these two pads (along with the power PTH pins) to still take advantage of the I<sup>2</sup>C communication protocols. 
+
+<figure markdown>
+[![I2C Testpoint Pads](assets/img/24805_SparkFun_Ultrasonic_Distance_Sensor-I2CPads.jpg){ width="600" }](assets/img/24805_SparkFun_Ultrasonic_Distance_Sensor-I2CPads.jpg "Click to enlarge")
+<figcaption markdown>I<sup>2</sup>C Testpoint Pads</figcaption>
+</figure>
+
+### Single Wire Interface Module (SWIM)
+
+SWIM, INT, and NRST are all part of the "Single Wire Interface Module (SWIM)" used for programming the onboard STM8 microcontroller and for most users, can be effectively ignored. For those who wish to dive into the deep end and tweak the firmware, these pads are available. Requirements include ST Visual Develop (the ST Progamming Software bundled with Visual Develop), a COSMIC compiler license, and a USB to SWIM adapter.
+
+<figure markdown>
+[![SWIM Testpoint Pads](assets/img/24805_SparkFun_Ultrasonic_Distance_Sensor-SWIMPads.jpg){ width="600" }](assets/img/24805_SparkFun_Ultrasonic_Distance_Sensor-SWIMPads.jpg "Click to enlarge")
+<figcaption markdown>SWIM Testpoint Pads</figcaption>
+</figure>
+
+### ADDR_RST 
+
+ADDR_RST resets the address to 0x2F. 
+
+<figure markdown>
+[![ADDR_RST Testpoint Pad](assets/img/24805_SparkFun_Ultrasonic_Distance_Sensor-ADDR_RSTPads.jpg){ width="600" }](assets/img/24805_SparkFun_Ultrasonic_Distance_Sensor-ADDR_RSTPads.jpg "Click to enlarge")
+<figcaption markdown>ADDR_RST Testpoint Pad</figcaption>
+</figure>
+
 
 
 ## Jumpers
