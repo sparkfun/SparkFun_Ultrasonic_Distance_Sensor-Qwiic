@@ -23,7 +23,7 @@ The 8-bit ultra-low power STM8 MCU Core provides increased processing power (up 
 
 ## TCT40-16R/T
 
-The TCT40-16R and TCT40-16RT are an analog ultrasonic receiver and transmitter featuring a distance range from 0.2 to 18 meters and a beam angle of 80°. We've attached an RS232 transceiver to the transmitter to boost the signal being sent out, and the receiver goes through an LMV324 op-amp to clean up the signal coming in for optimum detection. For more information, refer to the translated datasheet [here](assets/component_documentation/TCT40-16-T-R.pdf).
+The TCT40-16R and TCT40-16T are an analog ultrasonic receiver and transmitter featuring a distance range from 0.2 to 18 meters and a beam angle of 80°. We've attached an RS232 transceiver to the transmitter to boost the signal being sent out, and the receiver goes through an LMV324 op-amp to clean up the signal coming in for optimum detection. For more information, refer to the translated datasheet [here](assets/component_documentation/TCT40-16-T-R.pdf).
 
 <figure markdown>
 [![TCT40-16R/T](assets/img/24805_SparkFun_Ultrasonic_Distance_Sensor-TCT40-16TR.jpg){ width="600" }](assets/img/24805_SparkFun_Ultrasonic_Distance_Sensor-TCT40-16TR.jpg "Click to enlarge")
@@ -52,7 +52,7 @@ Ideally, power will be supplied via the Qwiic connectors on either side of the b
 
 ## Trigger and Echo Pins
 
-The Trigger and Echo pins are available as plated through holes to manually calculate the distance using the Ultrasonic Distance Sensor. To use, pull TRIG HIGH and then LOW, wait for the ECHO pin to go HIGH and then take the time in between to calculate the distance to the object. For more information on how this works, check out Example 3 later in this guide. 
+The Trigger and Echo pins are available as plated through holes to manually calculate the distance using the Ultrasonic Distance Sensor. To use, pull TRIG HIGH and then LOW, wait for the ECHO pin to go HIGH and then take the time in between to calculate the distance to the object. For more information on how this works, check out Example 3 in the [Arduino Library](https://github.com/sparkfun/SparkFun_Qwiic_Ultrasonic_Arduino_Library). 
 
 <figure markdown>
 [![Trigger and Echo Pins](assets/img/24805_SparkFun_Ultrasonic_Distance_Sensor-TriggerandEcho.jpg){ width="600" }](assets/img/24805_SparkFun_Ultrasonic_Distance_Sensor-TriggerandEcho.jpg "Click to enlarge")
@@ -61,7 +61,7 @@ The Trigger and Echo pins are available as plated through holes to manually calc
 
 ## Testpoint Pads
 
-We've provided a number of open pads on the back of the board.
+We've provided a number of open pads on the back of the board:
 
 
 

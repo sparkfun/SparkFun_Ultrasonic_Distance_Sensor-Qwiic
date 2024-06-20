@@ -36,7 +36,7 @@ Note the output change when the mouse is moved closer to the sensor.
 
 ### Example 2
 
-Let's add in an LCD screen to display our measurements. 
+Let's add in an LCD screen to display our measurements. For this example you will need another [Qwiic Cable](https://www.sparkfun.com/products/14427) and the [SparkFun Qwiic OLED Display (0.91 in., 128x32)](https://www.sparkfun.com/products/24606).
 
 To display the sensor readings on the connected Qwiic OLED, we will need to install the SparkFun Qwiic OLED library. You can install this library to automatically in the Arduino IDE's Library Manager by searching for "**SparkFun Qwiic OLED**". Or you can manually download it from the [GitHub repository](https://github.com/sparkfun/SparkFun_Qwiic_OLED_Arduino_Library). 
 
@@ -44,52 +44,6 @@ To display the sensor readings on the connected Qwiic OLED, we will need to inst
 	[Download the SparkFun Qwiic OLED Library (ZIP)](https://github.com/sparkfun/SparkFun_Qwiic_OLED_Arduino_Library/archive/refs/heads/main.zip){ .md-button .md-button--primary }
 </center>
 
-
-<!-- use three Adafruit libraries:
-
-* [Adafruit BusIO GitHub](https://github.com/adafruit/Adafruit_BusIO)
-* [Adafruit GFX GitHub](https://github.com/adafruit/Adafruit-GFX-Library)
-* [Adafruit SSD1306 GitHub](https://github.com/adafruit/Adafruit_SSD1306)
-
-#### Adafruit BusIO Library
-
-You can install this library to automatically in the Arduino IDE's Library Manager by searching for "**Adafruit BusIO**". Or you can manually download it from the [GitHub repository](https://github.com/adafruit/Adafruit_BusIO). 
-
-
-<center>
-	[Download the Adafruit BusIO Library (ZIP)](https://github.com/adafruit/Adafruit_BusIO/archive/master.zip){ .md-button .md-button--primary }
-</center>
-
-
-
-#### Adafruit GFX Library
-
-You can install this library to automatically in the Arduino IDE's Library Manager by searching for "**Adafruit GFX**". Or you can manually download it from the [GitHub repository](https://github.com/adafruit/Adafruit-GFX-Library). 
-
-<center>
-	[Download the Adafruit GFX Library (ZIP)](https://github.com/adafruit/Adafruit-GFX-Library/archive/master.zip){ .md-button .md-button--primary }
-</center>
-
-
-#### Adafruit SSD1306 Library
-
-You can install this library to automatically in the Arduino IDE's Library Manager by searching for "**Adafruit SSD1306 Library**". Or you can manually download it from the [GitHub repository](https://github.com/adafruit/Adafruit_SSD1306). 
-
-<center>
-	[Download the Adafruit SSD1306 Library (ZIP)](https://github.com/adafruit/Adafruit_SSD1306/archive/master.zip){ .md-button .md-button--primary }
-</center>
-
-<br />
-
-<div class="alert alert-info" role="alert">
-  <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-   <strong>Pro tip: </strong> Trying to do a search for the Adafruit libraries and not finding them? Make sure you have the Adafruit json link in your Preferences. After your SparkFun json link, of course. <br /><br />
-   
-   <img src="https://cdn.sparkfun.com/assets/learn_tutorials/1/5/9/8/AdafruitJSONinPreferences.png" alt="Image of preferences dialog">
-
-</div>
-
--->
 
 
 To find Example 2, go to **File** > **Examples** > **SparkFun Qwiic Ultrasonic Arduino Library** > **Example2_OLED_Distance**:
@@ -126,3 +80,6 @@ Make sure you've selected the correct board and port in the Tools menu and then 
 
 Try moving an object (like your hand or a dinosaur) closer to the sensor - notice the output of the OLED shows you how close the object is! Grr. Rawr!
 
+### Going Further
+
+There are more examples in the Arduino Library that allow you to change the I<sup>2</sup>C address or use the Trigger and Echo Pins. Feel free to check them out! 
