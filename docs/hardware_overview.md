@@ -7,7 +7,7 @@ Overall Features:
 
 * Operating Voltage 3.3V
 * Detecting Angle: 80 degrees
-* Sensor range: 0.2 to 18m
+* Sensor range: 2cm to 400cm
 * MCU on board: STM8L051F3
 * 7 bit Unshifted Address: 0x2F
 * Dimensions: 1.75" x 0.85"
@@ -23,7 +23,7 @@ The 8-bit ultra-low power STM8 MCU Core provides increased processing power (up 
 
 ## TCT40-16R/T
 
-The TCT40-16R and TCT40-16T are an analog ultrasonic receiver and transmitter featuring a distance range from 0.2 to 18 meters and a beam angle of 80°. We've attached an RS232 transceiver to the transmitter to boost the signal being sent out, and the receiver goes through an LMV324 op-amp to clean up the signal coming in for optimum detection. For more information, refer to the translated datasheet [here](assets/component_documentation/TCT40-16-T-R.pdf).
+The TCT40-16R and TCT40-16T are an analog ultrasonic receiver and transmitter featuring a distance range from 2cm to 400cm meters and a beam angle of 80°. We've attached an RS232 transceiver to the transmitter to boost the signal being sent out, and the receiver goes through an LMV324 op-amp to clean up the signal coming in for optimum detection. For more information, refer to the translated datasheet [here](assets/component_documentation/TCT40-16-T-R.pdf).
 
 <figure markdown>
 [![TCT40-16R/T](assets/img/24805_SparkFun_Ultrasonic_Distance_Sensor-TCT40-16TR.jpg){ width="600" }](assets/img/24805_SparkFun_Ultrasonic_Distance_Sensor-TCT40-16TR.jpg "Click to enlarge")
