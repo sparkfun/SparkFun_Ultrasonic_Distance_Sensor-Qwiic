@@ -4,7 +4,7 @@ Spot an improvement opportunity? Feel free to contribute to our open-source desi
 ## :material-file-document-multiple:&nbsp;Improve our Documentation
 All of this documentation can be modified by you! Please help us make it better.
 
-* These pages are contained in the [`docs` folder](https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/tree/main/docs) of the [SparkFun Ultrasonic Distance Sensor - TCT40 (Qwiic) repository](https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic).
+* These pages are contained in the [`docs` folder](https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/tree/v11_Firmware_v01/docs) of the [SparkFun Ultrasonic Distance Sensor - TCT40 (Qwiic) repository](https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/tree/v11_Firmware_v01).
 
 <!-- ### :material-source-pull:&nbsp;Submit a Correction -->
 ### Submit a Correction
@@ -18,7 +18,7 @@ All of this documentation can be modified by you! Please help us make it better.
 ## :material-cog:&nbsp;Improve our Hardware Design
 All of our designs are open-source! Please help us make it better.
 
-* Our board design files are contained in the [`Hardware` folder](https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/tree/main/Hardware) of the [SparkFun Ultrasonic Distance Sensor - TCT40 (Qwiic) repository](https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic).
+* Our board design files are contained in the [`Hardware` folder](https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/tree/v11_Firmware_v01/Hardware) of the [SparkFun Ultrasonic Distance Sensor - TCT40 (Qwiic) repository](https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/tree/v11_Firmware_v01).
 
 <!-- ### :material-source-pull:&nbsp;Submit a Design Enhancement -->
 ### Submit a Design Enhancement
@@ -36,6 +36,6 @@ All of our designs are open-source! Please help us make it better.
 ## Contributors&nbsp;:clap:
 Let's provide some recognition to the contributors for this project!
 
-![GitHub Contributors Image](https://contrib.rocks/image?repo=sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic)
+![GitHub Contributors Image](https://contrib.rocks/image?repo=sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/tree/v11_Firmware_v01)
 <br>
 <a href="https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/pulls" alt="Pull Requests"><img src="https://img.shields.io/github/contributors/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic.svg" /></a>
