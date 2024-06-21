@@ -23,6 +23,7 @@ volatile uint8_t i2cInterrupt = 0;
 
 uint8_t volatile distanceH = 0, distanceL = 0;
 uint8_t userAddress = 0x2F;
+uint16_t cycles = 0; 
 
 volatile uint8_t peripheralBuffer[kBufferSize] = {0};
 
@@ -77,7 +78,7 @@ int main(void)
         if (opAmpInterrupt == 1)
         {
             opAmpInterrupt = 0;
-            uint16_t cycles = TIM2_GetCounter();
+            cycles = TIM2_GetCounter();
             TIM2_Cmd(DISABLE);
             TIM3_Cmd(DISABLE);
             GPIO_SetBits(GPIOB, GPIO_Pin_2);
