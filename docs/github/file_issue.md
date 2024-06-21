@@ -1,6 +1,6 @@
 # Did we make a mistake?
 
-Spot something wrong? Please let us know. <a href="https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/issues" alt="Issues"><img src="https://img.shields.io/github/issues/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic.svg" /></a>
+Spot something wrong? Please let us know. <a href="https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/tree/v11_Firmware_v01/issues" alt="Issues"><img src="https://img.shields.io/github/issues/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/tree/v11_Firmware_v01.svg" /></a>
 
 <!-- Technical Assistance Box -->
 !!! warning "Need Help?"
@@ -20,7 +20,7 @@ Spot something wrong? Please let us know. <a href="https://github.com/sparkfun/S
 
 All of our documentation can be modified by you! Please help us make it better.
 
-* The documentation files for these pages are contained in the [`docs` folder](https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/tree/main/docs) of the [SparkFun Ultrasonic Distance Sensor - TCT40 (Qwiic) repository](https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic).
+* The documentation files for these pages are contained in the [`docs` folder](https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/tree/v11_Firmware_v01/docs) of the [SparkFun Ultrasonic Distance Sensor - TCT40 (Qwiic) repository](https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/tree/v11_Firmware_v01).
 
 ### 🔍 Spot something wrong?
 
@@ -38,7 +38,7 @@ If a section of the documentation is incorrect, please [open an issue](https://g
 
 All of our designs are open-source! Please help us make it better.
 
-* Our board design files are contained in the [`Hardware` folder](https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/tree/main/Hardware) of the [SparkFun Ultrasonic Distance Sensor - TCT40 (Qwiic) repository](https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic).
+* Our board design files are contained in the [`Hardware` folder](https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/tree/v11_Firmware_v01/Hardware) of the [SparkFun Ultrasonic Distance Sensor - TCT40 (Qwiic) repository](https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/tree/v11_Firmware_v01).
 
 ### Does something not make sense? 🤔
 
