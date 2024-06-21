@@ -18,8 +18,8 @@ Repository Contents
 
 Documentation
 --------------
-* **[Hookup Guide]()** - Basic hookup guide for the SparkFun Ultrasonic Distance Sensor - TCT40 (Qwiic).
-
+* **[Hookup Guide](https://docs.sparkfun.com/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/)** - Basic hookup guide for the SparkFun Ultrasonic Distance Sensor - TCT40 (Qwiic).
+* **[Arduino Library](https://github.com/sparkfun/SparkFun_Qwiic_Ultrasonic_Arduino_Library/tree/v10)** - Basic hookup guide for the SparkFun Ultrasonic Distance Sensor - TCT40 (Qwiic).
 
 License Information
 -------------------
