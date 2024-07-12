@@ -154,7 +154,7 @@ plugins:
   # Add git committers at the bottom of the page
   - git-committers:
       repository: sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic
-      branch: v11_Firmware_v01
+      branch: main
   # Add git authors at the bottom of the page
   - git-authors
   # Enables use of Git submodules and larger code base
