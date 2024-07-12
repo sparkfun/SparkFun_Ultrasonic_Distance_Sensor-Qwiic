@@ -1,7 +1,7 @@
 SparkFun Ultrasonic Distance Sensor - TCT40 (Qwiic) 
 ========================================
 
-<center><img src="https://cdn.sparkfun.com/r/600-600/assets/parts/2/5/0/9/7/SEN-24805-Ultrasonic-Distance-Sensor-Feature.jpg" width="600" height="600" alt="SparkFun Ultrasonic Distance Sensor - TCT40 (Qwiic)"></center>
+<center><img src="https://cdn.sparkfun.com/r/600-600/assets/parts/2/5/0/9/7/SEN-24805-Ultrasonic-Distance-Sensor-Feature_2.jpg" width="600" height="600" alt="SparkFun Ultrasonic Distance Sensor - TCT40 (Qwiic)"></center>
 
 [*SparkFun Ultrasonic Distance Sensor - TCT40 (Qwiic) (SEN-24805)*](https://www.sparkfun.com/products/24805)
 
