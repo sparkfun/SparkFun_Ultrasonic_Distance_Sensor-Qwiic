@@ -8,7 +8,7 @@ For more resources related to the SparkFun Ultrasonic Distance Sensor - TCT40 (Q
 * [Eagle Files](assets/board_files/SparkFun_Ultrasonic_Sensor_EagleFiles.zip) (ZIP)
 * [Board Dimensions](assets/board_files/SparkFun_Ultrasonic_Sensor_BoardOutline.png) (PDF)
 * [Hardware GitHub Respository](https://github.com/sparkfun/SparkFun_Ultrasonic_Distance_Sensor-Qwiic/tree/v11_Firmware_v01)
-* [Arduino Library GitHub Repository](https://github.com/sparkfun/SparkFun_Qwiic_Ultrasonic_Arduino_Library/tree/v10)
+* [Arduino Library GitHub Repository](https://github.com/sparkfun/SparkFun_Qwiic_Ultrasonic_Arduino_Library)
 * [STM8L051F3 MCU Datasheet](assets/component_documentation/stm8l051f3-1.pdf)
 * [TCT40-16R/T Datasheet](assets/component_documentation/TCT40-16-T-R.pdf)
 * [RS232 transceiver Datasheet](assets/component_documentation/sp3222eb_sp3232eb.pdf)
